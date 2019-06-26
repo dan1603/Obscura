@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="indentation_4">4dp</dimen>
+    <dimen name="indentation_5">5dp</dimen>
+    <dimen name="indentation_6">6dp</dimen>
+    <dimen name="indentation_50">50dp</dimen>
+
+    <dimen name="txt_size_14">14sp</dimen>
+    <dimen name="txt_size_20">20sp</dimen>
+    <dimen name="txt_size_35">40sp</dimen>
+    <dimen name="txt_size_100">100sp</dimen>
+</resources>

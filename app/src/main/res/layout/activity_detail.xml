@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".presentation.activities.detail.DetailActivity">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/txtDetailId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textAlignment="center"
+                android:textSize="@dimen/txt_size_100" />
+
+        <TextView
+                android:id="@+id/txtDetailSurname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/indentation_6"
+                android:layout_marginEnd="@dimen/indentation_6"
+                android:text="@string/txt_default_name"
+                android:textAlignment="center"
+                android:textSize="@dimen/txt_size_35" />
+
+        <TextView
+                android:id="@+id/txtDetailName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/indentation_6"
+                android:layout_marginEnd="@dimen/indentation_6"
+                android:text="@string/txt_default_surname"
+                android:textAlignment="center"
+                android:textSize="@dimen/txt_size_35" />
+
+        <TextView
+                android:id="@+id/txtDetailFathername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/indentation_6"
+                android:layout_marginEnd="@dimen/indentation_6"
+                android:text="@string/txt_default_fathername"
+                android:textAlignment="center"
+                android:textSize="@dimen/txt_size_35" />
+
+    </LinearLayout>
+
+</FrameLayout>

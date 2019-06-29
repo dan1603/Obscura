@@ -25,8 +25,20 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="com.kalashnyk.denys.defaultproject.presentation.activities.detail.DetailActivity"/>
-        <activity android:name="com.kalashnyk.denys.defaultproject.presentation.activities.main.MainActivity"/>
+        <activity android:name="com.kalashnyk.denys.defaultproject.presentation.activities.detail.DetailActivity"
+        android:screenOrientation="portrait"/>
+        <activity android:name="com.kalashnyk.denys.defaultproject.presentation.activities.main.MainActivity"
+        android:screenOrientation="portrait"/>
+
+        <provider
+                android:name="android.support.v4.content.FileProvider"
+                android:authorities="${applicationId}.file.provider"
+                android:exported="false"
+                android:grantUriPermissions="true">
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/file_provider_path" />
+        </provider>
     </application>
 
 </manifest>

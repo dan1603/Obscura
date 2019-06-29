@@ -16,4 +16,8 @@
     <string name="btn_text_delete_user">Delete User</string>
     <string name="text_file_select">Select File to upload</string>
     <string name="btn_text_select_file">Select file</string>
+    <string name="ok">Ok</string>
+    <string name="network_offline">offline</string>
+    <string name="root_detection_description">root detection description</string>
+    <string name="settings">settings</string>
 </resources>

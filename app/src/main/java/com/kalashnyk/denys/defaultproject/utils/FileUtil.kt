@@ -13,8 +13,6 @@ import android.provider.MediaStore
 import android.webkit.MimeTypeMap
 import com.kalashnyk.denys.defaultproject.App
 
-import com.socialchorus.advodroid.SocialChorusApplication
-
 import org.apache.commons.lang3.StringUtils
 
 import java.io.BufferedOutputStream

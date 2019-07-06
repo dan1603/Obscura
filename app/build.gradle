@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
+    useLibrary 'org.apache.http.legacy'
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.kalashnyk.denys.defaultproject"
@@ -75,5 +76,7 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:4.7.0'
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    // Java utils
+    implementation 'org.apache.commons:commons-lang3:3.5'
 
 }

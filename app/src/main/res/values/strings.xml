@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">KotlinSample</string>
+    <string name="app_name">Obscura Light</string>
     <string name="EXTRAS_ID">ID</string>
     <string name="txt_default_name">Name</string>
     <string name="txt_default_surname">Surname</string>
@@ -16,4 +16,11 @@
     <string name="btn_text_delete_user">Delete User</string>
     <string name="text_file_select">Select File to upload</string>
     <string name="btn_text_select_file">Select file</string>
+    <string name="bottom_item_1_text">Themes</string>
+    <string name="bottom_item_2_text">Profile</string>
+    <string name="bottom_item_3_text">People</string>
+    <string name="bottom_item_4_text">Messages</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:background="@color/colorPrimaryDark"
-             tools:context=".presentation.activities.splash.SplashActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
+    <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:keepScreenOn="true"
-            android:text="@string/app_name"
-            android:textColor="@color/colorWhite"
-            android:textSize="50sp"
-            android:textStyle="bold" />
+            android:background="@color/colorPrimaryDark"
+            tools:context=".presentation.activities.splash.SplashActivity">
 
-</FrameLayout>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/txt_size_45"
+                android:fontFamily="sans-serif"
+                android:textStyle="bold"
+                android:textColor="@color/colorWhite"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="2sp"
+                android:textAllCaps="true"
+                android:gravity="center"
+                android:text="@string/app_name"/>
+
+    </FrameLayout>
+</layout>

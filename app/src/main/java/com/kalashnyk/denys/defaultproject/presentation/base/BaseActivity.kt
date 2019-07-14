@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
 import android.support.v4.app.ActivityCompat
+import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -134,8 +135,27 @@ abstract class BaseActivity : AppCompatActivity() {
             PERMISSION_REQUEST)
     }
 
-    fun replaceFragment(resLayout : Int, fragment : BaseFragment) {
+    fun replaceFragment(container: Int, fragment: Fragment) {
+        replaceFragment(container, fragment, true, true)
+    }
 
+    fun replaceFragment(container: Int, fragment: Fragment, addToBackStack: Boolean, moveOnRight: Boolean) {
+        replaceFragment(container, fragment, addToBackStack, true, moveOnRight)
+    }
+
+    fun replaceFragment(container: Int, fragment: Fragment, addToBackStack: Boolean, needAnimate: Boolean, moveOnRight: Boolean) {
+        val fragmentManager = supportFragmentManager
+        var ft = fragmentManager.beginTransaction()
+        val fragmentName = fragment.javaClass.simpleName
+        if (addToBackStack) ft = ft.addToBackStack(fragmentName)
+        if (needAnimate) {
+            val enterAnimation = if (moveOnRight) R.animator.slide_in_left else R.animator.pop_out_right
+            val exitAnimation = if (moveOnRight) R.animator.slide_out_right else R.animator.pop_in_left
+            val popEnterAnimation = if (moveOnRight) R.animator.pop_out_right else R.animator.slide_in_left
+            val popExitAnimation = if (moveOnRight) R.animator.pop_in_left else R.animator.slide_out_right
+            ft.setCustomAnimations(enterAnimation, exitAnimation, popEnterAnimation, popExitAnimation)
+        }
+        ft.replace(container, fragment, fragmentName).commit()
     }
 
     protected abstract fun injectDependency(component: ViewModelComponent)

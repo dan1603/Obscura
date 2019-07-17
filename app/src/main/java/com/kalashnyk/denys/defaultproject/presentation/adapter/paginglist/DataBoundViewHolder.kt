@@ -1,4 +1,4 @@
-package com.kalashnyk.denys.defaultproject.presentation.adapter
+package com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist
 
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding

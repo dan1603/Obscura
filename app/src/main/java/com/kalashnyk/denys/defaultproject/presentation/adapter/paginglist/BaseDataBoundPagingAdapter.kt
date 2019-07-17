@@ -1,11 +1,10 @@
-package com.kalashnyk.denys.defaultproject.presentation.adapter
+package com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist
 
 import android.arch.paging.PagedListAdapter
 import android.databinding.OnRebindCallback
 import android.databinding.ViewDataBinding
 import android.support.annotation.CallSuper
 import android.support.annotation.LayoutRes
-import android.support.v7.recyclerview.extensions.AsyncDifferConfig
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
@@ -14,7 +13,6 @@ public abstract class BaseDataBoundPagingAdapter<V, T : ViewDataBinding> (diffUt
 
     private val DB_PAYLOAD = Any()
     private var mRecyclerView: RecyclerView? = null
-
 
     private val mOnRebindCallback = object : OnRebindCallback<ViewDataBinding>() {
         override fun onPreBind(binding: ViewDataBinding?): Boolean {
@@ -36,7 +34,11 @@ public abstract class BaseDataBoundPagingAdapter<V, T : ViewDataBinding> (diffUt
 
     @CallSuper
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataBoundViewHolder<T> {
-        val vh = DataBoundViewHolder.create<T>(parent, viewType)
+        val vh =
+            DataBoundViewHolder.create<T>(
+                parent,
+                viewType
+            )
         vh.binding.addOnRebindCallback(mOnRebindCallback)
         return vh
     }

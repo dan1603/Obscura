@@ -1,8 +1,7 @@
 package com.kalashnyk.denys.defaultproject.utils
 
-import android.app.Activity
-import com.kalashnyk.denys.defaultproject.presentation.adapter.BaseCardModel
-import com.kalashnyk.denys.defaultproject.presentation.adapter.UserCardModel
+import com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.BaseCardModel
+import com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.UserCardModel
 import com.kalashnyk.denys.defaultproject.usecases.repository.database.entity.UserEntity
 import java.util.ArrayList
 

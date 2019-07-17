@@ -1,4 +1,4 @@
-package com.kalashnyk.denys.defaultproject.presentation.adapter
+package com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist
 
 import com.kalashnyk.denys.defaultproject.usecases.repository.database.entity.UserEntity
 import com.kalashnyk.denys.defaultproject.utils.ApplicationConstants

@@ -32,11 +32,14 @@ import java.util.Objects
 import timber.log.Timber
 
 object FileUtil {
+    const val dirImages = "/TestProject/images"
+    const val dirVideos = "/TestProject/video"
+
 
     val imagesContentDir: File
         get() {
             val file = File(
-                Environment.getExternalStorageDirectory().toString() + "/SC/images"
+                Environment.getExternalStorageDirectory().toString() + dirImages
             )
             if (!file.exists()) {
                 createMediaContentFolder()
@@ -47,7 +50,7 @@ object FileUtil {
     val videoContentDir: File
         get() {
             val file = File(
-                Environment.getExternalStorageDirectory().toString() + "/SC/video"
+                Environment.getExternalStorageDirectory().toString() + dirVideos
             )
             if (!file.exists()) {
                 createMediaContentFolder()
@@ -359,10 +362,10 @@ object FileUtil {
             mediaPath.mkdir()
         }
         val filePathImage = File(
-            Environment.getExternalStorageDirectory().toString() + "/SC/images"
+            Environment.getExternalStorageDirectory().toString() + dirImages
         )
         val filePathVideo = File(
-            Environment.getExternalStorageDirectory().toString() + "/SC/video"
+            Environment.getExternalStorageDirectory().toString() + dirVideos
         )
         if (!filePathImage.exists()) {
             filePathImage.mkdir()

@@ -1,4 +1,4 @@
-package com.kalashnyk.denys.defaultproject.presentation.fragments
+package com.kalashnyk.denys.defaultproject.presentation.base
 
 import android.os.Bundle
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowModel

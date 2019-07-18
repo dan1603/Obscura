@@ -3,7 +3,7 @@ package com.kalashnyk.denys.defaultproject.presentation.activities.auth
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.kalashnyk.denys.defaultproject.R
-import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlow
+import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowModel
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow
 
 class AuthActivity : AppCompatActivity(), IAuthFlow.IAuthListener {
@@ -13,15 +13,44 @@ class AuthActivity : AppCompatActivity(), IAuthFlow.IAuthListener {
         setContentView(R.layout.activity_auth)
     }
 
-    override fun authRequest(flow: AuthFlow, callback: IAuthFlow.IAuthCallback) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun authRequest(flowModel: AuthFlowModel, callback: IAuthFlow.IAuthCallback) {
+        when (flowModel.type) {
+            IAuthFlow.AuthType.SIGN_IN -> {
+
+            }
+
+            IAuthFlow.AuthType.SIGN_UP -> {
+
+            }
+
+            IAuthFlow.AuthType.RECOVER_ACCOUNT -> {
+
+            }
+        }
     }
 
     override fun socialAuth(type: IAuthFlow.SocialAuthType, callback: IAuthFlow.IAuthCallback) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        when (type) {
+            IAuthFlow.SocialAuthType.FACEBOOK -> {
+
+            }
+            IAuthFlow.SocialAuthType.GOOGLE -> {
+
+            }
+        }
     }
 
     override fun openScreen(typeScreen: IAuthFlow.NavigationType) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        when (typeScreen) {
+            IAuthFlow.NavigationType.SIGN_IN_SCREEN -> {
+
+            }
+            IAuthFlow.NavigationType.SIGN_UP_SCREEN -> {
+
+            }
+            IAuthFlow.NavigationType.RECOVER_ACCOUNT_SCREEN -> {
+
+            }
+        }
     }
 }

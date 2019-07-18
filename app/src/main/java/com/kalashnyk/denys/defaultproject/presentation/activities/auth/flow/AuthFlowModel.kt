@@ -1,8 +1,9 @@
 package com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow
 
-class AuthFlow(var type: IAuthFlow.AuthType,
-               var email : String? = null,
-               var password : String? = null,
-               var passwordRepeat : String? = null) {
+class AuthFlowModel(var type: IAuthFlow.AuthType? = null,
+                    var email : String? = null,
+                    var password : String? = null,
+                    var passwordConfirm : String? = null,
+                    var isAcceptTerms : Boolean? = false) {
 
 }

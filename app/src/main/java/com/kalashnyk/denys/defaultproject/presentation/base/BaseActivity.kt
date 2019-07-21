@@ -20,7 +20,7 @@ import android.widget.Toolbar
 import com.kalashnyk.denys.defaultproject.App
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
-import com.kalashnyk.denys.defaultproject.utils.hideKeyboardEx
+import com.kalashnyk.denys.defaultproject.utils.extention.hideKeyboardEx
 import java.util.ArrayList
 
 abstract class BaseActivity : AppCompatActivity() {

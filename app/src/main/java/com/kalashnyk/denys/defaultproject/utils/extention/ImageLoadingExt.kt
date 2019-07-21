@@ -1,21 +1,21 @@
 package com.kalashnyk.denys.defaultproject.utils.extention
 
 import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.widget.ImageView
 import com.bumptech.glide.Priority
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.kalashnyk.denys.defaultproject.utils.glide.RoundedCornersTransformation
 import java.io.File
 
-fun ImageView.loadImageByUrl(path: String?) {
+fun ImageView.loadImageByUrl(path: String?, placeholder : Int, error : Int) {
     GlideApp.with(context)
             .load(path)
             .centerCrop()
             .transition(DrawableTransitionOptions.withCrossFade(300))
-            .placeholder(R.drawable.ic_aub_car_icon)
-            .error(R.drawable.ic_aub_car_icon)
+            .placeholder(placeholder)//add defualt placeholder
+            .error(error)
             .priority(Priority.IMMEDIATE)
             .into(this)
 }
@@ -29,12 +29,12 @@ fun ImageView.loadImage(path: String?) {
             .into(this)
 }
 
-fun ImageView.loadImageByUrlWithCircleCrop(path: String?) {
+fun ImageView.loadImageByUrlWithCircleCrop(path: String?, fallback : Int, error: Int) {
     GlideApp.with(context)
             .load(path)
             .circleCrop()
-            .fallback(R.drawable.ic_aub_car_icon)
-            .error(R.drawable.ic_aub_car_icon)
+            .fallback(fallback)
+            .error(error)
             .into(this)
 }
 
@@ -77,13 +77,13 @@ fun ImageView.loadImageFile(file: File?) {
             .into(this)
 }
 
-fun ImageView.loadRoundedAvatar(file: File? = null, url: String? = null) {
+fun ImageView.loadRoundedAvatar(file: File? = null, url: String? = null, error: Int, placeholder: Int) {
     GlideApp.with(context).clear(this)
     GlideApp.with(context)
             .load(file ?: url)
             .circleCrop()
-            .error(R.drawable.photo_button)
-            .placeholder(R.drawable.photo_button)
+            .error(error)//R.drawable.photo_button
+            .placeholder(placeholder)//R.drawable.photo_button
             .transition(DrawableTransitionOptions.withCrossFade(300))
             .into(this)
 }

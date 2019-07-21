@@ -8,9 +8,9 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import com.kalashnyk.denys.defaultproject.utils.hideKeyboardEx
-import com.kalashnyk.denys.defaultproject.utils.showSnack
-import com.kalashnyk.denys.defaultproject.utils.showToast
+import com.kalashnyk.denys.defaultproject.utils.extention.hideKeyboardEx
+import com.kalashnyk.denys.defaultproject.utils.extention.showSnack
+import com.kalashnyk.denys.defaultproject.utils.extention.showToast
 
 abstract class BaseFragment : Fragment() {
     private val appBar: ActionBar? = activity?.actionBar

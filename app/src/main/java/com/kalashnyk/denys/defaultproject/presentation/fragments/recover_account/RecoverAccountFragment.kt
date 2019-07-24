@@ -1,4 +1,4 @@
-package com.kalashnyk.denys.defaultproject.presentation.fragments
+package com.kalashnyk.denys.defaultproject.presentation.fragments.recover_account
 
 import android.content.Context
 import android.os.Bundle

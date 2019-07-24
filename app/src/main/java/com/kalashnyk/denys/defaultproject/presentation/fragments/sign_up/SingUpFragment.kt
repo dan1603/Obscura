@@ -1,4 +1,4 @@
-package com.kalashnyk.denys.defaultproject.presentation.fragments
+package com.kalashnyk.denys.defaultproject.presentation.fragments.sign_up
 
 import android.content.Context
 import android.os.Bundle
@@ -7,7 +7,7 @@ import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.Auth
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseAuthFragment
 
-class SignInFragment : BaseAuthFragment(), IAuthFlow.IAuthCallback {
+class SingUpFragment : BaseAuthFragment(), IAuthFlow.IAuthCallback {
 
     private var listener: IAuthFlow.IAuthListener? = null
 
@@ -32,7 +32,7 @@ class SignInFragment : BaseAuthFragment(), IAuthFlow.IAuthCallback {
         listener = null
     }
 
-    override fun getLayout(): Int  = R.layout.fragment_sign_in
+    override fun getLayout(): Int = R.layout.fragment_sing_up
 
     override fun showError(error: AuthFlowErrorModel) {
         //ToDo show error for validation inputs
@@ -41,9 +41,9 @@ class SignInFragment : BaseAuthFragment(), IAuthFlow.IAuthCallback {
     companion object {
         @JvmStatic
         fun newInstance() =
-            SignInFragment().apply {
+            SingUpFragment().apply {
                 arguments = Bundle().apply {
-                   //ToDo put bundle
+                    //todo put bundle
                 }
             }
     }

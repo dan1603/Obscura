@@ -15,4 +15,7 @@
     <color name="black_38">#61000000</color>
     <color name="bottom_inactive">#d2ddf7</color>
     <color name="splash_background">#5478d6</color>
+
+    <color name="text_color_black">#cc191c2a</color>
+    <color name="text_color_blue">#4b6ec9</color>
 </resources>

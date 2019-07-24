@@ -16,7 +16,7 @@
         <com.aurelhubert.ahbottomnavigation.AHBottomNavigation
                 android:id="@+id/bottomNavigation"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/height_bottom_navigation"
+                android:layout_height="@dimen/view_params_60"
                 android:layout_alignParentBottom="true"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 

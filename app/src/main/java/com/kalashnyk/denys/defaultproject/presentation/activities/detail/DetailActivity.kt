@@ -1,5 +1,7 @@
 package com.kalashnyk.denys.defaultproject.presentation.activities.detail
 
+import android.arch.lifecycle.Lifecycle
+import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.Observer
 import android.content.Context
 import android.content.Intent
@@ -15,6 +17,7 @@ import java.util.*
 import javax.inject.Inject
 
 class DetailActivity : BaseActivity() {
+
 
     var viewModel: SingleUserViewModel? = null
         @Inject set
@@ -44,7 +47,7 @@ class DetailActivity : BaseActivity() {
     private fun initViewModel() {
         userId = intent.getIntExtra(getString(R.string.EXTRAS_ID), 0)
         viewModel?.getItem(userId)
-        viewModel?.getLiveDataItem()?.observe(this, Observer { it?.let { initTextViews(it) } })
+//        viewModel?.getLiveDataItem()?.observe(this, Observer { it?.let { initTextViews(it) } })
     }
 
     private fun initTextViews(user: UserEntity) {

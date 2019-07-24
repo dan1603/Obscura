@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.kalashnyk.denys.defaultproject">
+          xmlns:tools="http://schemas.android.com/tools" package="com.kalashnyk.denys.defaultproject">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -12,9 +12,16 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme">
-        <activity android:name=".presentation.activities.auth.AuthActivity">
-        </activity>
+            android:theme="@style/AppTheme"
+            tools:ignore="GoogleAppIndexingWarning">
+
+        <!--<activity android:name="com.kalashnyk.denys.defaultproject.presentation.activities.splash.SplashActivity"-->
+                  <!--android:configChanges="orientation|keyboardHidden|screenSize"-->
+                  <!--android:label="@string/app_name"-->
+                  <!--android:noHistory="true"-->
+                  <!--android:screenOrientation="portrait"-->
+                  <!--android:theme="@style/NoTittleBar"/>-->
+        <activity android:name=".presentation.activities.auth.AuthActivity"/>
         <activity
                 android:name=".presentation.activities.splash.SplashActivity"
                 android:configChanges="orientation|keyboardHidden|screenSize"

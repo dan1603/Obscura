@@ -1,7 +1,7 @@
 package com.kalashnyk.denys.defaultproject.presentation.activities.auth
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowModel
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow

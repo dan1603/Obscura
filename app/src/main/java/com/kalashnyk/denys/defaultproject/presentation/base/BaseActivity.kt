@@ -11,12 +11,15 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
 import android.support.v4.app.ActivityCompat
+
 import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import android.widget.Toolbar
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.kalashnyk.denys.defaultproject.App
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
@@ -37,6 +40,7 @@ abstract class BaseActivity : AppCompatActivity() {
         createDaggerDependencies()
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     protected fun initializeToolbar(toolbar: Toolbar) {
         mToolbar = toolbar
         mToolbar?.apply {
@@ -46,11 +50,13 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.ECLAIR)
     override fun startActivity(intent: Intent) {
         super.startActivity(intent)
         overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up)
     }
 
+    @RequiresApi(Build.VERSION_CODES.ECLAIR)
     override fun finish() {
         super.finish()
         overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down)
@@ -134,8 +140,27 @@ abstract class BaseActivity : AppCompatActivity() {
             PERMISSION_REQUEST)
     }
 
-    fun replaceFragment(resLayout : Int, fragment : BaseFragment) {
+    fun replaceFragment(container: Int, fragment: Fragment) {
+        replaceFragment(container, fragment, true, true)
+    }
 
+    fun replaceFragment(container: Int, fragment: Fragment, addToBackStack: Boolean, moveOnRight: Boolean) {
+        replaceFragment(container, fragment, addToBackStack, true, moveOnRight)
+    }
+
+    fun replaceFragment(container: Int, fragment: Fragment, addToBackStack: Boolean, needAnimate: Boolean, moveOnRight: Boolean) {
+        val fragmentManager = supportFragmentManager
+        var ft = fragmentManager.beginTransaction()
+        val fragmentName = fragment.javaClass.simpleName
+        if (addToBackStack) ft = ft.addToBackStack(fragmentName)
+        if (needAnimate) {
+            val enterAnimation = if (moveOnRight) R.animator.slide_in_left else R.animator.pop_out_right
+            val exitAnimation = if (moveOnRight) R.animator.slide_out_right else R.animator.pop_in_left
+            val popEnterAnimation = if (moveOnRight) R.animator.pop_out_right else R.animator.slide_in_left
+            val popExitAnimation = if (moveOnRight) R.animator.pop_in_left else R.animator.slide_out_right
+            ft.setCustomAnimations(enterAnimation, exitAnimation, popEnterAnimation, popExitAnimation)
+        }
+        ft.replace(container, fragment, fragmentName).commit()
     }
 
     protected abstract fun injectDependency(component: ViewModelComponent)

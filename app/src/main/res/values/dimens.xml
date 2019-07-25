@@ -4,8 +4,14 @@
     <dimen name="indentation_5">5dp</dimen>
     <dimen name="indentation_6">6dp</dimen>
     <dimen name="indentation_10">10dp</dimen>
+    <dimen name="indentation_12">12dp</dimen>
     <dimen name="indentation_16">16dp</dimen>
+    <dimen name="indentation_18">18dp</dimen>
     <dimen name="indentation_20">20dp</dimen>
+    <dimen name="indentation_22">22dp</dimen>
+    <dimen name="indentation_26">26dp</dimen>
+    <dimen name="indentation_30">30dp</dimen>
+    <dimen name="indentation_32">32dp</dimen>
     <dimen name="indentation_35">35dp</dimen>
     <dimen name="indentation_40">40dp</dimen>
     <dimen name="indentation_50">50dp</dimen>
@@ -25,4 +31,6 @@
     <dimen name="view_params_36">36dp</dimen>
     <dimen name="view_params_60">60dp</dimen>
     <dimen name="view_params_65">65dp</dimen>
+    <dimen name="view_params_165">165dp</dimen>
+    <dimen name="view_params_280">280dp</dimen>
 </resources>

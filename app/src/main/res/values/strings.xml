@@ -31,4 +31,10 @@
     <string name="enter_your_password">Enter your password</string>
     <string name="get_a_password">GET A PASSWORD</string>
     <string name="enter_the_pass">Enter the password you used\nto create your account</string>
+    <string name="hint_email">Enter your email</string>
+    <string name="hint_password">Enter your password</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="Don_have_an_account">Don`t have an account?</string>
 </resources>

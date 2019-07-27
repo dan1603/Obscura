@@ -3,6 +3,7 @@
     <dimen name="indentation_4">4dp</dimen>
     <dimen name="indentation_5">5dp</dimen>
     <dimen name="indentation_6">6dp</dimen>
+    <dimen name="indentation_8">8dp</dimen>
     <dimen name="indentation_10">10dp</dimen>
     <dimen name="indentation_12">12dp</dimen>
     <dimen name="indentation_16">16dp</dimen>

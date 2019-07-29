@@ -45,7 +45,7 @@ class MultiStateView @JvmOverloads constructor(
             }
         }
 
-    private fun init(attrs: AttributeSet?) {
+    init {
         mInflater = LayoutInflater.from(context)
         val a = context.obtainStyledAttributes(
             attrs,

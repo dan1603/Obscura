@@ -12,7 +12,8 @@ abstract class MultiTypeDataBoundAdapter<T, V : ViewDataBinding> (diffUtil: Diff
 
     override fun bindItem(holder: DataBoundViewHolder<V>, position: Int, payloads: List<Any>) {
         if (payloads.isEmpty() || payloads.contains(DiffCallbackBaseCardModel.CONTENT)) {
-            holder.binding.setVariable(BR.data, getItem(position))
+            //todo with create real items
+//            holder.binding.setVariable(BR.data, getItem(position))
         }
     }
 

@@ -1,15 +1,16 @@
 package com.kalashnyk.denys.defaultproject
 
-import android.app.Application
 import android.arch.persistence.room.Room
 import android.content.Context
+import androidx.multidex.MultiDex
+import androidx.multidex.MultiDexApplication
 import com.kalashnyk.denys.defaultproject.di.component.*
 import com.kalashnyk.denys.defaultproject.di.module.*
 import com.kalashnyk.denys.defaultproject.usecases.repository.database.AppDatabase
 import com.squareup.leakcanary.LeakCanary
 import com.squareup.leakcanary.RefWatcher
 
-class App: Application() {
+class App: MultiDexApplication() {
 
     private var viewModelComponent: ViewModelComponent? = null
     private var database: AppDatabase? = null
@@ -42,6 +43,10 @@ class App: Application() {
                 "com.kalashnyk.denys.defaultproject"
             ))
         }
+    }
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
     }
 
     override fun onCreate() {

@@ -29,8 +29,7 @@ class ProfileFragment : BaseFragment() {
     companion object {
         @JvmStatic
         fun newInstance(): ProfileFragment {
-            val fragment: ProfileFragment = ProfileFragment()
-            return fragment
+            return ProfileFragment()
         }
     }
 }

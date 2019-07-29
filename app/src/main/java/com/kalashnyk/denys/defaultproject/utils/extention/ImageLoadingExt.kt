@@ -6,6 +6,8 @@ import com.bumptech.glide.Priority
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.kalashnyk.denys.defaultproject.utils.glide.GlideApp
+import com.kalashnyk.denys.defaultproject.utils.glide.GlideRequest
 import com.kalashnyk.denys.defaultproject.utils.glide.RoundedCornersTransformation
 import java.io.File
 

@@ -1,13 +1,9 @@
 package com.kalashnyk.denys.defaultproject.utils.multistate
 
-import java.lang.annotation.Retention
-import java.lang.annotation.RetentionPolicy
-
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.content.Context
-import android.support.annotation.IntDef
 import android.support.annotation.LayoutRes
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -16,11 +12,11 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.kalashnyk.denys.defaultproject.R
 
-/**
- * Created by tejasjukar on 7/26/16.
- */
 
-class MultiStateView : FrameLayout {
+annotation class ViewState
+class MultiStateView @JvmOverloads constructor(
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+) : FrameLayout(context, attrs, defStyleAttr) {
 
     private var mInflater: LayoutInflater? = null
 
@@ -48,24 +44,6 @@ class MultiStateView : FrameLayout {
                 setView(previous)
             }
         }
-
-    @Retention(RetentionPolicy.SOURCE)
-    @IntDef(
-        VIEW_STATE_UNKNOWN,
-        VIEW_STATE_CONTENT,
-        VIEW_STATE_ERROR,
-        VIEW_STATE_EMPTY,
-        VIEW_STATE_LOADING
-    )
-    annotation class ViewState
-    @JvmOverloads
-    constructor(context: Context, attrs: AttributeSet? = null) : super(context, attrs) {
-        init(attrs)
-    }
-
-    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
-        init(attrs)
-    }
 
     private fun init(attrs: AttributeSet?) {
         mInflater = LayoutInflater.from(context)

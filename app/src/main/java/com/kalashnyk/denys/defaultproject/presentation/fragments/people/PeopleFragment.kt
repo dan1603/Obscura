@@ -29,8 +29,7 @@ class PeopleFragment : BaseFragment() {
     companion object {
         @JvmStatic
         fun newInstance(): PeopleFragment {
-            val fragment: PeopleFragment = PeopleFragment()
-            return fragment
+            return PeopleFragment()
         }
     }
 }

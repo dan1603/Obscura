@@ -30,6 +30,7 @@ import android.widget.TextView
 import com.kalashnyk.denys.defaultproject.App
 import com.kalashnyk.denys.defaultproject.BuildConfig
 import com.kalashnyk.denys.defaultproject.R
+import org.apache.commons.lang3.StringUtils
 
 import java.io.File
 import java.io.FileOutputStream
@@ -254,23 +255,23 @@ object Util {
 //        }
 //    }
 
-    fun handleErrorResponse(
-        context: Context,
-        errorResponse: ErrorResponse
-    ) {
-
-        for (error in errorResponse.getErrors()) {
-
-            if (error.getCode().equals("member.unauthorized")) {
-                Timber.e("Response error code: %s", error.getCode())
-//                StateManager.setSessionId(context, null)
-            }
-
-            if (error.getCode().equals("member.forbidden")) {
-                Timber.e("Response error code: %s", error.getCode())
-            }
-        }
-    }
+//    fun handleErrorResponse(
+//        context: Context,
+//        errorResponse: ErrorResponse
+//    ) {
+//
+//        for (error in errorResponse.getErrors()) {
+//
+//            if (error.getCode().equals("member.unauthorized")) {
+//                Timber.e("Response error code: %s", error.getCode())
+////                StateManager.setSessionId(context, null)
+//            }
+//
+//            if (error.getCode().equals("member.forbidden")) {
+//                Timber.e("Response error code: %s", error.getCode())
+//            }
+//        }
+//    }
 
     fun isConnectedToNetwork(
         context: Context,
@@ -445,7 +446,7 @@ object Util {
             .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
         val activeNetwork = cm.activeNetworkInfo
-        return activeNetwork != null && activeNetwork!!.isConnected
+        return activeNetwork != null && activeNetwork.isConnected
     }
 
     fun renderHtmlTextView(textView: TextView, html: String, colorPrimary : Int) {

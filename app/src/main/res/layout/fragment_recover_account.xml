@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -9,7 +9,7 @@
 
 
     <TextView
-            android:id="@+id/tv_headline"
+            android:id="@+id/tvRecoverAccountLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/indentation_35"
@@ -25,7 +25,7 @@
             tools:text="@string/password_recovery"/>
 
     <LinearLayout
-            android:id="@+id/sl_background"
+            android:id="@+id/containerRecoverAccountInputs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/indentation_16"
@@ -35,7 +35,7 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_headline">
+            app:layout_constraintTop_toBottomOf="@id/tvRecoverAccountLabel">
 
         <TextView
                 android:id="@+id/tv_enter_the_pass"
@@ -45,36 +45,35 @@
                 android:layout_marginTop="@dimen/indentation_16"
                 android:layout_marginEnd="@dimen/indentation_16"
                 android:fontFamily="sans-serif"
+                android:paddingStart="@dimen/indentation_4"
                 android:letterSpacing="0.01"
-                android:lineSpacingExtra="1sp"
+                android:lineSpacingExtra="@dimen/txt_size_1"
                 android:textColor="@color/text_color_black"
-                android:textSize="16sp"
+                android:textSize="@dimen/txt_size_16"
                 android:textStyle="normal"
-                app:layout_constraintLeft_toLeftOf="@id/sl_background"
-                app:layout_constraintTop_toTopOf="@id/sl_background"
-                tools:text="@string/enter_the_pass"/>
+                android:text="@string/enter_the_pass"/>
 
-        <android.support.design.widget.TextInputLayout
-                android:id="@+id/til_recover"
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilSignInPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/indentation_16"
                 android:layout_marginEnd="@dimen/indentation_16"
-                app:layout_constraintLeft_toLeftOf="@id/sl_background"
-                app:layout_constraintTop_toBottomOf="@id/tv_enter_the_pass">
+                android:layout_marginBottom="@dimen/indentation_8"
+                android:layout_marginTop="@dimen/indentation_8">
 
-            <android.support.design.widget.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/iet_enter_your_pass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/enter_your_password"
                     android:letterSpacing="0.01"
-                    android:lineSpacingExtra="8sp"/>
-        </android.support.design.widget.TextInputLayout>
+                    android:singleLine="true"/>
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
     <Button
-            android:id="@+id/btn_get_the_pass"
+            android:id="@+id/btnRecoverAccount"
             android:layout_width="match_parent"
             android:layout_height="@dimen/view_params_36"
             android:layout_marginStart="@dimen/indentation_16"
@@ -83,14 +82,13 @@
             android:background="@drawable/common_back_button"
             android:gravity="center"
             android:letterSpacing="0.01"
-            android:lineSpacingExtra="13sp"
             android:textColor="@color/text_color_blue"
-            android:textSize="14sp"
+            android:textSize="@dimen/txt_size_14"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/sl_background"
+            app:layout_constraintTop_toBottomOf="@id/containerRecoverAccountInputs"
             tools:text="@string/get_a_password"/>
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

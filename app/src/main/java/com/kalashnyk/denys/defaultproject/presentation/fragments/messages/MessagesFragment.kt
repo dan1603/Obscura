@@ -29,8 +29,7 @@ class MessagesFragment : BaseFragment() {
     companion object {
         @JvmStatic
         fun newInstance(): MessagesFragment {
-            val fragment: MessagesFragment = MessagesFragment()
-            return fragment
+            return MessagesFragment()
         }
     }
 }

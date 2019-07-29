@@ -75,8 +75,9 @@ object FileUtil {
             val buffer = ByteArray(4096)
             ous = ByteArrayOutputStream()
             ios = FileInputStream(file)
-            var read: Int
-            while ((read = ios.read(buffer)) != -1)
+            var read: Int = -1
+            while (ios.read(buffer) != -1) //(read = ios.read(buffer)) != -1
+                read = ios.read(buffer)
                 ous.write(buffer, 0, read)
         } catch (e: Exception) {
             return null
@@ -103,8 +104,9 @@ object FileUtil {
             val out = FileOutputStream(dst)
             try {
                 val buf = ByteArray(1024)
-                var len: Int
-                while ((len = inputStream.read(buf)) > 0) {
+                var len: Int = 0
+                while (inputStream.read(buf) > 0) {
+                    len = inputStream.read(buf)
                     out.write(buf, 0, len)
                 }
             } finally {
@@ -136,8 +138,9 @@ object FileUtil {
             )
             // read buffer of 2048 bytes
             val buf = ByteArray(2048)
-            var len: Int
-            while ((len = inputStream.read(buf)) > 0) {
+            var len: Int = 0
+            while (inputStream.read(buf) > 0) {
+                len = inputStream.read(buf)
                 outputStream.write(buf, 0, len)
             }
             outputStream.flush()

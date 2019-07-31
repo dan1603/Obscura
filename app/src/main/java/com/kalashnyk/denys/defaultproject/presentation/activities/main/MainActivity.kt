@@ -64,10 +64,10 @@ class MainActivity : BaseActivity() {
         bottomNavigation.titleState = AHBottomNavigation.TitleState.SHOW_WHEN_ACTIVE
         bottomNavigation.setUseElevation(true)
 
-        ahItem1 = AHBottomNavigationItem(getString(R.string.bottom_item_1_text), R.drawable.ic_themes_active)
-        ahItem2 = AHBottomNavigationItem(getString(R.string.bottom_item_2_text), R.drawable.ic_profile_active)
-        ahItem3 = AHBottomNavigationItem(getString(R.string.bottom_item_3_text), R.drawable.ic_people_active)
-        ahItem4 = AHBottomNavigationItem(getString(R.string.bottom_item_4_text), R.drawable.ic_chats_active)
+        ahItem1 = AHBottomNavigationItem(getString(R.string.bottom_item_themes), R.drawable.ic_themes_active)
+        ahItem2 = AHBottomNavigationItem(getString(R.string.bottom_item_profile), R.drawable.ic_profile_active)
+        ahItem3 = AHBottomNavigationItem(getString(R.string.bottom_item_people), R.drawable.ic_people_active)
+        ahItem4 = AHBottomNavigationItem(getString(R.string.bottom_item_messages), R.drawable.ic_chats_active)
 
         bottomNavigation.addItem(ahItem1)
         bottomNavigation.addItem(ahItem2)

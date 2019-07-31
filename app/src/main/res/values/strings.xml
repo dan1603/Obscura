@@ -16,19 +16,16 @@
     <string name="btn_text_delete_user">Delete User</string>
     <string name="text_file_select">Select File to upload</string>
     <string name="btn_text_select_file">Select file</string>
-    <string name="bottom_item_1_text">Themes</string>
-    <string name="bottom_item_2_text">Profile</string>
-    <string name="bottom_item_3_text">People</string>
-    <string name="bottom_item_4_text">Messages</string>
+    <string name="bottom_item_themes">Themes</string>
+    <string name="bottom_item_profile">Profile</string>
+    <string name="bottom_item_people">People</string>
+    <string name="bottom_item_messages">Messages</string>
     <string name="ok">Ok</string>
     <string name="network_offline">offline</string>
     <string name="root_detection_description">root detection description</string>
     <string name="settings">settings</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--auth-->
     <string name="password_recovery">PASSWORD\nRECOVERY</string>
-    <string name="enter_your_password">Enter your password</string>
     <string name="get_a_password">GET A PASSWORD</string>
     <string name="enter_the_pass">Enter the password you used\nto create your account</string>
     <string name="hint_email">Enter your email</string>
@@ -36,6 +33,13 @@
     <string name="sign_in">SIGN IN</string>
     <string name="sign_up">SIGN UP</string>
     <string name="forgot_your_password">Forgot your password?</string>
-    <string name="Don_have_an_account">Don`t have an account?</string>
+    <string name="dont_have_an_account">Don`t have an account?</string>
     <string name="you_can_sign_in_with">You can sign in with</string>
+    <string name="text_i_agree_with">I agree with</string>
+    <string name="text_terms_and_privacy">Terms and Privacy</string>
+    <string name="text_you_can_sign_up_with">You can sign up with</string>
+    <string name="text_have_an_account">Have an account?</string>
+    <string name="enter_your_name_and_surname">Enter your name and surname</string>
+    <string name="choose_password">Choose password</string>
+    <string name="repeat_password">Repeat password</string>
 </resources>

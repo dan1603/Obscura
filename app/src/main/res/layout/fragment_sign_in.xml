@@ -75,7 +75,7 @@
                 android:layout_marginTop="@dimen/indentation_20"
                 android:layout_marginEnd="@dimen/indentation_20"
                 android:layout_marginBottom="@dimen/indentation_18"
-                android:textColor="@color/soft_blue"
+                android:textColor="@color/text_color_blue"
                 android:textSize="@dimen/txt_size_12"
                 tools:text="@string/forgot_your_password"/>
     </LinearLayout>
@@ -90,7 +90,7 @@
             android:background="@drawable/common_back_button"
             android:fontFamily="sans-serif-medium"
             android:text="@string/sign_in"
-            android:textColor="@color/soft_blue"
+            android:textColor="@color/text_color_blue"
             android:textSize="@dimen/txt_size_14"
             android:textStyle="normal"
             app:layout_constraintTop_toBottomOf="@+id/containerSignInInputs"/>
@@ -139,7 +139,7 @@
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/txt_size_12"
                 android:textStyle="normal"
-                tools:text="@string/Don_have_an_account"/>
+                tools:text="@string/dont_have_an_account"/>
 
         <TextView
                 android:id="@+id/tvSignInSignUp"
@@ -147,7 +147,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/indentation_10"
                 android:layout_marginBottom="@dimen/indentation_30"
-                android:background="@color/soft_blue"
+                android:background="@color/text_color_blue"
                 android:fontFamily="sans-serif-medium"
                 android:textColor="@color/colorWhite"
                 android:textStyle="normal"

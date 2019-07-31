@@ -11,8 +11,8 @@ import android.graphics.Outline
 import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.os.Build
-import android.support.annotation.ColorInt
-import android.support.v7.app.AlertDialog
+import androidx.annotation.ColorInt
+import androidx.appcompat.app.AlertDialog
 import android.util.DisplayMetrics
 import android.view.Display
 import android.view.View

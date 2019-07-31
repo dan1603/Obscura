@@ -1,12 +1,12 @@
 package com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist
 
-import android.arch.paging.PagedListAdapter
-import android.databinding.OnRebindCallback
-import android.databinding.ViewDataBinding
-import android.support.annotation.CallSuper
-import android.support.annotation.LayoutRes
-import android.support.v7.util.DiffUtil
-import android.support.v7.widget.RecyclerView
+import androidx.paging.PagedListAdapter
+import androidx.databinding.OnRebindCallback
+import androidx.databinding.ViewDataBinding
+import androidx.annotation.CallSuper
+import androidx.annotation.LayoutRes
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 
 public abstract class BaseDataBoundPagingAdapter<V, T : ViewDataBinding> (diffUtil: DiffUtil.ItemCallback<V>): PagedListAdapter<V, DataBoundViewHolder<T>>(diffUtil) {

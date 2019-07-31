@@ -1,8 +1,7 @@
 package com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist
 
-import android.databinding.ViewDataBinding
-import android.support.v7.util.DiffUtil
-import com.android.databinding.library.baseAdapters.BR
+import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.DiffUtil
 
 abstract class MultiTypeDataBoundAdapter<T, V : ViewDataBinding> (diffUtil: DiffUtil.ItemCallback<T>) : BaseDataBoundPagingAdapter<T, V>(diffUtil) {
 

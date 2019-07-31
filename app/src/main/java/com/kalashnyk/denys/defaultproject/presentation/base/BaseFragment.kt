@@ -2,7 +2,7 @@ package com.kalashnyk.denys.defaultproject.presentation.base
 
 import android.app.ActionBar
 import android.os.Bundle
-import android.support.annotation.DrawableRes
+import androidx.annotation.DrawableRes
 
 import android.view.LayoutInflater
 import android.view.MenuItem

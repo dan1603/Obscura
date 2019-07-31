@@ -1,6 +1,6 @@
 package com.kalashnyk.denys.defaultproject.presentation.activities.splash
 
-import android.databinding.DataBindingUtil
+import androidx.databinding.DataBindingUtil
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity

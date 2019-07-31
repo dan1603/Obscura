@@ -1,6 +1,6 @@
 package com.kalashnyk.denys.defaultproject.usecases.repository.database.dao
 
-import android.arch.persistence.room.*
+import androidx.room.*
 import com.kalashnyk.denys.defaultproject.usecases.repository.database.entity.UserEntity
 
 @Dao

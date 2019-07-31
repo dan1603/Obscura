@@ -1,6 +1,6 @@
 package com.kalashnyk.denys.defaultproject.presentation.base
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 
 abstract class BaseAdapter<VH : RecyclerView.ViewHolder, M, L>
     (protected var list: MutableList<M>, protected var clickListener: L) : RecyclerView.Adapter<VH>() {

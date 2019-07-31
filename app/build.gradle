@@ -12,8 +12,11 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
+        renderscriptTargetApi 28
+        renderscriptSupportModeEnabled true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -46,6 +49,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 
     //Support libs
+    implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
@@ -64,18 +68,18 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
     implementation "io.reactivex.rxjava2:rxjava:2.2.7"
     // ViewModel and LiveData
-    implementation "android.arch.lifecycle:extensions:${viewmodel}"
-    implementation "android.arch.lifecycle:common-java8:${viewmodel}"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    implementation 'androidx.lifecycle:lifecycle-common-java8:2.0.0'
     // Room
-    implementation "android.arch.persistence.room:runtime:${room}"
-    kapt "android.arch.persistence.room:compiler:${room}"
+    implementation 'androidx.room:room-runtime:2.1.0'
+    kapt 'androidx.room:room-compiler:2.1.0'
     // Dagger
     implementation "com.google.dagger:dagger:${dagger}"
     kapt "com.google.dagger:dagger-compiler:${dagger}"
     // Logging
     implementation "com.squareup.okhttp3:logging-interceptor:${log}"
     // Paging
-    implementation "android.arch.paging:runtime:${paging}"
+    implementation 'androidx.paging:paging-runtime:2.1.0'
     // AH Bottom Navigation
     implementation 'com.aurelhubert:ahbottomnavigation:2.1.0'
 

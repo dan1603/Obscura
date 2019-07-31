@@ -1,6 +1,6 @@
 package com.kalashnyk.denys.defaultproject.presentation.item
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import com.kalashnyk.denys.defaultproject.usecases.repository.database.entity.UserEntity
 import kotlinx.android.synthetic.main.item_user.view.*

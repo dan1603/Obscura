@@ -1,6 +1,6 @@
 package com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist
 
-import android.support.v7.util.DiffUtil
+import androidx.recyclerview.widget.DiffUtil
 
 class DiffCallbackBaseCardModel : DiffUtil.ItemCallback<BaseCardModel>() {
 

@@ -20,8 +20,8 @@ import android.net.Uri
 import android.os.Build
 import android.os.StrictMode
 import android.provider.MediaStore
-import android.support.v4.content.FileProvider
-import android.support.v4.graphics.ColorUtils
+import androidx.core.content.FileProvider
+import androidx.core.graphics.ColorUtils
 import android.text.Html
 import android.text.method.LinkMovementMethod
 import android.view.View

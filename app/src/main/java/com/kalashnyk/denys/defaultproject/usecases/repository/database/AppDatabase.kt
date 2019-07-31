@@ -1,7 +1,7 @@
 package com.kalashnyk.denys.defaultproject.usecases.repository.database
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.RoomDatabase
+import androidx.room.Database
+import androidx.room.RoomDatabase
 import com.kalashnyk.denys.defaultproject.usecases.repository.database.dao.UserDao
 import com.kalashnyk.denys.defaultproject.usecases.repository.database.entity.UserEntity
 

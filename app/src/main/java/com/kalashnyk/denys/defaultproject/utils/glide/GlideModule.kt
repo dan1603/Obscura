@@ -4,9 +4,6 @@ import android.content.Context
 import com.bumptech.glide.GlideBuilder
 import com.bumptech.glide.annotation.GlideModule
 import com.bumptech.glide.module.AppGlideModule
-import io.reactivex.Single
-import java.io.File
-import java.util.*
 
 @GlideModule
 open class GlideModule : AppGlideModule() {

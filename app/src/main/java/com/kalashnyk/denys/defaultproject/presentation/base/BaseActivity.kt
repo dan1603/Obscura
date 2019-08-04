@@ -23,7 +23,6 @@ import androidx.fragment.app.Fragment
 import com.kalashnyk.denys.defaultproject.App
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
-import com.kalashnyk.denys.defaultproject.utils.extention.hideKeyboardEx
 import java.util.ArrayList
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -88,8 +87,6 @@ abstract class BaseActivity : AppCompatActivity() {
         return null
     }
 
-    private fun hideKeyboard() = this.hideKeyboardEx()
-
     @TargetApi(Build.VERSION_CODES.M)
     fun isStoragePermissionGranted(requestCode: Int = 0): Boolean {
         this.requestCode = requestCode
@@ -148,7 +145,7 @@ abstract class BaseActivity : AppCompatActivity() {
         replaceFragment(container, fragment, addToBackStack, true, moveOnRight)
     }
 
-    fun replaceFragment(container: Int, fragment: Fragment, addToBackStack: Boolean, needAnimate: Boolean, moveOnRight: Boolean) {
+    protected fun replaceFragment(container: Int, fragment: Fragment, addToBackStack: Boolean, needAnimate: Boolean, moveOnRight: Boolean) {
         val fragmentManager = supportFragmentManager
         var ft = fragmentManager.beginTransaction()
         val fragmentName = fragment.javaClass.simpleName

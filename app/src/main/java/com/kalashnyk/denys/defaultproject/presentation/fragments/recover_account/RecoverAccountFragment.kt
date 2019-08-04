@@ -41,7 +41,7 @@ class RecoverAccountFragment : BaseAuthFragment(), IAuthFlow.IAuthCallback {
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance() =
             RecoverAccountFragment().apply {
                 arguments = Bundle().apply {
                     //ToDo put bundle

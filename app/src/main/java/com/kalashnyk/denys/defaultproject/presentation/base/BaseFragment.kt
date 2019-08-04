@@ -9,7 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.kalashnyk.denys.defaultproject.utils.extention.hideKeyboardEx
+import com.kalashnyk.denys.defaultproject.utils.extention.hideKeyboard
 import com.kalashnyk.denys.defaultproject.utils.extention.showSnack
 import com.kalashnyk.denys.defaultproject.utils.extention.showToast
 
@@ -41,5 +41,5 @@ abstract class BaseFragment : Fragment() {
 
     protected fun showToast(text: String) = activity?.showToast(text)
     protected fun showSnack(text: String) = activity?.showSnack(text)
-    protected fun hideKeyboard() = activity?.hideKeyboardEx()
+    protected fun hideKeyboard() = activity?.hideKeyboard()
 }

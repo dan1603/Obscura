@@ -6,7 +6,7 @@ import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.databinding.ActivitySplashBinding
-import com.kalashnyk.denys.defaultproject.presentation.activities.main.MainActivity
+import com.kalashnyk.denys.defaultproject.presentation.activities.auth.AuthActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -17,7 +17,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_splash)
         Handler().postDelayed({
-            startActivity(MainActivity.newInstance(this))
+            startActivity(AuthActivity.newInstanceWithClearStack(this))
             finish()
         }, timer)
     }

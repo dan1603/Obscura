@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.databinding.ActivitySplashBinding
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.AuthActivity
+import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow
 
 class SplashActivity : AppCompatActivity() {
 
@@ -17,7 +18,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_splash)
         Handler().postDelayed({
-            startActivity(AuthActivity.newInstanceWithClearStack(this))
+            startActivity(AuthActivity.newInstanceWithClearStack(this, IAuthFlow.NavigationType.SIGN_UP_SCREEN))
             finish()
         }, timer)
     }

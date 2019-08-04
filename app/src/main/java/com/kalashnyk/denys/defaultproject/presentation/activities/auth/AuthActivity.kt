@@ -18,10 +18,11 @@ class AuthActivity : BaseActivity(), IAuthFlow.IAuthListener {
 
     companion object {
         @JvmStatic
-        fun newInstanceWithClearStack(context: Context): Intent {
-            val intent = Intent(context, AuthActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            return intent
+        fun newInstanceWithClearStack(context: Context, typeScreen: IAuthFlow.NavigationType): Intent {
+            return Intent(context, AuthActivity::class.java).apply {
+                this.putExtra(ApplicationConstants.AUTH_TYPE_SCREEN, typeScreen)
+                this.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
         }
     }
 

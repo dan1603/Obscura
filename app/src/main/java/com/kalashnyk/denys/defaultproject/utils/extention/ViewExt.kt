@@ -5,6 +5,10 @@ import android.view.View
 import android.view.ViewTreeObserver
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
+import android.view.GestureDetector
+import android.view.GestureDetector.SimpleOnGestureListener
+import android.view.MotionEvent
+import android.view.ViewGroup
 
 fun View.requestFocusWithKeyboard() {
     requestFocus()
@@ -54,4 +58,45 @@ fun TextView.validateTextView(isValid: Boolean, errorMessage: String?) {
     if (!isValid) {
         this.text = errorMessage
     }
+}
+
+fun View.getWindowCoords(): Pair<Float, Float> {
+    val coords = arrayOf(0, 0).toIntArray()
+    this.getLocationInWindow(coords)
+    return Pair(coords[0].toFloat(), coords[1].toFloat())
+}
+
+fun View.removeFromParent() {
+    (parent as? ViewGroup)?.removeView(this)
+}
+
+fun setViewsVisibility(visibility: Int, vararg views: View) {
+    views.forEach {
+        it.visibility = visibility
+    }
+}
+
+fun View.setXYOnClickListener(filterCoordinate: (MotionEvent) -> Boolean, onClick: () -> Unit) {
+    val gestureDetector = GestureDetector(context, SingleTapConfirm())
+    setOnTouchListener { v, event ->
+        if (gestureDetector.onTouchEvent(event)) {
+            if (filterCoordinate(event)) {
+                onClick()
+            }
+            true
+        } else false
+    }
+}
+
+inline fun View.onGlobalLayout(crossinline onLayout: () -> Unit) {
+    viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+        override fun onGlobalLayout() {
+            viewTreeObserver.removeOnGlobalLayoutListener(this)
+            onLayout()
+        }
+    })
+}
+
+private class SingleTapConfirm : SimpleOnGestureListener() {
+    override fun onSingleTapUp(event: MotionEvent): Boolean = true
 }

@@ -109,7 +109,7 @@
     </LinearLayout>
 
     <LinearLayout
-            android:id="@+id/llSignUpAgree"
+            android:id="@+id/ll_sign_up_agree"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -155,7 +155,7 @@
             android:layout_height="@dimen/indentation_32"
             android:background="@drawable/common_back_button"
             app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-            app:layout_constraintTop_toBottomOf="@id/llSignUpAgree"
+            app:layout_constraintTop_toBottomOf="@id/ll_sign_up_agree"
             app:layout_constraintStart_toEndOf="@id/guideline_start"
             android:layout_marginEnd="@dimen/indentation_16"
             android:layout_marginStart="@dimen/indentation_16"

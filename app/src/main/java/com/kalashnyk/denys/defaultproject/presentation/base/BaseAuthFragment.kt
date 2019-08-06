@@ -12,4 +12,6 @@ abstract class BaseAuthFragment: BaseFragment() {
         super.onCreate(savedInstanceState)
         authFlowModel = AuthFlowModel()
     }
+
+
 }

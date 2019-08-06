@@ -36,8 +36,11 @@ abstract class BaseFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(getLayout(), container, false)
+        setupViewLogic(view)
         return view
     }
+
+    abstract fun setupViewLogic(view :View)
 
     protected fun showToast(text: String) = activity?.showToast(text)
     protected fun showSnack(text: String) = activity?.showSnack(text)

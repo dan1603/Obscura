@@ -9,7 +9,7 @@ import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseFragment
 
 
-class ThemesFragment : BaseFragment() {
+class ThemesFragment<> : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

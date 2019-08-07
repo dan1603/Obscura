@@ -8,12 +8,17 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.kalashnyk.denys.defaultproject.utils.extention.hideKeyboard
 import com.kalashnyk.denys.defaultproject.utils.extention.showSnack
 import com.kalashnyk.denys.defaultproject.utils.extention.showToast
 
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment<V : ViewDataBinding> : Fragment() {
+
+    protected lateinit var viewBinder: V
+
     private val appBar: ActionBar? = activity?.actionBar
     protected fun disableHomeAsUp() = appBar?.setDisplayHomeAsUpEnabled(false)
 
@@ -32,15 +37,15 @@ abstract class BaseFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-    abstract fun getLayout(): Int
+    abstract fun getLayoutId(): Int
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(getLayout(), container, false)
-        setupViewLogic(view)
-        return view
+        viewBinder = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
+        setupViewLogic(this.viewBinder)
+        return viewBinder.root
     }
 
-    abstract fun setupViewLogic(view :View)
+    abstract fun setupViewLogic(binder : V)
 
     protected fun showToast(text: String) = activity?.showToast(text)
     protected fun showSnack(text: String) = activity?.showSnack(text)

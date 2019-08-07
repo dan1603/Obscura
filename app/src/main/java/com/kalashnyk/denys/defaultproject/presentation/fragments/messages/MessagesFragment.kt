@@ -5,7 +5,7 @@ import android.view.View
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseFragment
 
-class MessagesFragment : BaseFragment() {
+class MessagesFragment<> : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

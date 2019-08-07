@@ -9,7 +9,7 @@ import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAut
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseAuthFragment
 import kotlinx.android.synthetic.main.fragment_sign_in.*
 
-class SignInFragment : BaseAuthFragment(), IAuthFlow.IAuthCallback {
+class SignInFragment<> : BaseAuthFragment(), IAuthFlow.IAuthCallback {
 
     private var listener: IAuthFlow.IAuthListener? = null
 

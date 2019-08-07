@@ -9,7 +9,7 @@ import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.Auth
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseAuthFragment
 
-class RecoverAccountFragment : BaseAuthFragment(), IAuthFlow.IAuthCallback {
+class RecoverAccountFragment<> : BaseAuthFragment(), IAuthFlow.IAuthCallback {
 
     private var listener: IAuthFlow.IAuthListener? = null
 

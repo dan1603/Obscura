@@ -149,7 +149,7 @@ abstract class BaseActivity : AppCompatActivity() {
         val fragmentManager = supportFragmentManager
         var ft = fragmentManager.beginTransaction()
         val fragmentName = fragment.javaClass.simpleName
-        if (addToBackStack) ft = ft.addToBackStack(fragmentName)
+        if (fragmentManager.findFragmentByTag(fragmentName) == null && addToBackStack) ft = ft.addToBackStack(fragmentName)
         if (needAnimate) {
             val enterAnimation = if (moveOnRight) R.animator.slide_in_left else R.animator.pop_out_right
             val exitAnimation = if (moveOnRight) R.animator.slide_out_right else R.animator.pop_in_left

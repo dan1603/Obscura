@@ -5,7 +5,6 @@ import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.databinding.ThemesDataBinding
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseFragment
 
-
 class ThemesFragment : BaseFragment<ThemesDataBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

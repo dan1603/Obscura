@@ -2,7 +2,6 @@ package com.kalashnyk.denys.defaultproject.presentation.fragments.sign_up
 
 import android.content.Context
 import android.os.Bundle
-import android.view.View
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.databinding.SignUpDataBinding
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowErrorModel

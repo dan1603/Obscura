@@ -9,6 +9,8 @@
         <variable name="listener"
                   type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow.IAuthListener"/>
 
+        <variable name="typeScreen"
+                  type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow.NavigationType"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -232,7 +234,7 @@
                     android:textStyle="normal"
                     android:textColor="@color/colorWhite"
                     android:text="@string/sign_in"
-                    android:onClick="@{(view)-> listener.openScreen(IAuthFlow.NavigationType.SIGN_IN_SCREEN)}"/>/>
+                    android:onClick="@{(view)-> listener.openScreen(typeScreen.SIGN_IN_SCREEN)}"/>
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

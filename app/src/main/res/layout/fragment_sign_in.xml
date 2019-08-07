@@ -9,6 +9,8 @@
         <variable name="listener"
                   type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow.IAuthListener"/>
 
+        <variable name="typeScreen"
+                  type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow.NavigationType"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -87,7 +89,7 @@
                     android:textColor="@color/text_color_blue"
                     android:textSize="@dimen/txt_size_12"
                     android:text="@string/forgot_your_password"
-                    android:onClick="@{(view)-> listener.openScreen(IAuthFlow.NavigationType.RECOVER_ACCOUNT_SCREEN)}"/>
+                    android:onClick="@{(view)-> listener.openScreen(typeScreen.RECOVER_ACCOUNT_SCREEN)}"/>
         </LinearLayout>
 
         <Button
@@ -162,7 +164,7 @@
                     android:textColor="@color/colorWhite"
                     android:textStyle="normal"
                     android:text="@string/sign_up"
-                    android:onClick="@{(view)-> listener.openScreen(IAuthFlow.NavigationType.SIGN_UP_SCREEN)}"/>
+                    android:onClick="@{(view)-> listener.openScreen(typeScreen.SIGN_UP_SCREEN)}"/>
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

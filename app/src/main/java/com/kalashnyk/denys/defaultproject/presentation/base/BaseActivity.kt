@@ -23,6 +23,7 @@ import androidx.fragment.app.Fragment
 import com.kalashnyk.denys.defaultproject.App
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
+import com.kalashnyk.denys.defaultproject.utils.extention.hideKeyboard
 import java.util.ArrayList
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -43,7 +44,7 @@ abstract class BaseActivity : AppCompatActivity() {
     protected fun initializeToolbar(toolbar: Toolbar) {
         mToolbar = toolbar
         mToolbar?.apply {
-            setNavigationOnClickListener({ onBackPressed() })
+            setNavigationOnClickListener { onBackPressed() }
             setActionBar(this)
             actionBar?.title = ""
         }
@@ -74,7 +75,7 @@ abstract class BaseActivity : AppCompatActivity() {
                 when (it) {
                     is ViewGroup -> {
                         val foundView = findViewAt(it, x, y)
-                        if (foundView?.isShown!!) return foundView
+                        if (foundView?.isShown ?: return@forEach) return foundView
                     }
                     else -> {
                         val location = IntArray(2)
@@ -85,6 +86,15 @@ abstract class BaseActivity : AppCompatActivity() {
                 }
             }
         return null
+    }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount > 1) {
+            supportFragmentManager.popBackStackImmediate()
+            hideKeyboard()
+            return
+        }
+        super.onBackPressed()
     }
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -98,7 +108,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    fun checkPermissionList(): Boolean {
+    private fun checkPermissionList(): Boolean {
         val list = ArrayList<Boolean>()
         arrayPermission.forEach {
             list.add(ContextCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_GRANTED)
@@ -124,40 +134,44 @@ abstract class BaseActivity : AppCompatActivity() {
         Toast.makeText(this, messageNecessaryPermissions, Toast.LENGTH_LONG).show()
     }
 
-    fun openApplicationSettings() {
+    private fun openApplicationSettings() {
         val appSettingsIntent = Intent(
             Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-            Uri.parse("package:$packageName"))
+            Uri.parse("package:$packageName")
+        )
         startActivityForResult(appSettingsIntent, PERMISSION_REQUEST)
     }
 
     fun requestPermission() {
-        ActivityCompat.requestPermissions(this,
-            arrayPermission,
-            PERMISSION_REQUEST)
+        ActivityCompat.requestPermissions(this, arrayPermission, PERMISSION_REQUEST)
     }
 
     fun replaceFragment(container: Int, fragment: Fragment) {
-        replaceFragment(container, fragment, true, true)
+        replaceFragment(container, fragment, false, false)
     }
 
     fun replaceFragment(container: Int, fragment: Fragment, addToBackStack: Boolean, moveOnRight: Boolean) {
         replaceFragment(container, fragment, addToBackStack, true, moveOnRight)
     }
 
-    protected fun replaceFragment(container: Int, fragment: Fragment, addToBackStack: Boolean, needAnimate: Boolean, moveOnRight: Boolean) {
-        val fragmentManager = supportFragmentManager
-        var ft = fragmentManager.beginTransaction()
-        val fragmentName = fragment.javaClass.simpleName
-        if (fragmentManager.findFragmentByTag(fragmentName) == null && addToBackStack) ft = ft.addToBackStack(fragmentName)
+    private fun replaceFragment(
+        container: Int,
+        fragment: Fragment,
+        addToBackStack: Boolean,
+        needAnimate: Boolean,
+        moveOnRight: Boolean
+    ) {
+        var fragmentTransaction = supportFragmentManager.beginTransaction()
+        val fragmentTag = fragment.javaClass.simpleName
+        if (addToBackStack) fragmentTransaction = fragmentTransaction.addToBackStack(fragmentTag)
         if (needAnimate) {
             val enterAnimation = if (moveOnRight) R.animator.slide_in_left else R.animator.pop_out_right
             val exitAnimation = if (moveOnRight) R.animator.slide_out_right else R.animator.pop_in_left
             val popEnterAnimation = if (moveOnRight) R.animator.pop_out_right else R.animator.slide_in_left
             val popExitAnimation = if (moveOnRight) R.animator.pop_in_left else R.animator.slide_out_right
-            ft.setCustomAnimations(enterAnimation, exitAnimation, popEnterAnimation, popExitAnimation)
+            fragmentTransaction.setCustomAnimations(enterAnimation, exitAnimation, popEnterAnimation, popExitAnimation)
         }
-        ft.replace(container, fragment, fragmentName).commit()
+        fragmentTransaction.replace(container, fragment, fragmentTag).commit()
     }
 
     protected abstract fun injectDependency(component: ViewModelComponent)

@@ -8,7 +8,7 @@ import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.Auth
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseFragment
 
-class SignInFragment: BaseFragment<SignInDataBinding>(), IAuthFlow.IAuthCallback {
+class SignInFragment : BaseFragment<SignInDataBinding>(), IAuthFlow.IAuthCallback {
 
     private var listener: IAuthFlow.IAuthListener? = null
 
@@ -33,7 +33,7 @@ class SignInFragment: BaseFragment<SignInDataBinding>(), IAuthFlow.IAuthCallback
         listener = null
     }
 
-    override fun getLayoutId(): Int  = R.layout.fragment_sign_in
+    override fun getLayoutId(): Int = R.layout.fragment_sign_in
 
     override fun setupViewLogic(binding: SignInDataBinding) {
         binding.listener = listener
@@ -48,7 +48,7 @@ class SignInFragment: BaseFragment<SignInDataBinding>(), IAuthFlow.IAuthCallback
         fun newInstance() =
             SignInFragment().apply {
                 arguments = Bundle().apply {
-                   //ToDo put bundle
+                    //ToDo put bundle
                 }
             }
     }

@@ -4,12 +4,12 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import com.kalashnyk.denys.defaultproject.R
+import com.kalashnyk.denys.defaultproject.databinding.SignUpDataBinding
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowErrorModel
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow
-import com.kalashnyk.denys.defaultproject.presentation.base.BaseAuthFragment
-import kotlinx.android.synthetic.main.fragment_sign_up.*
+import com.kalashnyk.denys.defaultproject.presentation.base.BaseFragment
 
-class SignUpFragment<> : BaseAuthFragment(), IAuthFlow.IAuthCallback {
+class SignUpFragment : BaseFragment<SignUpDataBinding>(), IAuthFlow.IAuthCallback {
 
     private var listener: IAuthFlow.IAuthListener? = null
 
@@ -35,10 +35,10 @@ class SignUpFragment<> : BaseAuthFragment(), IAuthFlow.IAuthCallback {
         listener = null
     }
 
-    override fun getLayout(): Int = R.layout.fragment_sign_up
+    override fun getLayoutId(): Int = R.layout.fragment_sign_up
 
-    override fun setupViewLogic(view: View) {
-        tvSignIn.setOnClickListener { listener?.openScreen(IAuthFlow.NavigationType.SIGN_IN_SCREEN) }
+    override fun setupViewLogic(binding: SignUpDataBinding) {
+        binding.listener = listener
     }
 
     override fun showError(error: AuthFlowErrorModel) {

@@ -2,7 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
+    <data class="SignUpDataBinding">
+
+        <import type="android.view.View"/>
+
+        <variable name="listener"
+                  type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow.IAuthListener"/>
 
     </data>
 
@@ -226,7 +231,8 @@
                     android:layout_marginLeft="@dimen/indentation_8"
                     android:textStyle="normal"
                     android:textColor="@color/colorWhite"
-                    android:text="@string/sign_in"/>
+                    android:text="@string/sign_in"
+                    android:onClick="@{(view)-> listener.openScreen(IAuthFlow.NavigationType.SIGN_IN_SCREEN)}"/>/>
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

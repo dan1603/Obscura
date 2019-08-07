@@ -1,15 +1,12 @@
 package com.kalashnyk.denys.defaultproject.presentation.fragments.themes
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-
 import com.kalashnyk.denys.defaultproject.R
+import com.kalashnyk.denys.defaultproject.databinding.ThemesDataBinding
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseFragment
 
 
-class ThemesFragment<> : BaseFragment() {
+class ThemesFragment : BaseFragment<ThemesDataBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,9 +15,9 @@ class ThemesFragment<> : BaseFragment() {
         }
     }
 
-    override fun getLayout(): Int  = R.layout.fragment_themes
+    override fun getLayoutId(): Int  = R.layout.fragment_themes
 
-    override fun setupViewLogic(view: View) {
+    override fun setupViewLogic(binding: ThemesDataBinding) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

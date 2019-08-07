@@ -2,14 +2,13 @@ package com.kalashnyk.denys.defaultproject.presentation.fragments.recover_accoun
 
 import android.content.Context
 import android.os.Bundle
-import android.view.View
-
 import com.kalashnyk.denys.defaultproject.R
+import com.kalashnyk.denys.defaultproject.databinding.RecoverAccountDataBinding
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowErrorModel
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseAuthFragment
 
-class RecoverAccountFragment<> : BaseAuthFragment(), IAuthFlow.IAuthCallback {
+class RecoverAccountFragment : BaseAuthFragment<RecoverAccountDataBinding>(), IAuthFlow.IAuthCallback {
 
     private var listener: IAuthFlow.IAuthListener? = null
 
@@ -34,10 +33,10 @@ class RecoverAccountFragment<> : BaseAuthFragment(), IAuthFlow.IAuthCallback {
         listener = null
     }
 
-    override fun getLayout(): Int  = R.layout.fragment_recover_account
+    override fun getLayoutId(): Int  = R.layout.fragment_recover_account
 
-    override fun setupViewLogic(view: View) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun setupViewLogic(binding: RecoverAccountDataBinding) {
+        binding.listener = listener
     }
 
     override fun showError(error: AuthFlowErrorModel) {

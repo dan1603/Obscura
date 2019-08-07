@@ -2,14 +2,13 @@ package com.kalashnyk.denys.defaultproject.presentation.fragments.sign_in
 
 import android.content.Context
 import android.os.Bundle
-import android.view.View
 import com.kalashnyk.denys.defaultproject.R
+import com.kalashnyk.denys.defaultproject.databinding.SignInDataBinding
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowErrorModel
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow
-import com.kalashnyk.denys.defaultproject.presentation.base.BaseAuthFragment
-import kotlinx.android.synthetic.main.fragment_sign_in.*
+import com.kalashnyk.denys.defaultproject.presentation.base.BaseFragment
 
-class SignInFragment<> : BaseAuthFragment(), IAuthFlow.IAuthCallback {
+class SignInFragment: BaseFragment<SignInDataBinding>(), IAuthFlow.IAuthCallback {
 
     private var listener: IAuthFlow.IAuthListener? = null
 
@@ -34,11 +33,10 @@ class SignInFragment<> : BaseAuthFragment(), IAuthFlow.IAuthCallback {
         listener = null
     }
 
-    override fun getLayout(): Int  = R.layout.fragment_sign_in
+    override fun getLayoutId(): Int  = R.layout.fragment_sign_in
 
-    override fun setupViewLogic(view: View) {
-//        tvSignInSignUp.setOnClickListener { listener?.openScreen(IAuthFlow.NavigationType.SIGN_UP_SCREEN) }
-//        tvSignInForgotPassword.setOnClickListener { listener?.openScreen(IAuthFlow.NavigationType.RECOVER_ACCOUNT_SCREEN) }
+    override fun setupViewLogic(binding: SignInDataBinding) {
+        binding.listener = listener
     }
 
     override fun showError(error: AuthFlowErrorModel) {

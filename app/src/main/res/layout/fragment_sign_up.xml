@@ -1,224 +1,234 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/soft_blue">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.Guideline
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/guideline_start"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="@dimen/indentation_16"/>
+    <data>
 
-    <androidx.constraintlayout.widget.Guideline
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/guideline_end"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="@dimen/indentation_16"/>
+    </data>
 
-    <androidx.constraintlayout.widget.Guideline
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/guideline_top"
-            app:layout_constraintGuide_begin="@dimen/indentation_16"
-            android:orientation="horizontal"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/soft_blue">
 
-    <androidx.constraintlayout.widget.Guideline
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/guideline_bottom"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_end="@dimen/indentation_16"/>
-
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:textSize="@dimen/txt_size_36"
-              android:fontFamily="sans-serif"
-              android:textStyle="bold"
-              android:textColor="@color/colorWhite"
-              android:layout_marginTop="@dimen/indentation_16"
-              app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-              app:layout_constraintStart_toEndOf="@+id/guideline_start"
-              app:layout_constraintTop_toBottomOf="@+id/guideline_top"
-              android:text="@string/sign_up"
-              android:id="@+id/tv_sign_up"/>
-
-
-    <LinearLayout
-            android:id="@+id/linear_layout_box"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/common_back_auth_inputs"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-            android:layout_marginEnd="@dimen/indentation_16"
-            app:layout_constraintStart_toStartOf="@+id/guideline_start"
-            android:layout_marginStart="@dimen/indentation_16"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/indentation_32"
-            android:paddingTop="@dimen/indentation_16"
-            android:paddingBottom="@dimen/indentation_16"
-            app:layout_constraintTop_toBottomOf="@+id/tv_sign_up">
-        <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:errorEnabled="true">
-            <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_username"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/enter_your_name_and_surname"
-                    android:layout_marginRight="@dimen/indentation_16"
-                    android:layout_marginLeft="@dimen/indentation_16"
-                    android:inputType="textPersonName"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:errorEnabled="true">
-            <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/choose_password"
-                    android:layout_marginTop="@dimen/indentation_16"
-                    android:layout_marginRight="@dimen/indentation_16"
-                    android:layout_marginLeft="@dimen/indentation_16"
-                    android:inputType="textPassword"/>
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_repeat_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:errorEnabled="true">
-            <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_repeat_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/repeat_password"
-                    android:layout_marginTop="@dimen/indentation_16"
-                    android:layout_marginRight="@dimen/indentation_16"
-                    android:layout_marginLeft="@dimen/indentation_16"
-                    android:inputType="textPassword"/>
-        </com.google.android.material.textfield.TextInputLayout>
-    </LinearLayout>
-
-    <LinearLayout
-            android:id="@+id/ll_sign_up_agree"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toEndOf="@+id/guideline_start"
-            android:layout_marginStart="@dimen/indentation_16"
-            android:layout_marginTop="@dimen/indentation_8"
-            app:layout_constraintTop_toBottomOf="@+id/linear_layout_box"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-            android:layout_marginEnd="@dimen/indentation_8">
-        <CheckBox
+        <androidx.constraintlayout.widget.Guideline
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/linear_layout_box"
-                app:layout_constraintStart_toStartOf="@+id/guideline_start"
-                android:theme="@style/AgreeCheckBox"
-                android:id="@+id/agree_check_box"/>
+                android:id="@+id/guidelineSignUpStart"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/indentation_16"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/guidelineSignUpEnd"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/indentation_16"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/guidelineSignUpTop"
+                app:layout_constraintGuide_begin="@dimen/indentation_16"
+                android:orientation="horizontal"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/guidelineSignUpBottom"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_end="@dimen/indentation_16"/>
 
         <TextView
-                android:id="@+id/tv_i_agree_with"
+                android:id="@+id/tvSignUpLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/txt_size_12"
-                android:fontFamily="sans-serif-medium"
-                android:textStyle="normal"
-                android:textColor="@color/text_color_blue"
-                android:text="@string/text_i_agree_with"
-        />
-        <TextView
-                android:id="@+id/tv_terms_and_privacy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/txt_size_12"
-                android:fontFamily="sans-serif-medium"
-                android:layout_marginLeft="@dimen/indentation_8"
+                android:textSize="@dimen/txt_size_36"
+                android:fontFamily="sans-serif"
                 android:textStyle="bold"
                 android:textColor="@color/colorWhite"
-                android:text="@string/text_terms_and_privacy"
-        />
-    </LinearLayout>
+                android:layout_marginTop="@dimen/indentation_16"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineSignUpEnd"
+                app:layout_constraintStart_toEndOf="@+id/guidelineSignUpStart"
+                app:layout_constraintTop_toBottomOf="@+id/guidelineSignUpTop"
+                android:text="@string/sign_up"/>
 
-    <Button android:id="@+id/btn_sign_up"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/indentation_32"
-            android:background="@drawable/common_back_button"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-            app:layout_constraintTop_toBottomOf="@id/ll_sign_up_agree"
-            app:layout_constraintStart_toEndOf="@id/guideline_start"
-            android:layout_marginEnd="@dimen/indentation_16"
-            android:layout_marginStart="@dimen/indentation_16"
-            android:layout_marginTop="@dimen/indentation_32"
-            android:textColor="@color/text_color_blue"
-            android:text="@string/sign_up"
-            android:fontFamily="sans-serif-medium"
-            android:textStyle="normal"
-            android:textSize="@dimen/txt_size_14"/>
-
-    <TextView
-            android:id="@+id/tv_you_can_sign_up_with"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/btn_sign_up"
-            app:layout_constraintStart_toEndOf="@id/guideline_start"
-            app:layout_constraintEnd_toStartOf="@id/guideline_end"
-            android:layout_marginTop="@dimen/indentation_16"
-            android:text="@string/text_you_can_sign_up_with"
-            android:textSize="@dimen/txt_size_16"
-            android:textColor="@color/text_color_blue"
-            android:gravity="center_horizontal"
-            android:fontFamily="sans-serif-medium"
-            android:textStyle="normal"/>
-
-    <ImageView
-            android:id="@+id/iv_facebook_login"
-            android:layout_width="@dimen/indentation_32"
-            android:layout_height="@dimen/indentation_32"
-            android:layout_marginTop="@dimen/indentation_16"
-            android:src="@mipmap/facebook_logo_auth"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_you_can_sign_up_with"/>
-
-    <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-            app:layout_constraintStart_toEndOf="@+id/guideline_start"
-            app:layout_constraintBottom_toTopOf="@id/guideline_bottom"
-            android:orientation="horizontal">
-
-        <TextView
-                android:id="@+id/tv_have_an_account"
-                android:layout_width="wrap_content"
+        <LinearLayout
+                android:id="@+id/containerSignUpInputs"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/txt_size_12"
+                android:background="@drawable/common_back_auth_inputs"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineSignUpEnd"
+                android:layout_marginEnd="@dimen/indentation_16"
+                app:layout_constraintStart_toStartOf="@+id/guidelineSignUpStart"
+                android:layout_marginStart="@dimen/indentation_16"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/indentation_32"
+                android:paddingTop="@dimen/indentation_16"
+                android:paddingBottom="@dimen/indentation_16"
+                app:layout_constraintTop_toBottomOf="@+id/tvSignUpLabel">
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilSignUpUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etSignUpUsername"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/enter_your_name_and_surname"
+                        android:layout_marginRight="@dimen/indentation_16"
+                        android:layout_marginLeft="@dimen/indentation_16"
+                        android:inputType="textPersonName"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilSignUpPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="true">
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etSignUpPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/choose_password"
+                        android:layout_marginTop="@dimen/indentation_16"
+                        android:layout_marginRight="@dimen/indentation_16"
+                        android:layout_marginLeft="@dimen/indentation_16"
+                        android:inputType="textPassword"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilSignUpConfirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="true">
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etSignUpConfirmPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/repeat_password"
+                        android:layout_marginTop="@dimen/indentation_16"
+                        android:layout_marginRight="@dimen/indentation_16"
+                        android:layout_marginLeft="@dimen/indentation_16"
+                        android:inputType="textPassword"/>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/llSignUpAgree"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="@dimen/indentation_16"
+                android:layout_marginTop="@dimen/indentation_8"
+                android:layout_marginEnd="@dimen/indentation_8"
+                app:layout_constraintStart_toEndOf="@+id/guidelineSignUpStart"
+                app:layout_constraintTop_toBottomOf="@+id/containerSignUpInputs"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineSignUpEnd">
+
+            <CheckBox
+                    android:id="@+id/checkBoxSignUpAgree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/AgreeCheckBox"
+                    app:layout_constraintTop_toBottomOf="@+id/containerSignUpInputs"
+                    app:layout_constraintStart_toStartOf="@+id/guidelineSignUpStart"/>
+
+            <TextView
+                    android:id="@+id/tvSignUpIAgreeWith"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/txt_size_12"
+                    android:fontFamily="sans-serif-medium"
+                    android:textStyle="normal"
+                    android:textColor="@color/text_color_blue"
+                    android:text="@string/text_i_agree_with"/>
+            <TextView
+                    android:id="@+id/tvSignUpTermsAndPrivacy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/txt_size_12"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_marginLeft="@dimen/indentation_8"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorWhite"
+                    android:text="@string/text_terms_and_privacy"/>
+        </LinearLayout>
+
+        <Button android:id="@+id/btnSignUp"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/indentation_32"
+                android:background="@drawable/common_back_button"
+                android:layout_marginEnd="@dimen/indentation_16"
+                android:layout_marginStart="@dimen/indentation_16"
+                android:layout_marginTop="@dimen/indentation_32"
+                android:textColor="@color/text_color_blue"
+                android:text="@string/sign_up"
                 android:fontFamily="sans-serif-medium"
                 android:textStyle="normal"
-                android:textColor="@color/dark_blue"
-                android:text="@string/text_have_an_account"/>
-
-        <TextView
-                android:id="@+id/tv_sign_in"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:textSize="@dimen/txt_size_14"
-                android:fontFamily="sans-serif-medium"
-                android:layout_marginLeft="@dimen/indentation_8"
-                android:textStyle="normal"
-                android:textColor="@color/colorWhite"
-                android:text="@string/sign_in"/>
-    </LinearLayout>
+                app:layout_constraintEnd_toStartOf="@+id/guidelineSignUpEnd"
+                app:layout_constraintTop_toBottomOf="@id/llSignUpAgree"
+                app:layout_constraintStart_toEndOf="@id/guidelineSignUpStart"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+                android:id="@+id/tvYouCanSignUpWith"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/indentation_16"
+                android:text="@string/text_you_can_sign_up_with"
+                android:textSize="@dimen/txt_size_16"
+                android:textColor="@color/text_color_blue"
+                android:gravity="center_horizontal"
+                android:fontFamily="sans-serif-medium"
+                android:textStyle="normal"
+                app:layout_constraintTop_toBottomOf="@id/btnSignUp"
+                app:layout_constraintStart_toEndOf="@id/guidelineSignUpStart"
+                app:layout_constraintEnd_toStartOf="@id/guidelineSignUpEnd"/>
+
+        <ImageView
+                android:id="@+id/btnSignUpFacebook"
+                android:layout_width="@dimen/indentation_32"
+                android:layout_height="@dimen/indentation_32"
+                android:layout_marginTop="@dimen/indentation_16"
+                android:src="@mipmap/facebook_logo_auth"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvYouCanSignUpWith"/>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineSignUpEnd"
+                app:layout_constraintStart_toEndOf="@+id/guidelineSignUpStart"
+                app:layout_constraintBottom_toTopOf="@id/guidelineSignUpBottom">
+
+            <TextView
+                    android:id="@+id/tvSignUpHaveAccount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/txt_size_12"
+                    android:fontFamily="sans-serif-medium"
+                    android:textStyle="normal"
+                    android:textColor="@color/dark_blue"
+                    android:text="@string/text_have_an_account"/>
+
+            <TextView
+                    android:id="@+id/tvSignIn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/txt_size_14"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_marginLeft="@dimen/indentation_8"
+                    android:textStyle="normal"
+                    android:textColor="@color/colorWhite"
+                    android:text="@string/sign_in"/>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -2,6 +2,7 @@ package com.kalashnyk.denys.defaultproject.presentation.fragments.recover_accoun
 
 import android.content.Context
 import android.os.Bundle
+import android.view.View
 
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowErrorModel
@@ -34,6 +35,10 @@ class RecoverAccountFragment : BaseAuthFragment(), IAuthFlow.IAuthCallback {
     }
 
     override fun getLayout(): Int  = R.layout.fragment_recover_account
+
+    override fun setupViewLogic(view: View) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     override fun showError(error: AuthFlowErrorModel) {
         //ToDo show error for validation inputs

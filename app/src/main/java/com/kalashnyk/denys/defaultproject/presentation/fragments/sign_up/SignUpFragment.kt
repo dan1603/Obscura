@@ -38,7 +38,7 @@ class SignUpFragment : BaseAuthFragment(), IAuthFlow.IAuthCallback {
     override fun getLayout(): Int = R.layout.fragment_sign_up
 
     override fun setupViewLogic(view: View) {
-        tv_sign_in.setOnClickListener { listener?.openScreen(IAuthFlow.NavigationType.SIGN_IN_SCREEN) }
+        tvSignIn.setOnClickListener { listener?.openScreen(IAuthFlow.NavigationType.SIGN_IN_SCREEN) }
     }
 
     override fun showError(error: AuthFlowErrorModel) {

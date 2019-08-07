@@ -78,7 +78,11 @@ class AuthActivity : BaseActivity(), IAuthFlow.IAuthListener {
         }
     }
 
-    private fun handleIntent(){
+    override fun backRout() {
+        super.onBackPressed()
+    }
+
+    private fun handleIntent() {
         openScreen(intent?.extras?.getSerializable(ApplicationConstants.AUTH_TYPE_SCREEN) as IAuthFlow.NavigationType)
         hideKeyboard()
     }

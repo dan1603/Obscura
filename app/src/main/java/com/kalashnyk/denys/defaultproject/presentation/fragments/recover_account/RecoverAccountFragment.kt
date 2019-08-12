@@ -8,10 +8,16 @@ import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.Auth
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseAuthFragment
 
+/**
+ * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
+ */
 class RecoverAccountFragment : BaseAuthFragment<RecoverAccountDataBinding>(), IAuthFlow.IAuthCallback {
 
     private var listener: IAuthFlow.IAuthListener? = null
 
+    /**
+     * @param savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -19,6 +25,9 @@ class RecoverAccountFragment : BaseAuthFragment<RecoverAccountDataBinding>(), IA
         }
     }
 
+    /**
+     * @param context
+     */
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is IAuthFlow.IAuthListener) {
@@ -28,17 +37,29 @@ class RecoverAccountFragment : BaseAuthFragment<RecoverAccountDataBinding>(), IA
         }
     }
 
+    /**
+     *
+     */
     override fun onDetach() {
         super.onDetach()
         listener = null
     }
 
-    override fun getLayoutId(): Int  = R.layout.fragment_recover_account
+    /**
+     * @return
+     */
+    override fun getLayoutId(): Int = R.layout.fragment_recover_account
 
+    /**
+     * @param binding
+     */
     override fun setupViewLogic(binding: RecoverAccountDataBinding) {
         binding.listener = listener
     }
 
+    /**
+     * @param error
+     */
     override fun showError(error: AuthFlowErrorModel) {
         //ToDo show error for validation inputs
     }

@@ -159,7 +159,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/indentation_10"
                     android:layout_marginBottom="@dimen/indentation_30"
-                    android:background="@color/text_color_blue"
                     android:fontFamily="sans-serif-medium"
                     android:textColor="@color/colorWhite"
                     android:textStyle="normal"

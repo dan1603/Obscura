@@ -1,6 +1,5 @@
 package com.kalashnyk.denys.defaultproject.presentation.base
 
-import android.Manifest
 import android.annotation.TargetApi
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -11,7 +10,6 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
 import androidx.core.app.ActivityCompat
-
 import androidx.core.content.ContextCompat
 import android.view.View
 import android.view.ViewGroup
@@ -19,31 +17,32 @@ import android.widget.Toast
 import android.widget.Toolbar
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.kalashnyk.denys.defaultproject.App
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
 import com.kalashnyk.denys.defaultproject.presentation.navigation.INavigation
 import com.kalashnyk.denys.defaultproject.presentation.navigation.NavigationImpl
+import com.kalashnyk.denys.defaultproject.utils.ApplicationConstants
 import com.kalashnyk.denys.defaultproject.utils.extention.hideKeyboard
 import java.util.ArrayList
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
 
-    protected open lateinit var navigator : INavigation
+    protected lateinit var viewBinding: V
+    protected open val navigator : INavigation = NavigationImpl(this)
 
-    //refuctor
-    protected open val PERMISSION_REQUEST = 5
-
-    open var arrayPermission = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
     open lateinit var messageNecessaryPermissions: String
-    protected var requestCode: Int? = null
+
     private var toolbar: Toolbar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        navigator = NavigationImpl(this)
+        viewBinding = DataBindingUtil.setContentView(this, getLayoutId())
         createDaggerDependencies()
+        setupViewLogic(viewBinding)
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -74,26 +73,6 @@ abstract class BaseActivity : AppCompatActivity() {
         toolbar?.title = title
     }
 
-    private fun findViewAt(viewGroup: ViewGroup, x: Int, y: Int): View? {
-        (0 until viewGroup.childCount)
-            .map { viewGroup.getChildAt(it) }
-            .forEach {
-                when (it) {
-                    is ViewGroup -> {
-                        val foundView = findViewAt(it, x, y)
-                        if (foundView?.isShown ?: return@forEach) return foundView
-                    }
-                    else -> {
-                        val location = IntArray(2)
-                        it.getLocationOnScreen(location)
-                        val rect = Rect(location[0], location[1], location[0] + it.width, location[1] + it.height)
-                        if (rect.contains(x, y)) return it
-                    }
-                }
-            }
-        return null
-    }
-
     override fun onBackPressed() {
         if (supportFragmentManager.backStackEntryCount > 1) {
             supportFragmentManager.popBackStackImmediate()
@@ -111,14 +90,6 @@ abstract class BaseActivity : AppCompatActivity() {
             requestPermission(arrayPermission, requestCode)
             return false
         }
-    }
-
-    private fun checkPermissionList(arrayPermission: Array<String>): Boolean {
-        val list = ArrayList<Boolean>()
-        arrayPermission.forEach {
-            list.add(ContextCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_GRANTED)
-        }
-        return list.all { it }
     }
 
     open fun openNeededАction(requestCodeIntent: Int) {
@@ -139,14 +110,6 @@ abstract class BaseActivity : AppCompatActivity() {
         Toast.makeText(this, messageNecessaryPermissions, Toast.LENGTH_LONG).show()
     }
 
-    private fun openApplicationSettings() {
-        val appSettingsIntent = Intent(
-            Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-            Uri.parse("package:$packageName")
-        )
-        startActivityForResult(appSettingsIntent, PERMISSION_REQUEST)
-    }
-
     fun requestPermission(arrayPermission : Array<String>, requestCode: Int) {
         ActivityCompat.requestPermissions(this, arrayPermission, requestCode)
     }
@@ -157,6 +120,16 @@ abstract class BaseActivity : AppCompatActivity() {
 
     fun replaceFragment(container: Int, fragment: Fragment, addToBackStack: Boolean, moveOnRight: Boolean) {
         replaceFragment(container, fragment, addToBackStack, true, moveOnRight)
+    }
+
+    protected abstract fun injectDependency(component: ViewModelComponent)
+
+    abstract fun getLayoutId(): Int
+
+    abstract fun setupViewLogic(binder : V)
+
+    private fun createDaggerDependencies() {
+        injectDependency((application as App).getViewModelComponent())
     }
 
     private fun replaceFragment(
@@ -179,9 +152,40 @@ abstract class BaseActivity : AppCompatActivity() {
         fragmentTransaction.replace(container, fragment, fragmentTag).commit()
     }
 
-    protected abstract fun injectDependency(component: ViewModelComponent)
-
-    private fun createDaggerDependencies() {
-        injectDependency((application as App).getViewModelComponent())
+    private fun openApplicationSettings() {
+        val appSettingsIntent = Intent(
+            Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+            Uri.parse("package:$packageName")
+        )
+        startActivityForResult(appSettingsIntent, ApplicationConstants.GALLERY_PERMISSION_REQUEST)
     }
+
+    private fun checkPermissionList(arrayPermission: Array<String>): Boolean {
+        val list = ArrayList<Boolean>()
+        arrayPermission.forEach {
+            list.add(ContextCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_GRANTED)
+        }
+        return list.all { it }
+    }
+
+    private fun findViewAt(viewGroup: ViewGroup, x: Int, y: Int): View? {
+        (0 until viewGroup.childCount)
+            .map { viewGroup.getChildAt(it) }
+            .forEach {
+                when (it) {
+                    is ViewGroup -> {
+                        val foundView = findViewAt(it, x, y)
+                        if (foundView?.isShown ?: return@forEach) return foundView
+                    }
+                    else -> {
+                        val location = IntArray(2)
+                        it.getLocationOnScreen(location)
+                        val rect = Rect(location[0], location[1], location[0] + it.width, location[1] + it.height)
+                        if (rect.contains(x, y)) return it
+                    }
+                }
+            }
+        return null
+    }
+
 }

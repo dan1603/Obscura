@@ -1,9 +1,7 @@
 package com.kalashnyk.denys.defaultproject.presentation.activities.auth
 
-import android.content.Context
-import android.content.Intent
-import android.os.Bundle
 import com.kalashnyk.denys.defaultproject.R
+import com.kalashnyk.denys.defaultproject.databinding.AuthDataBinding
 import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowModel
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow
@@ -15,57 +13,72 @@ import com.kalashnyk.denys.defaultproject.utils.ApplicationConstants
 import com.kalashnyk.denys.defaultproject.utils.extention.hideKeyboard
 
 /**
- *
+ * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
-class AuthActivity : BaseActivity(), IAuthFlow.IAuthListener {
+class AuthActivity : BaseActivity<AuthDataBinding>(), IAuthFlow.IAuthListener {
 
-    companion object {
-        @JvmStatic
-        fun newInstanceWithClearStack(context: Context, typeScreen: IAuthFlow.NavigationType): Intent {
-            return Intent(context, AuthActivity::class.java).apply {
-                this.putExtra(ApplicationConstants.AUTH_TYPE_SCREEN, typeScreen)
-                this.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            }
-        }
-    }
-
+    /**
+     * @param component
+     */
     override fun injectDependency(component: ViewModelComponent) {
         component.inject(this)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_auth)
+    /**
+     * @return
+     */
+    override fun getLayoutId(): Int = R.layout.activity_auth
+
+    /**
+     * @param binding
+     */
+    override fun setupViewLogic(binding: AuthDataBinding) {
         handleIntent()
     }
 
+    /**
+     * @param flowModel
+     * @param callback
+     */
     override fun authRequest(flowModel: AuthFlowModel, callback: IAuthFlow.IAuthCallback) {
         when (flowModel.type) {
             IAuthFlow.AuthType.SIGN_IN -> {
-
+                //test
+                navigator.openMainScreen()
             }
 
             IAuthFlow.AuthType.SIGN_UP -> {
-
+                //test
+                navigator.openMainScreen()
             }
 
             IAuthFlow.AuthType.RECOVER_ACCOUNT -> {
-
+                //test
+                navigator.openMainScreen()
             }
         }
     }
 
+    /**
+     * @param type
+     * @param callback
+     */
     override fun socialAuth(type: IAuthFlow.SocialAuthType, callback: IAuthFlow.IAuthCallback) {
         when (type) {
             IAuthFlow.SocialAuthType.FACEBOOK -> {
-
+                //test
+                navigator.openMainScreen()
             }
             IAuthFlow.SocialAuthType.GOOGLE -> {
-
+                //test
+                navigator.openMainScreen()
             }
         }
     }
 
+    /**
+     *
+     */
     override fun openScreen(typeScreen: IAuthFlow.NavigationType) {
         when (typeScreen) {
             IAuthFlow.NavigationType.SIGN_IN_SCREEN -> {
@@ -81,6 +94,9 @@ class AuthActivity : BaseActivity(), IAuthFlow.IAuthListener {
         }
     }
 
+    /**
+     *
+     */
     override fun backRout() {
         super.onBackPressed()
     }

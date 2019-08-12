@@ -1,17 +1,12 @@
 package com.kalashnyk.denys.defaultproject.presentation.activities.main
 
-import android.content.Context
-import android.content.Intent
-import androidx.databinding.DataBindingUtil
-import android.os.Bundle
 import androidx.core.content.ContextCompat
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem
 import com.kalashnyk.denys.defaultproject.R
-import com.kalashnyk.denys.defaultproject.databinding.ActivityMainBinding
+import com.kalashnyk.denys.defaultproject.databinding.MainDataBinding
 import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
 import com.kalashnyk.denys.defaultproject.domain.AllUsersViewModel
-import com.kalashnyk.denys.defaultproject.presentation.activities.detail.DetailActivity
 import com.kalashnyk.denys.defaultproject.presentation.adapter.UserAdapter
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseActivity
 import com.kalashnyk.denys.defaultproject.presentation.fragments.messages.MessagesFragment
@@ -24,14 +19,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 /**
- *
+ * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity<MainDataBinding>() {
 
     var viewModel: AllUsersViewModel? = null
         @Inject set
-
-    private lateinit var binding: ActivityMainBinding
 
     private lateinit var ahItem1: AHBottomNavigationItem
     private lateinit var ahItem2: AHBottomNavigationItem
@@ -51,9 +44,21 @@ class MainActivity : BaseActivity() {
         return@OnTabSelectedListener true
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+    /**
+     * @param component
+     */
+    override fun injectDependency(component: ViewModelComponent) {
+        component.inject(this)
+    }
+    /**
+     * @return
+     */
+    override fun getLayoutId(): Int = R.layout.activity_main
+
+    /**
+     * @param binding
+     */
+    override fun setupViewLogic(binding: MainDataBinding) {
         initBottomBar()
         replaceFragment(R.id.mainFragmentContainer, ThemesFragment.newInstance(), false, false)
     }
@@ -86,26 +91,13 @@ class MainActivity : BaseActivity() {
         //rvUsers.adapter = userAdapter
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(context: Context): Intent {
-            val intent = Intent(context, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            return intent
-        }
-    }
-
     private val itemClickListener = object : IUserItemClickListener<UserEntity> {
         override fun openDetail(entity: UserEntity) {
             openItemDetail(entity.id)
         }
     }
 
-    override fun injectDependency(component: ViewModelComponent) {
-        component.inject(this)
-    }
-
     private fun openItemDetail(id: Int) {
-        this.startActivity(DetailActivity.newInstance(this, id))
+        navigator.openDetailScreen(id)
     }
 }

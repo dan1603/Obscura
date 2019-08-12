@@ -5,8 +5,14 @@ import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.databinding.PeopleDataBinding
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseFragment
 
+/**
+ * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
+ */
 class PeopleFragment : BaseFragment<PeopleDataBinding>() {
 
+    /**
+     * @param savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -14,8 +20,14 @@ class PeopleFragment : BaseFragment<PeopleDataBinding>() {
         }
     }
 
-    override fun getLayoutId(): Int  = R.layout.fragment_people
+    /**
+     * @return
+     */
+    override fun getLayoutId(): Int = R.layout.fragment_people
 
+    /**
+     * @param binding
+     */
     override fun setupViewLogic(binding: PeopleDataBinding) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

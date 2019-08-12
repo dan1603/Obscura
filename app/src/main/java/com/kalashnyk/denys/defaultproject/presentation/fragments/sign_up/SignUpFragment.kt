@@ -8,10 +8,16 @@ import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.Auth
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseFragment
 
+/**
+ * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
+ */
 class SignUpFragment : BaseFragment<SignUpDataBinding>(), IAuthFlow.IAuthCallback {
 
     private var listener: IAuthFlow.IAuthListener? = null
 
+    /**
+     * @param savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -19,7 +25,9 @@ class SignUpFragment : BaseFragment<SignUpDataBinding>(), IAuthFlow.IAuthCallbac
         }
     }
 
-
+    /**
+     * @param context
+     */
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is IAuthFlow.IAuthListener) {
@@ -29,17 +37,29 @@ class SignUpFragment : BaseFragment<SignUpDataBinding>(), IAuthFlow.IAuthCallbac
         }
     }
 
+    /**
+     *
+     */
     override fun onDetach() {
         super.onDetach()
         listener = null
     }
 
+    /**
+     * @return
+     */
     override fun getLayoutId(): Int = R.layout.fragment_sign_up
 
+    /**
+     * @param binding
+     */
     override fun setupViewLogic(binding: SignUpDataBinding) {
         binding.listener = listener
     }
 
+    /**
+     * @param error
+     */
     override fun showError(error: AuthFlowErrorModel) {
         //ToDo show error for validation inputs
     }

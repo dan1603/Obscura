@@ -1,37 +1,31 @@
 package com.kalashnyk.denys.defaultproject.presentation.activities.welcome
 
-import android.content.Context
-import android.content.Intent
-import android.os.Bundle
-import androidx.databinding.DataBindingUtil
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.databinding.WelcomeDataBinding
 import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseActivity
 
 /**
- *
+ * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
-class WelcomeActivity :  BaseActivity() {
+class WelcomeActivity :  BaseActivity<WelcomeDataBinding>() {
 
-    private lateinit var binding: WelcomeDataBinding
-
-    companion object {
-        @JvmStatic
-        fun newInstance(context: Context): Intent {
-            return Intent(context, WelcomeActivity::class.java).apply {
-                this.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            }
-        }
-    }
-
+    /**
+     * @param component
+     */
     override fun injectDependency(component: ViewModelComponent) {
-
+        component.inject(this)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_welcome)
+    /**
+     * @return
+     */
+    override fun getLayoutId(): Int = R.layout.activity_welcome
+
+    /**
+     * @param binding
+     */
+    override fun setupViewLogic(binding: WelcomeDataBinding) {
         binding.navigator = navigator
     }
 }

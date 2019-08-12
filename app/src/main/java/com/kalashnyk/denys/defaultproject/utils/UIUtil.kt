@@ -24,6 +24,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.presentation.activities.main.MainActivity
+import com.kalashnyk.denys.defaultproject.presentation.navigation.INavigation
 
 object UIUtil {
 
@@ -237,9 +238,9 @@ object UIUtil {
         }
     }
 
-    fun handleBackButton(context: Context?) {
-        if (context != null && Util.runningActivityCount < 2) {
-            context.startActivity(MainActivity.newInstance(context))
+    fun handleBackButton(navigator : INavigation) {
+        if (Util.runningActivityCount < 2) {
+            navigator.openMainScreen()
         }
     }
 }

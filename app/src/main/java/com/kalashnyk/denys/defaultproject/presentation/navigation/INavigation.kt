@@ -19,8 +19,8 @@ interface INavigation {
     fun openSplashScreen(context: Context)
     fun openWelcomeScreen(context: Context)
     fun openAuthScreen(typeScreen: IAuthFlow.NavigationType, flag : Int)
-    fun openMainScreen(context: Context)
-    fun openDetailScreen(context: Context, id: Int)
+    fun openMainScreen()
+    fun openDetailScreen(id: Int)
 }
 
 class NavigationImpl(override var navigatorSource: Activity) : INavigation {
@@ -47,14 +47,14 @@ class NavigationImpl(override var navigatorSource: Activity) : INavigation {
         navigatorSource.startActivity(intent)
     }
 
-    override fun openMainScreen(context: Context) {
+    override fun openMainScreen() {
         val intent = Intent(navigatorSource, MainActivity::class.java).apply {
             this.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
         }
         navigatorSource.startActivity(intent)
     }
 
-    override fun openDetailScreen(context: Context, id: Int) {
+    override fun openDetailScreen(id: Int) {
         val intent = Intent(navigatorSource, AuthActivity::class.java).apply {
             this.putExtra(ApplicationConstants.DETAIL_ID, id)
         }

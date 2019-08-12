@@ -15,6 +15,7 @@ import com.kalashnyk.denys.defaultproject.presentation.fragments.profile.Profile
 import com.kalashnyk.denys.defaultproject.presentation.fragments.themes.ThemesFragment
 import com.kalashnyk.denys.defaultproject.presentation.item.IUserItemClickListener
 import com.kalashnyk.denys.defaultproject.usecases.repository.database.entity.UserEntity
+import com.kalashnyk.denys.defaultproject.utils.extention.replaceFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -35,10 +36,10 @@ class MainActivity : BaseActivity<MainDataBinding>() {
         if (wasSelected) return@OnTabSelectedListener false
 
         when (position) {
-            0 -> { replaceFragment(R.id.mainFragmentContainer, ThemesFragment.newInstance(), false, false) }
-            1 -> { replaceFragment(R.id.mainFragmentContainer, ProfileFragment.newInstance(), false, false) }
-            2 -> { replaceFragment(R.id.mainFragmentContainer, PeopleFragment.newInstance(), false, false) }
-            3 -> { replaceFragment(R.id.mainFragmentContainer, MessagesFragment.newInstance(), false, false) }
+            0 -> { replaceFragment(R.id.mainFragmentContainer, ThemesFragment.newInstance()) }
+            1 -> { replaceFragment(R.id.mainFragmentContainer, ProfileFragment.newInstance()) }
+            2 -> { replaceFragment(R.id.mainFragmentContainer, PeopleFragment.newInstance()) }
+            3 -> { replaceFragment(R.id.mainFragmentContainer, MessagesFragment.newInstance()) }
         }
 
         return@OnTabSelectedListener true
@@ -60,7 +61,7 @@ class MainActivity : BaseActivity<MainDataBinding>() {
      */
     override fun setupViewLogic(binding: MainDataBinding) {
         initBottomBar()
-        replaceFragment(R.id.mainFragmentContainer, ThemesFragment.newInstance(), false, false)
+        this.replaceFragment(R.id.mainFragmentContainer, ThemesFragment.newInstance(), false, false)
     }
 
     private fun initBottomBar() {

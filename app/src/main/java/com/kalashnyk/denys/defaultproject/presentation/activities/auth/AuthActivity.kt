@@ -11,6 +11,7 @@ import com.kalashnyk.denys.defaultproject.presentation.fragments.sign_in.SignInF
 import com.kalashnyk.denys.defaultproject.presentation.fragments.sign_up.SignUpFragment
 import com.kalashnyk.denys.defaultproject.utils.ApplicationConstants
 import com.kalashnyk.denys.defaultproject.utils.extention.hideKeyboard
+import com.kalashnyk.denys.defaultproject.utils.extention.replaceFragment
 
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com

@@ -1,6 +1,7 @@
 package com.kalashnyk.denys.defaultproject.utils.extention
 
 import android.content.Context
+import android.graphics.Rect
 import android.view.View
 import android.view.ViewTreeObserver
 import android.view.inputmethod.InputMethodManager
@@ -53,13 +54,6 @@ fun View.updateInvisibility(isVisible: Boolean) {
     }
 }
 
-fun TextView.validateTextView(isValid: Boolean, errorMessage: String?) {
-    this.updateVisibility(!isValid)
-    if (!isValid) {
-        this.text = errorMessage
-    }
-}
-
 fun View.getWindowCoords(): Pair<Float, Float> {
     val coords = arrayOf(0, 0).toIntArray()
     this.getLocationInWindow(coords)
@@ -86,6 +80,33 @@ fun View.setXYOnClickListener(filterCoordinate: (MotionEvent) -> Boolean, onClic
             true
         } else false
     }
+}
+
+fun TextView.validateTextView(isValid: Boolean, errorMessage: String?) {
+    this.updateVisibility(!isValid)
+    if (!isValid) {
+        this.text = errorMessage
+    }
+}
+
+fun ViewGroup.findViewAt(x: Int, y: Int): View? {
+    (0 until this.childCount)
+        .map { this.getChildAt(it) }
+        .forEach {
+            when (it) {
+                is ViewGroup -> {
+                    val foundView = it.findViewAt(x, y)
+                    if (foundView?.isShown ?: return@forEach) return foundView
+                }
+                else -> {
+                    val location = IntArray(2)
+                    it.getLocationOnScreen(location)
+                    val rect = Rect(location[0], location[1], location[0] + it.width, location[1] + it.height)
+                    if (rect.contains(x, y)) return it
+                }
+            }
+        }
+    return null
 }
 
 inline fun View.onGlobalLayout(crossinline onLayout: () -> Unit) {

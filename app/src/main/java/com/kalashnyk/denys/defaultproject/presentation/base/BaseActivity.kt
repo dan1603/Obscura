@@ -30,10 +30,9 @@ abstract class BaseActivity : AppCompatActivity() {
     protected open val PERMISSION_REQUEST = 5
 
     open var arrayPermission = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
-    open lateinit var messageRationalePermission: String
     open lateinit var messageNecessaryPermissions: String
     protected var requestCode: Int? = null
-    private var mToolbar: Toolbar? = null
+    private var toolbar: Toolbar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,8 +41,8 @@ abstract class BaseActivity : AppCompatActivity() {
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     protected fun initializeToolbar(toolbar: Toolbar) {
-        mToolbar = toolbar
-        mToolbar?.apply {
+        this.toolbar = toolbar
+        this.toolbar?.apply {
             setNavigationOnClickListener { onBackPressed() }
             setActionBar(this)
             actionBar?.title = ""
@@ -62,10 +61,10 @@ abstract class BaseActivity : AppCompatActivity() {
         overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down)
     }
 
-    protected fun getToolbar(): Toolbar? = mToolbar
+    protected fun getToolbar(): Toolbar? = this.toolbar
 
     protected fun setToolbarTitle(title: CharSequence) {
-        mToolbar?.title = title
+        toolbar?.title = title
     }
 
     private fun findViewAt(viewGroup: ViewGroup, x: Int, y: Int): View? {
@@ -98,17 +97,16 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     @TargetApi(Build.VERSION_CODES.M)
-    fun isStoragePermissionGranted(requestCode: Int = 0): Boolean {
-        this.requestCode = requestCode
-        if (checkPermissionList()) {
+    fun isPermissionGranted(arrayPermission: Array<String>, requestCode: Int = 0): Boolean {
+        if (checkPermissionList(arrayPermission)) {
             return true
         } else {
-            requestPermission()
+            requestPermission(arrayPermission, requestCode)
             return false
         }
     }
 
-    private fun checkPermissionList(): Boolean {
+    private fun checkPermissionList(arrayPermission: Array<String>): Boolean {
         val list = ArrayList<Boolean>()
         arrayPermission.forEach {
             list.add(ContextCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_GRANTED)
@@ -121,7 +119,7 @@ abstract class BaseActivity : AppCompatActivity() {
         startActivityForResult(galleryIntent, requestCodeIntent)
     }
 
-    fun checkPermissionRationaleList(): Boolean {
+    fun checkPermissionRationaleList(arrayPermission: Array<String>): Boolean {
         val list = ArrayList<Boolean>()
         arrayPermission.forEach {
             list.add(ActivityCompat.shouldShowRequestPermissionRationale(this, it))
@@ -142,8 +140,8 @@ abstract class BaseActivity : AppCompatActivity() {
         startActivityForResult(appSettingsIntent, PERMISSION_REQUEST)
     }
 
-    fun requestPermission() {
-        ActivityCompat.requestPermissions(this, arrayPermission, PERMISSION_REQUEST)
+    fun requestPermission(arrayPermission : Array<String>, requestCode: Int) {
+        ActivityCompat.requestPermissions(this, arrayPermission, requestCode)
     }
 
     fun replaceFragment(container: Int, fragment: Fragment) {

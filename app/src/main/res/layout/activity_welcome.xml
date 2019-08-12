@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data class="WelcomeDataBinding">
+
+        <import type="android.view.View"/>
+        <import type="android.content.Intent"/>
+
+        <variable name="navigator"
+                  type="com.kalashnyk.denys.defaultproject.presentation.navigation.INavigation"/>
+
+        <variable name="typeScreen"
+                  type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow.NavigationType"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/soft_blue"
+            tools:context=".presentation.activities.welcome.WelcomeActivity">
+
+        <androidx.constraintlayout.widget.Guideline
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/guideline_splash_start"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/indentation_16"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/guideline_splash_end"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/indentation_16"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/guideline_splash_top"
+                app:layout_constraintGuide_begin="@dimen/indentation_16"
+                android:orientation="horizontal"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/guideline_splash_bottom"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_end="@dimen/indentation_16"/>
+
+        <TextView
+                android:id="@+id/tv_splash_welcome_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/welcome_to_obscuralight"
+                android:layout_marginTop="@dimen/indentation_16"
+                app:layout_constraintTop_toBottomOf="@+id/guideline_splash_top"
+                app:layout_constraintStart_toEndOf="@+id/guideline_splash_start"
+                android:layout_marginStart="@dimen/indentation_16"
+                android:textSize="@dimen/txt_size_34"
+                android:textStyle="normal"
+                android:textColor="@color/colorWhite"
+                android:fontFamily="sans-serif-black"/>
+
+        <TextView
+                android:id="@+id/tv_splash_information"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/indentation_32"
+                app:layout_constraintTop_toBottomOf="@+id/tv_splash_welcome_header"
+                app:layout_constraintStart_toEndOf="@+id/guideline_splash_start"
+                android:layout_marginStart="@dimen/indentation_16"
+                android:textColor="@color/light_grey"
+                android:textStyle="normal"
+                android:textSize="@dimen/txt_size_16"
+                android:fontFamily="sans-serif"
+                android:text="@string/welcome_information"/>
+
+        <TextView
+                android:id="@+id/tv_splash_have_an_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tv_splash_information"
+                android:layout_marginTop="@dimen/indentation_64"
+                app:layout_constraintStart_toEndOf="@id/guideline_splash_start"
+                android:layout_marginStart="@dimen/indentation_16"
+                android:text="@string/welcome_text_already_have_an_account"
+                android:textSize="@dimen/txt_size_16"
+                android:textColor="@color/light_grey"
+                android:textStyle="normal"
+                android:fontFamily="sans-serif"/>
+
+        <TextView
+                android:id="@+id/tv_splash_sign_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sign_in"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/txt_size_18"
+                android:fontFamily="sans-serif-medium"
+                android:textStyle="normal"
+                android:layout_marginTop="@dimen/indentation_64"
+                app:layout_constraintTop_toBottomOf="@+id/tv_splash_information"
+                app:layout_constraintStart_toEndOf="@+id/tv_splash_have_an_account"
+                android:layout_marginStart="@dimen/indentation_8"
+                android:onClick="@{(view)-> navigator.openAuthScreen(typeScreen.SIGN_IN_SCREEN, Intent.FLAG_ACTIVITY_CLEAR_TASK)}"/>
+
+        <TextView
+                android:id="@+id/tv_splash_not_with_us_yet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/guideline_splash_start"
+                android:layout_marginStart="@dimen/indentation_16"
+                android:text="@string/welcome_text_not_with_us_yet"
+                android:textSize="@dimen/txt_size_18"
+                android:textColor="@color/light_grey"
+                android:textStyle="normal"
+                android:fontFamily="sans-serif"
+                android:layout_marginTop="@dimen/indentation_64"
+                app:layout_constraintTop_toBottomOf="@+id/tv_splash_have_an_account"/>
+
+        <TextView
+                android:id="@+id/tv_splash_sign_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/tv_splash_not_with_us_yet"
+                android:layout_marginStart="@dimen/indentation_8"
+                android:layout_marginTop="@dimen/indentation_64"
+                app:layout_constraintTop_toBottomOf="@id/tv_splash_have_an_account"
+                android:text="@string/sign_up"
+                android:textColor="@color/colorWhite"
+                android:textStyle="normal"
+                android:textSize="@dimen/txt_size_18"
+                android:fontFamily="sans-serif-medium"
+                android:onClick="@{(view)-> navigator.openAuthScreen(typeScreen.SIGN_UP_SCREEN, Intent.FLAG_ACTIVITY_CLEAR_TASK)}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

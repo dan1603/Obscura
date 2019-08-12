@@ -20,4 +20,5 @@
     <color name="text_color_black">#cc191c2a</color>
     <color name="text_color_blue">#4b6ec9</color>
     <color name="text_color_label">#d5e2f7</color>
+    <color name="light_grey">#b3ffffff</color>
 </resources>

@@ -1,8 +1,5 @@
 package com.kalashnyk.denys.defaultproject.presentation.activities.detail
 
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -16,6 +13,9 @@ import kotlinx.android.synthetic.main.activity_detail.*
 import java.util.*
 import javax.inject.Inject
 
+/**
+ *
+ */
 class DetailActivity : BaseActivity() {
 
 

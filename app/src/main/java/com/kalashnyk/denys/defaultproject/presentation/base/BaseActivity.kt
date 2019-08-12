@@ -23,10 +23,16 @@ import androidx.fragment.app.Fragment
 import com.kalashnyk.denys.defaultproject.App
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
+import com.kalashnyk.denys.defaultproject.presentation.navigation.INavigation
+import com.kalashnyk.denys.defaultproject.presentation.navigation.NavigationImpl
 import com.kalashnyk.denys.defaultproject.utils.extention.hideKeyboard
 import java.util.ArrayList
 
 abstract class BaseActivity : AppCompatActivity() {
+
+    protected open lateinit var navigator : INavigation
+
+    //refuctor
     protected open val PERMISSION_REQUEST = 5
 
     open var arrayPermission = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -36,6 +42,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        navigator = NavigationImpl(this)
         createDaggerDependencies()
     }
 

@@ -17,6 +17,7 @@
     <dimen name="indentation_40">40dp</dimen>
     <dimen name="indentation_50">50dp</dimen>
     <dimen name="indentation_60">60dp</dimen>
+    <dimen name="indentation_64">64dp</dimen>
     <dimen name="indentation_130">130dp</dimen>
     <dimen name="indentation_210">210dp</dimen>
 
@@ -24,9 +25,11 @@
     <dimen name="txt_size_12">12sp</dimen>
     <dimen name="txt_size_14">14sp</dimen>
     <dimen name="txt_size_16">16sp</dimen>
+    <dimen name="txt_size_18">18sp</dimen>
     <dimen name="txt_size_20">20sp</dimen>
-    <dimen name="txt_size_35">40sp</dimen>
+    <dimen name="txt_size_34">34sp</dimen>
     <dimen name="txt_size_36">36sp</dimen>
+    <dimen name="txt_size_40">40sp</dimen>
     <dimen name="txt_size_45">45sp</dimen>
     <dimen name="txt_size_100">100sp</dimen>
 

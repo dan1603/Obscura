@@ -26,7 +26,7 @@
                 android:layout_marginEnd="@dimen/indentation_6"
                 android:text="@string/txt_default_name"
                 android:textAlignment="center"
-                android:textSize="@dimen/txt_size_35" />
+                android:textSize="@dimen/txt_size_40" />
 
         <TextView
                 android:id="@+id/txtDetailName"
@@ -36,7 +36,7 @@
                 android:layout_marginEnd="@dimen/indentation_6"
                 android:text="@string/txt_default_surname"
                 android:textAlignment="center"
-                android:textSize="@dimen/txt_size_35" />
+                android:textSize="@dimen/txt_size_40" />
 
         <TextView
                 android:id="@+id/txtDetailFathername"
@@ -46,7 +46,7 @@
                 android:layout_marginEnd="@dimen/indentation_6"
                 android:text="@string/txt_default_fathername"
                 android:textAlignment="center"
-                android:textSize="@dimen/txt_size_35" />
+                android:textSize="@dimen/txt_size_40" />
 
     </LinearLayout>
 

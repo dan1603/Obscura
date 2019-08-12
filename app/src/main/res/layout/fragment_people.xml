@@ -14,7 +14,7 @@
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="@dimen/txt_size_35"
+                android:textSize="@dimen/txt_size_40"
                 android:gravity="center"
                 android:text="People"/>
 

@@ -23,6 +23,9 @@ import com.kalashnyk.denys.defaultproject.usecases.repository.database.entity.Us
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
+/**
+ *
+ */
 class MainActivity : BaseActivity() {
 
     var viewModel: AllUsersViewModel? = null

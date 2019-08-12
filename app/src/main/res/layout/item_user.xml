@@ -21,7 +21,7 @@
                 android:layout_width="@dimen/indentation_50"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:textSize="@dimen/txt_size_35"
+                android:textSize="@dimen/txt_size_40"
                 android:text="0"/>
 
         <LinearLayout

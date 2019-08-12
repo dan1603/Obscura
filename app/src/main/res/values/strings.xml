@@ -24,7 +24,7 @@
     <string name="network_offline">offline</string>
     <string name="root_detection_description">root detection description</string>
     <string name="settings">settings</string>
-    <!--auth-->
+    <!--auth screen-->
     <string name="password_recovery">PASSWORD\nRECOVERY</string>
     <string name="get_a_password">GET A PASSWORD</string>
     <string name="enter_the_pass">Enter the password you used\nto create your account</string>
@@ -42,4 +42,11 @@
     <string name="enter_your_name_and_surname">Enter your name and surname</string>
     <string name="choose_password">Choose password</string>
     <string name="repeat_password">Repeat password</string>
+    <!--welcome screen-->
+    <string name="welcome_to_obscuralight">WELCOME TO\nOBSCURALIGHT</string>
+    <string name="welcome_information">Our application is a consulting\nservice that allows you to quickly\nand easily obtain
+        reliable and\nnecessary information on any topic.
+    </string>
+    <string name="welcome_text_already_have_an_account">Already have an account?</string>
+    <string name="welcome_text_not_with_us_yet">Not with us yet?</string>
 </resources>

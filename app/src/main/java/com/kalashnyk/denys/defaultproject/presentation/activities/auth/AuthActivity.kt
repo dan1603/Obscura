@@ -14,6 +14,9 @@ import com.kalashnyk.denys.defaultproject.presentation.fragments.sign_up.SignUpF
 import com.kalashnyk.denys.defaultproject.utils.ApplicationConstants
 import com.kalashnyk.denys.defaultproject.utils.extention.hideKeyboard
 
+/**
+ *
+ */
 class AuthActivity : BaseActivity(), IAuthFlow.IAuthListener {
 
     companion object {
@@ -27,7 +30,7 @@ class AuthActivity : BaseActivity(), IAuthFlow.IAuthListener {
     }
 
     override fun injectDependency(component: ViewModelComponent) {
-
+        component.inject(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,5 +1,7 @@
 package com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow
 
+import com.kalashnyk.denys.defaultproject.utils.validation.ValidationErrorMessage
+
 /**
  * error of validation and api
  */
@@ -7,12 +9,13 @@ class AuthFlowErrorModel(
     /**
      * type
      */
-    var type : AuthFlowErrorType,
+    var type : AuthFlowErrorType? = null,
     /**
      * message body
      */
-    var message : String) {
-
+    var message : ValidationErrorMessage? = null
+) {
+    constructor() : this(null, null)
     /**
      * type of error for handling in UI
      * todo maybe need create rout type for navigation

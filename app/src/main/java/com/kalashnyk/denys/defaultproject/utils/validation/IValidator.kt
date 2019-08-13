@@ -12,12 +12,12 @@ import java.util.regex.Pattern
 . -  match anything with previous condition checking
 {6,20} - length at least 6 characters and maximum of 20
  */
-const val PASSWORD_PATTERN: String = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})"
+const val PASSWORD_REGEX: String = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})"
 
 /**
  *
  */
-val passwordPattern: Pattern = Pattern.compile(PASSWORD_PATTERN, Pattern.CASE_INSENSITIVE)
+val passwordPattern: Pattern = Pattern.compile(PASSWORD_REGEX, Pattern.CASE_INSENSITIVE)
 
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com

@@ -11,6 +11,9 @@
 
         <variable name="typeScreen"
                   type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow.NavigationType"/>
+
+        <variable name="errorMessage"
+                  type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowErrorModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

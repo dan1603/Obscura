@@ -1,8 +1,6 @@
 package com.kalashnyk.denys.defaultproject.utils.extention
 
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Point
@@ -12,6 +10,10 @@ import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import com.google.android.material.snackbar.Snackbar
 import com.kalashnyk.denys.defaultproject.R
 import java.io.Serializable
@@ -21,7 +23,7 @@ import kotlin.reflect.KProperty
 /**
  *
  */
-fun AppCompatActivity.hideKeyboard() {
+fun <A : Activity> A.hideKeyboard() {
     val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
     val windowToken = currentFocus?.windowToken
     if (windowToken != null) {
@@ -34,72 +36,72 @@ fun AppCompatActivity.hideKeyboard() {
  * @param def
  * @return
  */
-fun AppCompatActivity.extraString(key: String? = null, def: String? = null) =
-        delegate(key, def, { keyValue, defValue ->
-            intent?.extras?.getString(keyValue, defValue)
-        }, { keyValue, value ->
-            intent?.putExtra(keyValue, value)
-        })
+fun <A : Activity> A.extraString(key: String? = null, def: String? = null) =
+    delegate(key, def, { keyValue, defValue ->
+        intent?.extras?.getString(keyValue, defValue)
+    }, { keyValue, value ->
+        intent?.putExtra(keyValue, value)
+    })
 
 /**
  * @param key
  * @param def
  * @return
  */
-fun AppCompatActivity.extraInt(key: String? = null, def: Int = 0) =
-        delegate(key, def, { keyValue, defValue ->
-            intent?.extras?.getInt(keyValue, defValue)
-        }, { keyValue, value ->
-            intent?.putExtra(keyValue, value)
-        })
+fun <A : Activity> A.extraInt(key: String? = null, def: Int = 0) =
+    delegate(key, def, { keyValue, defValue ->
+        intent?.extras?.getInt(keyValue, defValue)
+    }, { keyValue, value ->
+        intent?.putExtra(keyValue, value)
+    })
 
 /**
  * @param key
  * @param def
  * @return
  */
-fun AppCompatActivity.extraBoolean(key: String? = null, def: Boolean = false) =
-        nonNullDelegate(key, def, { keyValue, defValue ->
-            intent?.extras?.getBoolean(keyValue, defValue) ?: defValue
-        }, { keyValue, value ->
-            intent?.putExtra(keyValue, value)
-        })
+fun <A : Activity> A.extraBoolean(key: String? = null, def: Boolean = false) =
+    nonNullDelegate(key, def, { keyValue, defValue ->
+        intent?.extras?.getBoolean(keyValue, defValue) ?: defValue
+    }, { keyValue, value ->
+        intent?.putExtra(keyValue, value)
+    })
 
 /**
  * @param key
  * @param def
  * @return
  */
-fun <T: Enum<*>> AppCompatActivity.extraEnum(key: String? = null, def: T) =
-        nonNullDelegate(key, def, { keyValue, defValue ->
-            (intent?.extras?.getSerializable(keyValue) as? T) ?: defValue
-        }, { keyValue, value ->
-            intent?.putExtra(keyValue, value)
-        })
+fun <T : Enum<*>> AppCompatActivity.extraEnum(key: String? = null, def: T) =
+    nonNullDelegate(key, def, { keyValue, defValue ->
+        (intent?.extras?.getSerializable(keyValue) as? T) ?: defValue
+    }, { keyValue, value ->
+        intent?.putExtra(keyValue, value)
+    })
 
 /**
  * @param key
  * @param def
  * @return
  */
-fun <T: Parcelable> AppCompatActivity.extraParcelable(key: String? = null, def: T? = null) =
-        delegate(key, def, { keyValue, defValue ->
-            intent?.extras?.getParcelable(keyValue) ?: defValue
-        }, { keyValue, value ->
-            intent?.putExtra(keyValue, value)
-        })
+fun <T : Parcelable, A : Activity> A.extraParcelable(key: String? = null, def: T? = null) =
+    delegate(key, def, { keyValue, defValue ->
+        intent?.extras?.getParcelable(keyValue) ?: defValue
+    }, { keyValue, value ->
+        intent?.putExtra(keyValue, value)
+    })
 
 /**
  * @param key
  * @param def
  * @return
  */
-fun <T: Serializable> AppCompatActivity.extraSerializable(key: String? = null, def: T? = null) =
-        delegate(key, def, { keyValue, defValue ->
-            (intent?.extras?.getSerializable(keyValue) as? T) ?: defValue
-        }, { keyValue, value ->
-            intent?.putExtra(keyValue, value)
-        })
+fun <T : Serializable, A : Activity> A.extraSerializable(key: String? = null, def: T? = null) =
+    delegate(key, def, { keyValue, defValue ->
+        (intent?.extras?.getSerializable(keyValue) as? T) ?: defValue
+    }, { keyValue, value ->
+        intent?.putExtra(keyValue, value)
+    })
 
 /**
  * @param params
@@ -140,7 +142,8 @@ fun Intent.withArguments(vararg params: Pair<String, Any?>): Intent {
                 }
                 is ShortArray -> putExtra(key, value)
                 is Bundle -> putExtra(key, value)
-                null -> {/* ignore */}
+                null -> {/* ignore */
+                }
                 else -> throw IllegalArgumentException("Unsupported bundle component (${value::class})")
             }
         }
@@ -152,7 +155,7 @@ fun Intent.withArguments(vararg params: Pair<String, Any?>): Intent {
 /**
  * @return
  */
-fun AppCompatActivity.getDisplayPoint(): Point {
+fun <A : Activity> A.getDisplayPoint(): Point {
     val windowManager = getSystemService(Context.WINDOW_SERVICE) as WindowManager
     val display = windowManager.defaultDisplay
     val outPoint = Point()
@@ -164,7 +167,7 @@ fun AppCompatActivity.getDisplayPoint(): Point {
  * @param container
  * @param fragment
  */
-fun AppCompatActivity.replaceFragment(
+fun <A : FragmentActivity> A.replaceFragment(
     container: Int,
     fragment: Fragment
 ) = this.replaceFragment(container, fragment, false, false)
@@ -175,7 +178,7 @@ fun AppCompatActivity.replaceFragment(
  * @param addToBackStack
  * @param moveOnRight
  */
-fun AppCompatActivity.replaceFragment(
+fun <A : FragmentActivity> A.replaceFragment(
     container: Int,
     fragment: Fragment,
     addToBackStack: Boolean,
@@ -189,7 +192,7 @@ fun AppCompatActivity.replaceFragment(
  * @param needAnimate
  * @param moveOnRight
  */
-fun AppCompatActivity.replaceFragment(
+fun <A : FragmentActivity> A.replaceFragment(
     container: Int,
     fragment: Fragment,
     addToBackStack: Boolean,
@@ -200,12 +203,13 @@ fun AppCompatActivity.replaceFragment(
 /**
  * @param text
  */
-fun AppCompatActivity.showToast(text: Any) = Toast.makeText(this, text.toString(), Toast.LENGTH_SHORT).show()
+fun <A : Activity> A.showToast(text: Any) = Toast.makeText(this, text.toString(), Toast.LENGTH_SHORT).show()
 
 /**
  * @param text
  */
-fun AppCompatActivity.showSnack(text: String) = Snackbar.make(this.findViewById(android.R.id.content), text, Snackbar.LENGTH_LONG).show()
+fun <A : Activity> A.showSnack(text: String) =
+    Snackbar.make(this.findViewById(android.R.id.content), text, Snackbar.LENGTH_LONG).show()
 
 /**
  * @param message
@@ -233,11 +237,11 @@ fun Snackbar.action(action: String, color: Int? = null, listener: (View) -> Unit
     color?.let { setActionTextColor(color) }
 }
 
-private inline fun <T> AppCompatActivity.delegate(
+private inline fun <T, A : Activity> A.delegate(
     key: String?,
     defaultValue: T,
-    crossinline getter: AppCompatActivity.(String, T) -> T?,
-    crossinline setter: AppCompatActivity.(String, T?) -> Unit
+    crossinline getter: Activity.(String, T) -> T?,
+    crossinline setter: Activity.(String, T?) -> Unit
 ): ReadWriteProperty<Any, T?> {
     return object : ReadWriteProperty<Any, T?> {
         override fun getValue(thisRef: Any, property: KProperty<*>) =
@@ -248,11 +252,11 @@ private inline fun <T> AppCompatActivity.delegate(
     }
 }
 
-private inline fun <T> AppCompatActivity.nonNullDelegate(
+private inline fun <T, A : Activity> A.nonNullDelegate(
     key: String?,
     defaultValue: T,
-    crossinline getter: AppCompatActivity.(String, T) -> T,
-    crossinline setter: AppCompatActivity.(String, T?) -> Unit
+    crossinline getter: Activity.(String, T) -> T,
+    crossinline setter: Activity.(String, T?) -> Unit
 ): ReadWriteProperty<Any, T> {
     return object : ReadWriteProperty<Any, T> {
         override fun getValue(thisRef: Any, property: KProperty<*>) =
@@ -268,10 +272,12 @@ private fun FragmentManager.replaceFragment(
     fragment: Fragment,
     addToBackStack: Boolean,
     needAnimate: Boolean,
-    moveOnRight : Boolean) {
+    moveOnRight: Boolean
+) {
     var fragmentTransaction = this.beginTransaction()
     val fragmentTag = fragment.javaClass.simpleName
-    if (addToBackStack) fragmentTransaction = fragmentTransaction.addToBackStack(fragmentTag)
+    val isFragmentExist : Boolean = this.findFragmentByTag(fragmentTag) == null
+    if (addToBackStack && isFragmentExist) fragmentTransaction = fragmentTransaction.addToBackStack(fragmentTag)
     if (needAnimate) {
         val enterAnimation = if (moveOnRight) R.animator.slide_in_left else R.animator.pop_out_right
         val exitAnimation = if (moveOnRight) R.animator.slide_out_right else R.animator.pop_in_left

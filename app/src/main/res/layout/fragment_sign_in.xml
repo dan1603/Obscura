@@ -105,7 +105,8 @@
                 android:textColor="@color/text_color_blue"
                 android:textSize="@dimen/txt_size_14"
                 android:textStyle="normal"
-                app:layout_constraintTop_toBottomOf="@+id/containerSignInInputs"/>
+                app:layout_constraintTop_toBottomOf="@+id/containerSignInInputs"
+                android:onClick="@{(view)-> listener.openScreen(typeScreen.RECOVER_ACCOUNT_SCREEN)}"/>
 
         <TextView
                 android:id="@+id/tvSignInSocialLabel"

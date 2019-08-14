@@ -1,5 +1,6 @@
 package com.kalashnyk.denys.defaultproject.utils.permission
 
+import android.app.Activity
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -16,20 +17,20 @@ interface IPermissionManager {
      * @param activity
      * @param permissions
      */
-    fun hasPermission(activity: AppCompatActivity, permissions: Array<String>): Boolean
+    fun <A : Activity> hasPermission(activity: A, permissions: Array<String>): Boolean
 
     /**
      * @param activity
      * @param requestCode
      * @param permissions
      */
-    fun requestPermission(activity: AppCompatActivity, requestCode: Int, permissions: Array<String>)
+    fun <A : Activity> requestPermission(activity: A, requestCode: Int, permissions: Array<String>)
 
     /**
      * @param activity
      * @param permissions
      */
-    fun checkPermissionRationale(activity: AppCompatActivity, permissions: Array<String>): Boolean
+    fun <A : Activity> checkPermissionRationale(activity: A, permissions: Array<String>): Boolean
 }
 
 /**
@@ -37,8 +38,8 @@ interface IPermissionManager {
  */
 class PermissionManagerImpl : IPermissionManager {
 
-    override fun hasPermission(
-        activity: AppCompatActivity,
+    override fun <A : Activity> hasPermission(
+        activity: A,
         permissions: Array<String>
     ): Boolean {
         val list = ArrayList<Boolean>()
@@ -48,8 +49,8 @@ class PermissionManagerImpl : IPermissionManager {
         return list.all { it }
     }
 
-    override fun checkPermissionRationale(
-        activity: AppCompatActivity,
+    override fun <A : Activity> checkPermissionRationale(
+        activity: A,
         permissions: Array<String>
     ): Boolean {
         val list = ArrayList<Boolean>()
@@ -59,8 +60,8 @@ class PermissionManagerImpl : IPermissionManager {
         return list.all { it }
     }
 
-    override fun requestPermission(
-        activity: AppCompatActivity,
+    override fun <A : Activity> requestPermission(
+        activity: A,
         requestCode: Int,
         permissions: Array<String>
     ): Unit = ActivityCompat.requestPermissions(activity, permissions, requestCode)

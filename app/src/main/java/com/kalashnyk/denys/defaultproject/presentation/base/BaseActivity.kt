@@ -10,6 +10,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.FragmentActivity
 import com.kalashnyk.denys.defaultproject.App
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
@@ -108,7 +109,7 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
      * handle back stack with handling state of children of activity
      */
     override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount > 1) {
+        if (supportFragmentManager.backStackEntryCount >= 1) {
             supportFragmentManager.popBackStackImmediate()
             hideKeyboard()
             return

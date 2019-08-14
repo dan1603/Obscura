@@ -18,6 +18,8 @@ import com.kalashnyk.denys.defaultproject.utils.extention.replaceFragment
  */
 class AuthActivity : BaseActivity<AuthDataBinding>(), IAuthFlow.IAuthListener {
 
+    private lateinit var rootChildType : IAuthFlow.NavigationType
+
     /**
      * @param component
      */
@@ -81,16 +83,23 @@ class AuthActivity : BaseActivity<AuthDataBinding>(), IAuthFlow.IAuthListener {
      *
      */
     override fun openScreen(typeScreen: IAuthFlow.NavigationType) {
+
+        /**
+         * if typeScreen equal with rootChildType -
+         * we don't use animation between rout fragments
+         */
+        val isRootChild = rootChildType != typeScreen
+
         when (typeScreen) {
             IAuthFlow.NavigationType.SIGN_IN_SCREEN -> {
-                replaceFragment(R.id.auth_container, SignInFragment.newInstance())
+                replaceFragment(R.id.auth_container, SignInFragment.newInstance(), isRootChild, isRootChild)
             }
             IAuthFlow.NavigationType.SIGN_UP_SCREEN -> {
-                replaceFragment(R.id.auth_container, SignUpFragment.newInstance())
+                replaceFragment(R.id.auth_container, SignUpFragment.newInstance(), isRootChild, isRootChild)
 
             }
             IAuthFlow.NavigationType.RECOVER_ACCOUNT_SCREEN -> {
-                replaceFragment(R.id.auth_container, RecoverAccountFragment.newInstance())
+                replaceFragment(R.id.auth_container, RecoverAccountFragment.newInstance(), isRootChild, isRootChild)
             }
         }
     }
@@ -103,7 +112,8 @@ class AuthActivity : BaseActivity<AuthDataBinding>(), IAuthFlow.IAuthListener {
     }
 
     private fun handleIntent() {
-        openScreen(intent?.extras?.getSerializable(ApplicationConstants.AUTH_TYPE_SCREEN) as IAuthFlow.NavigationType)
+        rootChildType = intent?.extras?.getSerializable(ApplicationConstants.AUTH_TYPE_SCREEN) as IAuthFlow.NavigationType
+        openScreen(rootChildType)
         hideKeyboard()
     }
 }

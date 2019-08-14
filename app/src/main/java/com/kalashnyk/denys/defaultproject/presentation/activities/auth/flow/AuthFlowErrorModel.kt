@@ -15,12 +15,17 @@ class AuthFlowErrorModel(
      */
     var message : ValidationErrorMessage? = null
 ) {
-    constructor() : this(null, null)
+    constructor() : this(AuthFlowErrorType.DEFAULT_ERROR, null)
     /**
      * type of error for handling in UI
      * todo maybe need create rout type for navigation
      */
     enum class AuthFlowErrorType{
+
+        /**
+         * default error with empty body
+         */
+        DEFAULT_ERROR,
 
         /**
          * when validation fail email field

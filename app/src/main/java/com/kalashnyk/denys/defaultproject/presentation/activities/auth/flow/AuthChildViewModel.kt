@@ -19,13 +19,14 @@ class AuthChildViewModel(private var authChild: AuthChild,
             return authChild.typeChild
         }
 
-    val error: AuthFlowErrorModel?
+    var error: AuthFlowErrorModel? = null
         @Bindable get() {
             return authChild.error
         }
 
     override fun update(o: Observable?, arg: Any?) {
         if (arg is AuthFlowErrorModel) {
+            error = o as AuthFlowErrorModel
             notifyPropertyChanged(BR.error)
         }
     }

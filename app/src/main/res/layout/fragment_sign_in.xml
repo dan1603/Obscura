@@ -9,11 +9,19 @@
         <variable name="bindingModel"
                   type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthChildCasesBindingModel"/>
 
+<<<<<<< HEAD
         <variable name="typeNavigation"
                   type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow.NavigationType"/>
 
         <variable name="typeSocial"
                   type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow.SocialAuthType"/>
+=======
+        <variable name="typecreen"
+                  type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow.NavigationType"/>
+
+        <variable name="errorMessage"
+                  type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowErrorModel"/>
+>>>>>>> 9c53b52a60b9ed1abcacbb7f42db6a8b797a4ebc
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

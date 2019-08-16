@@ -2,7 +2,10 @@ package com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow
 
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseChildModel
 
-class AuthChild(type: IAuthFlow.AuthType) : BaseChildModel() {
+/**
+ *
+ */
+class AuthChildCases(type: IAuthFlow.AuthType) : BaseChildModel() {
 
     /**
      *
@@ -13,7 +16,7 @@ class AuthChild(type: IAuthFlow.AuthType) : BaseChildModel() {
             setChangedAndNotify("typeChild")
         }
 
-    var error: AuthFlowErrorModel? = null
+    var error: AuthFlowErrorModel = AuthFlowErrorModel()
         set(value) {
             field = value
             setChangedAndNotify("error")

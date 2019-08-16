@@ -1,8 +1,11 @@
 package com.kalashnyk.denys.defaultproject.presentation.activities.auth
 
+import android.os.Bundle
+import androidx.lifecycle.ViewModelProviders
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.databinding.AuthDataBinding
 import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
+import com.kalashnyk.denys.defaultproject.domain.AuthViewModel
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowModel
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseActivity
@@ -18,8 +21,8 @@ import com.kalashnyk.denys.defaultproject.utils.extention.replaceFragment
  */
 class AuthActivity : BaseActivity<AuthDataBinding>(), IAuthFlow.IAuthListener {
 
-    private lateinit var rootChildType : IAuthFlow.NavigationType
-
+    private lateinit var rootChildType: IAuthFlow.NavigationType
+    private lateinit var viewModel: AuthViewModel
     /**
      * @param component
      */
@@ -27,10 +30,15 @@ class AuthActivity : BaseActivity<AuthDataBinding>(), IAuthFlow.IAuthListener {
         component.inject(this)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel=ViewModelProviders.of(this).get(AuthViewModel::class.java)
+    }
+
     /**
      * @return
      */
-    override fun getLayoutId(): Int = R.layout.activity_auth
+    override fun getLayoutId(): Int=R.layout.activity_auth
 
     /**
      * @param binding
@@ -44,29 +52,14 @@ class AuthActivity : BaseActivity<AuthDataBinding>(), IAuthFlow.IAuthListener {
      * @param callback
      */
     override fun authRequest(flowModel: AuthFlowModel, callback: IAuthFlow.IAuthCallback) {
-        when (flowModel.type) {
-            IAuthFlow.AuthType.SIGN_IN -> {
-                //test
-                navigator.openMainScreen()
-            }
-
-            IAuthFlow.AuthType.SIGN_UP -> {
-                //test
-                navigator.openMainScreen()
-            }
-
-            IAuthFlow.AuthType.RECOVER_ACCOUNT -> {
-                //test
-                navigator.openMainScreen()
-            }
-        }
+        viewModel.authRequest(flowModel, callback)
     }
 
     /**
      * @param type
      * @param callback
      */
-    override fun socialAuth(type: IAuthFlow.SocialAuthType, callback: IAuthFlow.IAuthCallback) {
+    override fun socialAuth(type: IAuthFlow.SocialAuthType, callback: IAuthFlow.IAuthCallback?) {
         when (type) {
             IAuthFlow.SocialAuthType.FACEBOOK -> {
                 //test
@@ -88,7 +81,7 @@ class AuthActivity : BaseActivity<AuthDataBinding>(), IAuthFlow.IAuthListener {
          * if typeScreen equal with rootChildType -
          * we don't use animation between rout fragments
          */
-        val isRootChild = rootChildType != typeScreen
+        val isRootChild=rootChildType != typeScreen
 
         when (typeScreen) {
             IAuthFlow.NavigationType.SIGN_IN_SCREEN -> {
@@ -112,7 +105,7 @@ class AuthActivity : BaseActivity<AuthDataBinding>(), IAuthFlow.IAuthListener {
     }
 
     private fun handleIntent() {
-        rootChildType = intent?.extras?.getSerializable(ApplicationConstants.AUTH_TYPE_SCREEN) as IAuthFlow.NavigationType
+        rootChildType=intent?.extras?.getSerializable(ApplicationConstants.AUTH_TYPE_SCREEN) as IAuthFlow.NavigationType
         openScreen(rootChildType)
         hideKeyboard()
     }

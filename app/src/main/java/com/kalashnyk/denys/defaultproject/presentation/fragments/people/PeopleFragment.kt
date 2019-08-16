@@ -29,7 +29,7 @@ class PeopleFragment : BaseFragment<PeopleDataBinding>() {
      * @param binding
      */
     override fun setupViewLogic(binding: PeopleDataBinding) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        binding.tvPeople.setText("People")
     }
 
     companion object {

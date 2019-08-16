@@ -10,7 +10,6 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.FragmentActivity
 import com.kalashnyk.denys.defaultproject.App
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
@@ -20,6 +19,7 @@ import com.kalashnyk.denys.defaultproject.utils.extention.hideKeyboard
 import com.kalashnyk.denys.defaultproject.utils.extention.initializeToolbar
 import com.kalashnyk.denys.defaultproject.utils.permission.IPermissionManager
 import com.kalashnyk.denys.defaultproject.utils.permission.PermissionManagerImpl
+
 
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
@@ -34,12 +34,12 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
     /**
      *
      */
-    protected open val navigator : INavigation = NavigationImpl(this)
+    protected lateinit var navigator : INavigation
 
     /**
      *
      */
-    protected open val permissionManager : IPermissionManager = PermissionManagerImpl()
+    protected lateinit var permissionManager : IPermissionManager
 
     /**
      *
@@ -70,6 +70,8 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = DataBindingUtil.setContentView(this, getLayoutId())
+        navigator = NavigationImpl(this)
+        permissionManager = PermissionManagerImpl()
         createDaggerDependencies()
         setupViewLogic(viewBinding)
     }

@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:bind="http://schemas.android.com/tools">
 
     <data class="SignInDataBinding">
 
         <import type="android.view.View"/>
 
-        <variable name="listener"
-                  type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow.IAuthListener"/>
+        <variable name="bindingModel"
+                  type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthChildCasesBindingModel"/>
 
-        <variable name="typeScreen"
+        <variable name="typeNavigation"
                   type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow.NavigationType"/>
+
+        <variable name="typeSocial"
+                  type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow.SocialAuthType"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -45,7 +48,8 @@
                 android:orientation="vertical"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvSignInLabel">
+                app:layout_constraintTop_toBottomOf="@id/tvSignInLabel"
+                bind:authError="@{bindingModel}">
 
             <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilSignInEmail"
@@ -89,7 +93,7 @@
                     android:textColor="@color/text_color_blue"
                     android:textSize="@dimen/txt_size_12"
                     android:text="@string/forgot_your_password"
-                    android:onClick="@{(view)-> listener.openScreen(typeScreen.RECOVER_ACCOUNT_SCREEN)}"/>
+                    android:onClick="@{(view)-> bindingModel.onOpenScreen(typeNavigation.RECOVER_ACCOUNT_SCREEN)}"/>
         </LinearLayout>
 
         <Button
@@ -106,7 +110,7 @@
                 android:textSize="@dimen/txt_size_14"
                 android:textStyle="normal"
                 app:layout_constraintTop_toBottomOf="@+id/containerSignInInputs"
-                android:onClick="@{(view)-> listener.openScreen(typeScreen.RECOVER_ACCOUNT_SCREEN)}"/>
+                android:onClick="@{(view)-> bindingModel.onAuthRequest()}"/>
 
         <TextView
                 android:id="@+id/tvSignInSocialLabel"
@@ -131,7 +135,8 @@
                 android:src="@mipmap/facebook_logo_auth"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvSignInSocialLabel"/>
+                app:layout_constraintTop_toBottomOf="@id/tvSignInSocialLabel"
+                android:onClick="@{(view)-> bindingModel.onSocialAuth(typeSocial.FACEBOOK)}"/>
 
         <LinearLayout
                 android:layout_width="wrap_content"
@@ -164,7 +169,7 @@
                     android:textColor="@color/colorWhite"
                     android:textStyle="normal"
                     android:text="@string/sign_up"
-                    android:onClick="@{(view)-> listener.openScreen(typeScreen.SIGN_UP_SCREEN)}"/>
+                    android:onClick="@{(view)-> bindingModel.onOpenScreen(typeNavigation.SIGN_UP_SCREEN)}"/>
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

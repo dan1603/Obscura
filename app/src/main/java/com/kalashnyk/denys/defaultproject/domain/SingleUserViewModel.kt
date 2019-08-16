@@ -7,7 +7,7 @@ import com.kalashnyk.denys.defaultproject.presentation.widget.SingleLiveEvent
 import com.kalashnyk.denys.defaultproject.usecases.Interactor
 import com.kalashnyk.denys.defaultproject.usecases.repository.database.entity.UserEntity
 
-class SingleUserViewModel(application: Application, private val interactor: Interactor) : BaseViewModel(application) {
+class SingleUserViewModel(application: Application, private val interactor: Interactor) : BaseAndroidViewModel(application) {
 
     private val liveDataItem = SingleLiveEvent<UserEntity>()
 

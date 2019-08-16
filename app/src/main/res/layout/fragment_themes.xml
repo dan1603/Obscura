@@ -12,6 +12,7 @@
             tools:context=".presentation.fragments.themes.ThemesFragment">
 
         <TextView
+                android:id="@+id/tvThemes"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textSize="@dimen/txt_size_40"

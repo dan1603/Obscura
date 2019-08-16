@@ -20,6 +20,7 @@ class AuthFlowErrorModel(
      * type of error for handling in UI
      * todo maybe need create rout type for navigation
      */
+
     enum class AuthFlowErrorType{
 
         /**

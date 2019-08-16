@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:bind="http://schemas.android.com/tools">
     <data class="RecoverAccountDataBinding">
 
         <import type="android.view.View"/>
 
-        <variable name="listener"
-                  type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow.IAuthListener"/>
-
-        <variable name="typeScreen"
-                  type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow.NavigationType"/>
+        <variable name="bindingModel"
+                  type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthChildCasesBindingModel"/>
 
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -45,7 +42,8 @@
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvRecoverAccountLabel">
+                app:layout_constraintTop_toBottomOf="@id/tvRecoverAccountLabel"
+                bind:authError="@{bindingModel}">
 
             <TextView
                     android:id="@+id/tv_enter_the_pass"
@@ -64,7 +62,7 @@
                     android:text="@string/enter_the_pass"/>
 
             <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilSignInPassword"
+                    android:id="@+id/tilRecoverAccountEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/indentation_16"
@@ -73,7 +71,7 @@
                     android:layout_marginTop="@dimen/indentation_8">
 
                 <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/iet_enter_your_pass"
+                        android:id="@+id/etRecoverAccountEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_password"
@@ -98,7 +96,8 @@
                 android:text="@string/get_a_password"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/containerRecoverAccountInputs"/>
+                app:layout_constraintTop_toBottomOf="@id/containerRecoverAccountInputs"
+                android:onClick="@{(view)-> bindingModel.onAuthRequest()}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

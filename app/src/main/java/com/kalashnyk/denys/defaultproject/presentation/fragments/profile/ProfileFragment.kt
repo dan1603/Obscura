@@ -29,7 +29,7 @@ class ProfileFragment : BaseFragment<ProfileDataBinding>() {
      * @param binding
      */
     override fun setupViewLogic(binding: ProfileDataBinding) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+      binding.tvProfile.setText("Profile")
     }
 
     companion object {

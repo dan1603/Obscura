@@ -15,8 +15,8 @@ interface IValidationHandler {
      * @param callback
      */
     fun validationSignInCases(
-        email: CharSequence,
-        password: CharSequence
+        email: String,
+        password: String
     ): Pair<Boolean, AuthFlowErrorModel>
 
     /**
@@ -27,19 +27,17 @@ interface IValidationHandler {
      * @param callback
      */
     fun validationSignUpCases(
-        email: CharSequence,
-        password: CharSequence,
-        confirmPassword: CharSequence,
+        email: String,
+        password: String,
+        confirmPassword: String,
         isAgreementPolicySecurity: Boolean
     ): Pair<Boolean, AuthFlowErrorModel>
 
     /**
      * @param email
-     * @param callback
      */
     fun validationRecoverAccountCases(
-        email: CharSequence,
-        callback: IAuthFlow.IAuthCallback
+        email: String
     ): Pair<Boolean, AuthFlowErrorModel>
 }
 
@@ -48,8 +46,8 @@ internal class ValidationHandlerImpl : IValidationHandler {
     private val validator: IValidator = ValidatorImpl()
 
     override fun validationSignInCases(
-        email: CharSequence,
-        password: CharSequence
+        email: String,
+        password: String
     ): Pair<Boolean, AuthFlowErrorModel> {
 
         val error = AuthFlowErrorModel()
@@ -84,9 +82,9 @@ internal class ValidationHandlerImpl : IValidationHandler {
     }
 
     override fun validationSignUpCases(
-        email: CharSequence,
-        password: CharSequence,
-        confirmPassword: CharSequence,
+        email: String,
+        password: String,
+        confirmPassword: String,
         isAgreementPolicySecurity: Boolean
     ): Pair<Boolean, AuthFlowErrorModel> {
 
@@ -132,8 +130,7 @@ internal class ValidationHandlerImpl : IValidationHandler {
     }
 
     override fun validationRecoverAccountCases(
-        email: CharSequence,
-        callback: IAuthFlow.IAuthCallback
+        email: String
     ): Pair<Boolean, AuthFlowErrorModel> {
 
         val error = AuthFlowErrorModel()

@@ -29,7 +29,7 @@ class ThemesFragment : BaseFragment<ThemesDataBinding>() {
      * @param binding
      */
     override fun setupViewLogic(binding: ThemesDataBinding) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+       binding.tvThemes.setText("Themes")
     }
 
     companion object {

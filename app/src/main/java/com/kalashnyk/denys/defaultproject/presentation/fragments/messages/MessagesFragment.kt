@@ -29,7 +29,7 @@ class MessagesFragment : BaseFragment<MessagesDataBinding>() {
      * @param binding
      */
     override fun setupViewLogic(binding: MessagesDataBinding) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        binding.tvMessages.setText("Messages")
     }
 
     companion object {

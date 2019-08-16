@@ -12,6 +12,7 @@
             tools:context=".presentation.fragments.messages.MessagesFragment">
 
         <TextView
+                android:id="@+id/tvMessages"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textSize="@dimen/txt_size_40"

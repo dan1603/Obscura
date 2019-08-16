@@ -1,9 +1,11 @@
 package com.kalashnyk.denys.defaultproject.presentation.fragments.recover_account
 
-import android.content.Context
 import android.os.Bundle
+import android.text.Editable
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.databinding.RecoverAccountDataBinding
+import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthChildCases
+import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthChildCasesBindingModel
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowErrorModel
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseAuthFragment
@@ -12,8 +14,6 @@ import com.kalashnyk.denys.defaultproject.presentation.base.BaseAuthFragment
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
 class RecoverAccountFragment : BaseAuthFragment<RecoverAccountDataBinding>(), IAuthFlow.IAuthCallback {
-
-    private var listener: IAuthFlow.IAuthListener? = null
 
     /**
      * @param savedInstanceState
@@ -26,23 +26,17 @@ class RecoverAccountFragment : BaseAuthFragment<RecoverAccountDataBinding>(), IA
     }
 
     /**
-     * @param context
+     *
      */
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is IAuthFlow.IAuthListener) {
-            listener = context
-        } else {
-            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
-        }
+    override fun setupTypeScreen(){
+        authChildCases =  AuthChildCases(IAuthFlow.AuthType.RECOVER_ACCOUNT)
     }
 
     /**
      *
      */
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
+    override fun prepareBindingModel(){
+        bindingModel = AuthChildCasesBindingModel(authChildCases, listener,this)
     }
 
     /**
@@ -54,14 +48,28 @@ class RecoverAccountFragment : BaseAuthFragment<RecoverAccountDataBinding>(), IA
      * @param binding
      */
     override fun setupViewLogic(binding: RecoverAccountDataBinding) {
-        binding.listener = listener
+        bindingModel?.apply {
+            binding.bindingModel = this
+            this.bindTilEmail(binding.tilRecoverAccountEmail)
+        }
+        binding.tilRecoverAccountEmail.editText?.addTextChangedListener(this)
     }
 
     /**
      * @param error
      */
     override fun showError(error: AuthFlowErrorModel) {
-        //ToDo show error for validation inputs
+        authChildCases?.apply {
+            this.error = error
+        }
+    }
+
+    override fun afterTextChanged(s: Editable?) {}
+
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        authChildCases?.error = AuthFlowErrorModel()
     }
 
     companion object {

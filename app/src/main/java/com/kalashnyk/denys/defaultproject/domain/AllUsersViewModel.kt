@@ -10,7 +10,7 @@ import com.kalashnyk.denys.defaultproject.usecases.repository.database.entity.Us
 //todo create mapper
 //todo create multicontentview
 //todo create rxutils
-class AllUsersViewModel(application: Application, private val interactor: Interactor) : BaseViewModel(application) {
+class AllUsersViewModel(application: Application, private val interactor: Interactor) : BaseAndroidViewModel(application) {
     private val liveDataItems = SingleLiveEvent<List<UserEntity>>()
 
     @SuppressLint("CheckResult")

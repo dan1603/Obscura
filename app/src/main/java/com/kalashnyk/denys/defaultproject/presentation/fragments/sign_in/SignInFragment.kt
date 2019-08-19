@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.text.Editable
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.databinding.SignInDataBinding
-import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthChildCases
-import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthChildCasesBindingModel
-import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowErrorModel
-import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow
+import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.*
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseAuthFragment
+import kotlinx.android.synthetic.main.fragment_sign_in.*
 
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
@@ -29,7 +27,7 @@ class SignInFragment : BaseAuthFragment<SignInDataBinding>() {
      *
      */
     override fun setupTypeScreen(){
-        authChildCases =  AuthChildCases(IAuthFlow.AuthType.SIGN_IN)
+        authChildCases =  AuthFlowModel(IAuthFlow.AuthType.SIGN_IN)
     }
 
     /**
@@ -49,12 +47,10 @@ class SignInFragment : BaseAuthFragment<SignInDataBinding>() {
      */
     override fun setupViewLogic(binding: SignInDataBinding) {
         bindingModel?.apply {
-            binding.bindingModel = this
-            this.bindTilEmail(binding.tilSignInEmail)
-            this.bindTilPassword(binding.tilSignInPassword)
+            binding.bindingModel=this
         }
-        binding.tilSignInEmail.editText?.addTextChangedListener(this)
-        binding.tilSignInPassword.editText?.addTextChangedListener(this)
+        binding.etAuthEmail.addTextChangedListener(AuthTextWatcher(this, authChildCases, binding.etAuthEmail))
+        binding.etAuthEmail.addTextChangedListener(AuthTextWatcher(this, authChildCases, binding.etAuthPassword))
     }
 
     /**
@@ -66,7 +62,13 @@ class SignInFragment : BaseAuthFragment<SignInDataBinding>() {
         }
     }
 
-    override fun afterTextChanged(s: Editable?) {}
+    override fun hideError() {
+        authChildCases.error= AuthFlowErrorModel()
+    }
+
+    override fun afterTextChanged(s: Editable?) {
+
+    }
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 

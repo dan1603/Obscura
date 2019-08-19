@@ -43,7 +43,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvRecoverAccountLabel"
-                bind:model="@{bindingModel}"
                 bind:authError="@{bindingModel.authFlowError}">
 
             <TextView
@@ -63,7 +62,7 @@
                     android:text="@string/enter_the_pass"/>
 
             <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilRecoverAccountEmail"
+                    android:id="@+id/tilAuthEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/indentation_16"
@@ -72,7 +71,7 @@
                     android:layout_marginTop="@dimen/indentation_8">
 
                 <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etRecoverAccountEmail"
+                        android:id="@+id/etAuthEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_password"

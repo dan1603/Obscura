@@ -71,7 +71,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvSignUpLabel"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineSignUpEnd"
                 app:layout_constraintStart_toStartOf="@+id/guidelineSignUpStart"
-                bind:model="@{bindingModel}"
                 bind:authError="@{bindingModel.authFlowError}">
 
             <LinearLayout
@@ -85,50 +84,52 @@
                     android:paddingBottom="@dimen/indentation_16">
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/tilSignUpEmail"
+                        android:id="@+id/tilAuthEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/indentation_16"
+                        android:layout_marginLeft="@dimen/indentation_16"
                         app:errorEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etSignUpEmail"
+                            android:id="@+id/etAuthEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/enter_your_name_and_surname"
-                            android:layout_marginRight="@dimen/indentation_16"
-                            android:layout_marginLeft="@dimen/indentation_16"
                             android:inputType="textPersonName"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/tilSignUpPassword"
+                        android:id="@+id/tilAuthPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/indentation_16"
+                        android:layout_marginRight="@dimen/indentation_16"
+                        android:layout_marginLeft="@dimen/indentation_16"
                         app:errorEnabled="true">
                     <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etSignUpPassword"
+                            android:id="@+id/etAuthPassword"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/choose_password"
-                            android:layout_marginTop="@dimen/indentation_16"
-                            android:layout_marginRight="@dimen/indentation_16"
-                            android:layout_marginLeft="@dimen/indentation_16"
+                            android:hint="@string/password"
+
                             android:inputType="textPassword"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/tilSignUpConfirmPassword"
+                        android:id="@+id/tilAuthConfirmPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/indentation_16"
+                        android:layout_marginRight="@dimen/indentation_16"
+                        android:layout_marginLeft="@dimen/indentation_16"
                         app:errorEnabled="true">
                     <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etSignUpConfirmPassword"
+                            android:id="@+id/etAuthConfirmPassword"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/repeat_password"
-                            android:layout_marginTop="@dimen/indentation_16"
-                            android:layout_marginRight="@dimen/indentation_16"
-                            android:layout_marginLeft="@dimen/indentation_16"
+                            android:hint="@string/confirm_password"
+
                             android:inputType="textPassword"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
@@ -150,7 +151,8 @@
                         android:layout_height="wrap_content"
                         android:theme="@style/AgreeCheckBox"
                         app:layout_constraintTop_toBottomOf="@+id/containerSignUpInputs"
-                        app:layout_constraintStart_toStartOf="@+id/guidelineSignUpStart"/>
+                        app:layout_constraintStart_toStartOf="@+id/guidelineSignUpStart"
+                        android:checked="@{bindingModel.agreeTerms}"/>
 
                 <TextView
                         android:id="@+id/tvSignUpIAgreeWith"

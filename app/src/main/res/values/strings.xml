@@ -40,8 +40,8 @@
     <string name="text_you_can_sign_up_with">You can sign up with</string>
     <string name="text_have_an_account">Have an account?</string>
     <string name="enter_your_name_and_surname">Enter your name and surname</string>
-    <string name="choose_password">Choose password</string>
-    <string name="repeat_password">Repeat password</string>
+    <string name="password">password</string>
+    <string name="confirm_password">Confirm password</string>
     <!--welcome screen-->
     <string name="welcome_to_obscuralight">WELCOME TO\nOBSCURALIGHT</string>
     <string name="welcome_information">Our application is a consulting\nservice that allows you to quickly\nand easily obtain

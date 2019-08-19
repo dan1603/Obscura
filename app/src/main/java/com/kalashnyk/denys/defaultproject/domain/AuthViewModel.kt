@@ -26,24 +26,24 @@ class AuthViewModel : ViewModel() {
 
     private fun doValidation(flowModel: AuthFlowModel) : Pair<Boolean, AuthFlowErrorModel> {
         val checkData : Pair<Boolean, AuthFlowErrorModel>
-        when(flowModel.type){
+        when(flowModel.typeChild){
             IAuthFlow.AuthType.SIGN_UP -> {
                 checkData = validationHandler.validationSignUpCases(
-                    flowModel.email as String,
-                    flowModel.password as String,
-                    flowModel.confirmPassword as String,
-                    flowModel.isAcceptTerms as Boolean
+                    flowModel.email,
+                    flowModel.password,
+                    flowModel.passwordConfirm,
+                    flowModel.agreeTerms
                 )
             }
             IAuthFlow.AuthType.SIGN_IN -> {
                 checkData = validationHandler.validationSignInCases(
-                    flowModel.email as String,
-                    flowModel.password as String
+                    flowModel.email,
+                    flowModel.password
                 )
             }
             IAuthFlow.AuthType.RECOVER_ACCOUNT -> {
                 checkData = validationHandler.validationRecoverAccountCases(
-                    flowModel.email as String)
+                    flowModel.email)
             }
         }
 

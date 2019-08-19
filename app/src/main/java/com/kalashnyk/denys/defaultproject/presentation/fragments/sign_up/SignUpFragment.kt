@@ -4,12 +4,8 @@ import android.os.Bundle
 import android.text.Editable
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.databinding.SignUpDataBinding
-import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthChildCases
-import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthChildCasesBindingModel
-import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowErrorModel
-import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow
+import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.*
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseAuthFragment
-import android.view.View
 
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
@@ -30,7 +26,7 @@ class SignUpFragment : BaseAuthFragment<SignUpDataBinding>(), IAuthFlow.IAuthCal
      *
      */
     override fun setupTypeScreen() {
-        authChildCases = AuthChildCases(IAuthFlow.AuthType.SIGN_UP)
+        authChildCases = AuthFlowModel(IAuthFlow.AuthType.SIGN_UP)
     }
 
     /**
@@ -51,18 +47,16 @@ class SignUpFragment : BaseAuthFragment<SignUpDataBinding>(), IAuthFlow.IAuthCal
     override fun setupViewLogic(binding: SignUpDataBinding) {
         bindingModel?.apply {
             binding.bindingModel = this
-            this.bindTilEmail(binding.tilSignUpEmail)
-            this.bindTilPassword(binding.tilSignUpPassword)
-            this.bindTilConfirmPassword(binding.tilSignUpConfirmPassword)
-            this.bindCheckBoxTermsConditions(binding.checkBoxSignUpAgree)
         }
 
-        binding.tilSignUpEmail.editText?.addTextChangedListener(this)
-        binding.tilSignUpPassword.editText?.addTextChangedListener(this)
-        binding.tilSignUpConfirmPassword.editText?.addTextChangedListener(this)
-        binding.checkBoxSignUpAgree.setOnClickListener(View.OnClickListener {
+        binding.etAuthEmail.addTextChangedListener(AuthTextWatcher(this, authChildCases, binding.etAuthEmail))
+        binding.etAuthPassword.addTextChangedListener(AuthTextWatcher(this, authChildCases, binding.etAuthPassword))
+        binding.etAuthConfirmPassword.addTextChangedListener(AuthTextWatcher(this, authChildCases, binding.etAuthConfirmPassword))
+
+        binding.checkBoxSignUpAgree.setOnClickListener {
+            authChildCases.agreeTerms = binding.checkBoxSignUpAgree.isChecked
             authChildCases.error = AuthFlowErrorModel()
-        })
+        }
 
     }
 
@@ -73,6 +67,10 @@ class SignUpFragment : BaseAuthFragment<SignUpDataBinding>(), IAuthFlow.IAuthCal
         authChildCases.apply {
             this.error=error
         }
+    }
+
+    override fun hideError() {
+        authChildCases.error= AuthFlowErrorModel()
     }
 
     override fun afterTextChanged(s: Editable?) {}

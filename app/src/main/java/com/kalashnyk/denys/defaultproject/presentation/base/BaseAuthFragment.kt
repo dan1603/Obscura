@@ -3,15 +3,17 @@ package com.kalashnyk.denys.defaultproject.presentation.base
 import android.content.Context
 import android.os.Bundle
 import androidx.databinding.ViewDataBinding
-import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthChildCases
+import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowModel
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthChildCasesBindingModel
+import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthTextWatcher
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow
 
 abstract class BaseAuthFragment<V : ViewDataBinding>: BaseFragment<V>(), IAuthFlow.IAuthCallback {
 
     protected var bindingModel : AuthChildCasesBindingModel? = null
     protected var listener: IAuthFlow.IAuthListener? = null
-    protected lateinit var authChildCases : AuthChildCases
+    protected lateinit var authChildCases : AuthFlowModel
+    protected lateinit var textWatcher: AuthTextWatcher
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,4 +46,5 @@ abstract class BaseAuthFragment<V : ViewDataBinding>: BaseFragment<V>(), IAuthFl
     abstract fun prepareBindingModel()
 
     abstract fun setupTypeScreen()
+
 }

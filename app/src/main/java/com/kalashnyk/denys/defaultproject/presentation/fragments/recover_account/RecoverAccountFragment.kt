@@ -4,10 +4,7 @@ import android.os.Bundle
 import android.text.Editable
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.databinding.RecoverAccountDataBinding
-import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthChildCases
-import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthChildCasesBindingModel
-import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowErrorModel
-import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow
+import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.*
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseAuthFragment
 
 /**
@@ -29,7 +26,7 @@ class RecoverAccountFragment : BaseAuthFragment<RecoverAccountDataBinding>(), IA
      *
      */
     override fun setupTypeScreen(){
-        authChildCases =  AuthChildCases(IAuthFlow.AuthType.RECOVER_ACCOUNT)
+        authChildCases =  AuthFlowModel(IAuthFlow.AuthType.RECOVER_ACCOUNT)
     }
 
     /**
@@ -50,9 +47,9 @@ class RecoverAccountFragment : BaseAuthFragment<RecoverAccountDataBinding>(), IA
     override fun setupViewLogic(binding: RecoverAccountDataBinding) {
         bindingModel?.apply {
             binding.bindingModel = this
-            this.bindTilEmail(binding.tilRecoverAccountEmail)
         }
-        binding.tilRecoverAccountEmail.editText?.addTextChangedListener(this)
+        binding.etAuthEmail.addTextChangedListener(AuthTextWatcher(this, authChildCases, binding.etAuthEmail))
+
     }
 
     /**
@@ -62,6 +59,10 @@ class RecoverAccountFragment : BaseAuthFragment<RecoverAccountDataBinding>(), IA
         authChildCases.apply {
             this.error = error
         }
+    }
+
+    override fun hideError() {
+        authChildCases.error= AuthFlowErrorModel()
     }
 
     override fun afterTextChanged(s: Editable?) {}

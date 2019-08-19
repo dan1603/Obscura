@@ -30,5 +30,6 @@ interface IAuthFlow : IBaseFlow {
 
     interface IAuthCallback : IBaseFlow.IBaseCallback, TextWatcher {
         fun showError(error: AuthFlowErrorModel)
+        fun hideError()
     }
 }

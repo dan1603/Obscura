@@ -50,11 +50,10 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvSignInLabel"
-                bind:model="@{bindingModel}"
                 bind:authError="@{bindingModel.authFlowError}">
 
             <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilSignInEmail"
+                    android:id="@+id/tilAuthEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/indentation_16"
@@ -62,7 +61,7 @@
                     android:layout_marginEnd="@dimen/indentation_16">
 
                 <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/inputSignInEmail"
+                        android:id="@+id/etAuthEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_email"
@@ -70,14 +69,14 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilSignInPassword"
+                    android:id="@+id/tilAuthPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/indentation_26"
                     android:layout_marginStart="@dimen/indentation_16"
                     android:layout_marginEnd="@dimen/indentation_16">
                 <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/inputSignInPassword"
+                        android:id="@+id/etAuthPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_password"

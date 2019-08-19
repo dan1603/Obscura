@@ -9,10 +9,15 @@ import androidx.databinding.BindingAdapter
 import com.google.android.material.textfield.TextInputLayout
 import com.kalashnyk.denys.defaultproject.BR
 import com.kalashnyk.denys.defaultproject.R
+import com.kalashnyk.denys.defaultproject.utils.extention.clearErrorForCheckBox
+import com.kalashnyk.denys.defaultproject.utils.extention.clearErrorForTextInputLayout
 import java.util.*
 
+/**
+ *
+ */
 class AuthChildCasesBindingModel(
-    private var authChild: AuthChildCases,
+    private var authChild: AuthFlowModel,
     private var listener: IAuthFlow.IAuthListener?,
     private var callback: IAuthFlow.IAuthCallback
 ) : Observer, BaseObservable() {
@@ -21,93 +26,75 @@ class AuthChildCasesBindingModel(
         authChild.addObserver(this)
     }
 
-    var typeChild: IAuthFlow.AuthType? =authChild.typeChild
-
-    var tilEmail: TextInputLayout? = null
-    var tilPassword: TextInputLayout? = null
-    var tilConfirmPassword: TextInputLayout? = null
-    var checkBoxTermsConditions: CheckBox? = null
-
-    fun bindTilEmail(tilEmail: TextInputLayout){
-        this.tilEmail = tilEmail
-    }
-
-    fun bindTilPassword(tilPassword: TextInputLayout){
-        this.tilPassword = tilPassword
-    }
-
-    fun bindTilConfirmPassword(tilConfirmPassword: TextInputLayout){
-        this.tilConfirmPassword = tilConfirmPassword
-    }
-
-    fun bindCheckBoxTermsConditions(checkBoxTermsConditions: CheckBox){
-        this.checkBoxTermsConditions = checkBoxTermsConditions
-    }
+    /**
+     * @field agreeTerms
+     */
+    var agreeTerms: Boolean=false
+        set(value) {
+            field=value
+            authChild.agreeTerms=field
+            notifyPropertyChanged(BR.agreeTerms)
+        }
+        @Bindable get() {
+            return authChild.agreeTerms
+        }
 
     /**
-     *
+     * @field authFlowError
      */
-    var authFlowError: AuthFlowErrorModel = AuthFlowErrorModel()
+    var authFlowError: AuthFlowErrorModel=AuthFlowErrorModel()
         set(value) {
-            field = value
+            field=value
             notifyPropertyChanged(BR.authFlowError)
         }
         @Bindable get() {
             return authChild.error
         }
 
-    override fun update(o: Observable?, arg: Any?)  {
-        if (o is AuthChildCases?) {
-            if(arg == errorField) authFlowError = authChild.error
+    /**
+     * @param o
+     * @param arg
+     */
+    override fun update(o: Observable?, arg: Any?) {
+        if (o is AuthFlowModel?) {
+            if (arg == errorField) authFlowError=authChild.error
         }
     }
 
-    fun onOpenScreen(typeNavigate: IAuthFlow.NavigationType) = listener?.openScreen(typeNavigate)
+    fun onOpenScreen(typeNavigate: IAuthFlow.NavigationType)=listener?.openScreen(typeNavigate)
 
-    fun onSocialAuth(type: IAuthFlow.SocialAuthType) = listener?.socialAuth(type, callback)
+    fun onSocialAuth(type: IAuthFlow.SocialAuthType)=listener?.socialAuth(type, callback)
 
     fun onAuthRequest() {
-        typeChild?.let {
-            val authFlowModel = AuthFlowModel(it)
-
-            authFlowModel.email = tilEmail?.editText?.text.toString()
-
-            if (it == IAuthFlow.AuthType.SIGN_UP) {
-                authFlowModel.password = tilPassword?.editText?.text.toString()
-                authFlowModel.confirmPassword = tilConfirmPassword?.editText?.text.toString()
-                authFlowModel.isAcceptTerms = checkBoxTermsConditions?.isChecked
-            } else if (it == IAuthFlow.AuthType.SIGN_IN) {
-                authFlowModel.password = tilPassword?.editText?.text.toString()
-            }
-
-            listener?.authRequest(authFlowModel, callback)
-        }
+        listener?.authRequest(authChild, callback)
     }
 
     companion object {
 
         @JvmStatic
-        @BindingAdapter("bind:model", "bind:authError")
-        fun LinearLayout.bindError(
-            model: AuthChildCasesBindingModel,
+        @BindingAdapter(
+            "bind:authError"
+        )
+        fun bindError(
+            viewGroup: LinearLayout,
             authError: AuthFlowErrorModel
         ) {
-            if (authError?.type != AuthFlowErrorModel.AuthFlowErrorType.DEFAULT_ERROR) {
+            if (authError.type != AuthFlowErrorModel.AuthFlowErrorType.DEFAULT_ERROR) {
                 authError.let {
                     handelAuthFlowError(
                         it,
-                        model.tilEmail,
-                        model.tilPassword,
-                        model.tilConfirmPassword,
-                        model.checkBoxTermsConditions
+                        viewGroup.findViewById(R.id.tilAuthEmail),
+                        viewGroup.findViewById(R.id.tilAuthPassword),
+                        viewGroup.findViewById(R.id.tilAuthConfirmPassword),
+                        viewGroup.findViewById(R.id.checkBoxSignUpAgree)
                     )
                 }
             } else {
                 clearAuthFlowError(
-                    model.tilEmail,
-                    model.tilPassword,
-                    model.tilConfirmPassword,
-                    model.checkBoxTermsConditions
+                    viewGroup.findViewById(R.id.tilAuthEmail),
+                    viewGroup.findViewById(R.id.tilAuthPassword),
+                    viewGroup.findViewById(R.id.tilAuthConfirmPassword),
+                    viewGroup.findViewById(R.id.checkBoxSignUpAgree)
                 )
             }
         }
@@ -149,10 +136,10 @@ class AuthChildCasesBindingModel(
             view: V
         ) {
             if (view is TextInputLayout) {
-                view.isHintEnabled = false
-                view.error = errorModel.message?.toString(view.context)
+                view.isHintEnabled=false
+                view.error=errorModel.message?.toString(view.context)
             } else if (view is CheckBox) {
-                view.background = view.context.getDrawable(R.drawable.ic_check_box_error)
+                view.background=view.context.getDrawable(R.drawable.ic_check_box_error)
             }
         }
 
@@ -162,20 +149,10 @@ class AuthChildCasesBindingModel(
             tilConfirmPassword: TextInputLayout?,
             checkBoxTermsConditions: CheckBox?
         ) {
-            tilEmail?.isHintEnabled = true
-            tilEmail?.error = null
-            tilPassword?.isHintEnabled = true
-            tilPassword?.error = null
-            tilConfirmPassword?.isHintEnabled = true
-            tilConfirmPassword?.error = null
-            checkBoxTermsConditions?.let {
-                if (it.isChecked) {
-                    it.background = it.context.getDrawable(R.drawable.ic_check_box_active)
-
-                } else {
-                    it.background = it.context.getDrawable(R.drawable.ic_check_box_normal)
-                }
-            }
+            tilEmail?.clearErrorForTextInputLayout()
+            tilPassword?.clearErrorForTextInputLayout()
+            tilConfirmPassword?.clearErrorForTextInputLayout()
+            checkBoxTermsConditions?.clearErrorForCheckBox()
         }
     }
 }

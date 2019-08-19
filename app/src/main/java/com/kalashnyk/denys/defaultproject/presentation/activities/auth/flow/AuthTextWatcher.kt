@@ -14,8 +14,6 @@ open class AuthTextWatcher(
     private val editText : EditText
 ) : TextWatcher {
 
-//    private lateinit var editText: EditText
-
     /**
      *
      */
@@ -33,14 +31,6 @@ open class AuthTextWatcher(
         getField(editText)
         callback.hideError()
     }
-//
-//    /**
-//     *
-//     */
-//    fun bindEditText(editText : EditText){
-//        this.editText = editText
-//        editText.addTextChangedListener(this)
-//    }
 
     private fun getField(editText: EditText) {
         when (editText.id) {

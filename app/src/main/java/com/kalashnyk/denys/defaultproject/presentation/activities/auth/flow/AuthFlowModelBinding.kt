@@ -9,6 +9,8 @@ import androidx.databinding.BindingAdapter
 import com.google.android.material.textfield.TextInputLayout
 import com.kalashnyk.denys.defaultproject.BR
 import com.kalashnyk.denys.defaultproject.R
+import com.kalashnyk.denys.defaultproject.utils.extention.addErrorForCheckBox
+import com.kalashnyk.denys.defaultproject.utils.extention.addErrorForTextInputLayout
 import com.kalashnyk.denys.defaultproject.utils.extention.clearErrorForCheckBox
 import com.kalashnyk.denys.defaultproject.utils.extention.clearErrorForTextInputLayout
 import java.util.*
@@ -134,10 +136,9 @@ class AuthFlowModelBinding(
             view: V?
         ) {
             if (view is TextInputLayout) {
-                view.isHintEnabled=false
-                view.error=errorModel.message?.toString(view.context)
+                view.addErrorForTextInputLayout(errorModel.message?.toString(view.context))
             } else if (view is CheckBox) {
-                view.background=view.context.getDrawable(R.drawable.ic_check_box_error)
+                view.addErrorForCheckBox()
             }
         }
 

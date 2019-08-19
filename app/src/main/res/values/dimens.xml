@@ -34,6 +34,7 @@
     <dimen name="txt_size_100">100sp</dimen>
 
     <dimen name="view_params_16">16dp</dimen>
+    <dimen name="view_params_24">24dp</dimen>
     <dimen name="view_params_36">36dp</dimen>
     <dimen name="view_params_60">60dp</dimen>
     <dimen name="view_params_65">65dp</dimen>

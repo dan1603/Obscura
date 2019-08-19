@@ -28,4 +28,24 @@
         <!--Todo fix for color with error from design-->
         <item name="colorControlHighlight">@color/colorAccent</item>
     </style>
+    <style name="EditTextCommonStyle" parent="@android:style/Widget.EditText">
+        <item name="colorControlNormal">@color/soft_blue</item>
+        <item name="colorControlActivated">@color/soft_blue</item>
+        <item name="android:backgroundTint">@color/soft_blue</item>
+    </style>
+    <style name="TextInputLayout">
+        <item name="android:textColorHint">@color/hint_color</item>
+        <item name="android:colorControlHighlight">@color/hint_color</item>
+        <item name="colorControlNormal">@color/soft_blue</item>
+        <item name="android:colorActivatedHighlight">@color/soft_blue</item>
+        <item name="android:colorControlActivated">@color/soft_blue</item>
+        <item name="android:backgroundTint">@color/soft_blue</item>
+        <item name="hintTextAppearance">@style/TextInputLayoutHint</item>
+    </style>
+
+    <style name="TextInputLayoutHint">
+        <item name="colorAccent">@color/text_color_black</item>
+        <item name="android:textSize">@dimen/txt_size_12</item>
+        <item name="android:textColor">@color/soft_blue</item>
+    </style>
 </resources>

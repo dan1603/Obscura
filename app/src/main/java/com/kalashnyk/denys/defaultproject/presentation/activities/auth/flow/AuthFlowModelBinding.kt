@@ -71,6 +71,9 @@ class AuthFlowModelBinding(
         listener?.authRequest(authChild, callback)
     }
 
+    fun onRoutBack(){
+        listener?.routBack()
+    }
     companion object {
 
         @JvmStatic

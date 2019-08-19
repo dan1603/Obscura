@@ -100,7 +100,7 @@ class AuthActivity : BaseActivity<AuthDataBinding>(), IAuthFlow.IAuthListener {
     /**
      *
      */
-    override fun backRout() {
+    override fun routBack() {
         super.onBackPressed()
     }
 

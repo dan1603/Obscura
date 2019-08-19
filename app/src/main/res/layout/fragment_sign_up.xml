@@ -49,6 +49,17 @@
                 android:orientation="horizontal"
                 app:layout_constraintGuide_end="@dimen/indentation_16"/>
 
+        <ImageView
+                android:id="@+id/btnRoutBack"
+                android:layout_width="@dimen/view_params_24"
+                android:layout_height="@dimen/view_params_24"
+                android:layout_marginTop="@dimen/indentation_16"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:onClick="@{(view)-> bindingModel.onRoutBack()}"
+                android:src="@drawable/ic_back"
+                app:layout_constraintStart_toStartOf="@+id/guidelineSignUpStart"
+                app:layout_constraintTop_toTopOf="@+id/guidelineSignUpTop"/>
+
         <TextView
                 android:id="@+id/tvSignUpLabel"
                 android:layout_width="wrap_content"
@@ -61,7 +72,8 @@
                 android:text="@string/sign_up"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineSignUpEnd"
                 app:layout_constraintStart_toEndOf="@+id/guidelineSignUpStart"
-                app:layout_constraintTop_toBottomOf="@+id/guidelineSignUpTop"/>
+                app:layout_constraintTop_toBottomOf="@+id/guidelineSignUpTop"
+                app:layout_constraintTop_toTopOf="@+id/btnRoutBack"/>
 
         <LinearLayout
                 android:id="@+id/containerSignUpCases"
@@ -106,13 +118,14 @@
                         android:layout_marginTop="@dimen/indentation_16"
                         android:layout_marginRight="@dimen/indentation_16"
                         android:layout_marginLeft="@dimen/indentation_16"
+                        app:passwordToggleEnabled="true"
                         app:errorEnabled="true">
                     <com.google.android.material.textfield.TextInputEditText
+                            style="@style/EditTextCommonStyle"
                             android:id="@+id/etAuthPassword"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/password"
-
                             android:inputType="textPassword"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -123,13 +136,14 @@
                         android:layout_marginTop="@dimen/indentation_16"
                         android:layout_marginRight="@dimen/indentation_16"
                         android:layout_marginLeft="@dimen/indentation_16"
-                        app:errorEnabled="true">
+                        app:errorEnabled="true"
+                        app:passwordToggleEnabled="true">
                     <com.google.android.material.textfield.TextInputEditText
+                            style="@style/EditTextCommonStyle"
                             android:id="@+id/etAuthConfirmPassword"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/confirm_password"
-
                             android:inputType="textPassword"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
@@ -172,7 +186,8 @@
                         android:layout_marginLeft="@dimen/indentation_8"
                         android:textStyle="bold"
                         android:textColor="@color/colorWhite"
-                        android:text="@string/text_terms_and_privacy"/>
+                        android:text="@string/text_terms_and_privacy"
+                        android:background="?android:attr/selectableItemBackground"/>
             </LinearLayout>
         </LinearLayout>
         <Button android:id="@+id/btnSignUp"
@@ -244,6 +259,7 @@
                     android:textStyle="normal"
                     android:textColor="@color/colorWhite"
                     android:text="@string/sign_in"
+                    android:background="?android:attr/selectableItemBackground"
                     android:onClick="@{(view)-> bindingModel.onOpenScreen(typeNavigation.SIGN_IN_SCREEN)}"/>
         </LinearLayout>
 

@@ -1,7 +1,6 @@
 package com.kalashnyk.denys.defaultproject.utils.validation
 
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowErrorModel
-import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow
 
 /**
  * source for handling validation errors

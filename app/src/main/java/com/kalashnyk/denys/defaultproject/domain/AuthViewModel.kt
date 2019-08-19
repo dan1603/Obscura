@@ -7,10 +7,16 @@ import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAut
 import com.kalashnyk.denys.defaultproject.utils.validation.IValidationHandler
 import com.kalashnyk.denys.defaultproject.utils.validation.ValidationHandlerImpl
 
+/**
+ *
+ */
 class AuthViewModel : ViewModel() {
 
     private val validationHandler : IValidationHandler = ValidationHandlerImpl()
 
+    /**
+     *
+     */
     fun authRequest(flowModel: AuthFlowModel, callback: IAuthFlow.IAuthCallback){
         val validation: Pair<Boolean, AuthFlowErrorModel> = doValidation(flowModel)
         if(validation.first){
@@ -20,6 +26,9 @@ class AuthViewModel : ViewModel() {
         }
     }
 
+    /**
+     *
+     */
     override fun onCleared() {
         super.onCleared()
     }

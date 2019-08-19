@@ -40,7 +40,7 @@ class AuthFlowModel(type: IAuthFlow.AuthType) : BaseChildModel() {
     var typeChild: IAuthFlow.AuthType=type
         set(value) {
             field=value
-            setChangedAndNotify("typeChild")
+            setChangedAndNotify(typeChildField)
         }
 
     /**
@@ -49,7 +49,7 @@ class AuthFlowModel(type: IAuthFlow.AuthType) : BaseChildModel() {
     var email: String = ""
         set(value) {
             field=value
-            setChangedAndNotify("email")
+            setChangedAndNotify(emailField)
         }
 
     /**
@@ -58,7 +58,7 @@ class AuthFlowModel(type: IAuthFlow.AuthType) : BaseChildModel() {
     var password: String=""
         set(value) {
             field=value
-            setChangedAndNotify("password")
+            setChangedAndNotify(passwordField)
         }
 
     /**
@@ -67,7 +67,7 @@ class AuthFlowModel(type: IAuthFlow.AuthType) : BaseChildModel() {
     var passwordConfirm: String=""
         set(value) {
             field=value
-            setChangedAndNotify("passwordConfirm")
+            setChangedAndNotify(passwordConfirmField)
         }
 
     /**
@@ -76,7 +76,7 @@ class AuthFlowModel(type: IAuthFlow.AuthType) : BaseChildModel() {
     var agreeTerms: Boolean=false
         set(value) {
             field=value
-            setChangedAndNotify("agreeTerms")
+            setChangedAndNotify(agreeTermsField)
         }
 
     /**

@@ -33,7 +33,7 @@ class RecoverAccountFragment : BaseAuthFragment<RecoverAccountDataBinding>(), IA
      *
      */
     override fun prepareBindingModel(){
-        bindingModel = AuthChildCasesBindingModel(authChildCases, listener,this)
+        bindingModel = AuthFlowModelBinding(authChildCases, listener,this)
     }
 
     /**

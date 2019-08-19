@@ -4,13 +4,13 @@ import android.content.Context
 import android.os.Bundle
 import androidx.databinding.ViewDataBinding
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowModel
-import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthChildCasesBindingModel
+import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowModelBinding
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthTextWatcher
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow
 
 abstract class BaseAuthFragment<V : ViewDataBinding>: BaseFragment<V>(), IAuthFlow.IAuthCallback {
 
-    protected var bindingModel : AuthChildCasesBindingModel? = null
+    protected var bindingModel : AuthFlowModelBinding? = null
     protected var listener: IAuthFlow.IAuthListener? = null
     protected lateinit var authChildCases : AuthFlowModel
     protected lateinit var textWatcher: AuthTextWatcher

@@ -16,7 +16,7 @@ import java.util.*
 /**
  *
  */
-class AuthChildCasesBindingModel(
+class AuthFlowModelBinding(
     private var authChild: AuthFlowModel,
     private var listener: IAuthFlow.IAuthListener?,
     private var callback: IAuthFlow.IAuthCallback
@@ -108,32 +108,30 @@ class AuthChildCasesBindingModel(
         ) {
             when (errorModel.type) {
                 AuthFlowErrorModel.AuthFlowErrorType.EMAIL_ERROR -> {
-                    if (tilEmail != null) showAuthFlowError(errorModel, tilEmail)
+                    showAuthFlowError(errorModel, tilEmail)
                 }
                 AuthFlowErrorModel.AuthFlowErrorType.PASSWORD_ERROR -> {
-                    if (tilPassword != null) showAuthFlowError(errorModel, tilPassword)
+                    showAuthFlowError(errorModel, tilPassword)
                 }
                 AuthFlowErrorModel.AuthFlowErrorType.PASSWORD_CONFIRM_ERROR -> {
-                    if (tilConfirmPassword != null) showAuthFlowError(errorModel, tilConfirmPassword)
+                    showAuthFlowError(errorModel, tilConfirmPassword)
                 }
                 AuthFlowErrorModel.AuthFlowErrorType.TERMS_CONDITION_ERROR -> {
-                    if (checkBoxTermsConditions != null) showAuthFlowError(errorModel, checkBoxTermsConditions)
+                    showAuthFlowError(errorModel, checkBoxTermsConditions)
                 }
                 AuthFlowErrorModel.AuthFlowErrorType.SIGN_UP_ERRORS -> {
-                    if (tilConfirmPassword != null && checkBoxTermsConditions != null) {
-                        showAuthFlowError(errorModel, tilConfirmPassword)
-                        showAuthFlowError(errorModel, checkBoxTermsConditions)
-                    }
+                    showAuthFlowError(errorModel, tilConfirmPassword)
+                    showAuthFlowError(errorModel, checkBoxTermsConditions)
                 }
                 AuthFlowErrorModel.AuthFlowErrorType.SIGN_IN_ERRORS -> {
-                    if (tilPassword != null) showAuthFlowError(errorModel, tilPassword)
+                    showAuthFlowError(errorModel, tilPassword)
                 }
             }
         }
 
         private fun <V : View> showAuthFlowError(
             errorModel: AuthFlowErrorModel,
-            view: V
+            view: V?
         ) {
             if (view is TextInputLayout) {
                 view.isHintEnabled=false

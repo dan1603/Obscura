@@ -7,7 +7,7 @@
         <import type="android.view.View"/>
 
         <variable name="bindingModel"
-                  type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthChildCasesBindingModel"/>
+                  type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowModelBinding"/>
 
         <variable name="typeNavigation"
                   type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow.NavigationType"/>
@@ -161,7 +161,7 @@
                         android:textSize="@dimen/txt_size_12"
                         android:fontFamily="sans-serif-medium"
                         android:textStyle="normal"
-                        android:textColor="@color/text_color_blue"
+                        android:textColor="@color/dark_blue"
                         android:text="@string/text_i_agree_with"/>
                 <TextView
                         android:id="@+id/tvSignUpTermsAndPrivacy"
@@ -197,7 +197,7 @@
                 android:layout_marginTop="@dimen/indentation_16"
                 android:text="@string/text_you_can_sign_up_with"
                 android:textSize="@dimen/txt_size_16"
-                android:textColor="@color/text_color_blue"
+                android:textColor="@color/dark_blue"
                 android:gravity="center_horizontal"
                 android:fontFamily="sans-serif-medium"
                 android:textStyle="normal"

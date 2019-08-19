@@ -11,7 +11,6 @@ interface IValidationHandler {
     /**
      * @param email
      * @param password
-     * @param callback
      */
     fun validationSignInCases(
         email: String,
@@ -22,14 +21,13 @@ interface IValidationHandler {
      * @param email
      * @param password
      * @param confirmPassword
-     * @param isAgreementPolicySecurity
-     * @param callback
+     * @param agreeTerms
      */
     fun validationSignUpCases(
         email: String,
         password: String,
         confirmPassword: String,
-        isAgreementPolicySecurity: Boolean
+        agreeTerms: Boolean
     ): Pair<Boolean, AuthFlowErrorModel>
 
     /**
@@ -84,7 +82,7 @@ internal class ValidationHandlerImpl : IValidationHandler {
         email: String,
         password: String,
         confirmPassword: String,
-        isAgreementPolicySecurity: Boolean
+        agreeTerms: Boolean
     ): Pair<Boolean, AuthFlowErrorModel> {
 
         val error = AuthFlowErrorModel()
@@ -93,11 +91,11 @@ internal class ValidationHandlerImpl : IValidationHandler {
             password.trim().isEmpty() &&
             !validator.isValidEmail(email) &&
             !validator.isValidPassword(password) &&
-            !isAgreementPolicySecurity &&
+            !agreeTerms &&
             !validator.isValidPassword(confirmPassword)
         ) {
             error.type = AuthFlowErrorModel.AuthFlowErrorType.SIGN_UP_ERRORS
-            error.message = ValidationErrorMessage.FLOW_SIGN_IN_VALIDATION_ERROR
+            error.message = ValidationErrorMessage.FLOW_SIGN_UP_VALIDATION_ERROR
             return Pair(false, error)
         } else if (email.trim().isEmpty()) {
             error.type = AuthFlowErrorModel.AuthFlowErrorType.EMAIL_ERROR
@@ -119,7 +117,7 @@ internal class ValidationHandlerImpl : IValidationHandler {
             error.type = AuthFlowErrorModel.AuthFlowErrorType.PASSWORD_CONFIRM_ERROR
             error.message = ValidationErrorMessage.PASSWORD_NOT_SAME_VALIDATION_ERROR
             return Pair(false, error)
-        } else if (!isAgreementPolicySecurity) {
+        } else if (!agreeTerms) {
             error.type = AuthFlowErrorModel.AuthFlowErrorType.TERMS_CONDITION_ERROR
             error.message = ValidationErrorMessage.TERMS_CONDITION_VALIDATION_ERROR
             return Pair(false, error)

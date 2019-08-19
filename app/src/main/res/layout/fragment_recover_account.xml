@@ -6,14 +6,13 @@
         <import type="android.view.View"/>
 
         <variable name="bindingModel"
-                  type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthChildCasesBindingModel"/>
+                  type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowModelBinding"/>
 
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/soft_blue">
-
 
         <TextView
                 android:id="@+id/tvRecoverAccountLabel"
@@ -83,7 +82,7 @@
         <Button
                 android:id="@+id/btnRecoverAccount"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/view_params_36"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/indentation_16"
                 android:layout_marginTop="@dimen/indentation_10"
                 android:layout_marginEnd="@dimen/indentation_16"

@@ -33,7 +33,7 @@ class SignUpFragment : BaseAuthFragment<SignUpDataBinding>(), IAuthFlow.IAuthCal
      *
      */
     override fun prepareBindingModel() {
-        bindingModel=AuthChildCasesBindingModel(authChildCases, listener, this)
+        bindingModel=AuthFlowModelBinding(authChildCases, listener, this)
     }
 
     /**

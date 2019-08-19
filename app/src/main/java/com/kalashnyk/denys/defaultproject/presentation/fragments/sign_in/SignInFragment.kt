@@ -6,7 +6,6 @@ import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.databinding.SignInDataBinding
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.*
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseAuthFragment
-import kotlinx.android.synthetic.main.fragment_sign_in.*
 
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
@@ -34,7 +33,7 @@ class SignInFragment : BaseAuthFragment<SignInDataBinding>() {
      *
      */
     override fun prepareBindingModel(){
-        bindingModel = AuthChildCasesBindingModel(authChildCases, listener,this)
+        bindingModel = AuthFlowModelBinding(authChildCases, listener,this)
     }
 
     /**

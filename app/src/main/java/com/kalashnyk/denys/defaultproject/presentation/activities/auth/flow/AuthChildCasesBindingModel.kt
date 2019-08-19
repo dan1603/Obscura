@@ -1,10 +1,8 @@
 package com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow
 
-import android.os.Build
 import android.view.View
 import android.widget.CheckBox
 import android.widget.LinearLayout
-import androidx.annotation.RequiresApi
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.BindingAdapter
@@ -14,16 +12,16 @@ import com.kalashnyk.denys.defaultproject.R
 import java.util.*
 
 class AuthChildCasesBindingModel(
-    private var authChild: AuthChildCases?,
+    private var authChild: AuthChildCases,
     private var listener: IAuthFlow.IAuthListener?,
     private var callback: IAuthFlow.IAuthCallback
 ) : Observer, BaseObservable() {
 
     init {
-        authChild?.addObserver(this)
+        authChild.addObserver(this)
     }
 
-    var typeChild: IAuthFlow.AuthType? = authChild?.typeChild
+    var typeChild: IAuthFlow.AuthType? =authChild.typeChild
 
     var tilEmail: TextInputLayout? = null
     var tilPassword: TextInputLayout? = null
@@ -46,18 +44,21 @@ class AuthChildCasesBindingModel(
         this.checkBoxTermsConditions = checkBoxTermsConditions
     }
 
-    var authFlowError: AuthFlowErrorModel? = authChild?.error
+    /**
+     *
+     */
+    var authFlowError: AuthFlowErrorModel = AuthFlowErrorModel()
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.authFlowError)
+        }
         @Bindable get() {
-            return authChild?.error
+            return authChild.error
         }
 
-    override fun update(o: Observable?, arg: Any?) {
-        if (arg is AuthFlowErrorModel) {
-            val error = o as AuthFlowErrorModel
-            if(authFlowError?.type != error.type){
-                authFlowError = error
-                notifyPropertyChanged(BR.authFlowError)
-            }
+    override fun update(o: Observable?, arg: Any?)  {
+        if (o is AuthChildCases?) {
+            if(arg == errorField) authFlowError = authChild.error
         }
     }
 
@@ -86,12 +87,13 @@ class AuthChildCasesBindingModel(
     companion object {
 
         @JvmStatic
-        @BindingAdapter("bind:authError")
+        @BindingAdapter("bind:model", "bind:authError")
         fun LinearLayout.bindError(
-            model: AuthChildCasesBindingModel?
+            model: AuthChildCasesBindingModel,
+            authError: AuthFlowErrorModel
         ) {
-            if (model?.authFlowError?.type != AuthFlowErrorModel.AuthFlowErrorType.DEFAULT_ERROR) {
-                model?.authFlowError?.let {
+            if (authError?.type != AuthFlowErrorModel.AuthFlowErrorType.DEFAULT_ERROR) {
+                authError.let {
                     handelAuthFlowError(
                         it,
                         model.tilEmail,

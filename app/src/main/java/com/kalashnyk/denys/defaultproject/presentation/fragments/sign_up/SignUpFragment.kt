@@ -30,7 +30,7 @@ class SignUpFragment : BaseAuthFragment<SignUpDataBinding>(), IAuthFlow.IAuthCal
      *
      */
     override fun setupTypeScreen() {
-        authChildCases=AuthChildCases(IAuthFlow.AuthType.SIGN_UP)
+        authChildCases = AuthChildCases(IAuthFlow.AuthType.SIGN_UP)
     }
 
     /**
@@ -61,7 +61,7 @@ class SignUpFragment : BaseAuthFragment<SignUpDataBinding>(), IAuthFlow.IAuthCal
         binding.tilSignUpPassword.editText?.addTextChangedListener(this)
         binding.tilSignUpConfirmPassword.editText?.addTextChangedListener(this)
         binding.checkBoxSignUpAgree.setOnClickListener(View.OnClickListener {
-            authChildCases?.error = AuthFlowErrorModel()
+            authChildCases.error = AuthFlowErrorModel()
         })
 
     }
@@ -70,7 +70,7 @@ class SignUpFragment : BaseAuthFragment<SignUpDataBinding>(), IAuthFlow.IAuthCal
      * @param error
      */
     override fun showError(error: AuthFlowErrorModel) {
-        authChildCases?.apply {
+        authChildCases.apply {
             this.error=error
         }
     }
@@ -80,7 +80,7 @@ class SignUpFragment : BaseAuthFragment<SignUpDataBinding>(), IAuthFlow.IAuthCal
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        authChildCases?.error = AuthFlowErrorModel()
+        authChildCases.error= AuthFlowErrorModel()
     }
 
     companion object {

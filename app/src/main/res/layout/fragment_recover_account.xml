@@ -43,7 +43,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvRecoverAccountLabel"
-                bind:authError="@{bindingModel}">
+                bind:model="@{bindingModel}"
+                bind:authError="@{bindingModel.authFlowError}">
 
             <TextView
                     android:id="@+id/tv_enter_the_pass"

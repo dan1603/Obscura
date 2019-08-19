@@ -2,7 +2,6 @@ package com.kalashnyk.denys.defaultproject.presentation.fragments.sign_in
 
 import android.os.Bundle
 import android.text.Editable
-import android.text.TextWatcher
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.databinding.SignInDataBinding
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthChildCases
@@ -52,7 +51,7 @@ class SignInFragment : BaseAuthFragment<SignInDataBinding>() {
         bindingModel?.apply {
             binding.bindingModel = this
             this.bindTilEmail(binding.tilSignInEmail)
-            this.bindTilEmail(binding.tilSignInPassword)
+            this.bindTilPassword(binding.tilSignInPassword)
         }
         binding.tilSignInEmail.editText?.addTextChangedListener(this)
         binding.tilSignInPassword.editText?.addTextChangedListener(this)
@@ -62,7 +61,7 @@ class SignInFragment : BaseAuthFragment<SignInDataBinding>() {
      * @param error
      */
     override fun showError(error: AuthFlowErrorModel) {
-        authChildCases?.apply {
+        authChildCases.apply {
             this.error = error
         }
     }
@@ -72,7 +71,7 @@ class SignInFragment : BaseAuthFragment<SignInDataBinding>() {
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-       authChildCases?.error = AuthFlowErrorModel()
+       authChildCases.error= AuthFlowErrorModel()
     }
 
     companion object {

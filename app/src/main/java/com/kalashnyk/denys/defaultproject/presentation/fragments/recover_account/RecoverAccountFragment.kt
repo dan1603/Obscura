@@ -59,7 +59,7 @@ class RecoverAccountFragment : BaseAuthFragment<RecoverAccountDataBinding>(), IA
      * @param error
      */
     override fun showError(error: AuthFlowErrorModel) {
-        authChildCases?.apply {
+        authChildCases.apply {
             this.error = error
         }
     }
@@ -69,7 +69,7 @@ class RecoverAccountFragment : BaseAuthFragment<RecoverAccountDataBinding>(), IA
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        authChildCases?.error = AuthFlowErrorModel()
+        authChildCases.error= AuthFlowErrorModel()
     }
 
     companion object {

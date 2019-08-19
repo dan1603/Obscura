@@ -2,6 +2,7 @@ package com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow
 
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseChildModel
 
+const val errorField = "error"
 /**
  *
  */
@@ -16,6 +17,9 @@ class AuthChildCases(type: IAuthFlow.AuthType) : BaseChildModel() {
             setChangedAndNotify("typeChild")
         }
 
+    /**
+     *
+     */
     var error: AuthFlowErrorModel = AuthFlowErrorModel()
         set(value) {
             field = value

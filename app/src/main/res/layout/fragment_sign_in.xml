@@ -50,7 +50,8 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvSignInLabel"
-                bind:authError="@{bindingModel}">
+                bind:model="@{bindingModel}"
+                bind:authError="@{bindingModel.authFlowError}">
 
             <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilSignInEmail"

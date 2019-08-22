@@ -22,23 +22,17 @@ import java.util.*
  *
  */
 class AuthFlowModelBinding(
-    private var authChild: AuthFlowModel,
+    private var authFlowModel: AuthFlowModel,
     private var listener: IAuthFlow.IAuthListener?,
     private var callback: IAuthFlow.IAuthCallback
 ) : Observer, BaseObservable() {
+
     private var context : Context
+
     init {
-        authChild.addObserver(this)
+        authFlowModel.addObserver(this)
         context = listener as Context
     }
-
-//    bind:spanTextResize="@{@string/sign_up}"
-//    bind:textResize="@{@string/dont_have_an_account}"
-//    bind:spanPositionResize="@{spanTextPosition.LAST}"
-//    bind:spanTextSize="@{R.dimen.txt_size_16}"
-//    bind:textSize="@{R.dimen.txt_size_14}"
-//    bind:spanTextColor="@{R.color.colorWhite}"
-//    bind:textColor="@{R.color.dark_blue}"
 
     /**
      * @field signUpTextSpanModel
@@ -73,6 +67,10 @@ class AuthFlowModelBinding(
                 Typeface.NORMAL
             )
         }
+
+    /**
+     * @field termsConditionsTextSpanModel
+     */
     val termsConditionsTextSpanModel: TextSpanModel
         @Bindable get() {
             return TextSpanModel(
@@ -93,11 +91,11 @@ class AuthFlowModelBinding(
     var agreeTerms: Boolean=false
         set(value) {
             field=value
-            authChild.agreeTerms=field
+            authFlowModel.agreeTerms=field
             notifyPropertyChanged(BR.agreeTerms)
         }
         @Bindable get() {
-            return authChild.agreeTerms
+            return authFlowModel.agreeTerms
         }
 
     /**
@@ -109,7 +107,7 @@ class AuthFlowModelBinding(
             notifyPropertyChanged(BR.authFlowError)
         }
         @Bindable get() {
-            return authChild.error
+            return authFlowModel.error
         }
 
     /**
@@ -118,7 +116,7 @@ class AuthFlowModelBinding(
      */
     override fun update(o: Observable?, arg: Any?) {
         if (o is AuthFlowModel?) {
-            if (arg == errorField) authFlowError=authChild.error
+            if (arg == errorField) authFlowError=authFlowModel.error
         }
     }
 
@@ -127,7 +125,7 @@ class AuthFlowModelBinding(
     fun onSocialAuth(type: IAuthFlow.SocialAuthType)=listener?.socialAuth(type, callback)
 
     fun onAuthRequest() {
-        listener?.authRequest(authChild, callback)
+        listener?.authRequest(authFlowModel, callback)
     }
 
     fun onRoutBack(){

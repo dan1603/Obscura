@@ -3,6 +3,7 @@ package com.kalashnyk.denys.defaultproject.presentation.activities.welcome
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.databinding.WelcomeDataBinding
 import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
+import com.kalashnyk.denys.defaultproject.presentation.activities.welcome.flow.WelcomeFlowModelBinding
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseActivity
 
 /**
@@ -27,5 +28,6 @@ class WelcomeActivity :  BaseActivity<WelcomeDataBinding>() {
      */
     override fun setupViewLogic(binding: WelcomeDataBinding) {
         binding.navigator = navigator
+        binding.bindingModel = WelcomeFlowModelBinding(this)
     }
 }

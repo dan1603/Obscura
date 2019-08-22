@@ -10,7 +10,6 @@ import android.text.style.StyleSpan
 import androidx.core.content.ContextCompat
 import com.kalashnyk.denys.defaultproject.R
 
-
 /**
  *
  */
@@ -26,7 +25,7 @@ class TextSpanModel(
     /**
      *
      */
-    var spanPosition: SpanTextPosition ?= SpanTextPosition.FRONT,
+    var spanPosition: SpanTextPosition?=SpanTextPosition.FRONT,
     /**
      *
      */
@@ -46,13 +45,13 @@ class TextSpanModel(
     /**
      *
      */
-    var typeface: Int? = Typeface.NORMAL
+    var typeface: Int?=Typeface.NORMAL
 ) {
 
     /**
      *
      */
-    enum class SpanTextPosition{
+    enum class SpanTextPosition {
         /**
          *
          */
@@ -74,7 +73,7 @@ class TextSpanModel(
      *
      */
     private val startSpanText: Int=
-        spanPosition.takeIf { it == SpanTextPosition.FRONT }?.let { 0  } ?: text.length + 1
+        spanPosition.takeIf { it == SpanTextPosition.FRONT }?.let { 0 } ?: text.length + 1
 
     /**
      *
@@ -87,7 +86,7 @@ class TextSpanModel(
      *
      */
     private val startText: Int=
-        spanPosition.takeIf { it == SpanTextPosition.FRONT }?.let { spanText.length + 1  } ?: 0
+        spanPosition.takeIf { it == SpanTextPosition.FRONT }?.let { spanText.length + 1 } ?: 0
 
     /**
      *
@@ -125,7 +124,21 @@ class TextSpanModel(
     fun prepareContent(context: Context): Spannable {
         val span=SpannableString(bodyText)
 
-        span.setSpan(RelativeSizeSpan(differentSize(context)), startText, endText, 0)
+        val different: Float=differentSize(context)
+
+        span.setSpan(
+            RelativeSizeSpan(different),
+            startText,
+            endText,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+
+        span.setSpan(
+            RelativeSizeSpan(1f),
+            startSpanText,
+            endSpanText,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
 
         span.setSpan(
             ForegroundColorSpan(textColor(context)),

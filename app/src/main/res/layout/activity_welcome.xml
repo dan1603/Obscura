@@ -5,6 +5,7 @@
     <data class="WelcomeDataBinding">
 
         <import type="android.view.View"/>
+
         <import type="android.content.Intent"/>
 
         <variable name="navigator"
@@ -17,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/soft_blue"
+            android:fitsSystemWindows="true"
             tools:context=".presentation.activities.welcome.WelcomeActivity">
 
         <androidx.constraintlayout.widget.Guideline

@@ -12,6 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
             android:background="@color/soft_blue">
 
         <androidx.constraintlayout.widget.Guideline
@@ -46,7 +47,6 @@
                 android:id="@+id/btnRoutBack"
                 android:layout_width="@dimen/view_params_24"
                 android:layout_height="@dimen/view_params_24"
-                android:layout_marginTop="@dimen/indentation_16"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:onClick="@{(view)-> bindingModel.onRoutBack()}"
                 android:src="@drawable/ic_back"

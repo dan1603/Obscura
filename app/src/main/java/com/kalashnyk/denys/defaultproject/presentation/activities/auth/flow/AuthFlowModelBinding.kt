@@ -1,5 +1,7 @@
 package com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow
 
+import android.content.Context
+import android.graphics.Typeface
 import android.view.View
 import android.widget.CheckBox
 import android.widget.LinearLayout
@@ -9,6 +11,7 @@ import androidx.databinding.BindingAdapter
 import com.google.android.material.textfield.TextInputLayout
 import com.kalashnyk.denys.defaultproject.BR
 import com.kalashnyk.denys.defaultproject.R
+import com.kalashnyk.denys.defaultproject.utils.binding.TextSpanModel
 import com.kalashnyk.denys.defaultproject.utils.extention.addErrorForCheckBox
 import com.kalashnyk.denys.defaultproject.utils.extention.addErrorForTextInputLayout
 import com.kalashnyk.denys.defaultproject.utils.extention.clearErrorForCheckBox
@@ -23,10 +26,66 @@ class AuthFlowModelBinding(
     private var listener: IAuthFlow.IAuthListener?,
     private var callback: IAuthFlow.IAuthCallback
 ) : Observer, BaseObservable() {
-
+    private var context : Context
     init {
         authChild.addObserver(this)
+        context = listener as Context
     }
+
+//    bind:spanTextResize="@{@string/sign_up}"
+//    bind:textResize="@{@string/dont_have_an_account}"
+//    bind:spanPositionResize="@{spanTextPosition.LAST}"
+//    bind:spanTextSize="@{R.dimen.txt_size_16}"
+//    bind:textSize="@{R.dimen.txt_size_14}"
+//    bind:spanTextColor="@{R.color.colorWhite}"
+//    bind:textColor="@{R.color.dark_blue}"
+
+    /**
+     * @field signUpTextSpanModel
+     */
+    val signUpTextSpanModel: TextSpanModel
+        @Bindable get() {
+            return TextSpanModel(
+                context.resources.getString(R.string.sign_up),
+                context.resources.getString(R.string.dont_have_an_account),
+                TextSpanModel.SpanTextPosition.LAST,
+                R.dimen.txt_size_16,
+                R.dimen.txt_size_14,
+                R.color.colorWhite,
+                R.color.dark_blue,
+                Typeface.NORMAL
+            )
+        }
+
+    /**
+     * @field signInTextSpanModel
+     */
+    val signInTextSpanModel: TextSpanModel
+        @Bindable get() {
+            return TextSpanModel(
+                context.resources.getString(R.string.sign_in),
+                context.resources.getString(R.string.text_have_an_account),
+                TextSpanModel.SpanTextPosition.LAST,
+                R.dimen.txt_size_16,
+                R.dimen.txt_size_14,
+                R.color.colorWhite,
+                R.color.dark_blue,
+                Typeface.NORMAL
+            )
+        }
+    val termsConditionsTextSpanModel: TextSpanModel
+        @Bindable get() {
+            return TextSpanModel(
+                context.resources.getString(R.string.text_terms_and_privacy),
+                context.resources.getString(R.string.text_i_agree_with),
+                TextSpanModel.SpanTextPosition.LAST,
+                R.dimen.txt_size_12,
+                R.dimen.txt_size_12,
+                R.color.colorWhite,
+                R.color.dark_blue,
+                Typeface.NORMAL
+            )
+        }
 
     /**
      * @field agreeTerms

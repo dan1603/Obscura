@@ -19,6 +19,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
             android:background="@color/soft_blue">
 
         <androidx.constraintlayout.widget.Guideline
@@ -53,7 +54,6 @@
                 android:id="@+id/btnRoutBack"
                 android:layout_width="@dimen/view_params_24"
                 android:layout_height="@dimen/view_params_24"
-                android:layout_marginTop="@dimen/indentation_16"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:onClick="@{(view)-> bindingModel.onRoutBack()}"
                 android:src="@drawable/ic_back"
@@ -163,31 +163,20 @@
                         android:id="@+id/checkBoxSignUpAgree"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:theme="@style/AgreeCheckBox"
+                        android:button="@drawable/toggle_checkbox"
+                        android:checked="@{bindingModel.agreeTerms}"
+                        app:layout_constraintStart_toEndOf="@+id/guidelineSignUpStart"
                         app:layout_constraintTop_toBottomOf="@+id/containerSignUpInputs"
-                        app:layout_constraintStart_toStartOf="@+id/guidelineSignUpStart"
-                        android:checked="@{bindingModel.agreeTerms}"/>
+                        app:layout_constraintEnd_toStartOf="@+id/guidelineSignUpEnd"/>
 
                 <TextView
                         android:id="@+id/tvSignUpIAgreeWith"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/txt_size_12"
                         android:fontFamily="sans-serif-medium"
-                        android:textStyle="normal"
-                        android:textColor="@color/dark_blue"
-                        android:text="@string/text_i_agree_with"/>
-                <TextView
-                        android:id="@+id/tvSignUpTermsAndPrivacy"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/txt_size_12"
-                        android:fontFamily="sans-serif-medium"
-                        android:layout_marginLeft="@dimen/indentation_8"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorWhite"
-                        android:text="@string/text_terms_and_privacy"
-                        android:background="?android:attr/selectableItemBackground"/>
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/indentation_8"
+                        bind:textSpan="@{bindingModel.termsConditionsTextSpanModel}"/>
             </LinearLayout>
         </LinearLayout>
         <Button android:id="@+id/btnSignUp"
@@ -231,37 +220,21 @@
                 app:layout_constraintTop_toBottomOf="@id/tvYouCanSignUpWith"
                 android:onClick="@{(view)-> bindingModel.onSocialAuth(typeSocial.FACEBOOK)}"/>
 
-        <LinearLayout
+        <TextView
+                android:id="@+id/tvSignUpHaveAccount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toStartOf="@+id/guidelineSignUpEnd"
-                app:layout_constraintStart_toEndOf="@+id/guidelineSignUpStart"
-                app:layout_constraintBottom_toTopOf="@id/guidelineSignUpBottom">
-
-            <TextView
-                    android:id="@+id/tvSignUpHaveAccount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/txt_size_12"
-                    android:fontFamily="sans-serif-medium"
-                    android:textStyle="normal"
-                    android:textColor="@color/dark_blue"
-                    android:text="@string/text_have_an_account"/>
-
-            <TextView
-                    android:id="@+id/tvSignIn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/txt_size_14"
-                    android:fontFamily="sans-serif-medium"
-                    android:layout_marginStart="@dimen/indentation_8"
-                    android:textStyle="normal"
-                    android:textColor="@color/colorWhite"
-                    android:text="@string/sign_in"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:onClick="@{(view)-> bindingModel.onOpenScreen(typeNavigation.SIGN_IN_SCREEN)}"/>
-        </LinearLayout>
+                android:layout_marginBottom="@dimen/indentation_30"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.01"
+                android:padding="@dimen/indentation_5"
+                android:background="?android:attr/selectableItemBackground"
+                android:onClick="@{(view)-> bindingModel.onOpenScreen(typeNavigation.SIGN_IN_SCREEN)}"
+                bind:textSpan="@{bindingModel.signInTextSpanModel}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

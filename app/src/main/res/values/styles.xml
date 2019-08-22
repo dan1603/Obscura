@@ -25,8 +25,7 @@
     <style name="AgreeCheckBox" parent="Theme.AppCompat.Light">
         <item name="colorControlNormal">@color/colorWhite</item>
         <item name="colorControlActivated">@color/colorWhite</item>
-        <!--Todo fix for color with error from design-->
-        <item name="colorControlHighlight">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/colorWhite</item>
     </style>
     <style name="EditTextCommonStyle" parent="@android:style/Widget.EditText">
         <item name="colorControlNormal">@color/soft_blue</item>

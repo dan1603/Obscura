@@ -1,39 +1,24 @@
 package com.kalashnyk.denys.defaultproject.utils.binding
 
+import android.view.View
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.kalashnyk.denys.defaultproject.utils.extention.prepareSpanText
-import com.kalashnyk.denys.defaultproject.utils.extention.prepareSpanTextWithResize
 
+/**
+ * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
+ */
 class TextBinding {
     companion object {
-
         @JvmStatic
-        @BindingAdapter(
-            "bind:spanTextResize",
-            "bind:textResize",
-            "bind:spanTextSize",
-            "bind:textSize"
-        )
-        fun bindSpanTextResize(
-            view: TextView,
-            spanText: String,
-            text: String,
-            spanTextSize: Int,
-            textSize: Int
-        ) {
-            view.prepareSpanTextWithResize(spanText, text, spanTextSize, textSize)
-        }
-
-        @JvmStatic
-        @BindingAdapter(
-            "bind:spanText",
-            "bind:text"
-        )
+        @BindingAdapter("textSpan")
         fun bindSpanText(
-            view: TextView,
-            spanText: String,
-            text: String
-        )=view.prepareSpanText(spanText, text)
+            view: View,
+            textSpanModel: TextSpanModel
+        ) {
+            val span = textSpanModel.prepareContent(view.context)
+            if(view is TextView) view.setText(span, TextView.BufferType.SPANNABLE)
+            if(view is CheckBox) view.setText(span, TextView.BufferType.SPANNABLE)
+        }
     }
 }

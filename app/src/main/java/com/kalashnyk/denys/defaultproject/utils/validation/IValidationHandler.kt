@@ -1,6 +1,8 @@
 package com.kalashnyk.denys.defaultproject.utils.validation
 
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowErrorModel
+import kotlin.collections.HashMap
+import kotlin.collections.set
 
 /**
  * source for handling validation errors
@@ -11,137 +13,55 @@ interface IValidationHandler {
     /**
      * @param email
      * @param password
-     */
-    fun validationSignInCases(
-        email: String,
-        password: String
-    ): Pair<Boolean, AuthFlowErrorModel>
-
-    /**
-     * @param email
-     * @param password
      * @param confirmPassword
      * @param agreeTerms
      */
-    fun validationSignUpCases(
+    fun validationAuthCases(
         email: String,
-        password: String,
-        confirmPassword: String,
-        agreeTerms: Boolean
-    ): Pair<Boolean, AuthFlowErrorModel>
-
-    /**
-     * @param email
-     */
-    fun validationRecoverAccountCases(
-        email: String
-    ): Pair<Boolean, AuthFlowErrorModel>
+        password: String?,
+        confirmPassword: String?,
+        agreeTerms: Boolean?
+    ): AuthFlowErrorModel
 }
 
 internal class ValidationHandlerImpl : IValidationHandler {
 
-    private val validator: IValidator = ValidatorImpl()
+    private val validator: IValidator=ValidatorImpl()
 
-    override fun validationSignInCases(
+    override fun validationAuthCases(
         email: String,
-        password: String
-    ): Pair<Boolean, AuthFlowErrorModel> {
+        password: String?,
+        confirmPassword: String?,
+        agreeTerms: Boolean?
+    ): AuthFlowErrorModel {
 
-        val error = AuthFlowErrorModel()
+        val errors=HashMap<AuthFlowErrorModel.ErrorType, ValidationErrorMessage>()
 
-        if (email.trim().isEmpty() &&
-            password.trim().isEmpty() &&
-            !validator.isValidEmail(email) &&
-            !validator.isValidPassword(password)
-        ) {
-            error.type = AuthFlowErrorModel.AuthFlowErrorType.SIGN_IN_ERRORS
-            error.message = ValidationErrorMessage.FLOW_SIGN_IN_VALIDATION_ERROR
-            return Pair(false, error)
-        } else if (email.trim().isEmpty()) {
-            error.type = AuthFlowErrorModel.AuthFlowErrorType.EMAIL_ERROR
-            error.message = ValidationErrorMessage.EMAIL_BLANK_VALIDATION_ERROR
-            return Pair(false, error)
-        } else if (!validator.isValidEmail(email)) {
-            error.type = AuthFlowErrorModel.AuthFlowErrorType.EMAIL_ERROR
-            error.message = ValidationErrorMessage.EMAIL_VALIDATION_ERROR
-            return Pair(false, error)
-        } else if (password.trim().isEmpty()) {
-            error.type = AuthFlowErrorModel.AuthFlowErrorType.PASSWORD_ERROR
-            error.message = ValidationErrorMessage.PASSWORD_BLANK_VALIDATION_ERROR
-            return Pair(false, error)
-        } else if (!validator.isValidPassword(password)) {
-            error.type = AuthFlowErrorModel.AuthFlowErrorType.PASSWORD_ERROR
-            error.message = ValidationErrorMessage.PASSWORD_VALIDATION_ERROR
-            return Pair(false, error)
-        } else {
-            return Pair(true, error)
+        email.apply {
+            validator.isValidEmail(email)?.let {
+                errors.put(AuthFlowErrorModel.ErrorType.EMAIL_ERROR, it)
+            }
         }
-    }
 
-    override fun validationSignUpCases(
-        email: String,
-        password: String,
-        confirmPassword: String,
-        agreeTerms: Boolean
-    ): Pair<Boolean, AuthFlowErrorModel> {
+        password?.apply {
+            validator.isValidPassword(password)?.let {
+                errors[AuthFlowErrorModel.ErrorType.PASSWORD_ERROR]=it
+            }
 
-        val error = AuthFlowErrorModel()
+            confirmPassword?.apply {
+                validator.isValidConfirmPassword(password, confirmPassword)?.let {
+                    errors[AuthFlowErrorModel.ErrorType.PASSWORD_CONFIRM_ERROR]=it
+                }
 
-        if (email.trim().isEmpty() &&
-            password.trim().isEmpty() &&
-            !validator.isValidEmail(email) &&
-            !validator.isValidPassword(password) &&
-            !agreeTerms &&
-            !validator.isValidPassword(confirmPassword)
-        ) {
-            error.type = AuthFlowErrorModel.AuthFlowErrorType.SIGN_UP_ERRORS
-            error.message = ValidationErrorMessage.FLOW_SIGN_UP_VALIDATION_ERROR
-            return Pair(false, error)
-        } else if (email.trim().isEmpty()) {
-            error.type = AuthFlowErrorModel.AuthFlowErrorType.EMAIL_ERROR
-            error.message = ValidationErrorMessage.EMAIL_BLANK_VALIDATION_ERROR
-            return Pair(false, error)
-        } else if (!validator.isValidEmail(email)) {
-            error.type = AuthFlowErrorModel.AuthFlowErrorType.EMAIL_ERROR
-            error.message = ValidationErrorMessage.EMAIL_VALIDATION_ERROR
-            return Pair(false, error)
-        } else if (password.trim().isEmpty()) {
-            error.type = AuthFlowErrorModel.AuthFlowErrorType.PASSWORD_ERROR
-            error.message = ValidationErrorMessage.PASSWORD_BLANK_VALIDATION_ERROR
-            return Pair(false, error)
-        } else if (!validator.isValidPassword(password)) {
-            error.type = AuthFlowErrorModel.AuthFlowErrorType.PASSWORD_ERROR
-            error.message = ValidationErrorMessage.PASSWORD_VALIDATION_ERROR
-            return Pair(false, error)
-        } else if (!validator.isValidConfirmPassword(password, confirmPassword)) {
-            error.type = AuthFlowErrorModel.AuthFlowErrorType.PASSWORD_CONFIRM_ERROR
-            error.message = ValidationErrorMessage.PASSWORD_NOT_SAME_VALIDATION_ERROR
-            return Pair(false, error)
-        } else if (!agreeTerms) {
-            error.type = AuthFlowErrorModel.AuthFlowErrorType.TERMS_CONDITION_ERROR
-            error.message = ValidationErrorMessage.TERMS_CONDITION_VALIDATION_ERROR
-            return Pair(false, error)
-        } else {
-            return Pair(true, error)
+            }
         }
-    }
 
-    override fun validationRecoverAccountCases(
-        email: String
-    ): Pair<Boolean, AuthFlowErrorModel> {
-
-        val error = AuthFlowErrorModel()
-
-        if (email.trim().isEmpty()) {
-            error.type = AuthFlowErrorModel.AuthFlowErrorType.EMAIL_ERROR
-            error.message = ValidationErrorMessage.EMAIL_BLANK_VALIDATION_ERROR
-            return Pair(false, error)
-        } else if (!validator.isValidEmail(email)) {
-            error.type = AuthFlowErrorModel.AuthFlowErrorType.EMAIL_ERROR
-            error.message = ValidationErrorMessage.EMAIL_VALIDATION_ERROR
-            return Pair(false, error)
-        } else {
-            return Pair(true, error)
+        agreeTerms?.apply {
+            if(!this)
+                errors[AuthFlowErrorModel.ErrorType.TERMS_CONDITION_ERROR]=
+                    ValidationErrorMessage.TERMS_CONDITION_VALIDATION_ERROR
         }
+
+        return AuthFlowErrorModel(errors)
     }
 }

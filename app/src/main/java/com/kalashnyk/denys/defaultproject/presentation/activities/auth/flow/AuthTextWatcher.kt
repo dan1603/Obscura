@@ -35,13 +35,13 @@ open class AuthTextWatcher(
     private fun getField(editText: EditText) {
         when (editText.id) {
             R.id.etAuthEmail -> {
-                authChildCases.email=editText.text.toString()
+                authChildCases.email=editText.text.toString().trim()
             }
             R.id.etAuthPassword -> {
-                authChildCases.password=editText.text.toString()
+                authChildCases.password=editText.text.toString().trim()
             }
             R.id.etAuthConfirmPassword -> {
-                authChildCases.passwordConfirm=editText.text.toString()
+                authChildCases.passwordConfirm=editText.text.toString().trim()
             }
         }
     }

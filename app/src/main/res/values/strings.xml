@@ -49,7 +49,7 @@
     </string>
     <string name="welcome_text_already_have_an_account">Already have an account?</string>
     <string name="welcome_text_not_with_us_yet">Not with us yet?</string>
-    <!--validation error message-->
+    <!--validation error messages-->
     <string name="internet_connection_problem">No network connection.</string>
     <string name="network_error_message">Please connect to network.</string>
     <string name="password_blank_error_message">Password can not be blank</string>
@@ -62,5 +62,6 @@
     <string name="error_terms_conditions">You don\'t agree terms conditions</string>
     <string name="email_error_message">Invalid email address</string>
     <string name="phone_error_message">Invalid phone number</string>
+    <string name="phone_blank_error_message">Phone can not be blank</string>
     <string name="code_error_message">Invalid code</string>
 </resources>

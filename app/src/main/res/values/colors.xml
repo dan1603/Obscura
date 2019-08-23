@@ -22,5 +22,6 @@
     <color name="text_color_label">#d5e2f7</color>
     <color name="light_grey">#b3ffffff</color>
     <color name="error_color">#ff9595</color>
+    <color name="dark_error_color">#dec92d2d</color>
     <color name="hint_color">#8a8c98</color>
 </resources>

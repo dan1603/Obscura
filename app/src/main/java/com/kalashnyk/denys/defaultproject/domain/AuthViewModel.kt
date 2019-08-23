@@ -12,17 +12,17 @@ import com.kalashnyk.denys.defaultproject.utils.validation.ValidationHandlerImpl
  */
 class AuthViewModel : ViewModel() {
 
-    private val validationHandler : IValidationHandler = ValidationHandlerImpl()
+    private val validationHandler: IValidationHandler=ValidationHandlerImpl()
 
     /**
      *
      */
-    fun authRequest(flowModel: AuthFlowModel, callback: IAuthFlow.IAuthCallback){
-        val validation: Pair<Boolean, AuthFlowErrorModel> = doValidation(flowModel)
-        if(validation.first){
+    fun authRequest(flowModel: AuthFlowModel, callback: IAuthFlow.IAuthCallback) {
+        val validation: AuthFlowErrorModel=doValidation(flowModel)
+        if (validation.emptyErrors()) {
 
-        }else {
-            callback.showError(validation.second)
+        } else {
+            callback.showError(validation)
         }
     }
 
@@ -33,29 +33,11 @@ class AuthViewModel : ViewModel() {
         super.onCleared()
     }
 
-    private fun doValidation(flowModel: AuthFlowModel) : Pair<Boolean, AuthFlowErrorModel> {
-        val checkData : Pair<Boolean, AuthFlowErrorModel>
-        when(flowModel.typeChild){
-            IAuthFlow.AuthType.SIGN_UP -> {
-                checkData = validationHandler.validationSignUpCases(
-                    flowModel.email,
-                    flowModel.password,
-                    flowModel.passwordConfirm,
-                    flowModel.agreeTerms
-                )
-            }
-            IAuthFlow.AuthType.SIGN_IN -> {
-                checkData = validationHandler.validationSignInCases(
-                    flowModel.email,
-                    flowModel.password
-                )
-            }
-            IAuthFlow.AuthType.RECOVER_ACCOUNT -> {
-                checkData = validationHandler.validationRecoverAccountCases(
-                    flowModel.email)
-            }
-        }
-
-        return checkData
-    }
+    private fun doValidation(flowModel: AuthFlowModel): AuthFlowErrorModel=
+        validationHandler.validationAuthCases(
+            flowModel.email,
+            flowModel.password,
+            flowModel.passwordConfirm,
+            flowModel.agreeTerms
+        )
 }

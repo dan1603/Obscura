@@ -1,6 +1,8 @@
 package com.kalashnyk.denys.defaultproject.utils.validation
 
 import android.util.Patterns
+import com.kalashnyk.denys.defaultproject.utils.ApplicationConstants.PHONE_LENGTH_WITHOUT_COUNTRY_CODE
+import com.kalashnyk.denys.defaultproject.utils.ApplicationConstants.PHONE_LENGTH_WITH_COUNTRY_CODE
 import org.apache.commons.lang3.StringUtils
 import java.util.regex.Pattern
 
@@ -29,14 +31,14 @@ interface IValidator {
      */
     fun isValidEmail(
         email: CharSequence
-    ): Boolean
+    ): ValidationErrorMessage?
 
     /**
      * @param phone
      */
     fun isValidPhone(
         phone: CharSequence
-    ): Boolean
+    ): ValidationErrorMessage?
 
     /**
      * @param phone
@@ -45,14 +47,14 @@ interface IValidator {
     fun isValidPhoneWithCodeCountry(
         phone: CharSequence,
         codeCountry: CharSequence
-    ): Boolean
+    ): ValidationErrorMessage?
 
     /**
      * @param password
      */
     fun isValidPassword(
         password: CharSequence
-    ): Boolean
+    ): ValidationErrorMessage?
 
     /**
      * @param password
@@ -61,53 +63,91 @@ interface IValidator {
     fun isValidConfirmPassword(
         password: CharSequence,
         confirmPassword: CharSequence
-    ): Boolean
-
-    /**
-     * @param oldPassword
-     * @param newPassword
-     * @param confirmNewPassword
-     */
-    fun isValidResetPassword(
-        oldPassword: CharSequence,
-        newPassword: CharSequence,
-        confirmNewPassword: CharSequence
-    ): Boolean
+    ): ValidationErrorMessage?
 }
 
+/**
+ *
+ */
 class ValidatorImpl : IValidator {
 
-    override fun isValidEmail(email: CharSequence): Boolean =
-        StringUtils.isNotBlank(email) &&
-                Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    override fun isValidEmail(
+        email: CharSequence
+    ): ValidationErrorMessage? {
+        return when {
+            StringUtils.isBlank(email) -> {
+                ValidationErrorMessage.EMAIL_BLANK_VALIDATION_ERROR
+            }
+            !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
+                ValidationErrorMessage.EMAIL_VALIDATION_ERROR
+            }
+            else -> null
+        }
+    }
 
-    override fun isValidPhone(phone: CharSequence): Boolean =
-        StringUtils.isNotBlank(phone) &&
-                phone.length >= 11 &&
-                Patterns.PHONE.matcher(phone).matches()
+    override fun isValidPhone(
+        phone: CharSequence
+    ): ValidationErrorMessage? {
+        return when {
+            StringUtils.isBlank(phone) -> {
+                ValidationErrorMessage.PHONE_BLANK_VALIDATION_ERROR
+            }
+            phone.length <= PHONE_LENGTH_WITHOUT_COUNTRY_CODE -> {
+                ValidationErrorMessage.PHONE_VALIDATION_ERROR
+            }
+            else -> null
+        }
+    }
 
     override fun isValidPhoneWithCodeCountry(
         phone: CharSequence,
         codeCountry: CharSequence
-    ): Boolean =
-        isValidPhone(phone) &&
-                phone.startsWith(codeCountry)
+    ): ValidationErrorMessage? {
+        return when {
+            StringUtils.isBlank(phone) -> {
+                ValidationErrorMessage.PHONE_BLANK_VALIDATION_ERROR
+            }
 
-    override fun isValidPassword(password: CharSequence): Boolean =
-        passwordPattern.matcher(password).matches()
+            phone.length <= PHONE_LENGTH_WITH_COUNTRY_CODE -> {
+                ValidationErrorMessage.PHONE_VALIDATION_ERROR
+            }
+
+            phone.startsWith(codeCountry) -> {
+                ValidationErrorMessage.PHONE_VALIDATION_ERROR
+            }
+            else -> null
+        }
+    }
+
+    override fun isValidPassword(
+        password: CharSequence
+    ): ValidationErrorMessage? {
+        return when {
+            !StringUtils.isNotBlank(password) -> {
+                ValidationErrorMessage.PASSWORD_BLANK_VALIDATION_ERROR
+            }
+            !passwordPattern.matcher(password).matches() -> {
+                ValidationErrorMessage.PASSWORD_VALIDATION_ERROR
+            }
+            else -> null
+        }
+    }
 
     override fun isValidConfirmPassword(
         password: CharSequence,
         confirmPassword: CharSequence
-    ): Boolean = isValidPassword(password) &&
-            isValidPassword(confirmPassword) &&
-            StringUtils.equals(password, confirmPassword)
-
-    override fun isValidResetPassword(
-        oldPassword: CharSequence,
-        newPassword: CharSequence,
-        confirmNewPassword: CharSequence
-    ): Boolean = isValidPassword(oldPassword) &&
-            isValidConfirmPassword(newPassword, confirmNewPassword) &&
-            !StringUtils.equals(oldPassword, newPassword)
+    ): ValidationErrorMessage? {
+        return when {
+            !StringUtils.isNotBlank(confirmPassword) -> {
+                ValidationErrorMessage.PASSWORD_BLANK_VALIDATION_ERROR
+            }
+            !passwordPattern.matcher(confirmPassword).matches()  -> {
+                ValidationErrorMessage.PASSWORD_VALIDATION_ERROR
+            }
+            !StringUtils.equals(password, confirmPassword) -> {
+                ValidationErrorMessage.PASSWORD_NOT_SAME_VALIDATION_ERROR
+            }
+            else -> null
+        }
+    }
 }

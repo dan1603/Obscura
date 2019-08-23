@@ -1,32 +1,33 @@
 package com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow
 
 import com.kalashnyk.denys.defaultproject.utils.validation.ValidationErrorMessage
+import kotlin.collections.HashMap
 
 /**
  * error of validation and api
  */
 class AuthFlowErrorModel(
     /**
-     * type
+     * errors body
      */
-    var type : AuthFlowErrorType? = null,
-    /**
-     * message body
-     */
-    var message : ValidationErrorMessage? = null
+    var errors : Map<ErrorType, ValidationErrorMessage> = HashMap()
 ) {
-    constructor() : this(AuthFlowErrorType.DEFAULT_ERROR, null)
+    constructor() : this(HashMap())
+
     /**
-     * type of error for handling in UI
-     * todo maybe need create rout type for navigation
+     *
      */
+    fun hasErrors() : Boolean = errors.isNotEmpty()
 
-    enum class AuthFlowErrorType{
+    /**
+     *
+     */
+    fun emptyErrors() : Boolean = errors.isEmpty()
 
-        /**
-         * default error with empty body
-         */
-        DEFAULT_ERROR,
+    /**
+     *
+     */
+    enum class ErrorType{
 
         /**
          * when validation fail email field
@@ -47,14 +48,5 @@ class AuthFlowErrorModel(
          * when user don't accept terms conditions
          */
         TERMS_CONDITION_ERROR,
-
-        /**
-         * when user don't fill all fields of sign up screen
-         */
-        SIGN_UP_ERRORS,
-        /**
-         * when user don't fill all fields of sign in screen
-         */
-        SIGN_IN_ERRORS,
     }
 }

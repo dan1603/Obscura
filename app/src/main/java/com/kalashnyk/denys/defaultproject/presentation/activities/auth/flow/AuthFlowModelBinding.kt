@@ -2,9 +2,9 @@ package com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow
 
 import android.content.Context
 import android.graphics.Typeface
-import android.view.View
 import android.widget.CheckBox
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.BindingAdapter
@@ -12,10 +12,8 @@ import com.google.android.material.textfield.TextInputLayout
 import com.kalashnyk.denys.defaultproject.BR
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.utils.binding.TextSpanModel
-import com.kalashnyk.denys.defaultproject.utils.extention.addErrorForCheckBox
-import com.kalashnyk.denys.defaultproject.utils.extention.addErrorForTextInputLayout
-import com.kalashnyk.denys.defaultproject.utils.extention.clearErrorForCheckBox
-import com.kalashnyk.denys.defaultproject.utils.extention.clearErrorForTextInputLayout
+import com.kalashnyk.denys.defaultproject.utils.extention.*
+import com.kalashnyk.denys.defaultproject.utils.validation.ValidationErrorMessage
 import java.util.*
 
 /**
@@ -27,11 +25,11 @@ class AuthFlowModelBinding(
     private var callback: IAuthFlow.IAuthCallback
 ) : Observer, BaseObservable() {
 
-    private var context : Context
+    private var context: Context
 
     init {
         authFlowModel.addObserver(this)
-        context = listener as Context
+        context=listener as Context
     }
 
     /**
@@ -128,9 +126,10 @@ class AuthFlowModelBinding(
         listener?.authRequest(authFlowModel, callback)
     }
 
-    fun onRoutBack(){
+    fun onRoutBack() {
         listener?.routBack()
     }
+
     companion object {
 
         @JvmStatic
@@ -141,14 +140,15 @@ class AuthFlowModelBinding(
             viewGroup: LinearLayout,
             authError: AuthFlowErrorModel
         ) {
-            if (authError.type != AuthFlowErrorModel.AuthFlowErrorType.DEFAULT_ERROR) {
+            if (authError.hasErrors()) {
                 authError.let {
                     handelAuthFlowError(
                         it,
                         viewGroup.findViewById(R.id.tilAuthEmail),
                         viewGroup.findViewById(R.id.tilAuthPassword),
                         viewGroup.findViewById(R.id.tilAuthConfirmPassword),
-                        viewGroup.findViewById(R.id.checkBoxSignUpAgree)
+                        viewGroup.findViewById(R.id.checkBoxSignUpAgree),
+                        viewGroup.findViewById(R.id.tvFlowError)
                     )
                 }
             } else {
@@ -156,62 +156,63 @@ class AuthFlowModelBinding(
                     viewGroup.findViewById(R.id.tilAuthEmail),
                     viewGroup.findViewById(R.id.tilAuthPassword),
                     viewGroup.findViewById(R.id.tilAuthConfirmPassword),
-                    viewGroup.findViewById(R.id.checkBoxSignUpAgree)
+                    viewGroup.findViewById(R.id.checkBoxSignUpAgree),
+                    viewGroup.findViewById(R.id.tvFlowError)
                 )
             }
         }
 
+        /**
+         * @param tvFlowError for Api error
+         */
         private fun handelAuthFlowError(
             errorModel: AuthFlowErrorModel,
             tilEmail: TextInputLayout?,
             tilPassword: TextInputLayout?,
             tilConfirmPassword: TextInputLayout?,
-            checkBoxTermsConditions: CheckBox?
+            checkBoxTermsConditions: CheckBox?,
+            tvFlowError: TextView?
         ) {
-            when (errorModel.type) {
-                AuthFlowErrorModel.AuthFlowErrorType.EMAIL_ERROR -> {
-                    showAuthFlowError(errorModel, tilEmail)
-                }
-                AuthFlowErrorModel.AuthFlowErrorType.PASSWORD_ERROR -> {
-                    showAuthFlowError(errorModel, tilPassword)
-                }
-                AuthFlowErrorModel.AuthFlowErrorType.PASSWORD_CONFIRM_ERROR -> {
-                    showAuthFlowError(errorModel, tilConfirmPassword)
-                }
-                AuthFlowErrorModel.AuthFlowErrorType.TERMS_CONDITION_ERROR -> {
-                    showAuthFlowError(errorModel, checkBoxTermsConditions)
-                }
-                AuthFlowErrorModel.AuthFlowErrorType.SIGN_UP_ERRORS -> {
-                    showAuthFlowError(errorModel, tilConfirmPassword)
-                    showAuthFlowError(errorModel, checkBoxTermsConditions)
-                }
-                AuthFlowErrorModel.AuthFlowErrorType.SIGN_IN_ERRORS -> {
-                    showAuthFlowError(errorModel, tilPassword)
+            for ((key: AuthFlowErrorModel.ErrorType, value: ValidationErrorMessage) in errorModel.errors) {
+                when (key) {
+                    AuthFlowErrorModel.ErrorType.EMAIL_ERROR -> {
+                        tilEmail?.addErrorForTextInputLayout(
+                            value.toString(tilEmail.context)
+                        )
+                    }
+                    AuthFlowErrorModel.ErrorType.PASSWORD_ERROR -> {
+                        tilPassword?.addErrorForTextInputLayout(
+                            value.toString(tilPassword.context)
+                        )
+                    }
+
+                    AuthFlowErrorModel.ErrorType.PASSWORD_CONFIRM_ERROR -> {
+                        tilConfirmPassword?.addErrorForTextInputLayout(
+                            value.toString(tilConfirmPassword.context)
+                        )
+                    }
+                    AuthFlowErrorModel.ErrorType.TERMS_CONDITION_ERROR -> {
+                        checkBoxTermsConditions?.addErrorForCheckBox()
+                    }
                 }
             }
         }
 
-        private fun <V : View> showAuthFlowError(
-            errorModel: AuthFlowErrorModel,
-            view: V?
-        ) {
-            if (view is TextInputLayout) {
-                view.addErrorForTextInputLayout(errorModel.message?.toString(view.context))
-            } else if (view is CheckBox) {
-                view.addErrorForCheckBox()
-            }
-        }
-
+        /**
+         * @param tvFlowError for Api error
+         */
         private fun clearAuthFlowError(
             tilEmail: TextInputLayout?,
             tilPassword: TextInputLayout?,
             tilConfirmPassword: TextInputLayout?,
-            checkBoxTermsConditions: CheckBox?
+            checkBoxTermsConditions: CheckBox?,
+            tvFlowError: TextView?
         ) {
             tilEmail?.clearErrorForTextInputLayout()
             tilPassword?.clearErrorForTextInputLayout()
             tilConfirmPassword?.clearErrorForTextInputLayout()
             checkBoxTermsConditions?.clearErrorForCheckBox()
+            tvFlowError?.clearErrorForTextView()
         }
     }
 }

@@ -62,9 +62,14 @@ enum class ValidationErrorMessage(
     TERMS_CONDITION_VALIDATION_ERROR(R.string.error_terms_conditions),
 
     /**
-     * thrown when user email is incorrect
+     * thrown when user phone is incorrect
      */
     PHONE_VALIDATION_ERROR(R.string.phone_error_message),
+
+    /**
+     * thrown when user phone is blank
+     */
+    PHONE_BLANK_VALIDATION_ERROR(R.string.phone_blank_error_message),
     /**
      * thrown when user confirm phone code fails
      */

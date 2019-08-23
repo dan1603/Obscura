@@ -31,6 +31,6 @@ class SplashActivity : BaseActivity<SplashBinding>() {
         Handler().postDelayed({
             navigator.openWelcomeScreen(this)
             finish()
-        }, ApplicationConstants.splashTimer)
+        }, ApplicationConstants.DELAY_3000)
     }
 }

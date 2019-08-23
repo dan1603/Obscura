@@ -48,8 +48,18 @@ class SignInFragment : BaseAuthFragment<SignInDataBinding>() {
         bindingModel?.apply {
             binding.bindingModel=this
         }
-        binding.etAuthEmail.addTextChangedListener(AuthTextWatcher(this, authChildCases, binding.etAuthEmail))
-        binding.etAuthEmail.addTextChangedListener(AuthTextWatcher(this, authChildCases, binding.etAuthPassword))
+        binding.etAuthEmail.addTextChangedListener(
+            AuthTextWatcher(this,
+                authChildCases,
+                binding.etAuthEmail
+            )
+        )
+        binding.etAuthPassword.addTextChangedListener(
+            AuthTextWatcher(this,
+                authChildCases,
+                binding.etAuthPassword
+            )
+        )
     }
 
     /**

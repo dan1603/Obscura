@@ -107,7 +107,7 @@
                             android:id="@+id/etAuthEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/enter_your_name_and_surname"
+                            android:hint="@string/hint_email"
                             android:inputType="textPersonName"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -125,7 +125,7 @@
                             android:id="@+id/etAuthPassword"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/password"
+                            android:hint="@string/hint_password"
                             android:inputType="textPassword"/>
                 </com.google.android.material.textfield.TextInputLayout>
 

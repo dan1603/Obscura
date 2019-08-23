@@ -40,7 +40,7 @@
     <string name="text_you_can_sign_up_with">You can sign up with</string>
     <string name="text_have_an_account">Have an account?</string>
     <string name="enter_your_name_and_surname">Enter your name and surname</string>
-    <string name="password">password</string>
+    <string name="password">Password</string>
     <string name="confirm_password">Confirm password</string>
     <!--welcome screen-->
     <string name="welcome_to_obscuralight">WELCOME TO\nOBSCURALIGHT</string>
@@ -56,7 +56,7 @@
     <string name="password_error_message">Invalid password</string>
     <string name="password_not_same_error_message">Passwords don\'t match!</string>
     <string name="wrong_old_password">The current password you entered is incorrect.</string>
-    <string name="email_blank_error_message">Password can not be blank</string>
+    <string name="email_blank_error_message">Email can not be blank</string>
     <string name="error_flow_sign_in_data">Invalid email and password</string>
     <string name="error_flow_sign_up_data">Invalid data</string>
     <string name="error_terms_conditions">You don\'t agree terms conditions</string>

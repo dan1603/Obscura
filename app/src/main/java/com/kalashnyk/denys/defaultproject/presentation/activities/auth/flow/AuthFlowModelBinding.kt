@@ -141,16 +141,14 @@ class AuthFlowModelBinding(
             authError: AuthFlowErrorModel
         ) {
             if (authError.hasErrors()) {
-                authError.let {
-                    handelAuthFlowError(
-                        it,
-                        viewGroup.findViewById(R.id.tilAuthEmail),
-                        viewGroup.findViewById(R.id.tilAuthPassword),
-                        viewGroup.findViewById(R.id.tilAuthConfirmPassword),
-                        viewGroup.findViewById(R.id.checkBoxSignUpAgree),
-                        viewGroup.findViewById(R.id.tvFlowError)
-                    )
-                }
+                handelAuthFlowError(
+                    authError,
+                    viewGroup.findViewById(R.id.tilAuthEmail),
+                    viewGroup.findViewById(R.id.tilAuthPassword),
+                    viewGroup.findViewById(R.id.tilAuthConfirmPassword),
+                    viewGroup.findViewById(R.id.checkBoxSignUpAgree),
+                    viewGroup.findViewById(R.id.tvFlowError)
+                )
             } else {
                 clearAuthFlowError(
                     viewGroup.findViewById(R.id.tilAuthEmail),
@@ -173,7 +171,7 @@ class AuthFlowModelBinding(
             checkBoxTermsConditions: CheckBox?,
             tvFlowError: TextView?
         ) {
-            for ((key: AuthFlowErrorModel.ErrorType, value: ValidationErrorMessage) in errorModel.errors) {
+            errorModel.errors.forEach { (key: AuthFlowErrorModel.ErrorType, value: ValidationErrorMessage) ->
                 when (key) {
                     AuthFlowErrorModel.ErrorType.EMAIL_ERROR -> {
                         tilEmail?.addErrorForTextInputLayout(

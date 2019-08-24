@@ -27,7 +27,7 @@ open class AuthTextWatcher(
     /**
      *
      */
-    override fun afterTextChanged(s: Editable) {
+    override fun afterTextChanged(s: Editable) {git
         getField(editText)
         callback.hideError()
     }

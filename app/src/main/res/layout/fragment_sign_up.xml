@@ -102,6 +102,7 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/tilAuthEmail"
+                            style="@style/TextInputLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="@dimen/indentation_16"
@@ -110,6 +111,7 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etAuthEmail"
+                                android:theme="@style/EditTextCommonStyle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/hint_email"
@@ -120,17 +122,19 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/tilAuthPassword"
+                            style="@style/TextInputLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/indentation_16"
                             android:layout_marginRight="@dimen/indentation_16"
                             android:layout_marginLeft="@dimen/indentation_16"
                             app:passwordToggleEnabled="true"
-                            app:errorEnabled="true">
+                            app:errorEnabled="true"
+                            app:passwordToggleTint="@color/soft_blue">
 
                         <com.google.android.material.textfield.TextInputEditText
-                                style="@style/EditTextCommonStyle"
                                 android:id="@+id/etAuthPassword"
+                                android:theme="@style/EditTextCommonStyle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/hint_password"
@@ -142,17 +146,19 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/tilAuthConfirmPassword"
+                            style="@style/TextInputLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/indentation_16"
                             android:layout_marginRight="@dimen/indentation_16"
                             android:layout_marginLeft="@dimen/indentation_16"
                             app:errorEnabled="true"
-                            app:passwordToggleEnabled="true">
+                            app:passwordToggleEnabled="true"
+                            app:passwordToggleTint="@color/soft_blue">
 
                         <com.google.android.material.textfield.TextInputEditText
-                                style="@style/EditTextCommonStyle"
                                 android:id="@+id/etAuthConfirmPassword"
+                                android:theme="@style/EditTextCommonStyle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/confirm_password"

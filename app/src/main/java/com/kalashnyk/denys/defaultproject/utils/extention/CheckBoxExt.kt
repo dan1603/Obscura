@@ -12,7 +12,9 @@ fun CheckBox.addErrorForCheckBox() {
 
 fun CheckBox.clearErrorForCheckBox() {
     this.apply {
-        this.buttonDrawable=this.context.getDrawable(R.drawable.toggle_checkbox)
+        this.postDelayed({
+            this.buttonDrawable=this.context.getDrawable(R.drawable.toggle_checkbox)
+        }, 200)
     }
 }
 

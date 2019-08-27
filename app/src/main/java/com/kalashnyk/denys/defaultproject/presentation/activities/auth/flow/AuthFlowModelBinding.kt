@@ -2,6 +2,7 @@ package com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow
 
 import android.content.Context
 import android.graphics.Typeface
+import android.view.View
 import android.widget.CheckBox
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -118,11 +119,18 @@ class AuthFlowModelBinding(
         }
     }
 
-    fun onOpenScreen(typeNavigate: IAuthFlow.NavigationType)=listener?.openScreen(typeNavigate)
+    fun onOpenScreen(typeNavigate: IAuthFlow.NavigationType, view: View) {
+        view.hideKeyboardWithClearFocus()
+        listener?.openScreen(typeNavigate)
+    }
 
-    fun onSocialAuth(type: IAuthFlow.SocialAuthType)=listener?.socialAuth(type, callback)
+    fun onSocialAuth(type: IAuthFlow.SocialAuthType, view: View) {
+        view.hideKeyboardWithClearFocus()
+        listener?.socialAuth(type, callback)
+    }
 
-    fun onAuthRequest() {
+    fun onAuthRequest(view: View) {
+        view.hideKeyboardWithClearFocus()
         listener?.authRequest(authFlowModel, callback)
     }
 

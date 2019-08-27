@@ -117,6 +117,8 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etAuthEmail"
+                                android:nextFocusForward="@+id/etAuthPassword"
+                                android:singleLine="true"
                                 android:theme="@style/EditTextCommonStyle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -137,6 +139,7 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etAuthPassword"
+                                android:singleLine="true"
                                 android:theme="@style/EditTextCommonStyle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -162,7 +165,7 @@
                             android:padding="@dimen/indentation_4"
                             android:text="@string/forgot_your_password"
                             android:background="?android:attr/selectableItemBackground"
-                            android:onClick="@{(view)-> bindingModel.onOpenScreen(typeNavigation.RECOVER_ACCOUNT_SCREEN)}"/>
+                            android:onClick="@{(view)-> bindingModel.onOpenScreen(typeNavigation.RECOVER_ACCOUNT_SCREEN, containerSignInInputs)}"/>
 
                 </LinearLayout>
 
@@ -194,7 +197,7 @@
                     app:layout_constraintStart_toStartOf="@id/guidelineStart"
                     app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
                     app:layout_constraintTop_toBottomOf="@+id/containerSignInInputs"
-                    android:onClick="@{(view)-> bindingModel.onAuthRequest()}"/>
+                    android:onClick="@{(view)-> bindingModel.onAuthRequest(containerSignInInputs)}"/>
 
             <TextView
                     android:id="@+id/tvSignInSocialLabel"
@@ -220,7 +223,7 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvSignInSocialLabel"
-                    android:onClick="@{(view)-> bindingModel.onSocialAuth(typeSocial.FACEBOOK)}"/>
+                    android:onClick="@{(view)-> bindingModel.onSocialAuth(typeSocial.FACEBOOK, containerSignInInputs)}"/>
 
             <TextView
                     android:id="@+id/tvSignIn"
@@ -231,7 +234,7 @@
                     android:letterSpacing="0.01"
                     android:padding="@dimen/indentation_5"
                     android:background="?android:attr/selectableItemBackground"
-                    android:onClick="@{(view)-> bindingModel.onOpenScreen(typeNavigation.SIGN_UP_SCREEN)}"
+                    android:onClick="@{(view)-> bindingModel.onOpenScreen(typeNavigation.SIGN_UP_SCREEN, containerSignInInputs)}"
                     bind:textSpan="@{bindingModel.signUpTextSpanModel}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"

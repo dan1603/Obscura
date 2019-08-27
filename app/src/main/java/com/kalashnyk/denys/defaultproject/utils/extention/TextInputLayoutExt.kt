@@ -11,8 +11,10 @@ fun TextInputLayout.clearErrorForTextInputLayout() {
 
 fun TextInputLayout.addErrorForTextInputLayout(error: String?) {
     this.apply {
-        this.isErrorEnabled=true
-        this.error=error
+        this.postDelayed({
+            this.isErrorEnabled=true
+            this.error=error
+        },200)
     }
 }
 

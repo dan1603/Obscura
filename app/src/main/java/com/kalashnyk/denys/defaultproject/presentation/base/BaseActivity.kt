@@ -4,6 +4,7 @@ import android.annotation.TargetApi
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import android.widget.Toolbar
 import androidx.annotation.RequiresApi
@@ -19,6 +20,8 @@ import com.kalashnyk.denys.defaultproject.utils.extention.hideKeyboard
 import com.kalashnyk.denys.defaultproject.utils.extention.initializeToolbar
 import com.kalashnyk.denys.defaultproject.utils.permission.IPermissionManager
 import com.kalashnyk.denys.defaultproject.utils.permission.PermissionManagerImpl
+import android.view.WindowManager
+import android.content.Context
 
 
 /**

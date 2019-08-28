@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--width - 320-->
+    <!--width - 720 todo refactor dimen 320 * 2.25-->
     <dimen name="indentation_4">4dp</dimen>
     <dimen name="indentation_5">5dp</dimen>
     <dimen name="indentation_6">6dp</dimen>

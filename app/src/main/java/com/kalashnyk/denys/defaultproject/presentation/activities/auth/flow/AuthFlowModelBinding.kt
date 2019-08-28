@@ -119,21 +119,40 @@ class AuthFlowModelBinding(
         }
     }
 
+    /**
+     *
+     */
     fun onOpenScreen(typeNavigate: IAuthFlow.NavigationType, view: View) {
         view.hideKeyboardWithClearFocus()
         listener?.openScreen(typeNavigate)
     }
 
+    /**
+     *
+     */
     fun onSocialAuth(type: IAuthFlow.SocialAuthType, view: View) {
         view.hideKeyboardWithClearFocus()
         listener?.socialAuth(type, callback)
     }
 
+    /**
+     *
+     */
     fun onAuthRequest(view: View) {
         view.hideKeyboardWithClearFocus()
         listener?.authRequest(authFlowModel, callback)
     }
 
+    /**
+     *
+     */
+    fun onTermsChecked(view: View) {
+        view.hideKeyboardWithClearFocus()
+    }
+
+    /**
+     *
+     */
     fun onRoutBack() {
         listener?.routBack()
     }

@@ -195,6 +195,7 @@
                             android:layout_height="wrap_content"
                             android:button="@drawable/toggle_checkbox"
                             android:checked="@{bindingModel.agreeTerms}"
+                            android:onCheckedChanged="@{()-> bindingModel.onTermsChecked(containerSignUpCases)}"
                             app:layout_constraintStart_toEndOf="@+id/guidelineSignUpStart"
                             app:layout_constraintTop_toBottomOf="@+id/containerSignUpInputs"
                             app:layout_constraintEnd_toStartOf="@+id/guidelineSignUpEnd"/>

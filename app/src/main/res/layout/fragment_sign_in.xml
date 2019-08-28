@@ -115,7 +115,7 @@
                             android:layout_marginStart="@dimen/indentation_16"
                             android:layout_marginEnd="@dimen/indentation_16">
 
-                        <com.google.android.material.textfield.TextInputEditText
+                        <androidx.appcompat.widget.AppCompatEditText
                                 android:id="@+id/etAuthEmail"
                                 android:nextFocusForward="@+id/etAuthPassword"
                                 android:singleLine="true"
@@ -137,7 +137,7 @@
                             app:passwordToggleEnabled="true"
                             app:passwordToggleTint="@color/soft_blue">
 
-                        <com.google.android.material.textfield.TextInputEditText
+                        <androidx.appcompat.widget.AppCompatEditText
                                 android:id="@+id/etAuthPassword"
                                 android:singleLine="true"
                                 android:theme="@style/EditTextCommonStyle"
@@ -146,9 +146,7 @@
                                 android:hint="@string/hint_password"
                                 android:textSize="@dimen/txt_size_16"
                                 android:inputType="textPassword"
-                                android:backgroundTint="@color/soft_blue"
-                                android:focusable="true"
-                                android:focusableInTouchMode="true"/>
+                                android:backgroundTint="@color/soft_blue"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
 

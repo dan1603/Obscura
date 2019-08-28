@@ -13,7 +13,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            android:background="@color/soft_blue">
+            android:background="@color/soft_blue"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
 
         <androidx.constraintlayout.widget.Guideline
                 android:layout_width="wrap_content"
@@ -107,16 +109,14 @@
                     android:layout_marginBottom="@dimen/indentation_8"
                     android:layout_marginTop="@dimen/indentation_8">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/etAuthEmail"
                         android:theme="@style/EditTextCommonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_email"
                         android:letterSpacing="0.01"
-                        android:singleLine="true"
-                        android:focusable="true"
-                        android:focusableInTouchMode="true"/>
+                        android:singleLine="true"/>
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 

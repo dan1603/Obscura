@@ -2,7 +2,7 @@ package com.kalashnyk.denys.defaultproject.usecases.repository.server
 
 import android.util.Log
 import com.kalashnyk.denys.defaultproject.usecases.repository.database.entity.UserEntity
-import com.kalashnyk.denys.defaultproject.usecases.repository.database.pojo.UserResponse
+import com.kalashnyk.denys.defaultproject.usecases.repository.server.pojo.UserResponse
 import io.reactivex.ObservableTransformer
 import io.reactivex.Single
 import io.reactivex.SingleTransformer

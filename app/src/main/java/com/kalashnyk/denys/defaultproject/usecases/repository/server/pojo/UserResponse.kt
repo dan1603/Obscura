@@ -1,4 +1,4 @@
-package com.kalashnyk.denys.defaultproject.usecases.repository.database.pojo
+package com.kalashnyk.denys.defaultproject.usecases.repository.server.pojo
 
 import com.google.gson.annotations.SerializedName
 import com.kalashnyk.denys.defaultproject.usecases.repository.database.entity.UserEntity

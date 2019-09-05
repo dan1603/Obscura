@@ -288,7 +288,7 @@
                     android:layout_gravity="center_horizontal|bottom"
                     android:layout_marginBottom="@dimen/indentation_16">
 
-                <TextViewa
+                <TextView
                         android:id="@+id/tvSignUpHaveAccount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

@@ -14,6 +14,8 @@ import com.kalashnyk.denys.defaultproject.App
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
 import com.kalashnyk.denys.defaultproject.presentation.navigation.ActivityNavigation
+import com.kalashnyk.denys.defaultproject.presentation.navigation.FragmentNavigator
+import com.kalashnyk.denys.defaultproject.presentation.navigation.FragmentNavigatorImpl
 import com.kalashnyk.denys.defaultproject.presentation.navigation.NavigationImpl
 import com.kalashnyk.denys.defaultproject.utils.extention.hideKeyboard
 import com.kalashnyk.denys.defaultproject.utils.extention.initializeToolbar
@@ -35,6 +37,8 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
      *
      */
     protected lateinit var navigator : ActivityNavigation
+
+    protected lateinit var fragmentNavigator: FragmentNavigator
 
     /**
      *
@@ -71,6 +75,7 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         viewBinding = DataBindingUtil.setContentView(this, getLayoutId())
         navigator = NavigationImpl(this)
+        fragmentNavigator = FragmentNavigatorImpl(supportFragmentManager)
         permissionManager = PermissionManagerImpl()
         createDaggerDependencies()
         setupViewLogic(viewBinding)

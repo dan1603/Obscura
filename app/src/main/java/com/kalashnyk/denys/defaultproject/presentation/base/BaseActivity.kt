@@ -4,7 +4,6 @@ import android.annotation.TargetApi
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import android.widget.Toolbar
 import androidx.annotation.RequiresApi
@@ -14,14 +13,12 @@ import androidx.databinding.ViewDataBinding
 import com.kalashnyk.denys.defaultproject.App
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
-import com.kalashnyk.denys.defaultproject.presentation.navigation.INavigation
+import com.kalashnyk.denys.defaultproject.presentation.navigation.ActivityNavigation
 import com.kalashnyk.denys.defaultproject.presentation.navigation.NavigationImpl
 import com.kalashnyk.denys.defaultproject.utils.extention.hideKeyboard
 import com.kalashnyk.denys.defaultproject.utils.extention.initializeToolbar
 import com.kalashnyk.denys.defaultproject.utils.permission.IPermissionManager
 import com.kalashnyk.denys.defaultproject.utils.permission.PermissionManagerImpl
-import android.view.WindowManager
-import android.content.Context
 
 
 /**
@@ -37,7 +34,7 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
     /**
      *
      */
-    protected lateinit var navigator : INavigation
+    protected lateinit var navigator : ActivityNavigation
 
     /**
      *

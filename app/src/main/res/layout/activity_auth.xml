@@ -8,7 +8,7 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/auth_container"
+            android:id="@+id/content_view_group"
             android:fitsSystemWindows="true"
             tools:context=".presentation.activities.auth.AuthActivity"/>
 

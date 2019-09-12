@@ -14,7 +14,7 @@
                   type="com.kalashnyk.denys.defaultproject.presentation.activities.welcome.flow.WelcomeFlowModelBinding"/>
 
         <variable name="navigator"
-                  type="com.kalashnyk.denys.defaultproject.presentation.navigation.INavigation"/>
+                  type="com.kalashnyk.denys.defaultproject.presentation.navigation.ActivityNavigation"/>
 
         <variable name="typeScreen"
                   type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow.NavigationType"/>

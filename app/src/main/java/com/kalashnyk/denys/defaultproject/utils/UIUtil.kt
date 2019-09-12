@@ -2,10 +2,8 @@ package com.kalashnyk.denys.defaultproject.utils
 
 import android.annotation.TargetApi
 import android.app.Activity
-import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
-import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.Outline
 import android.graphics.PorterDuff
@@ -14,7 +12,6 @@ import android.os.Build
 import androidx.annotation.ColorInt
 import androidx.appcompat.app.AlertDialog
 import android.util.DisplayMetrics
-import android.view.Display
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewOutlineProvider
@@ -23,8 +20,7 @@ import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import com.kalashnyk.denys.defaultproject.R
-import com.kalashnyk.denys.defaultproject.presentation.activities.main.MainActivity
-import com.kalashnyk.denys.defaultproject.presentation.navigation.INavigation
+import com.kalashnyk.denys.defaultproject.presentation.navigation.ActivityNavigation
 
 object UIUtil {
 
@@ -238,7 +234,7 @@ object UIUtil {
         }
     }
 
-    fun handleBackButton(navigator : INavigation) {
+    fun handleBackButton(navigator : ActivityNavigation) {
         if (Util.runningActivityCount < 2) {
             navigator.openMainScreen()
         }

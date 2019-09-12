@@ -85,14 +85,14 @@ class AuthActivity : BaseActivity<AuthDataBinding>(), IAuthFlow.IAuthListener {
 
         when (typeScreen) {
             IAuthFlow.NavigationType.SIGN_IN_SCREEN -> {
-                replaceFragment(R.id.auth_container, SignInFragment.newInstance(), isRootChild, isRootChild)
+                replaceFragment(R.id.content_view_group, SignInFragment.newInstance(), isRootChild, isRootChild)
             }
             IAuthFlow.NavigationType.SIGN_UP_SCREEN -> {
-                replaceFragment(R.id.auth_container, SignUpFragment.newInstance(), isRootChild, isRootChild)
+                replaceFragment(R.id.content_view_group, SignUpFragment.newInstance(), isRootChild, isRootChild)
 
             }
             IAuthFlow.NavigationType.RECOVER_ACCOUNT_SCREEN -> {
-                replaceFragment(R.id.auth_container, RecoverAccountFragment.newInstance(), isRootChild, isRootChild)
+                replaceFragment(R.id.content_view_group, RecoverAccountFragment.newInstance(), isRootChild, isRootChild)
             }
         }
     }

@@ -15,9 +15,9 @@ import com.kalashnyk.denys.defaultproject.utils.ApplicationConstants
 
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
- * navigation source for opening screens
+ * navigation source for opening activities screens
  */
-interface INavigation {
+interface ActivityNavigation {
 
     var navigatorSource: Activity
     fun openSplashScreen(context: Context)
@@ -32,7 +32,7 @@ interface INavigation {
 /**
  *
  */
-class NavigationImpl(override var navigatorSource: Activity) : INavigation {
+class NavigationImpl(override var navigatorSource: Activity) : ActivityNavigation {
 
     /**
      *

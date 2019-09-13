@@ -13,7 +13,7 @@ import androidx.lifecycle.Observer
 import com.kalashnyk.denys.defaultproject.domain.BaseViewModel
 import com.kalashnyk.denys.defaultproject.presentation.base.LoadingState
 import com.kalashnyk.denys.defaultproject.utils.AppLog
-
+//todo watch and remove
 abstract class BaseBindingFragment<B : ViewDataBinding> : Fragment() {
     protected lateinit var binding : B
     protected abstract val layoutId : Int
@@ -108,7 +108,7 @@ abstract class BaseBindingFragment<B : ViewDataBinding> : Fragment() {
             imm?.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
         }
     }
-
+    //todo move to extensions
     protected open fun log(message : String) {
         @Suppress("ConstantConditionIf")
         if (DEBUG_ENABLED) {

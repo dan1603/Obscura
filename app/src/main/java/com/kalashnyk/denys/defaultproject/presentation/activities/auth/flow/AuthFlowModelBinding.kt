@@ -12,6 +12,7 @@ import androidx.databinding.BindingAdapter
 import com.google.android.material.textfield.TextInputLayout
 import com.kalashnyk.denys.defaultproject.BR
 import com.kalashnyk.denys.defaultproject.R
+import com.kalashnyk.denys.defaultproject.presentation.navigation.model.Pages
 import com.kalashnyk.denys.defaultproject.utils.binding.TextSpanModel
 import com.kalashnyk.denys.defaultproject.utils.extention.*
 import com.kalashnyk.denys.defaultproject.utils.validation.ValidationErrorMessage
@@ -122,7 +123,7 @@ class AuthFlowModelBinding(
     /**
      *
      */
-    fun onOpenScreen(typeNavigate: IAuthFlow.NavigationType, view: View) {
+    fun onOpenScreen(typeNavigate: Pages, view: View) {
         view.hideKeyboardWithClearFocus()
         listener?.openScreen(typeNavigate)
     }

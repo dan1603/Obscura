@@ -10,7 +10,7 @@
                   type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowModelBinding"/>
 
         <variable name="typeNavigation"
-                  type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow.NavigationType"/>
+                  type="com.kalashnyk.denys.defaultproject.presentation.navigation.model.Pages"/>
 
         <variable name="typeSocial"
                   type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow.SocialAuthType"/>
@@ -296,7 +296,7 @@
                         android:letterSpacing="0.01"
                         android:padding="@dimen/indentation_5"
                         android:background="?android:attr/selectableItemBackground"
-                        android:onClick="@{(view)-> bindingModel.onOpenScreen(typeNavigation.SIGN_IN_SCREEN, containerSignUpCases)}"
+                        android:onClick="@{(view)-> bindingModel.onOpenScreen(typeNavigation.SIGN_IN, containerSignUpCases)}"
                         bind:textSpan="@{bindingModel.signInTextSpanModel}"
                         android:layout_gravity="center_horizontal|bottom"/>
             </androidx.coordinatorlayout.widget.CoordinatorLayout>

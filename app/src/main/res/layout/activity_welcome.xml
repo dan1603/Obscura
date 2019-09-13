@@ -17,7 +17,7 @@
                   type="com.kalashnyk.denys.defaultproject.presentation.navigation.ActivityNavigation"/>
 
         <variable name="typeScreen"
-                  type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow.NavigationType"/>
+                  type="com.kalashnyk.denys.defaultproject.presentation.navigation.model.Pages"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -90,7 +90,7 @@
                 android:padding="@dimen/indentation_5"
                 android:textSize="@dimen/txt_size_18"
                 android:background="?android:attr/selectableItemBackground"
-                android:onClick="@{(view)-> navigator.openAuthScreen(typeScreen.SIGN_IN_SCREEN, Intent.FLAG_ACTIVITY_CLEAR_TASK)}"
+                android:onClick="@{(view)-> navigator.openAuthScreen(typeScreen.SIGN_IN, Intent.FLAG_ACTIVITY_CLEAR_TASK)}"
                 bind:textSpan="@{bindingModel.signInTextSpanModel}"
                 app:layout_constraintTop_toBottomOf="@id/tvWelcomeInformation"
                 app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +106,7 @@
                 android:textSize="@dimen/txt_size_18"
                 android:padding="@dimen/indentation_6"
                 android:background="?android:attr/selectableItemBackground"
-                android:onClick="@{(view)-> navigator.openAuthScreen(typeScreen.SIGN_UP_SCREEN, Intent.FLAG_ACTIVITY_CLEAR_TASK)}"
+                android:onClick="@{(view)-> navigator.openAuthScreen(typeScreen.SIGN_UP, Intent.FLAG_ACTIVITY_CLEAR_TASK)}"
                 bind:textSpan="@{bindingModel.signUpTextSpanModel}"
                 app:layout_constraintTop_toBottomOf="@+id/tvWelcomeSignIn"
                 app:layout_constraintStart_toStartOf="parent"

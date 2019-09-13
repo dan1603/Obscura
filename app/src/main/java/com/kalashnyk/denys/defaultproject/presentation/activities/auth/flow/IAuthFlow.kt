@@ -2,14 +2,9 @@ package com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow
 
 import android.text.TextWatcher
 import com.kalashnyk.denys.defaultproject.presentation.base.IBaseFlow
+import com.kalashnyk.denys.defaultproject.presentation.navigation.model.Pages
 
 interface IAuthFlow : IBaseFlow {
-
-    // for open screen by type
-    //todo refactor
-    enum class NavigationType {
-        SIGN_IN_SCREEN, SIGN_UP_SCREEN, RECOVER_ACCOUNT_SCREEN
-    }
 
     // for social auth
     enum class SocialAuthType {
@@ -25,7 +20,7 @@ interface IAuthFlow : IBaseFlow {
     interface IAuthListener : IBaseFlow.IBaseListener {
         fun authRequest(flowModel: AuthFlowModel, callback: IAuthCallback)
         fun socialAuth(type: SocialAuthType, callback: IAuthCallback?)
-        fun openScreen(typeScreen: NavigationType)
+        fun openScreen(page: Pages)
     }
 
     interface IAuthCallback : IBaseFlow.IBaseCallback, TextWatcher {

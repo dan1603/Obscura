@@ -11,7 +11,7 @@
                   type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowModelBinding"/>
 
         <variable name="typeNavigation"
-                  type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow.NavigationType"/>
+                  type="com.kalashnyk.denys.defaultproject.presentation.navigation.model.Pages"/>
 
         <variable name="typeSocial"
                   type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow.SocialAuthType"/>
@@ -163,7 +163,7 @@
                             android:padding="@dimen/indentation_4"
                             android:text="@string/forgot_your_password"
                             android:background="?android:attr/selectableItemBackground"
-                            android:onClick="@{(view)-> bindingModel.onOpenScreen(typeNavigation.RECOVER_ACCOUNT_SCREEN, containerSignInInputs)}"/>
+                            android:onClick="@{(view)-> bindingModel.onOpenScreen(typeNavigation.RECOVER_ACCOUNT, containerSignInInputs)}"/>
 
                 </LinearLayout>
 
@@ -234,7 +234,7 @@
                     android:layout_marginTop="@dimen/indentation_60"
                     android:layout_marginBottom="@dimen/indentation_16"
                     android:background="?android:attr/selectableItemBackground"
-                    android:onClick="@{(view)-> bindingModel.onOpenScreen(typeNavigation.SIGN_UP_SCREEN, containerSignInInputs)}"
+                    android:onClick="@{(view)-> bindingModel.onOpenScreen(typeNavigation.SIGN_UP, containerSignInInputs)}"
                     bind:textSpan="@{bindingModel.signUpTextSpanModel}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"

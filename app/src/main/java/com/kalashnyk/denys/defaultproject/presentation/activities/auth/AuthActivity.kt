@@ -9,19 +9,17 @@ import com.kalashnyk.denys.defaultproject.domain.AuthViewModel
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowModel
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseActivity
-import com.kalashnyk.denys.defaultproject.presentation.fragments.recover_account.RecoverAccountFragment
-import com.kalashnyk.denys.defaultproject.presentation.fragments.sign_in.SignInFragment
-import com.kalashnyk.denys.defaultproject.presentation.fragments.sign_up.SignUpFragment
+import com.kalashnyk.denys.defaultproject.presentation.navigation.model.PageNavigationItem
+import com.kalashnyk.denys.defaultproject.presentation.navigation.model.Pages
 import com.kalashnyk.denys.defaultproject.utils.ApplicationConstants
 import com.kalashnyk.denys.defaultproject.utils.extention.hideKeyboard
-import com.kalashnyk.denys.defaultproject.utils.extention.replaceFragment
 
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
 class AuthActivity : BaseActivity<AuthDataBinding>(), IAuthFlow.IAuthListener {
 
-    private lateinit var rootChildType: IAuthFlow.NavigationType
+    private lateinit var rootChildType: Pages
     private lateinit var viewModel: AuthViewModel
     /**
      * @param component
@@ -75,26 +73,8 @@ class AuthActivity : BaseActivity<AuthDataBinding>(), IAuthFlow.IAuthListener {
     /**
      *
      */
-    override fun openScreen(typeScreen: IAuthFlow.NavigationType) {
-
-        /**
-         * if typeScreen equal with rootChildType -
-         * we don't use animation between rout fragments
-         */
-        val isRootChild=rootChildType != typeScreen
-
-        when (typeScreen) {
-            IAuthFlow.NavigationType.SIGN_IN_SCREEN -> {
-                replaceFragment(R.id.content_view_group, SignInFragment.newInstance(), isRootChild, isRootChild)
-            }
-            IAuthFlow.NavigationType.SIGN_UP_SCREEN -> {
-                replaceFragment(R.id.content_view_group, SignUpFragment.newInstance(), isRootChild, isRootChild)
-
-            }
-            IAuthFlow.NavigationType.RECOVER_ACCOUNT_SCREEN -> {
-                replaceFragment(R.id.content_view_group, RecoverAccountFragment.newInstance(), isRootChild, isRootChild)
-            }
-        }
+    override fun openScreen(page: Pages) {
+        goToPage(PageNavigationItem(page))
     }
 
     /**
@@ -105,7 +85,7 @@ class AuthActivity : BaseActivity<AuthDataBinding>(), IAuthFlow.IAuthListener {
     }
 
     private fun handleIntent() {
-        rootChildType=intent?.extras?.getSerializable(ApplicationConstants.AUTH_TYPE_SCREEN) as IAuthFlow.NavigationType
+        rootChildType=intent?.extras?.getSerializable(ApplicationConstants.AUTH_TYPE_SCREEN) as Pages
         openScreen(rootChildType)
         hideKeyboard()
     }

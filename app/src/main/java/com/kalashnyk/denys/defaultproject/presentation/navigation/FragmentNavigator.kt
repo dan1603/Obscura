@@ -5,6 +5,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.kalashnyk.denys.defaultproject.R
+import com.kalashnyk.denys.defaultproject.presentation.base.BaseFragment
 import com.kalashnyk.denys.defaultproject.presentation.fragments.sign_in.SignInFragment
 import com.kalashnyk.denys.defaultproject.presentation.navigation.model.PageNavigationItem
 import com.kalashnyk.denys.defaultproject.presentation.navigation.model.Pages
@@ -110,7 +111,7 @@ class FragmentNavigatorImpl(private val fm: FragmentManager) : FragmentNavigator
         while (fm.backStackEntryCount > 0) {
             fm.popBackStackImmediate()
         }
-        (fm.fragments.last() as? BaseBindingFragment<*>)?.reset()
+        (fm.fragments.last() as? BaseFragment<*>)?.reset()
     }
 
     private fun show(dialog: DialogFragment) {

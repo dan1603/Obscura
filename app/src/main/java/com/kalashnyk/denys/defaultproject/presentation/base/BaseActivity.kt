@@ -10,6 +10,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
 import com.kalashnyk.denys.defaultproject.App
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
@@ -17,6 +18,8 @@ import com.kalashnyk.denys.defaultproject.presentation.navigation.ActivityNaviga
 import com.kalashnyk.denys.defaultproject.presentation.navigation.FragmentNavigator
 import com.kalashnyk.denys.defaultproject.presentation.navigation.FragmentNavigatorImpl
 import com.kalashnyk.denys.defaultproject.presentation.navigation.NavigationImpl
+import com.kalashnyk.denys.defaultproject.presentation.navigation.model.PageNavigationItem
+import com.kalashnyk.denys.defaultproject.presentation.navigation.model.TransitionBundle
 import com.kalashnyk.denys.defaultproject.utils.extention.hideKeyboard
 import com.kalashnyk.denys.defaultproject.utils.extention.initializeToolbar
 import com.kalashnyk.denys.defaultproject.utils.permission.IPermissionManager
@@ -26,7 +29,7 @@ import com.kalashnyk.denys.defaultproject.utils.permission.PermissionManagerImpl
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
-abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
+abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity(), FragmentNavigator {
 
     /**
      *
@@ -38,6 +41,9 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
      */
     protected lateinit var navigator : ActivityNavigation
 
+    /**
+     *
+     */
     protected lateinit var fragmentNavigator: FragmentNavigator
 
     /**
@@ -79,6 +85,57 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
         permissionManager = PermissionManagerImpl()
         createDaggerDependencies()
         setupViewLogic(viewBinding)
+    }
+
+    /**
+     * Convenience method for adding a fragment or replacing an existing one for a specific tag
+     * @param fragment Fragment
+     * @param id Int
+     * @param tag String
+     */
+    protected fun addOrReplaceFragment(fragment: Fragment, id: Int, tag: String) {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        if (supportFragmentManager.findFragmentByTag(tag) == null) {
+            fragmentTransaction.add(id, fragment, tag)
+        } else {
+            fragmentTransaction.replace(id, fragment, tag)
+        }
+        fragmentTransaction.commit()
+    }
+
+    fun setWindowFlag(bits: Int, on: Boolean) {
+        val win = window
+        val winParams = win.attributes
+        if (on) {
+            winParams.flags = winParams.flags or bits
+        } else {
+            winParams.flags = winParams.flags and bits.inv()
+        }
+        win.attributes = winParams
+    }
+
+
+    override fun goToPage(page: PageNavigationItem) {
+        fragmentNavigator.goToPage(page)
+    }
+
+    override fun goToPage(page: PageNavigationItem, transitionBundle: TransitionBundle) {
+        fragmentNavigator.goToPage(page, transitionBundle)
+    }
+
+    override fun goToPageForResult(page: PageNavigationItem, transitionBundle: TransitionBundle) {
+        fragmentNavigator.goToPageForResult(page, transitionBundle)
+    }
+
+    override fun back(): Boolean {
+        if (!fragmentNavigator.back()) {
+            onBackPressed()
+        }
+        return true
+    }
+
+    override fun reset() {
+        fragmentNavigator.reset()
     }
 
     /**

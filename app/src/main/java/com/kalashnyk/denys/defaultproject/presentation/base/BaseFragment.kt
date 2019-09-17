@@ -72,7 +72,7 @@ abstract class BaseFragment<V : ViewDataBinding> : Fragment() {
      * depending on the loading state
      */
     protected open fun onLoadingStateChanged(loadingState : LoadingState) {}
-
+//todo  move to extension
     protected open fun log(message : String) {
         @Suppress("ConstantConditionIf")
         if (DEBUG_ENABLED) {
@@ -84,7 +84,16 @@ abstract class BaseFragment<V : ViewDataBinding> : Fragment() {
 
     abstract fun setupViewLogic(binder : V)
 
+    /**
+     *
+     */
     protected fun showToast(text: String) = activity?.showToast(text)
+    /**
+     *
+     */
     protected fun showSnack(text: String) = activity?.showSnack(text)
+    /**
+     *
+     */
     protected fun hideKeyboard() = activity?.hideKeyboard()
 }

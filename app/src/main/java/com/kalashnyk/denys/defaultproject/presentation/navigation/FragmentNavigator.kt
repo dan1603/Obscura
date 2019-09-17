@@ -6,13 +6,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseFragment
+import com.kalashnyk.denys.defaultproject.presentation.fragments.recover_account.RecoverAccountFragment
 import com.kalashnyk.denys.defaultproject.presentation.fragments.sign_in.SignInFragment
-import com.kalashnyk.denys.defaultproject.presentation.navigation.model.PageNavigationItem
-import com.kalashnyk.denys.defaultproject.presentation.navigation.model.Pages
-import com.kalashnyk.denys.defaultproject.presentation.navigation.model.TransitionAnimation
-import com.kalashnyk.denys.defaultproject.presentation.navigation.model.TransitionBundle
-
-import com.wego.core.base.components.navigation.model.*
+import com.kalashnyk.denys.defaultproject.presentation.fragments.sign_up.SignUpFragment
+import com.kalashnyk.denys.defaultproject.presentation.navigation.model.*
 
 
 /**
@@ -55,7 +52,7 @@ interface FragmentNavigator {
 class FragmentNavigatorImpl(private val fm: FragmentManager) : FragmentNavigator {
 
     companion object {
-        private val CONTENT_ID = R.id.content_view_group
+        private const val CONTENT_ID = R.id.content_view_group
         private const val FRAGMENT_TAG = "fragment_tag"
     }
 
@@ -80,21 +77,14 @@ class FragmentNavigatorImpl(private val fm: FragmentManager) : FragmentNavigator
     override fun goToPage(page: PageNavigationItem, transitionBundle: TransitionBundle) {
         goToPage(page, transitionBundle, null)
     }
-// activity
-//        val payload = Payload("123")
-//        goToPage(PageNavigationItem(Pages.VOYAGE, payload))
-//    }
-//}
-//fragment
-// getNavigatorIfAvailable().goToPage(PageNavigationItem(Pages.ENTERTAINMENT,
-//                            PayloadSearch(placeId!!, this.placeName, this.lang, this.currency)))
+
     @Suppress("ComplexMethod")
     fun goToPage(page: PageNavigationItem, transitionBundle: TransitionBundle, resultListener: ResultListener?) {
 
         when (page.destination) {
             Pages.SIGN_IN -> addOrReplaceFragment(SignInFragment.newInstance(), transitionBundle)
-            Pages.SIGN_UP -> addOrReplaceFragment(SignInFragment.newInstance(), transitionBundle)
-            Pages.RECOVER_ACCOUNT -> addOrReplaceFragment(SignInFragment.newInstance(), transitionBundle)
+            Pages.SIGN_UP -> addOrReplaceFragment(SignUpFragment.newInstance(), transitionBundle)
+            Pages.RECOVER_ACCOUNT -> addOrReplaceFragment(RecoverAccountFragment.newInstance(), transitionBundle)
         }
     }
 
@@ -160,6 +150,7 @@ class FragmentNavigatorImpl(private val fm: FragmentManager) : FragmentNavigator
             val transitionName = ViewCompat.getTransitionName(it)
             transaction.addSharedElement(it, transitionName!!)
         }
+
         if (existingFragment == null) {
             transaction.add(CONTENT_ID, fragment, FRAGMENT_TAG)
         } else {

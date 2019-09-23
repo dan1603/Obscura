@@ -3,6 +3,9 @@ package com.kalashnyk.denys.defaultproject.utils.extention
 import android.os.Bundle
 import android.os.Parcelable
 import androidx.fragment.app.Fragment
+import com.kalashnyk.denys.defaultproject.presentation.base.BaseActivity
+import com.kalashnyk.denys.defaultproject.presentation.base.BaseFragment
+import com.kalashnyk.denys.defaultproject.utils.AppLog
 import java.io.Serializable
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
@@ -62,6 +65,14 @@ private inline fun <T> Fragment.delegate(
 
         override fun setValue(thisRef: Any, property: KProperty<*>, value: T?) =
                 setter(key ?: property.name, value)
+    }
+}
+
+@Suppress("ConstantConditionIf")
+fun BaseFragment<*>.log(message : String) {
+    val activity = this.activity
+    if (activity is BaseActivity<*> && activity.isDebugEnabled()) {
+        AppLog.d("* $message")
     }
 }
 

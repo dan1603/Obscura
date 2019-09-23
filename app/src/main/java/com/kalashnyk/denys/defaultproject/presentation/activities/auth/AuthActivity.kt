@@ -9,8 +9,10 @@ import com.kalashnyk.denys.defaultproject.domain.AuthViewModel
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowModel
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseActivity
-import com.kalashnyk.denys.defaultproject.presentation.navigation.model.PageNavigationItem
-import com.kalashnyk.denys.defaultproject.presentation.navigation.model.Pages
+import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.PageNavigationItem
+import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages
+import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.TransitionAnimation
+import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.TransitionBundle
 import com.kalashnyk.denys.defaultproject.utils.ApplicationConstants
 import com.kalashnyk.denys.defaultproject.utils.extention.hideKeyboard
 
@@ -74,7 +76,12 @@ class AuthActivity : BaseActivity<AuthDataBinding>(), IAuthFlow.IAuthListener {
      *
      */
     override fun openScreen(page: Pages) {
-        goToPage(PageNavigationItem(page))
+
+        val transitionBundle=
+            if (page != rootChildType) TransitionBundle(TransitionAnimation.SLIDE_IN_FROM_RIGHT)
+            else TransitionBundle(TransitionAnimation.NONE)
+
+        goToPage(PageNavigationItem(page), transitionBundle)
     }
 
     /**

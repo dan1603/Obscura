@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.snackbar.Snackbar
 import com.kalashnyk.denys.defaultproject.R
+import com.kalashnyk.denys.defaultproject.utils.AppLog
 import java.io.Serializable
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
@@ -28,6 +29,12 @@ fun <A : Activity> A.hideKeyboard() {
     val windowToken = currentFocus?.windowToken
     if (windowToken != null) {
         imm?.hideSoftInputFromWindow(windowToken, 0)
+    }
+}
+@Suppress("ConstantConditionIf")
+fun <A : Activity> A.log(message: String, debugEnable : Boolean) {
+    if (debugEnable) {
+        AppLog.d("* $message")
     }
 }
 
@@ -162,7 +169,7 @@ fun <A : Activity> A.getDisplayPoint(): Point {
     display.getSize(outPoint)
     return outPoint
 }
-
+//todo change to Navigator logic and fix animation for open fragment cases auth and main, remove unnecessary code
 /**
  * @param container
  * @param fragment
@@ -171,7 +178,7 @@ fun <A : FragmentActivity> A.replaceFragment(
     container: Int,
     fragment: Fragment
 ) = this.replaceFragment(container, fragment, false, false)
-
+//todo change to Navigator logic and fix animation for open fragment cases auth and main, remove unnecessary code
 /**
  * @param container
  * @param fragment
@@ -184,7 +191,7 @@ fun <A : FragmentActivity> A.replaceFragment(
     addToBackStack: Boolean,
     moveOnRight: Boolean
 ) = this.replaceFragment(container, fragment, addToBackStack, true, moveOnRight)
-
+//todo change to Navigator logic and fix animation for open fragment cases auth and main, remove unnecessary code
 /**
  * @param container
  * @param fragment
@@ -266,7 +273,7 @@ private inline fun <T, A : Activity> A.nonNullDelegate(
             setter(key ?: property.name, value)
     }
 }
-
+//todo change to Navigator logic and fix animation for open fragment cases auth and main, remove unnecessary code
 private fun FragmentManager.replaceFragment(
     containerViewId: Int,
     fragment: Fragment,

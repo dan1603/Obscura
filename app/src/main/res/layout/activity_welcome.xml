@@ -14,10 +14,10 @@
                   type="com.kalashnyk.denys.defaultproject.presentation.activities.welcome.flow.WelcomeFlowModelBinding"/>
 
         <variable name="navigator"
-                  type="com.kalashnyk.denys.defaultproject.presentation.navigation.ActivityNavigation"/>
+                  type="com.kalashnyk.denys.defaultproject.presentation.navigation.Navigation"/>
 
         <variable name="typeScreen"
-                  type="com.kalashnyk.denys.defaultproject.presentation.navigation.model.Pages"/>
+                  type="com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

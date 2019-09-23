@@ -1,4 +1,4 @@
-package com.kalashnyk.denys.defaultproject.presentation.navigation
+package com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator
 
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.DialogFragment
@@ -9,8 +9,7 @@ import com.kalashnyk.denys.defaultproject.presentation.base.BaseFragment
 import com.kalashnyk.denys.defaultproject.presentation.fragments.recover_account.RecoverAccountFragment
 import com.kalashnyk.denys.defaultproject.presentation.fragments.sign_in.SignInFragment
 import com.kalashnyk.denys.defaultproject.presentation.fragments.sign_up.SignUpFragment
-import com.kalashnyk.denys.defaultproject.presentation.navigation.model.*
-
+import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.*
 
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
@@ -46,14 +45,16 @@ interface FragmentNavigator {
     fun reset()
 
 }
+
 /**
  *
  */
-class FragmentNavigatorImpl(private val fm: FragmentManager) : FragmentNavigator {
+class FragmentNavigatorImpl(private val fm: FragmentManager) :
+    FragmentNavigator {
 
     companion object {
-        private const val CONTENT_ID = R.id.content_view_group
-        private const val FRAGMENT_TAG = "fragment_tag"
+        private const val CONTENT_ID=R.id.content_view_group
+        private const val FRAGMENT_TAG="fragment_tag"
     }
 
     /**
@@ -67,7 +68,7 @@ class FragmentNavigatorImpl(private val fm: FragmentManager) : FragmentNavigator
      *
      */
     override fun goToPageForResult(page: PageNavigationItem, transitionBundle: TransitionBundle) {
-        val currentFragment = fm.findFragmentByTag(FRAGMENT_TAG)
+        val currentFragment=fm.findFragmentByTag(FRAGMENT_TAG)
         goToPage(page, transitionBundle, currentFragment as ResultListener)
     }
 
@@ -89,7 +90,7 @@ class FragmentNavigatorImpl(private val fm: FragmentManager) : FragmentNavigator
     }
 
     override fun back(): Boolean {
-        return if (fm.backStackEntryCount >= 1) {
+        return if (fm.backStackEntryCount > 0) {
             fm.popBackStack()
             true
         } else {
@@ -110,9 +111,8 @@ class FragmentNavigatorImpl(private val fm: FragmentManager) : FragmentNavigator
 
     @Suppress("ComplexMethod")
     private fun addOrReplaceFragment(fragment: Fragment, transitionBundle: TransitionBundle) {
-        val existingFragment = fm.findFragmentByTag(FRAGMENT_TAG)
-        val transaction = fm.beginTransaction()
-
+        val existingFragment=fm.findFragmentByTag(FRAGMENT_TAG)
+        val transaction=fm.beginTransaction()
         when (transitionBundle.animation) {
             TransitionAnimation.SLIDE_IN_FROM_RIGHT -> transaction.setCustomAnimations(
                 R.anim.slide_in_right_chrome,
@@ -147,18 +147,22 @@ class FragmentNavigatorImpl(private val fm: FragmentManager) : FragmentNavigator
         }
 
         transitionBundle.views.forEach {
-            val transitionName = ViewCompat.getTransitionName(it)
+            val transitionName=ViewCompat.getTransitionName(it)
             transaction.addSharedElement(it, transitionName!!)
         }
 
         if (existingFragment == null) {
-            transaction.add(CONTENT_ID, fragment, FRAGMENT_TAG)
+            transaction.add(
+                CONTENT_ID, fragment,
+                FRAGMENT_TAG
+            )
         } else {
-            transaction.replace(CONTENT_ID, fragment, FRAGMENT_TAG)
+            transaction.replace(
+                CONTENT_ID, fragment,
+                FRAGMENT_TAG
+            )
             transaction.addToBackStack(null)
         }
-
         transaction.commitAllowingStateLoss()
     }
-
 }

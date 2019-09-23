@@ -24,20 +24,9 @@ abstract class BaseFragment<V : ViewDataBinding> : Fragment() {
 
     private val appBar: ActionBar? = activity?.actionBar
 
-    companion object {
-        private const val DEBUG_ENABLED = false
+    abstract fun getLayoutId(): Int
 
-    }
-
-    protected fun disableHomeAsUp() = appBar?.setDisplayHomeAsUpEnabled(false)
-
-    protected fun initializeNavigationBar(title: String, showBackButton: Boolean, @DrawableRes resId: Int) {
-        appBar?.apply {
-            this.setDisplayHomeAsUpEnabled(showBackButton)
-            this.setHomeAsUpIndicator(resId)
-            this.elevation = 4f
-        }
-    }
+    abstract fun setupViewLogic(binder : V)
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -46,7 +35,7 @@ abstract class BaseFragment<V : ViewDataBinding> : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-    abstract fun getLayoutId(): Int
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewBinder = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
@@ -58,6 +47,18 @@ abstract class BaseFragment<V : ViewDataBinding> : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         getViewModel()?.macroLoadingState?.observe(this,
             Observer { it?.let { onLoadingStateChanged(it) } })
+    }
+
+    open fun reset() {}
+
+    protected fun disableHomeAsUp() = appBar?.setDisplayHomeAsUpEnabled(false)
+
+    protected fun initializeNavigationBar(title: String, showBackButton: Boolean, @DrawableRes resId: Int) {
+        appBar?.apply {
+            this.setDisplayHomeAsUpEnabled(showBackButton)
+            this.setHomeAsUpIndicator(resId)
+            this.elevation = 4f
+        }
     }
 
     /**
@@ -72,17 +73,6 @@ abstract class BaseFragment<V : ViewDataBinding> : Fragment() {
      * depending on the loading state
      */
     protected open fun onLoadingStateChanged(loadingState : LoadingState) {}
-//todo  move to extension
-    protected open fun log(message : String) {
-        @Suppress("ConstantConditionIf")
-        if (DEBUG_ENABLED) {
-            AppLog.d("* $message")
-        }
-    }
-
-    open fun reset() {}
-
-    abstract fun setupViewLogic(binder : V)
 
     /**
      *

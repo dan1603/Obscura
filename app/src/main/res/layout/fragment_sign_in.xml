@@ -11,7 +11,7 @@
                   type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowModelBinding"/>
 
         <variable name="typeNavigation"
-                  type="com.kalashnyk.denys.defaultproject.presentation.navigation.model.Pages"/>
+                  type="com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages"/>
 
         <variable name="typeSocial"
                   type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow.SocialAuthType"/>

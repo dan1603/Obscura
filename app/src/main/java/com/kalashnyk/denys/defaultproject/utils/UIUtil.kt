@@ -20,7 +20,7 @@ import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import com.kalashnyk.denys.defaultproject.R
-import com.kalashnyk.denys.defaultproject.presentation.navigation.ActivityNavigation
+import com.kalashnyk.denys.defaultproject.presentation.navigation.Navigation
 
 object UIUtil {
 
@@ -234,7 +234,7 @@ object UIUtil {
         }
     }
 
-    fun handleBackButton(navigator : ActivityNavigation) {
+    fun handleBackButton(navigator : Navigation) {
         if (Util.runningActivityCount < 2) {
             navigator.openMainScreen()
         }

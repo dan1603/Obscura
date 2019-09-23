@@ -14,12 +14,10 @@ import androidx.fragment.app.Fragment
 import com.kalashnyk.denys.defaultproject.App
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
-import com.kalashnyk.denys.defaultproject.presentation.navigation.ActivityNavigation
-import com.kalashnyk.denys.defaultproject.presentation.navigation.FragmentNavigator
-import com.kalashnyk.denys.defaultproject.presentation.navigation.FragmentNavigatorImpl
+import com.kalashnyk.denys.defaultproject.presentation.navigation.Navigation
 import com.kalashnyk.denys.defaultproject.presentation.navigation.NavigationImpl
-import com.kalashnyk.denys.defaultproject.presentation.navigation.model.PageNavigationItem
-import com.kalashnyk.denys.defaultproject.presentation.navigation.model.TransitionBundle
+import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.PageNavigationItem
+import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.TransitionBundle
 import com.kalashnyk.denys.defaultproject.utils.extention.hideKeyboard
 import com.kalashnyk.denys.defaultproject.utils.extention.initializeToolbar
 import com.kalashnyk.denys.defaultproject.utils.permission.IPermissionManager
@@ -29,7 +27,7 @@ import com.kalashnyk.denys.defaultproject.utils.permission.PermissionManagerImpl
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
-abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity(), FragmentNavigator {
+abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
 
     /**
      *
@@ -39,25 +37,23 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity(), Fragment
     /**
      *
      */
-    protected lateinit var navigator : ActivityNavigation
+    protected lateinit var navigator: Navigation
 
     /**
      *
      */
-    protected lateinit var fragmentNavigator: FragmentNavigator
-
-    /**
-     *
-     */
-    protected lateinit var permissionManager : IPermissionManager
+    protected lateinit var permissionManager: IPermissionManager
 
     /**
      *
      */
     open lateinit var messageNecessaryPermissions: String
 
-    private var toolbar: Toolbar? = null
+    private var toolbar: Toolbar?=null
 
+    companion object {
+        private const val DEBUG_ENABLED=false
+    }
 
     /**
      * @param component
@@ -72,84 +68,19 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity(), Fragment
     /**
      * @param binder
      */
-    abstract fun setupViewLogic(binder : V)
+    abstract fun setupViewLogic(binder: V)
 
     /**
      *
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewBinding = DataBindingUtil.setContentView(this, getLayoutId())
-        navigator = NavigationImpl(this)
-        fragmentNavigator = FragmentNavigatorImpl(supportFragmentManager)
-        permissionManager = PermissionManagerImpl()
+        viewBinding=DataBindingUtil.setContentView(this, getLayoutId())
+        navigator=NavigationImpl(this)
+        permissionManager=PermissionManagerImpl()
         createDaggerDependencies()
         setupViewLogic(viewBinding)
     }
-
-    /**
-     * Convenience method for adding a fragment or replacing an existing one for a specific tag
-     * @param fragment Fragment
-     * @param id Int
-     * @param tag String
-     */
-    protected fun addOrReplaceFragment(fragment: Fragment, id: Int, tag: String) {
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
-        if (supportFragmentManager.findFragmentByTag(tag) == null) {
-            fragmentTransaction.add(id, fragment, tag)
-        } else {
-            fragmentTransaction.replace(id, fragment, tag)
-        }
-        fragmentTransaction.commit()
-    }
-
-    fun setWindowFlag(bits: Int, on: Boolean) {
-        val win = window
-        val winParams = win.attributes
-        if (on) {
-            winParams.flags = winParams.flags or bits
-        } else {
-            winParams.flags = winParams.flags and bits.inv()
-        }
-        win.attributes = winParams
-    }
-
-
-    override fun goToPage(page: PageNavigationItem) {
-        fragmentNavigator.goToPage(page)
-    }
-
-    override fun goToPage(page: PageNavigationItem, transitionBundle: TransitionBundle) {
-        fragmentNavigator.goToPage(page, transitionBundle)
-    }
-
-    override fun goToPageForResult(page: PageNavigationItem, transitionBundle: TransitionBundle) {
-        fragmentNavigator.goToPageForResult(page, transitionBundle)
-    }
-
-    override fun back(): Boolean {
-        if (!fragmentNavigator.back()) {
-            onBackPressed()
-        }
-        return true
-    }
-
-    override fun reset() {
-        fragmentNavigator.reset()
-    }
-
-    /**
-     *
-     */
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    protected fun initializeToolbar(toolbar: Toolbar) {
-        this.toolbar = toolbar.initializeToolbar(actionBar, this)
-    }
-
-    /**
-     *
-     */
-    protected fun getToolbar(): Toolbar? = this.toolbar
 
     /**
      *
@@ -173,19 +104,81 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity(), Fragment
      * handle back stack with handling state of children of activity
      */
     override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount >= 1) {
-            supportFragmentManager.popBackStackImmediate()
-            hideKeyboard()
-            return
+        hideKeyboard()
+        if (!navigator.back()) {
+            super.onBackPressed()
         }
-        super.onBackPressed()
     }
+
+    /**
+     * Convenience method for adding a fragment or replacing an existing one for a specific tag
+     * @param fragment Fragment
+     * @param id Int
+     * @param tag String
+     */
+    protected fun addOrReplaceFragment(fragment: Fragment, id: Int, tag: String) {
+        val fragmentTransaction=supportFragmentManager.beginTransaction()
+        if (supportFragmentManager.findFragmentByTag(tag) == null) {
+            fragmentTransaction.add(id, fragment, tag)
+        } else {
+            fragmentTransaction.replace(id, fragment, tag)
+        }
+        fragmentTransaction.commit()
+    }
+
+    protected fun setWindowFlag(bits: Int, on: Boolean) {
+        val win=window
+        val winParams=win.attributes
+        if (on) {
+            winParams.flags=winParams.flags or bits
+        } else {
+            winParams.flags=winParams.flags and bits.inv()
+        }
+        win.attributes=winParams
+    }
+
+
+    protected fun goToPage(page: PageNavigationItem) {
+        navigator.goToPage(page)
+    }
+
+    protected fun goToPage(page: PageNavigationItem, transitionBundle: TransitionBundle) {
+        navigator.goToPage(page, transitionBundle)
+    }
+
+    protected fun goToPageForResult(page: PageNavigationItem, transitionBundle: TransitionBundle) {
+        navigator.goToPageForResult(page, transitionBundle)
+    }
+
+    protected fun back(): Boolean {
+        if (!navigator.back()) {
+            onBackPressed()
+        }
+        return true
+    }
+
+    protected fun reset() {
+        navigator.reset()
+    }
+
+    /**
+     *
+     */
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    protected fun initializeToolbar(toolbar: Toolbar) {
+        this.toolbar=toolbar.initializeToolbar(actionBar, this)
+    }
+
+    /**
+     *
+     */
+    protected fun getToolbar(): Toolbar?=this.toolbar
 
     /**
      * check permissions and handel them state
      */
     @TargetApi(Build.VERSION_CODES.M)
-    fun isPermissionGranted(arrayPermission: Array<String>, requestCode: Int = 0): Boolean =
+    protected fun isPermissionGranted(arrayPermission: Array<String>, requestCode: Int=0): Boolean=
         if (this.permissionManager.hasPermission(this, arrayPermission)) {
             true
         } else {
@@ -196,10 +189,15 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity(), Fragment
     /**
      * for navigate to android settings
      */
-    fun showNoGalleryPermission() {
+    protected fun showNoGalleryPermission() {
         navigator.openSettings("package:$packageName")
         Toast.makeText(this, messageNecessaryPermissions, Toast.LENGTH_LONG).show()
     }
+
+    /**
+     *
+     */
+    open fun isDebugEnabled(): Boolean=DEBUG_ENABLED
 
     private fun createDaggerDependencies() {
         injectDependency((application as App).getViewModelComponent())

@@ -1,4 +1,4 @@
-package com.kalashnyk.denys.defaultproject.presentation.navigation.model
+package com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model
 
 import android.view.View
 

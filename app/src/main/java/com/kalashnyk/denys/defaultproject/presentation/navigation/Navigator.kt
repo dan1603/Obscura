@@ -1,26 +1,29 @@
 package com.kalashnyk.denys.defaultproject.presentation.navigation
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.provider.MediaStore
 import android.provider.Settings
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.AuthActivity
-import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow
 import com.kalashnyk.denys.defaultproject.presentation.activities.main.MainActivity
 import com.kalashnyk.denys.defaultproject.presentation.activities.splash.SplashActivity
 import com.kalashnyk.denys.defaultproject.presentation.activities.welcome.WelcomeActivity
-import com.kalashnyk.denys.defaultproject.presentation.navigation.model.Pages
+import com.kalashnyk.denys.defaultproject.presentation.base.BaseActivity
+import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.FragmentNavigator
+import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.FragmentNavigatorImpl
+import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.PageNavigationItem
+import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages
+import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.TransitionBundle
 import com.kalashnyk.denys.defaultproject.utils.ApplicationConstants
 
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  * navigation source for opening activities screens
  */
-interface ActivityNavigation {
+interface Navigation : FragmentNavigator {
 
-    var navigatorSource: Activity
+    var navigatorSource: BaseActivity<*>
     fun openSplashScreen(context: Context)
     fun openWelcomeScreen(context: Context)
     fun openAuthScreen(typeScreen: Pages, flag : Int)
@@ -33,8 +36,19 @@ interface ActivityNavigation {
 /**
  *
  */
-class NavigationImpl(override var navigatorSource: Activity) : ActivityNavigation {
+class NavigationImpl(override var navigatorSource: BaseActivity<*>) : Navigation {
 
+    /**
+     *
+     */
+    private val fragmentNavigator: FragmentNavigator
+
+    init {
+        fragmentNavigator =
+            FragmentNavigatorImpl(
+                navigatorSource.supportFragmentManager
+            )
+    }
     /**
      *
      */
@@ -106,5 +120,25 @@ class NavigationImpl(override var navigatorSource: Activity) : ActivityNavigatio
             this.putExtra(ApplicationConstants.DETAIL_ID, id)
         }
         navigatorSource.startActivity(intent)
+    }
+
+    override fun goToPage(page: PageNavigationItem) {
+        fragmentNavigator.goToPage(page)
+    }
+
+    override fun goToPage(page: PageNavigationItem, transitionBundle: TransitionBundle) {
+        fragmentNavigator.goToPage(page, transitionBundle)
+    }
+
+    override fun goToPageForResult(page: PageNavigationItem, transitionBundle: TransitionBundle) {
+        fragmentNavigator.goToPageForResult(page, transitionBundle)
+    }
+
+    override fun back(): Boolean {
+        return fragmentNavigator.back()
+    }
+
+    override fun reset() {
+        fragmentNavigator.reset()
     }
 }

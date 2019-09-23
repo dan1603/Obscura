@@ -2,7 +2,7 @@ package com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow
 
 import android.text.TextWatcher
 import com.kalashnyk.denys.defaultproject.presentation.base.IBaseFlow
-import com.kalashnyk.denys.defaultproject.presentation.navigation.model.Pages
+import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages
 
 interface IAuthFlow : IBaseFlow {
 

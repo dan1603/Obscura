@@ -51,7 +51,7 @@ interface FragmentNavigator {
  */
 class FragmentNavigatorImpl(private val fm: FragmentManager) :
     FragmentNavigator {
-
+    private var  pagesStack  = ArrayList<Pages>()
     companion object {
         private const val CONTENT_ID=R.id.content_view_group
         private const val FRAGMENT_TAG="fragment_tag"
@@ -81,7 +81,7 @@ class FragmentNavigatorImpl(private val fm: FragmentManager) :
 
     @Suppress("ComplexMethod")
     fun goToPage(page: PageNavigationItem, transitionBundle: TransitionBundle, resultListener: ResultListener?) {
-
+        pagesStack.add(page.destination)
         when (page.destination) {
             Pages.SIGN_IN -> addOrReplaceFragment(SignInFragment.newInstance(), transitionBundle)
             Pages.SIGN_UP -> addOrReplaceFragment(SignUpFragment.newInstance(), transitionBundle)
@@ -90,8 +90,9 @@ class FragmentNavigatorImpl(private val fm: FragmentManager) :
     }
 
     override fun back(): Boolean {
-        return if (fm.backStackEntryCount > 0) {
+        return if (pagesStack.size > 1) {
             fm.popBackStack()
+            pagesStack.remove(pagesStack.last())
             true
         } else {
             false
@@ -99,7 +100,7 @@ class FragmentNavigatorImpl(private val fm: FragmentManager) :
     }
 
     override fun reset() {
-        while (fm.backStackEntryCount > 0) {
+        while (pagesStack.size > 1) {
             fm.popBackStackImmediate()
         }
         (fm.fragments.last() as? BaseFragment<*>)?.reset()

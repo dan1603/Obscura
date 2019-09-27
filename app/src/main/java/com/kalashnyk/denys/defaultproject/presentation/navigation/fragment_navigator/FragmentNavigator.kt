@@ -51,7 +51,8 @@ interface FragmentNavigator {
  */
 class FragmentNavigatorImpl(private val fm: FragmentManager) :
     FragmentNavigator {
-    private var  pagesStack  = ArrayList<Pages>()
+    private var pagesStack=ArrayList<Pages>()
+
     companion object {
         private const val CONTENT_ID=R.id.content_view_group
         private const val FRAGMENT_TAG="fragment_tag"
@@ -81,11 +82,35 @@ class FragmentNavigatorImpl(private val fm: FragmentManager) :
 
     @Suppress("ComplexMethod")
     fun goToPage(page: PageNavigationItem, transitionBundle: TransitionBundle, resultListener: ResultListener?) {
-        pagesStack.add(page.destination)
+
         when (page.destination) {
-            Pages.SIGN_IN -> addOrReplaceFragment(SignInFragment.newInstance(), transitionBundle)
-            Pages.SIGN_UP -> addOrReplaceFragment(SignUpFragment.newInstance(), transitionBundle)
-            Pages.RECOVER_ACCOUNT -> addOrReplaceFragment(RecoverAccountFragment.newInstance(), transitionBundle)
+            Pages.SIGN_IN -> {
+                if (pagesStack.contains(page.destination)) {
+                    pagesStack.remove(page.destination)
+                    fm.popBackStack()
+                } else {
+                    pagesStack.add(page.destination)
+                    addOrReplaceFragment(SignInFragment.newInstance(), transitionBundle)
+                }
+            }
+            Pages.SIGN_UP -> {
+                if (pagesStack.contains(page.destination)) {
+                    pagesStack.remove(page.destination)
+                    fm.popBackStack()
+                } else {
+                    pagesStack.add(page.destination)
+                    addOrReplaceFragment(SignUpFragment.newInstance(), transitionBundle)
+                }
+            }
+            Pages.RECOVER_ACCOUNT -> {
+                if (pagesStack.contains(page.destination)) {
+                    pagesStack.remove(page.destination)
+                    fm.popBackStack()
+                } else {
+                    pagesStack.add(page.destination)
+                    addOrReplaceFragment(RecoverAccountFragment.newInstance(), transitionBundle)
+                }
+            }
         }
     }
 
@@ -114,38 +139,38 @@ class FragmentNavigatorImpl(private val fm: FragmentManager) :
     private fun addOrReplaceFragment(fragment: Fragment, transitionBundle: TransitionBundle) {
         val existingFragment=fm.findFragmentByTag(FRAGMENT_TAG)
         val transaction=fm.beginTransaction()
-        when (transitionBundle.animation) {
-            TransitionAnimation.SLIDE_IN_FROM_RIGHT -> transaction.setCustomAnimations(
-                R.anim.slide_in_right_chrome,
-                R.anim.fade_out,
-                R.anim.fade_in,
-                R.anim.slide_out_right_chrome
-            )
-            TransitionAnimation.SLIDE_UP_FROM_BOTTOM -> transaction.setCustomAnimations(
-                R.anim.slide_up_bottom,
-                R.anim.zoom_out,
-                R.anim.fade_in,
-                R.anim.slide_out_bottom
-            )
-            TransitionAnimation.ENTER_FROM_RIGHT -> transaction.setCustomAnimations(
-                R.anim.enter_from_right,
-                R.anim.exit_to_left,
-                R.anim.enter_from_left,
-                R.anim.exit_to_right
-            )
-            TransitionAnimation.ENTER_FROM_LEFT -> transaction.setCustomAnimations(
-                R.anim.enter_from_left,
-                R.anim.exit_to_left
-            )
-            TransitionAnimation.FADE_IN -> transaction.setCustomAnimations(
-                R.anim.fade_in,
-                R.anim.fade_out
-            )
-            TransitionAnimation.NONE -> {
-            }
-            TransitionAnimation.SCALE_UP_FROM_VIEW -> {
-            }
-        }
+//        when (transitionBundle.animation) {
+//            TransitionAnimation.SLIDE_IN_FROM_RIGHT -> transaction.setCustomAnimations(
+//                R.anim.slide_in_right_chrome,
+//                R.anim.fade_out,
+//                R.anim.fade_in,
+//                R.anim.slide_out_right_chrome
+//            )
+//            TransitionAnimation.SLIDE_UP_FROM_BOTTOM -> transaction.setCustomAnimations(
+//                R.anim.slide_up_bottom,
+//                R.anim.zoom_out,
+//                R.anim.fade_in,
+//                R.anim.slide_out_bottom
+//            )
+//            TransitionAnimation.ENTER_FROM_RIGHT -> transaction.setCustomAnimations(
+//                R.anim.enter_from_right,
+//                R.anim.exit_to_left,
+//                R.anim.enter_from_left,
+//                R.anim.exit_to_right
+//            )
+//            TransitionAnimation.ENTER_FROM_LEFT -> transaction.setCustomAnimations(
+//                R.anim.enter_from_left,
+//                R.anim.exit_to_left
+//            )
+//            TransitionAnimation.FADE_IN -> transaction.setCustomAnimations(
+//                R.anim.fade_in,
+//                R.anim.fade_out
+//            )
+//            TransitionAnimation.NONE -> {
+//            }
+//            TransitionAnimation.SCALE_UP_FROM_VIEW -> {
+//            }
+//        }
 
         transitionBundle.views.forEach {
             val transitionName=ViewCompat.getTransitionName(it)

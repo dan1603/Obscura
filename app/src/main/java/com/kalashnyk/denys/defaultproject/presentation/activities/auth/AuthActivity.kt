@@ -76,12 +76,7 @@ class AuthActivity : BaseActivity<AuthDataBinding>(), IAuthFlow.IAuthListener {
      *
      */
     override fun openScreen(page: Pages) {
-
-        val transitionBundle=
-            if (page != rootChildType) TransitionBundle(TransitionAnimation.SLIDE_IN_FROM_RIGHT)
-            else TransitionBundle(TransitionAnimation.NONE)
-
-        goToPage(PageNavigationItem(page), transitionBundle)
+        goToPage(PageNavigationItem(page), TransitionBundle(TransitionAnimation.ENTER_FROM_RIGHT))
     }
 
     /**

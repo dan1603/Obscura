@@ -4,6 +4,7 @@ import androidx.core.view.ViewCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseFragment
 import com.kalashnyk.denys.defaultproject.presentation.fragments.recover_account.RecoverAccountFragment
@@ -82,35 +83,11 @@ class FragmentNavigatorImpl(private val fm: FragmentManager) :
 
     @Suppress("ComplexMethod")
     fun goToPage(page: PageNavigationItem, transitionBundle: TransitionBundle, resultListener: ResultListener?) {
-
         when (page.destination) {
-            Pages.SIGN_IN -> {
-                if (pagesStack.contains(page.destination)) {
-                    pagesStack.remove(page.destination)
-                    fm.popBackStack()
-                } else {
-                    pagesStack.add(page.destination)
-                    addOrReplaceFragment(SignInFragment.newInstance(), transitionBundle)
-                }
-            }
-            Pages.SIGN_UP -> {
-                if (pagesStack.contains(page.destination)) {
-                    pagesStack.remove(page.destination)
-                    fm.popBackStack()
-                } else {
-                    pagesStack.add(page.destination)
-                    addOrReplaceFragment(SignUpFragment.newInstance(), transitionBundle)
-                }
-            }
-            Pages.RECOVER_ACCOUNT -> {
-                if (pagesStack.contains(page.destination)) {
-                    pagesStack.remove(page.destination)
-                    fm.popBackStack()
-                } else {
-                    pagesStack.add(page.destination)
-                    addOrReplaceFragment(RecoverAccountFragment.newInstance(), transitionBundle)
-                }
-            }
+            Pages.SIGN_IN -> handleRoutFragment(SignInFragment.newInstance(), page, transitionBundle, resultListener)
+            Pages.SIGN_UP -> handleRoutFragment(SignUpFragment.newInstance(), page, transitionBundle, resultListener)
+            Pages.RECOVER_ACCOUNT -> handleRoutFragment(RecoverAccountFragment.newInstance(), page, transitionBundle, resultListener)
+            else -> back()
         }
     }
 
@@ -135,42 +112,28 @@ class FragmentNavigatorImpl(private val fm: FragmentManager) :
         dialog.show(fm, "modal")
     }
 
+    private fun handleRoutFragment(
+        fragment: Fragment,
+        page: PageNavigationItem,
+        transitionBundle: TransitionBundle,
+        resultListener: ResultListener?
+    ) {
+        if (checkPagesByPrevies(page)) {
+            back()
+        } else {
+            pagesStack.add(page.destination)
+            addOrReplaceFragment(fragment, transitionBundle)
+        }
+    }
+
     @Suppress("ComplexMethod")
     private fun addOrReplaceFragment(fragment: Fragment, transitionBundle: TransitionBundle) {
         val existingFragment=fm.findFragmentByTag(FRAGMENT_TAG)
         val transaction=fm.beginTransaction()
-//        when (transitionBundle.animation) {
-//            TransitionAnimation.SLIDE_IN_FROM_RIGHT -> transaction.setCustomAnimations(
-//                R.anim.slide_in_right_chrome,
-//                R.anim.fade_out,
-//                R.anim.fade_in,
-//                R.anim.slide_out_right_chrome
-//            )
-//            TransitionAnimation.SLIDE_UP_FROM_BOTTOM -> transaction.setCustomAnimations(
-//                R.anim.slide_up_bottom,
-//                R.anim.zoom_out,
-//                R.anim.fade_in,
-//                R.anim.slide_out_bottom
-//            )
-//            TransitionAnimation.ENTER_FROM_RIGHT -> transaction.setCustomAnimations(
-//                R.anim.enter_from_right,
-//                R.anim.exit_to_left,
-//                R.anim.enter_from_left,
-//                R.anim.exit_to_right
-//            )
-//            TransitionAnimation.ENTER_FROM_LEFT -> transaction.setCustomAnimations(
-//                R.anim.enter_from_left,
-//                R.anim.exit_to_left
-//            )
-//            TransitionAnimation.FADE_IN -> transaction.setCustomAnimations(
-//                R.anim.fade_in,
-//                R.anim.fade_out
-//            )
-//            TransitionAnimation.NONE -> {
-//            }
-//            TransitionAnimation.SCALE_UP_FROM_VIEW -> {
-//            }
-//        }
+
+        if(pagesStack.size > 1) {
+            addCustomAnimations(transaction, transitionBundle)
+        }
 
         transitionBundle.views.forEach {
             val transitionName=ViewCompat.getTransitionName(it)
@@ -190,5 +153,49 @@ class FragmentNavigatorImpl(private val fm: FragmentManager) :
             transaction.addToBackStack(null)
         }
         transaction.commitAllowingStateLoss()
+    }
+
+    private fun addCustomAnimations(transaction: FragmentTransaction, transitionBundle : TransitionBundle){
+        when (transitionBundle.animation) {
+            TransitionAnimation.SLIDE_IN_FROM_RIGHT -> transaction.setCustomAnimations(
+                R.animator.slide_in_left,
+                R.animator.slide_out_right,
+                R.animator.pop_out_right,
+                R.animator.pop_in_left
+            )
+            TransitionAnimation.SLIDE_UP_FROM_BOTTOM -> transaction.setCustomAnimations(
+                R.anim.slide_up_bottom,
+                R.anim.zoom_out,
+                R.anim.fade_in,
+                R.anim.slide_out_bottom
+            )
+            TransitionAnimation.ENTER_FROM_RIGHT -> transaction.setCustomAnimations(
+                R.anim.enter_from_right,
+                R.anim.exit_to_left,
+                R.anim.enter_from_left,
+                R.anim.exit_to_right
+            )
+
+            TransitionAnimation.ENTER_FROM_LEFT -> transaction.setCustomAnimations(
+                R.animator.pop_out_right,
+                R.animator.pop_in_left,
+                R.animator.slide_in_left,
+                R.animator.slide_out_right
+            )
+            TransitionAnimation.FADE_IN -> transaction.setCustomAnimations(
+                R.anim.fade_in,
+                R.anim.fade_out
+            )
+            TransitionAnimation.NONE -> {
+            }
+            TransitionAnimation.SCALE_UP_FROM_VIEW -> {
+            }
+        }
+    }
+
+    private fun checkPagesByPrevies(page : PageNavigationItem) : Boolean{
+        return pagesStack.size >= 2 &&
+                pagesStack.lastIndexOf(page.destination).inc() ==
+                pagesStack.lastIndexOf(pagesStack.last())
     }
 }

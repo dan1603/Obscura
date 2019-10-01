@@ -1,7 +1,6 @@
 package com.kalashnyk.denys.defaultproject.utils.security
 
 import android.app.Activity
-import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -90,14 +89,12 @@ object RootDetectionUtil {
 
     private fun executSu(): Boolean {
         var process: Process? = null
-        try {
+        return try {
             process = Runtime.getRuntime().exec(arrayOf("/system/xbin/which", "su"))
-            val `in` = BufferedReader(InputStreamReader(process!!.inputStream))
-            return if (`in`.readLine() != null) {
-                true
-            } else false
+            val reader = BufferedReader(InputStreamReader(process!!.inputStream))
+            reader.readLine() != null
         } catch (t: Throwable) {
-            return false
+            false
         } finally {
             process?.destroy()
         }

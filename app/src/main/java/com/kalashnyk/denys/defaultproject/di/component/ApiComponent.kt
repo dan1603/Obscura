@@ -6,7 +6,7 @@ import com.kalashnyk.denys.defaultproject.usecases.repository.server.ServerCommu
 import dagger.Component
 
 @ApiScope
-@Component(modules = [ApiModule::class])
+@Component(modules = [ApiModule::class], dependencies = [AppComponent::class])
 interface ApiComponent {
     val serverCommunicator: ServerCommunicator
 }

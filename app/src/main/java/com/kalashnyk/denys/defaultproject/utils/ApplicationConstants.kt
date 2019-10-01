@@ -10,6 +10,71 @@ object ApplicationConstants {
     /**
      *
      */
+    const val HEADER_APP_VERSION: String= "App-Version"
+
+    /**
+     *
+     */
+    const val HEADER_APP_VERSION_HASH: String= "App-Version-Hash"
+
+    /**
+     *
+     */
+    const val HEADER_BUILD_NUM: String= "Build-Num"
+
+    /**
+     *
+     */
+    const val HEADER_COUNTRY: String= "Country"
+
+    /**
+     *
+     */
+    const val HEADER_CONTENT_TYPE: String= "Connection-Type"
+
+    /**
+     *
+     */
+    const val HEADER_CARRIER: String= "Carrier"
+
+    /**
+     *
+     */
+    const val HEADER_OS_VERSION: String= "OS-Version"
+
+    /**
+     *
+     */
+    const val HEADER_GOOGLE_ADVERTISER_ID: String= "Google-Advertiser-Id"
+
+    /**
+     *
+     */
+    const val HEADER_DEVICE_NAME: String= "Device-Name"
+
+    /**
+     *
+     */
+    const val HEADER_DEVICE_TYPE: String= "Device-Type"
+
+    /**
+     *
+     */
+    const val HEADER_TIMEZONE: String= "Timezone"
+
+    /**
+     *
+     */
+    const val HEADER_ANDROID_ID: String= "Android-Id"
+
+    /**
+     *
+     */
+    const val DEVICE_TYPE_VALUE: String= "2"
+
+    /**
+     *
+     */
     const val CARD_DEFAULT: String= "default"
 
     /**

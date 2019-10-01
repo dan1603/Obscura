@@ -3,6 +3,7 @@ package com.kalashnyk.denys.defaultproject.usecases.repository.database.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import com.kalashnyk.denys.defaultproject.data.BaseModel
 
 @Entity(tableName = "users")
 data class UserEntity(
@@ -15,6 +16,6 @@ data class UserEntity(
     val surname: String,
     @SerializedName("fathername")
     val fathername: String
-)
+) : BaseModel()
 
 

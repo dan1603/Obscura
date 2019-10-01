@@ -9,7 +9,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 
-public abstract class BaseDataBoundPagingAdapter<V, T : ViewDataBinding> (diffUtil: DiffUtil.ItemCallback<V>): PagedListAdapter<V, DataBoundViewHolder<T>>(diffUtil) {
+/**
+ *
+ */
+abstract class BaseDataBoundPagingAdapter<V, T : ViewDataBinding> (diffUtil: DiffUtil.ItemCallback<V>): PagedListAdapter<V, DataBoundViewHolder<T>>(diffUtil) {
 
     private val DB_PAYLOAD = Any()
     private var mRecyclerView: RecyclerView? = null
@@ -29,9 +32,15 @@ public abstract class BaseDataBoundPagingAdapter<V, T : ViewDataBinding> (diffUt
         }
     }
 
+    /**
+     *
+     */
     @LayoutRes
     abstract fun getItemLayoutId(position: Int): Int
 
+    /**
+     *
+     */
     @CallSuper
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataBoundViewHolder<T> {
         val vh =
@@ -43,6 +52,9 @@ public abstract class BaseDataBoundPagingAdapter<V, T : ViewDataBinding> (diffUt
         return vh
     }
 
+    /**
+     *
+     */
     override fun onBindViewHolder(holder: DataBoundViewHolder<T>, position: Int, payloads: List<Any>) {
         if (payloads.isEmpty() || hasNonDataBindingInvalidate(payloads)) {
             bindItem(holder, position, payloads)
@@ -50,22 +62,37 @@ public abstract class BaseDataBoundPagingAdapter<V, T : ViewDataBinding> (diffUt
         holder.binding.executePendingBindings()
     }
 
+    /**
+     *
+     */
     override fun onBindViewHolder(holder: DataBoundViewHolder<T>, position: Int) {
         throw IllegalArgumentException("just overridden to make final.")
     }
 
+    /**
+     *
+     */
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         mRecyclerView = recyclerView
     }
 
+    /**
+     *
+     */
     override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
         mRecyclerView = null
     }
 
+    /**
+     *
+     */
     override fun getItemViewType(position: Int): Int {
         return getItemLayoutId(position)
     }
 
+    /**
+     *
+     */
     protected abstract fun bindItem(holder: DataBoundViewHolder<T>, position: Int, payloads: List<Any>)
 
     private fun hasNonDataBindingInvalidate(payloads: List<Any>): Boolean {

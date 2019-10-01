@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 abstract class MultiTypeDataBoundAdapter<T, V : ViewDataBinding> (diffUtil: DiffUtil.ItemCallback<T>) : BaseDataBoundPagingAdapter<T, V>(diffUtil) {
 
     fun isEmpty(): Boolean {
-        return getItemCount() == 0
+        return itemCount == 0
     }
 
     override fun bindItem(holder: DataBoundViewHolder<V>, position: Int, payloads: List<Any>) {
@@ -16,7 +16,10 @@ abstract class MultiTypeDataBoundAdapter<T, V : ViewDataBinding> (diffUtil: Diff
         }
     }
 
+    /**
+     *
+     */
     override fun getItemCount(): Int {
-        return if (getCurrentList() != null) getCurrentList()!!.size else 0
+        return currentList?.size ?: 0
     }
 }

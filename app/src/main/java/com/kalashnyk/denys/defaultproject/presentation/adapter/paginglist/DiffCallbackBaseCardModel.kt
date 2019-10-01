@@ -2,6 +2,9 @@ package com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist
 
 import androidx.recyclerview.widget.DiffUtil
 
+/**
+ *
+ */
 class DiffCallbackBaseCardModel : DiffUtil.ItemCallback<BaseCardModel>() {
 
     companion object {

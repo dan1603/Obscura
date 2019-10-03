@@ -16,35 +16,35 @@ enum class ValidationErrorMessage(
     /**
      * thrown when connection fails
      */
-    CONNECTION_VALIDATION_ERROR(R.string.internet_connection_problem),
+    CONNECTION_VALIDATION_ERROR(R.string.error_internet_connection),
     /**
      * thrown when network fails
      */
-    NETWORK_VALIDATION_ERROR(R.string.network_error_message),
+    NETWORK_VALIDATION_ERROR(R.string.error_network_message),
     /**
      * thrown when user password is blank
      */
-    PASSWORD_BLANK_VALIDATION_ERROR(R.string.password_error_message),
+    PASSWORD_BLANK_VALIDATION_ERROR(R.string.error_password_message),
     /**
      * thrown when user password is incorrect
      */
-    PASSWORD_VALIDATION_ERROR(R.string.password_error_message),
+    PASSWORD_VALIDATION_ERROR(R.string.error_password_message),
     /**
      * thrown when user password and confirm password is different
      */
-    PASSWORD_NOT_SAME_VALIDATION_ERROR(R.string.password_not_same_error_message),
+    PASSWORD_NOT_SAME_VALIDATION_ERROR(R.string.error_password_not_same_message),
     /**
      * thrown when user old password is same
      */
-    WRONG_OLD_PASSWORD_VALIDATION_ERROR(R.string.wrong_old_password),
+    WRONG_OLD_PASSWORD_VALIDATION_ERROR(R.string.error_wrong_old_password),
     /**
      * thrown when user email is blank
      */
-    EMAIL_BLANK_VALIDATION_ERROR(R.string.email_blank_error_message),
+    EMAIL_BLANK_VALIDATION_ERROR(R.string.error_email_blank_message),
     /**
      * thrown when user email is incorrect
      */
-    EMAIL_VALIDATION_ERROR(R.string.email_error_message),
+    EMAIL_VALIDATION_ERROR(R.string.error_email_message),
 
     /**
      *  thrown when user email and password invalid or blank
@@ -64,16 +64,16 @@ enum class ValidationErrorMessage(
     /**
      * thrown when user phone is incorrect
      */
-    PHONE_VALIDATION_ERROR(R.string.phone_error_message),
+    PHONE_VALIDATION_ERROR(R.string.error_phone_message),
 
     /**
      * thrown when user phone is blank
      */
-    PHONE_BLANK_VALIDATION_ERROR(R.string.phone_blank_error_message),
+    PHONE_BLANK_VALIDATION_ERROR(R.string.error_phone_blank_message),
     /**
      * thrown when user confirm phone code fails
      */
-    CODE_VALIDATION_ERROR(R.string.code_error_message);
+    CODE_VALIDATION_ERROR(R.string.error_code_message);
     /**
      * for show message body
      */

@@ -7,6 +7,7 @@ import android.Manifest
  */
 object ApplicationConstants {
 
+    const val PROJECT_PREFERENCE: String = "obscura_prefs"
     /**
      *
      */

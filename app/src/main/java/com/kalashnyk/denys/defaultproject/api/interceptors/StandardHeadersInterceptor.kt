@@ -1,4 +1,4 @@
-package com.kalashnyk.denys.defaultproject.api
+package com.kalashnyk.denys.defaultproject.api.interceptors
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -7,12 +7,11 @@ import com.kalashnyk.denys.defaultproject.utils.ApplicationUtils
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
-import javax.inject.Inject
 
 /**
  *
  */
-class StandardHeadersInterceptor @Inject constructor(
+class StandardHeadersInterceptor(
     private val androidUtils: ApplicationUtils
 ) : Interceptor {
 

@@ -46,6 +46,8 @@ class App: MultiDexApplication() {
                 "com.kalashnyk.denys.defaultproject"
             ))
         }
+
+        fun getContext(): Context = this.getContext()
     }
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)

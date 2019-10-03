@@ -50,18 +50,19 @@
     <string name="welcome_text_already_have_an_account">Already have an account?</string>
     <string name="welcome_text_not_with_us_yet">Not with us yet?</string>
     <!--validation error messages-->
-    <string name="internet_connection_problem">No network connection</string>
-    <string name="network_error_message">Please connect to network</string>
-    <string name="password_blank_error_message">Password can not be blank</string>
-    <string name="password_error_message">Invalid password</string>
-    <string name="password_not_same_error_message">Passwords don\'t match</string>
-    <string name="wrong_old_password">The current password you entered is incorrect</string>
-    <string name="email_blank_error_message">Email can not be blank</string>
+    <string name="error_internet_connection">No network connection</string>
+    <string name="error_network_message">Please connect to network</string>
+    <string name="error_password_blank_message">Password can not be blank</string>
+    <string name="error_password_message">Invalid password</string>
+    <string name="error_password_not_same_message">Passwords don\'t match</string>
+    <string name="error_wrong_old_password">The current password you entered is incorrect</string>
+    <string name="error_email_blank_message">Email can not be blank</string>
     <string name="error_flow_sign_in_data">Invalid email and password</string>
     <string name="error_flow_sign_up_data">Invalid data</string>
     <string name="error_terms_conditions">You don\'t agree terms conditions</string>
-    <string name="email_error_message">Invalid email address</string>
-    <string name="phone_error_message">Invalid phone number</string>
-    <string name="phone_blank_error_message">Phone can not be blank</string>
-    <string name="code_error_message">Invalid code</string>
+    <string name="error_email_message">Invalid email address</string>
+    <string name="error_phone_message">Invalid phone number</string>
+    <string name="error_phone_blank_message">Phone can not be blank</string>
+    <string name="error_code_message">Invalid code</string>
+    <string name="error_please_try_again">Please try again</string>
 </resources>

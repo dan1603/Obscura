@@ -21,7 +21,6 @@ import com.kalashnyk.denys.defaultproject.utils.extention.hideKeyboard
  */
 class AuthActivity : BaseActivity<AuthDataBinding>(), IAuthFlow.IAuthListener {
 
-    private lateinit var rootChildType: Pages
     private lateinit var viewModel: AuthViewModel
     /**
      * @param component
@@ -44,7 +43,8 @@ class AuthActivity : BaseActivity<AuthDataBinding>(), IAuthFlow.IAuthListener {
      * @param binding
      */
     override fun setupViewLogic(binding: AuthDataBinding) {
-        handleIntent()
+        handlePage()
+        showRootChild()
     }
 
     /**
@@ -86,9 +86,10 @@ class AuthActivity : BaseActivity<AuthDataBinding>(), IAuthFlow.IAuthListener {
         super.onBackPressed()
     }
 
-    private fun handleIntent() {
-        rootChildType=intent?.extras?.getSerializable(ApplicationConstants.AUTH_TYPE_SCREEN) as Pages
-        openScreen(rootChildType)
+    private fun showRootChild() {
+        openScreen(handlePage())
         hideKeyboard()
     }
+
+    private fun handlePage() = intent?.extras?.getSerializable(ApplicationConstants.AUTH_TYPE_SCREEN) as Pages
 }

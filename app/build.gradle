@@ -114,5 +114,9 @@ dependencies {
     implementation 'com.facebook.stetho:stetho-okhttp3:1.4.2'
     implementation 'com.facebook.android:facebook-android-sdk:4.27.0'
 
-    implementation 'com.jakewharton.rxrelay2:rxrelay:2.0.0' 
+    implementation 'com.jakewharton.rxrelay2:rxrelay:2.0.0'
+
+    //Utility
+    implementation 'net.danlew:android.joda:2.9.9' // Time utility
+    testImplementation "joda-time:joda-time:2.9.9" // Test utility
 }

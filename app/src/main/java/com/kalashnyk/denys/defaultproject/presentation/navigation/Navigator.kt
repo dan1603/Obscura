@@ -5,6 +5,8 @@ import android.content.Intent
 import android.net.Uri
 import android.provider.MediaStore
 import android.provider.Settings
+import androidx.appcompat.app.AlertDialog
+import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.AuthActivity
 import com.kalashnyk.denys.defaultproject.presentation.activities.main.MainActivity
 import com.kalashnyk.denys.defaultproject.presentation.activities.splash.SplashActivity
@@ -31,6 +33,7 @@ interface Navigation : FragmentNavigator {
     fun openDetailScreen(id: Int)
     fun openSettings(uriSetting : String)
     fun openGallery()
+    fun showExitConfirmDialog(onAccepted: () -> Unit)
 }
 
 /**
@@ -120,6 +123,24 @@ class NavigationImpl(override var navigatorSource: BaseActivity<*>) : Navigation
             this.putExtra(ApplicationConstants.DETAIL_ID, id)
         }
         navigatorSource.startActivity(intent)
+    }
+
+
+    /**
+     * @param onAccepted - fun after push positive button of dialog
+     * example showExitConfirmDialog(::finish)
+     */
+    override fun showExitConfirmDialog(onAccepted: () -> Unit) {
+        navigatorSource.let {
+            AlertDialog.Builder(it)
+                .setMessage(R.string.exit_confirm)
+                .setPositiveButton(R.string.yes) { dialog, _ ->
+                    dialog.dismiss()
+                    onAccepted()
+                }.setNegativeButton(R.string.no) { dialog, _ -> dialog.dismiss() }
+                .create()
+                .show()
+        }
     }
 
     override fun goToPage(page: PageNavigationItem) {

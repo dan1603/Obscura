@@ -65,4 +65,7 @@
     <string name="error_phone_blank_message">Phone can not be blank</string>
     <string name="error_code_message">Invalid code</string>
     <string name="error_please_try_again">Please try again</string>
+    <string name="exit_confirm">Are you sure you want to leave the app?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

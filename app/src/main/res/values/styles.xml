@@ -47,4 +47,32 @@
         <item name="android:textSize">@dimen/txt_size_12</item>
         <item name="android:textColor">@color/soft_blue</item>
     </style>
+
+    <style name="TextStyle">
+        <item name="android:textSize">@dimen/txt_size_18</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/greyish_brown</item>
+    </style>
+
+    <style name="TextStyle4">
+        <item name="android:textSize">@dimen/txt_size_16</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/greyish_brown</item>
+    </style>
+
+    <style name="TextStyle2">
+        <item name="android:textSize">@dimen/txt_size_14</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="TextStyle3">
+        <item name="android:textSize">@dimen/txt_size_12</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
 </resources>

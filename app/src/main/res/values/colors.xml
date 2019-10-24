@@ -24,4 +24,5 @@
     <color name="error_color">#ff9595</color>
     <color name="dark_error_color">#dec92d2d</color>
     <color name="hint_color">#8a8c98</color>
+    <color name="color_light_gray">#D5D5D5</color>
 </resources>

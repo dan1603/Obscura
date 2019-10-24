@@ -9,7 +9,7 @@ class UserViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
     private var userEntity: UserEntity? = null
     private var listener: IUserItemClickListener<UserEntity>? = null
-    private val itemDetail = View.OnClickListener { listener!!.openDetail(this!!.userEntity!!) }
+    private val itemDetail = View.OnClickListener { listener!!.openDetail(this.userEntity!!) }
 
     fun bind(user: UserEntity, listener: IUserItemClickListener<UserEntity>) {
         userEntity = user
@@ -18,10 +18,10 @@ class UserViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
     }
 
     private fun setupItem() {
-        view.txtRvId.text = userEntity?.id.toString()
-        view.txtName.text = userEntity?.name
-        view.txtSurname.text = userEntity?.surname
-        view.txtFathername.text = userEntity?.fathername
+//        view.txtRvId.text = userEntity?.id.toString()
+//        view.txtName.text = userEntity?.name
+//        view.txtSurname.text = userEntity?.surname
+//        view.txtFathername.text = userEntity?.fathername
         view.setOnClickListener(itemDetail)
     }
 }

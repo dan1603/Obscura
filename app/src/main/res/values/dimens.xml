@@ -42,4 +42,16 @@
     <dimen name="view_params_65">65dp</dimen>
     <dimen name="view_params_165">165dp</dimen>
     <dimen name="view_params_280">280dp</dimen>
+
+    <!--todo need refactor for support multi screens-->
+    <dimen name="view_params_45">45dp</dimen>
+    <dimen name="view_params_23">23dp</dimen>
+    <dimen name="view_params_230">230dp</dimen>
+    <dimen name="view_params_10">10dp</dimen>
+    <dimen name="view_params_20">20dp</dimen>
+    <dimen name="view_params_76">76dp</dimen>
+
+
+
+
 </resources>

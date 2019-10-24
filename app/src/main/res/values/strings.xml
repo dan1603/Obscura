@@ -68,4 +68,30 @@
     <string name="exit_confirm">Are you sure you want to leave the app?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+
+
+    <string name="follow">FOLLOW</string>
+    <string name="leave_a_comment">LEAVE A COMMENT</string>
+    <string name="want_to_go">WANT TO GO</string>
+    <string name="invite">INVITE</string>
+    <string name="following">FOLLOWING</string>
+
+    <string name="help_me_choose_a_photo_camera">Help me choose a photo camera for a beginner title</string>
+    <string name="places">Places</string>
+    <string name="article_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</string>
+
+    <!--todo for test -->
+    <string name="may_13_2019">May, 13, 2019</string>
+    <!--todo for test -->
+    <string name="_3_30_pm_5_00_pm">3:30 PM - 5:00 PM</string>
+    <!--todo for test -->
+    <string name="alexander_schmidt_ave_546">Alexander Schmidt Ave 546</string>
+
+    <!--todo for test -->
+    <string name="james_richardson">James Richardson</string>
+    <!--todo for test -->
+    <string name="jurisprudence_law">Jurisprudence / Law</string>
+    <!--todo for test -->
+    <string name="san_fransisco_ca_usa">San Fransisco, CA, USA</string>
+
 </resources>

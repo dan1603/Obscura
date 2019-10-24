@@ -6,6 +6,7 @@ import com.bumptech.glide.Priority
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.kalashnyk.denys.defaultproject.utils.glide.GlideRequest
 //import com.kalashnyk.denys.defaultproject.utils.glide.GlideApp
 //import com.kalashnyk.denys.defaultproject.utils.glide.GlideRequest
 import com.kalashnyk.denys.defaultproject.utils.glide.RoundedCornersTransformation
@@ -106,10 +107,10 @@ fun ImageView.loadDrawableRes(drawableRes: Int?) {
 //            .into(this)
 }
 
-//fun <TranscodeType> GlideRequest<TranscodeType>.disableDiskCache(isDiskCacheStrategyDisable: Boolean): GlideRequest<TranscodeType> {
-//    return if (isDiskCacheStrategyDisable) {
-//        diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.NONE).skipMemoryCache(true)
-//    } else {
-//        this
-//    }
-//}
+fun <TranscodeType> GlideRequest<TranscodeType>.disableDiskCache(isDiskCacheStrategyDisable: Boolean): GlideRequest<TranscodeType> {
+    return if (isDiskCacheStrategyDisable) {
+        diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.NONE).skipMemoryCache(true)
+    } else {
+        this
+    }
+}

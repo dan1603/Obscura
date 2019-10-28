@@ -13,7 +13,7 @@ import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navig
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.TransitionAnimation
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.TransitionBundle
-import com.kalashnyk.denys.defaultproject.utils.ApplicationConstants
+import com.kalashnyk.denys.defaultproject.utils.AUTH_TYPE_SCREEN
 import com.kalashnyk.denys.defaultproject.utils.extention.hideKeyboard
 
 /**
@@ -91,5 +91,5 @@ class AuthActivity : BaseActivity<AuthDataBinding>(), IAuthFlow.IAuthListener {
         hideKeyboard()
     }
 
-    private fun handlePage() = intent?.extras?.getSerializable(ApplicationConstants.AUTH_TYPE_SCREEN) as Pages
+    private fun handlePage() = intent?.extras?.getSerializable(AUTH_TYPE_SCREEN) as Pages
 }

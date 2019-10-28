@@ -314,11 +314,11 @@ class ShimmerLayout @JvmOverloads constructor(context: Context, attrs: Attribute
     }
 
     private fun createBitmap(width: Int, height: Int): Bitmap {
-        try {
-            return Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+        return try {
+            Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
         } catch (e: OutOfMemoryError) {
             System.gc()
-            return Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+            Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
         }
 
     }

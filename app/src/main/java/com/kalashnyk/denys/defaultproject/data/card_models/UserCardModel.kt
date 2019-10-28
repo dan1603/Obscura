@@ -1,8 +1,9 @@
-package com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist
+package com.kalashnyk.denys.defaultproject.data.card_models
 
 import com.kalashnyk.denys.defaultproject.data.BaseModel
+import com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.BaseCardModel
 import com.kalashnyk.denys.defaultproject.usecases.repository.database.entity.UserEntity
-import com.kalashnyk.denys.defaultproject.utils.ApplicationConstants
+import com.kalashnyk.denys.defaultproject.utils.CARD_USER
 
 /**
  *
@@ -14,7 +15,7 @@ class UserCardModel(private var user : UserEntity) : BaseCardModel() {
     }
 
     override fun getCardType(): String {
-        return ApplicationConstants.CARD_USER
+        return CARD_USER
     }
 
     override fun getBaseModel(): BaseModel {

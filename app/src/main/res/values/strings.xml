@@ -94,4 +94,8 @@
     <!--todo for test -->
     <string name="san_fransisco_ca_usa">San Fransisco, CA, USA</string>
 
+    <string name="empty_view_head">There is nothing here right now</string>
+    <string name="empty_view_bottom">You may want to check again later</string>
+    <string name="common_error_msg_head">If you want to try again later</string>
+    <string name="common_error_msg_bottom">Something went wrong</string>
 </resources>

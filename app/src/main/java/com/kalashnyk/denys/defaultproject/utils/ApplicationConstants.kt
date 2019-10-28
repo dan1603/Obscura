@@ -5,7 +5,6 @@ import android.Manifest
 /**
  *  todo refactor by cases
  */
-object ApplicationConstants {
 
     const val PROJECT_PREFERENCE: String = "obscura_prefs"
     /**
@@ -86,7 +85,12 @@ object ApplicationConstants {
     /**
      *
      */
-    const val CARD_FEED: String = "feed"
+    const val CARD_EVENT: String = "event"
+
+    /**
+     *
+     */
+    const val CARD_ARTICLE: String = "article"
 
     /**
      *
@@ -147,4 +151,3 @@ object ApplicationConstants {
      *
      */
     val cameraArrayPermission= arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-}

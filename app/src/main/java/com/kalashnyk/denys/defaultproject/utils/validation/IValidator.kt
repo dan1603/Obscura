@@ -1,8 +1,8 @@
 package com.kalashnyk.denys.defaultproject.utils.validation
 
 import android.util.Patterns
-import com.kalashnyk.denys.defaultproject.utils.ApplicationConstants.PHONE_LENGTH_WITHOUT_COUNTRY_CODE
-import com.kalashnyk.denys.defaultproject.utils.ApplicationConstants.PHONE_LENGTH_WITH_COUNTRY_CODE
+import com.kalashnyk.denys.defaultproject.utils.PHONE_LENGTH_WITHOUT_COUNTRY_CODE
+import com.kalashnyk.denys.defaultproject.utils.PHONE_LENGTH_WITH_COUNTRY_CODE
 import org.apache.commons.lang3.StringUtils
 import java.util.regex.Pattern
 

@@ -126,7 +126,7 @@ class ApplicationUtils(
     }
 
     /**
-     *
+     * todo implement google Ad survey
      */
     @RequiresApi(Build.VERSION_CODES.CUPCAKE)
     @Throws(RuntimeException::class)

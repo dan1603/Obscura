@@ -5,7 +5,7 @@ import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.databinding.SplashBinding
 import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseActivity
-import com.kalashnyk.denys.defaultproject.utils.ApplicationConstants
+import com.kalashnyk.denys.defaultproject.utils.DELAY_3000
 
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
@@ -31,6 +31,6 @@ class SplashActivity : BaseActivity<SplashBinding>() {
         Handler().postDelayed({
             navigator.openWelcomeScreen(this)
             finish()
-        }, ApplicationConstants.DELAY_3000)
+        }, DELAY_3000)
     }
 }

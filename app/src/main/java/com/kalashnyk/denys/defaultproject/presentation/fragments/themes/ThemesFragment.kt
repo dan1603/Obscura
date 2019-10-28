@@ -1,6 +1,7 @@
 package com.kalashnyk.denys.defaultproject.presentation.fragments.themes
 
 import android.os.Bundle
+import androidx.databinding.ObservableBoolean
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.databinding.ThemesDataBinding
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseFragment
@@ -23,13 +24,14 @@ class ThemesFragment : BaseFragment<ThemesDataBinding>() {
     /**
      * @return
      */
-    override fun getLayoutId(): Int = R.layout.fragment_themes
+    override fun getLayoutId(): Int=R.layout.fragment_themes
 
     /**
      * @param binding
      */
     override fun setupViewLogic(binding: ThemesDataBinding) {
-       binding.tvThemes.setText("Themes")
+        binding.refreshing=ObservableBoolean(false)
+        binding.loading=ObservableBoolean(true)
     }
 
     companion object {

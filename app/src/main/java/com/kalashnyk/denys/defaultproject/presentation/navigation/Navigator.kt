@@ -17,7 +17,10 @@ import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navig
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.PageNavigationItem
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.TransitionBundle
-import com.kalashnyk.denys.defaultproject.utils.ApplicationConstants
+import com.kalashnyk.denys.defaultproject.utils.AUTH_TYPE_SCREEN
+import com.kalashnyk.denys.defaultproject.utils.DETAIL_ID
+import com.kalashnyk.denys.defaultproject.utils.GALLERY_REQUEST
+import com.kalashnyk.denys.defaultproject.utils.SETTINGS_REQUEST
 
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
@@ -60,7 +63,7 @@ class NavigationImpl(override var navigatorSource: BaseActivity<*>) : Navigation
             Intent.ACTION_PICK,
             MediaStore.Images.Media.EXTERNAL_CONTENT_URI
         )
-        navigatorSource.startActivityForResult(galleryIntent, ApplicationConstants.GALLERY_REQUEST)
+        navigatorSource.startActivityForResult(galleryIntent, GALLERY_REQUEST)
     }
 
     /**
@@ -71,7 +74,7 @@ class NavigationImpl(override var navigatorSource: BaseActivity<*>) : Navigation
             Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
             Uri.parse(uriSetting)
         )
-        navigatorSource.startActivityForResult(appSettingsIntent, ApplicationConstants.SETTINGS_REQUEST)
+        navigatorSource.startActivityForResult(appSettingsIntent, SETTINGS_REQUEST)
     }
 
     /**
@@ -99,7 +102,7 @@ class NavigationImpl(override var navigatorSource: BaseActivity<*>) : Navigation
      */
     override fun openAuthScreen(typeScreen: Pages, flag : Int) {
         val intent = Intent(navigatorSource, AuthActivity::class.java).apply {
-            this.putExtra(ApplicationConstants.AUTH_TYPE_SCREEN, typeScreen)
+            this.putExtra(AUTH_TYPE_SCREEN, typeScreen)
             this.flags = flag
         }
         navigatorSource.startActivity(intent)
@@ -120,7 +123,7 @@ class NavigationImpl(override var navigatorSource: BaseActivity<*>) : Navigation
      */
     override fun openDetailScreen(id: Int) {
         val intent = Intent(navigatorSource, AuthActivity::class.java).apply {
-            this.putExtra(ApplicationConstants.DETAIL_ID, id)
+            this.putExtra(DETAIL_ID, id)
         }
         navigatorSource.startActivity(intent)
     }

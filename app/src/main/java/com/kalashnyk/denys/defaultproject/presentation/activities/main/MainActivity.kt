@@ -14,7 +14,7 @@ import com.kalashnyk.denys.defaultproject.presentation.fragments.people.PeopleFr
 import com.kalashnyk.denys.defaultproject.presentation.fragments.profile.ProfileFragment
 import com.kalashnyk.denys.defaultproject.presentation.fragments.themes.ThemesFragment
 import com.kalashnyk.denys.defaultproject.presentation.item.IUserItemClickListener
-import com.kalashnyk.denys.defaultproject.usecases.repository.database.entity.UserEntity
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.UserEntity
 import com.kalashnyk.denys.defaultproject.utils.extention.replaceFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject

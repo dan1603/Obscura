@@ -1,7 +1,7 @@
 package com.kalashnyk.denys.defaultproject.usecases
 
 import com.kalashnyk.denys.defaultproject.usecases.repository.AppRepository
-import com.kalashnyk.denys.defaultproject.usecases.repository.database.entity.UserEntity
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.UserEntity
 import io.reactivex.Single
 
 class Interactor(private val repository: AppRepository) {
@@ -12,5 +12,9 @@ class Interactor(private val repository: AppRepository) {
 
     fun getUser(id: Int): Single<UserEntity> {
         return repository.getUser(id)
+    }
+
+    fun getFeed(): Single<List<UserEntity>>? {
+        return repository.getAll()
     }
 }

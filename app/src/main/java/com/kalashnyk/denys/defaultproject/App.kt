@@ -6,7 +6,7 @@ import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
 import com.kalashnyk.denys.defaultproject.di.component.*
 import com.kalashnyk.denys.defaultproject.di.module.*
-import com.kalashnyk.denys.defaultproject.usecases.repository.database.AppDatabase
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.AppDatabase
 import com.squareup.leakcanary.LeakCanary
 import com.squareup.leakcanary.RefWatcher
 

@@ -5,7 +5,7 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import com.kalashnyk.denys.defaultproject.presentation.widget.SingleLiveEvent
 import com.kalashnyk.denys.defaultproject.usecases.Interactor
-import com.kalashnyk.denys.defaultproject.usecases.repository.database.entity.UserEntity
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.UserEntity
 //todo create paging list utils
 //todo create mapper
 //todo create multicontentview

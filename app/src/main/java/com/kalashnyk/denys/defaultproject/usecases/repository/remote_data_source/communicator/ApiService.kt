@@ -1,7 +1,7 @@
-package com.kalashnyk.denys.defaultproject.usecases.repository.server
+package com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.communicator
 
-import com.kalashnyk.denys.defaultproject.usecases.repository.database.entity.UserEntity
-import com.kalashnyk.denys.defaultproject.usecases.repository.server.pojo.UserResponse
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.UserEntity
+import com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.pojo.UserResponse
 import io.reactivex.Single
 import retrofit2.Response
 import retrofit2.http.GET

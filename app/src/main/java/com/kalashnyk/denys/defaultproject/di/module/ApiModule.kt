@@ -11,8 +11,12 @@ import com.kalashnyk.denys.defaultproject.api.pojo_error.ApiError
 import com.kalashnyk.denys.defaultproject.api.pojo_error.ApiStatus
 import com.kalashnyk.denys.defaultproject.api.pojo_error.RequestError
 import com.kalashnyk.denys.defaultproject.di.scope.ApiScope
-import com.kalashnyk.denys.defaultproject.usecases.repository.server.ApiService
-import com.kalashnyk.denys.defaultproject.usecases.repository.server.ServerCommunicator
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.FeedDataSource
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.FeedDataSourceImpl
+import com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.FeedRemoteDataSource
+import com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.FeedRemoteDataSourceImpl
+import com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.communicator.ApiService
+import com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.communicator.ServerCommunicator
 import com.kalashnyk.denys.defaultproject.utils.ApplicationUtils
 import com.kalashnyk.denys.defaultproject.utils.preference.PreferencesManager
 import dagger.Module
@@ -127,12 +131,20 @@ class ApiModule {
     @Provides
     @ApiScope
     fun provideApiService(retrofit: Retrofit): ApiService {
-        return retrofit.create<ApiService>(ApiService::class.java)
+        return retrofit.create<ApiService>(
+            ApiService::class.java)
     }
 
     @Provides
     @ApiScope
     fun provideCommunicator(apiService: ApiService): ServerCommunicator {
-        return ServerCommunicator(apiService)
+        return ServerCommunicator(
+            apiService
+        )
+    }
+
+    @Provides
+    internal fun providesFeedRemoteDataSource(serverCommunicator: ServerCommunicator): FeedRemoteDataSource {
+        return FeedRemoteDataSourceImpl(serverCommunicator)
     }
 }

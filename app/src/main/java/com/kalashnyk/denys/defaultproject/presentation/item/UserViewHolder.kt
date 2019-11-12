@@ -2,7 +2,7 @@ package com.kalashnyk.denys.defaultproject.presentation.item
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.View
-import com.kalashnyk.denys.defaultproject.usecases.repository.database.entity.UserEntity
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.UserEntity
 
 class UserViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 

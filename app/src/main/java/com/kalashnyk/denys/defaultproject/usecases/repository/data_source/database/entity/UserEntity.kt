@@ -1,4 +1,4 @@
-package com.kalashnyk.denys.defaultproject.usecases.repository.database.entity
+package com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -1,7 +1,7 @@
-package com.kalashnyk.denys.defaultproject.usecases.repository.database.dao
+package com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.dao
 
 import androidx.room.*
-import com.kalashnyk.denys.defaultproject.usecases.repository.database.entity.ThemeEntity
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.ThemeEntity
 
 @Dao
 interface ThemeDAO {

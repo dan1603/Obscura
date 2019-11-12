@@ -7,7 +7,7 @@ import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseAdapter
 import com.kalashnyk.denys.defaultproject.presentation.item.IUserItemClickListener
 import com.kalashnyk.denys.defaultproject.presentation.item.UserViewHolder
-import com.kalashnyk.denys.defaultproject.usecases.repository.database.entity.UserEntity
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.UserEntity
 
 class UserAdapter(private val context: Context, private val users: List<UserEntity>, private val listener: IUserItemClickListener<UserEntity>) :
     BaseAdapter<UserViewHolder, UserEntity, IUserItemClickListener<UserEntity>>(users as MutableList<UserEntity>, listener) {

@@ -1,7 +1,7 @@
-package com.kalashnyk.denys.defaultproject.usecases.repository.database.dao
+package com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.dao
 
 import androidx.room.*
-import com.kalashnyk.denys.defaultproject.usecases.repository.database.entity.UserEntity
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.UserEntity
 
 @Dao
 interface UserDao {

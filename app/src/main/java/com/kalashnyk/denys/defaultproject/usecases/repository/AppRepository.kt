@@ -1,8 +1,8 @@
 package com.kalashnyk.denys.defaultproject.usecases.repository
 
-import com.kalashnyk.denys.defaultproject.usecases.repository.database.AppDatabase
-import com.kalashnyk.denys.defaultproject.usecases.repository.database.entity.UserEntity
-import com.kalashnyk.denys.defaultproject.usecases.repository.server.ServerCommunicator
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.AppDatabase
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.UserEntity
+import com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.communicator.ServerCommunicator
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

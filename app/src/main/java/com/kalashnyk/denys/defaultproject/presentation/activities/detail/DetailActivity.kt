@@ -6,7 +6,7 @@ import com.kalashnyk.denys.defaultproject.databinding.DetailDataBinding
 import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
 import com.kalashnyk.denys.defaultproject.domain.SingleUserViewModel
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseActivity
-import com.kalashnyk.denys.defaultproject.usecases.repository.database.entity.UserEntity
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.UserEntity
 import java.util.*
 import javax.inject.Inject
 

@@ -144,7 +144,8 @@ class ApiModule {
     }
 
     @Provides
-    internal fun providesFeedRemoteDataSource(serverCommunicator: ServerCommunicator): FeedRemoteDataSource {
+    @ApiScope
+    fun providesFeedRemoteDataSource(serverCommunicator: ServerCommunicator): FeedRemoteDataSource {
         return FeedRemoteDataSourceImpl(serverCommunicator)
     }
 }

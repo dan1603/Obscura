@@ -7,6 +7,7 @@ import com.kalashnyk.denys.defaultproject.presentation.activities.detail.DetailA
 import com.kalashnyk.denys.defaultproject.presentation.activities.main.MainActivity
 import com.kalashnyk.denys.defaultproject.presentation.activities.splash.SplashActivity
 import com.kalashnyk.denys.defaultproject.presentation.activities.welcome.WelcomeActivity
+import com.kalashnyk.denys.defaultproject.presentation.fragments.themes.ThemesFragment
 import dagger.Component
 
 @ViewModelScope
@@ -17,4 +18,5 @@ interface ViewModelComponent {
     fun inject(activity: AuthActivity)
     fun inject(activity: MainActivity)
     fun inject(activity: DetailActivity)
+    fun inject(fragment: ThemesFragment)
 }

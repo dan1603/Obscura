@@ -98,6 +98,7 @@ class App: MultiDexApplication() {
             .build()
     }
 
+    //todo need refactor
     fun getViewModelComponent(): ViewModelComponent {
         return this.viewModelComponent!!
     }

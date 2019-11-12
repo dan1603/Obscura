@@ -4,12 +4,22 @@ import android.os.Bundle
 import androidx.databinding.ObservableBoolean
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.databinding.ThemesDataBinding
-import com.kalashnyk.denys.defaultproject.presentation.base.BaseFragment
+import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
+import com.kalashnyk.denys.defaultproject.domain.FeedViewModel
+import com.kalashnyk.denys.defaultproject.presentation.base.BaseFeedFragment
+import javax.inject.Inject
 
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
-class ThemesFragment : BaseFragment<ThemesDataBinding>() {
+class ThemesFragment : BaseFeedFragment<ThemesDataBinding>() {
+
+    var viewModel: FeedViewModel? = null
+        @Inject set
+
+    override fun injectDependency(component: ViewModelComponent) {
+        component.inject(this)
+    }
 
     /**
      * @param savedInstanceState

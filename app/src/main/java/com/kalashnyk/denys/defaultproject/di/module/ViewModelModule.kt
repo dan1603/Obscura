@@ -4,7 +4,9 @@ import android.app.Application
 import com.kalashnyk.denys.defaultproject.App
 import com.kalashnyk.denys.defaultproject.di.scope.ViewModelScope
 import com.kalashnyk.denys.defaultproject.domain.AllUsersViewModel
+import com.kalashnyk.denys.defaultproject.domain.FeedViewModel
 import com.kalashnyk.denys.defaultproject.domain.SingleUserViewModel
+import com.kalashnyk.denys.defaultproject.usecases.FeedUseCases
 import com.kalashnyk.denys.defaultproject.usecases.Interactor
 import dagger.Module
 import dagger.Provides
@@ -24,5 +26,11 @@ class ViewModelModule(app: App) {
     @Provides
     internal fun providesSingleUserViewModel(interactor: Interactor): SingleUserViewModel {
         return SingleUserViewModel(app, interactor)
+    }
+
+    @ViewModelScope
+    @Provides
+    internal fun providesFeedViewModel(feedUseCases: FeedUseCases): FeedViewModel {
+        return FeedViewModel(feedUseCases)
     }
 }

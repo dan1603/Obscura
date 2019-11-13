@@ -19,7 +19,7 @@
             android:orientation="vertical">
 
         <com.kalashnyk.denys.defaultproject.utils.multistate.MultiStateView
-                android:id="@+id/multi_state"
+                android:id="@+id/multiState"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -31,14 +31,14 @@
                 app:msv_viewState="loading">
 
             <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/list"
+                    android:id="@+id/listView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:dividerHeight="10dp"
                     android:overScrollMode="never" />
 
             <LinearLayout
-                    android:id="@+id/feed_empty_view"
+                    android:id="@+id/listEmptyView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/colorWhite"
@@ -79,7 +79,7 @@
                 android:orientation="vertical"
                 app:viewVisibility="@{loading}">
             <include
-                    android:id="@+id/include"
+                    android:id="@+id/multiStateView"
                     layout="@layout/loading"/>
         </LinearLayout>
 

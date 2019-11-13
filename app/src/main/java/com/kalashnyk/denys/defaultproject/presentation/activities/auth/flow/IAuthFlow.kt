@@ -1,10 +1,10 @@
 package com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow
 
 import android.text.TextWatcher
-import com.kalashnyk.denys.defaultproject.presentation.base.IBaseFlow
+import com.kalashnyk.denys.defaultproject.presentation.base.BaseFlow
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages
 
-interface IAuthFlow : IBaseFlow {
+interface IAuthFlow : BaseFlow {
 
     // for social auth
     enum class SocialAuthType {
@@ -17,13 +17,13 @@ interface IAuthFlow : IBaseFlow {
         SIGN_IN, SIGN_UP, RECOVER_ACCOUNT
     }
 
-    interface IAuthListener : IBaseFlow.IBaseListener {
+    interface IAuthListener : BaseFlow.IBaseListener {
         fun authRequest(flowModel: AuthFlowModel, callback: IAuthCallback)
         fun socialAuth(type: SocialAuthType, callback: IAuthCallback?)
         fun openScreen(page: Pages)
     }
 
-    interface IAuthCallback : IBaseFlow.IBaseCallback, TextWatcher {
+    interface IAuthCallback : BaseFlow.IBaseCallback, TextWatcher {
         fun showError(error: AuthFlowErrorModel)
         fun hideError()
     }

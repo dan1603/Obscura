@@ -62,8 +62,8 @@ class ThemesFragment : BaseFeedFragment<ThemesDataBinding>() {
      * @param binding
      */
     override fun setupViewLogic(binding: ThemesDataBinding) {
-        binding.refreshing=ObservableBoolean(false)
-        binding.loading=ObservableBoolean(true)
+        binding.bindingModel = FeedFlowModelBinding()
+        viewModel?.fetchData()
     }
 
     override fun onItemsLoaded(items: PagedList<BaseCardModel>) {

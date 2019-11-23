@@ -11,7 +11,7 @@ abstract class BaseCardModel : BaseObservable() {
     /**
      *
      */
-    abstract fun getCardId(): Int
+    abstract fun getCardId(): String
     /**
      *
      */

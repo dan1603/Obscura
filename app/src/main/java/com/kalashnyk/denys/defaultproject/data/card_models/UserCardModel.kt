@@ -10,8 +10,8 @@ import com.kalashnyk.denys.defaultproject.utils.CARD_USER
  */
 class UserCardModel(private var user : UserEntity) : BaseCardModel() {
 
-    override fun getCardId(): Int {
-        return user.id
+    override fun getCardId(): String {
+        return user.id.toString()
     }
 
     override fun getCardType(): String {

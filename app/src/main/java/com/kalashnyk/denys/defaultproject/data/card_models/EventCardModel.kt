@@ -7,8 +7,8 @@ import com.kalashnyk.denys.defaultproject.utils.CARD_EVENT
 
 class EventCardModel(private var feed : ThemeEntity) : BaseCardModel() {
 
-    override fun getCardId(): Int {
-        return feed.id
+    override fun getCardId(): String {
+        return feed.id.toString()
     }
 
     override fun getCardType(): String {

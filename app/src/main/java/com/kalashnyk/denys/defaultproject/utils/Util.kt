@@ -454,13 +454,13 @@ object Util {
             textView.setTextColor(
                 ColorUtils.setAlphaComponent(
                     colorPrimary,
-                    (COLOR_PRIMARY_ALPHA * 0.6) as Int
+                    (COLOR_ALPHA_255 * 0.6) as Int
                 )
             )
             textView.setLinkTextColor(
                 ColorUtils.setAlphaComponent(
                     colorPrimary,
-                    (COLOR_PRIMARY_ALPHA * 0.6) as Int
+                    (COLOR_ALPHA_255 * 0.6) as Int
                 )
             )
             if (Util.isNougatOrHigher) {

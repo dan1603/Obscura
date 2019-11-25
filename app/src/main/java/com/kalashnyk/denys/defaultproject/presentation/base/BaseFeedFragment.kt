@@ -17,23 +17,62 @@ import com.kalashnyk.denys.defaultproject.utils.multistate.MultiStateView
  */
 abstract class BaseFeedFragment<V : ViewDataBinding>: BaseFragment<V>(), ItemsLoadListener<PagedList<BaseCardModel>> {
 
-
     protected var mFeedAdapter: PagingAdapter = PagingAdapter(DiffCallbackBaseCardModel())
 
+    protected lateinit var typeFeed : String
     /**
      * @param component
      */
     abstract fun injectDependency(component: ViewModelComponent)
 
+    /**
+     *
+     */
+    abstract fun initListView()
+
+    /**
+     *
+     */
     abstract fun getListView(): RecyclerView
 
+    /**
+     *
+     */
     abstract fun getRefreshView(): SwipeRefreshLayout
 
+    /**
+     *
+     */
     abstract fun getStateView() : MultiStateView
+
+    /**
+     *
+     */
+    abstract fun initObserver()
+
+    /**
+     *
+     */
+    abstract fun removeObserver()
+
+    /**
+     *
+     */
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        displayProgress()
+        initListView()
+        initObserver()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         createDaggerDependencies()
+    }
+
+    override fun onDestroyView() {
+        removeObserver()
+        super.onDestroyView()
     }
 
     private fun createDaggerDependencies() {

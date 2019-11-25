@@ -5,8 +5,9 @@ import com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.BaseCa
 import com.kalashnyk.denys.defaultproject.usecases.repository.FeedRepository
 import com.kalashnyk.denys.defaultproject.utils.ConverterFactory
 import io.reactivex.Completable
+import io.reactivex.schedulers.Schedulers
 
-interface FeedUseCases{
+interface FeedUseCases {
 
     fun fetchFeed(type: String): Completable
 
@@ -18,29 +19,34 @@ interface FeedUseCases{
         type: String,
         modelConverter: ConverterFactory
     ): DataSource.Factory<Int, BaseCardModel>
-
 }
 
-class FeedUseCasesImpl(private val repository: FeedRepository) : FeedUseCases{
+/**
+ *
+ */
+class FeedUseCasesImpl(private val repository: FeedRepository) : FeedUseCases {
 
-    override fun fetchFeed(type: String): Completable {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    //todo use compositer for subscribeOn and observeOn
+    override fun fetchFeed(type: String): Completable=
+        repository.fetchFeed(type)
+            .subscribeOn(Schedulers.io())
+            .observeOn(Schedulers.io())
 
-    override fun fetchNext(filterType: String, lastItemId: String): Completable {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    //todo use compositer for subscribeOn and observeOn
+    override fun fetchNext(type: String, lastItemId: String): Completable=
+        repository.fetchNext(type, lastItemId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(Schedulers.io())
 
-    override fun deleteCachedFeed(type: String): Completable {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    //todo use compositer for subscribeOn and observeOn
+    override fun deleteCachedFeed(type: String): Completable=
+        repository.deleteCachedFeed(type)
+            .subscribeOn(Schedulers.io())
+            .observeOn(Schedulers.io())
 
     override fun getCardsFactory(
         type: String,
         modelConverter: ConverterFactory
-    ): DataSource.Factory<Int, BaseCardModel> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-
+    ): DataSource.Factory<Int, BaseCardModel> =
+        repository.getCardsFactory(type, modelConverter)
 }

@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data class="ThemesDataBinding">
 
-
         <import type="android.view.View"/>
 
-        <variable name="bindingModel"
-                  type="com.kalashnyk.denys.defaultproject.presentation.fragments.themes.FeedFlowModelBinding"/>
+        <variable name="loading"
+                  type="androidx.databinding.ObservableBoolean"/>
+
+        <variable name="refreshing"
+                  type="androidx.databinding.ObservableBoolean"/>
+
     </data>
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/feed_coordinator"
             android:layout_width="match_parent"
@@ -19,13 +23,13 @@
                 android:id="@+id/swipeRefresh"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:refreshing="@{bindingModel.refreshing}">
+                app:refreshing="@{refreshing}">
 
             <include
                     android:id="@+id/multiStateView"
                     layout="@layout/base_themes_list_layout"
-                    app:loading="@{bindingModel.loading}"
-                    app:refreshing="@{bindingModel.refreshing}"/>
+                    app:loading="@{loading}"
+                    app:refreshing="@{refreshing}"/>
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

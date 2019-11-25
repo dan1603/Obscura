@@ -97,7 +97,14 @@ const val CARD_ARTICLE: String="article"
  */
 const val CONTENT_PAGE_SIZE: Int=20
 
+/**
+ *
+ */
 const val DEFAULT_INITIAL_LOADED_KEY : Int = 0
+
+const val FIRST_LIST_POSITION : Int = 0
+
+const val MIN_LIST_SIZE : Int = 1
 
 /**
  *

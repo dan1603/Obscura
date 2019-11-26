@@ -92,6 +92,11 @@ const val CARD_EVENT: String="event"
  */
 const val CARD_ARTICLE: String="article"
 
+
+/**
+ *
+ */
+const val DEFAULT_SCREEN: String="default_screen"
 /**
  *
  */
@@ -102,9 +107,25 @@ const val CONTENT_PAGE_SIZE: Int=20
  */
 const val DEFAULT_INITIAL_LOADED_KEY : Int = 0
 
+/**
+ *
+ */
 const val FIRST_LIST_POSITION : Int = 0
 
+/**
+ *
+ */
 const val MIN_LIST_SIZE : Int = 1
+
+/**
+ *
+ */
+const val DEFAULT_CACHE_VALUE: Int = 0
+
+/**
+ *
+ */
+const val CACHED_VALUE: Int= 1
 
 /**
  *
@@ -166,3 +187,14 @@ val galleryArrayPermission=
  *
  */
 val cameraArrayPermission=arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+
+
+/**
+ *
+ */
+const val DEFAULT_TIMEOUT: Int= 10
+
+/**
+ *
+ */
+const val DEFAULT_RETRY_ATTEMPTS: Long= 4L

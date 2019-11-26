@@ -3,11 +3,11 @@ package com.kalashnyk.denys.defaultproject.usecases.repository
 import androidx.paging.DataSource
 import com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.BaseCardModel
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.FeedDataSource
-import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.AppDatabase
 import com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.FeedRemoteDataSource
-import com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.communicator.ServerCommunicator
 import com.kalashnyk.denys.defaultproject.utils.ConverterFactory
 import io.reactivex.Completable
+import org.apache.commons.lang3.StringUtils
+import java.util.NoSuchElementException
 
 /**
  *
@@ -17,49 +17,66 @@ interface FeedRepository {
     /**
      *
      */
-    fun fetchFeed(type: String): Completable
+    fun fetchFeed(screenType: String): Completable
 
     /**
      *
      */
-    fun fetchNext(type: String, lastItemId: String): Completable
+    fun fetchNext(screenType: String, lastItemId: String): Completable
 
     /**
      *
      */
-    fun deleteCachedFeed(filterType: String): Completable
+    fun deleteCachedFeed(screenType: String): Completable
 
     /**
      *
      */
     fun getCardsFactory(
-        type: String,
+        screenType: String,
         modelConverter: ConverterFactory
     ): DataSource.Factory<Int, BaseCardModel>
 }
 
+/**
+ *
+ */
 class FeedRepositoryImpl(
     private val feedRemoteDataSource: FeedRemoteDataSource,
-                         private val feedDataSource: FeedDataSource
+    private val feedDataSource: FeedDataSource
 ) : FeedRepository {
 
-    override fun fetchFeed(type: String): Completable {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun fetchFeed(screenType: String): Completable {
+        return feedRemoteDataSource
+            .fetchFeed(screenType)
+            .flatMapCompletable {  }
+//       return Completable.fromAction {
+//            var feeds= feedRemoteDataSource
+//                .fetchFeed(screenType).blockingGet()
+//            if (feeds != null && !feeds!!.isEmpty()) {
+//                val isCached=StringUtils.isNotBlank(lastFeedId)
+//                feeds=FeedDataUtil.initializeFeeds(feeds, isCached, filterType, null)
+//                saveFeeds(feeds, isCached, filterType, null)
+//            } else {
+//                throw NoSuchElementException()
+//            }
+//        }
     }
 
-    override fun fetchNext(type: String, lastItemId: String): Completable {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun fetchNext(screenType: String, lastItemId: String): Completable {
+        return feedRemoteDataSource
+            .fetchNext(screenType, lastItemId)
+            .flatMapCompletable {  }
     }
 
-    override fun deleteCachedFeed(filterType: String): Completable {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun deleteCachedFeed(screenType: String): Completable=
+        Completable.fromAction { feedDataSource.deleteCachedFeed(screenType) }
+
 
     override fun getCardsFactory(
-        type: String,
+        screenType: String,
         modelConverter: ConverterFactory
-    ): DataSource.Factory<Int, BaseCardModel> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    ): DataSource.Factory<Int, BaseCardModel> =
+        feedDataSource.getCardsModelsFactory(screenType, modelConverter)
 
 }

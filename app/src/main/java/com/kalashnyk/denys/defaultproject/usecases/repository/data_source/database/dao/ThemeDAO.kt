@@ -1,5 +1,6 @@
 package com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.dao
 
+import androidx.paging.DataSource
 import androidx.room.*
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.ThemeEntity
 
@@ -22,4 +23,12 @@ interface ThemeDAO {
 
     @Delete
     fun delete(userEntity: ThemeEntity)
+
+    @Query("DELETE FROM themes WHERE screenType = :screenType AND cached = 1")
+    fun deleteCachedItems(screenType: String)
+
+    @Query("SELECT * FROM themes WHERE screenType = :screenType")
+    fun getDataSource(
+        screenType: String
+    ): DataSource.Factory<Int, ThemeEntity>
 }

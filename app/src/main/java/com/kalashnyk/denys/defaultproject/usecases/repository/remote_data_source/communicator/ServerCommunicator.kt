@@ -1,9 +1,13 @@
 package com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.communicator
 
 import android.util.Log
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.ThemeEntity
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.UserEntity
 import com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.pojo.UserResponse
+import com.kalashnyk.denys.defaultproject.utils.DEFAULT_RETRY_ATTEMPTS
+import com.kalashnyk.denys.defaultproject.utils.DEFAULT_TIMEOUT
 import io.reactivex.ObservableTransformer
+import io.reactivex.Scheduler
 import io.reactivex.Single
 import io.reactivex.SingleTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -13,9 +17,11 @@ import java.util.concurrent.TimeUnit
 
 class ServerCommunicator(private val mService: ApiService) {
 
-    companion object {
-        private val DEFAULT_TIMEOUT = 10
-        private val DEFAULT_RETRY_ATTEMPTS = 4L
+
+    fun fetchThemes(screenType: String, lastItemId: String?): Single<Response<ThemeEntity>> {
+        return mService.fetchThemes(screenType, lastItemId)
+            .compose(singleTransformer())
+            .doOnError { t: Throwable -> Log.d("ServerCommunicator", t.message) }
     }
 
     fun getAllUsers(): Single<Response<UserResponse>> {
@@ -26,6 +32,16 @@ class ServerCommunicator(private val mService: ApiService) {
 
     fun getUser(id: Int): Single<UserEntity> {
         return mService.getUserById(id).compose(singleTransformer())
+    }
+
+    private fun <T> singleTransformer(
+        subscribeOn: Scheduler,
+        observeOn: Scheduler
+    ): SingleTransformer<T, T> = SingleTransformer {
+        it.subscribeOn(subscribeOn)
+            .observeOn(observeOn)
+            .timeout(DEFAULT_TIMEOUT.toLong(), TimeUnit.SECONDS)
+            .retry(DEFAULT_RETRY_ATTEMPTS)
     }
 
     private fun <T> singleTransformer(): SingleTransformer<T, T> = SingleTransformer {

@@ -7,16 +7,31 @@ import com.kalashnyk.denys.defaultproject.utils.ConverterFactory
 import io.reactivex.Completable
 import io.reactivex.schedulers.Schedulers
 
+/**
+ *
+ */
 interface FeedUseCases {
 
-    fun fetchFeed(type: String): Completable
+    /**
+     *
+     */
+    fun fetchFeed(screenType: String): Completable
 
-    fun fetchNext(type: String, lastItemId: String): Completable
+    /**
+     *
+     */
+    fun fetchNext(screenType: String, lastItemId: String): Completable
 
-    fun deleteCachedFeed(filterType: String): Completable
+    /**
+     *
+     */
+    fun deleteCachedFeed(screenType: String): Completable
 
+    /**
+     *
+     */
     fun getCardsFactory(
-        type: String,
+        screenType: String,
         modelConverter: ConverterFactory
     ): DataSource.Factory<Int, BaseCardModel>
 }
@@ -27,26 +42,26 @@ interface FeedUseCases {
 class FeedUseCasesImpl(private val repository: FeedRepository) : FeedUseCases {
 
     //todo use compositer for subscribeOn and observeOn
-    override fun fetchFeed(type: String): Completable=
-        repository.fetchFeed(type)
+    override fun fetchFeed(screenType: String): Completable=
+        repository.fetchFeed(screenType)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
 
     //todo use compositer for subscribeOn and observeOn
-    override fun fetchNext(type: String, lastItemId: String): Completable=
-        repository.fetchNext(type, lastItemId)
+    override fun fetchNext(screenType: String, lastItemId: String): Completable=
+        repository.fetchNext(screenType, lastItemId)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
 
     //todo use compositer for subscribeOn and observeOn
-    override fun deleteCachedFeed(type: String): Completable=
-        repository.deleteCachedFeed(type)
+    override fun deleteCachedFeed(screenType: String): Completable=
+        repository.deleteCachedFeed(screenType)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
 
     override fun getCardsFactory(
-        type: String,
+        screenType: String,
         modelConverter: ConverterFactory
     ): DataSource.Factory<Int, BaseCardModel> =
-        repository.getCardsFactory(type, modelConverter)
+        repository.getCardsFactory(screenType, modelConverter)
 }

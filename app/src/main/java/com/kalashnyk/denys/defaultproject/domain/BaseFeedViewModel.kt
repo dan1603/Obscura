@@ -9,7 +9,6 @@ import com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.BaseCa
 import com.kalashnyk.denys.defaultproject.presentation.base.ItemsLoadListener
 import com.kalashnyk.denys.defaultproject.utils.CONTENT_PAGE_SIZE
 import com.kalashnyk.denys.defaultproject.utils.DEFAULT_INITIAL_LOADED_KEY
-import org.apache.commons.lang3.StringUtils
 
 /**
  *
@@ -21,7 +20,7 @@ abstract class BaseFeedViewModel : BaseViewModel() {
      */
     protected lateinit var listCards: LiveData<PagedList<BaseCardModel>>
     protected var typeFeed: String?=""
-    protected lateinit var  itemLoadedListener : ItemsLoadListener<PagedList<BaseCardModel>>
+    protected lateinit var itemLoadedListener: ItemsLoadListener<PagedList<BaseCardModel>>
 
     private val refreshing=ObservableBoolean()
     private val loading=ObservableBoolean()
@@ -43,9 +42,9 @@ abstract class BaseFeedViewModel : BaseViewModel() {
     /**
      *
      */
-    fun initPagedListLiveData(factory: DataSource.Factory<Int, BaseCardModel>)
-            : LiveData<PagedList<BaseCardModel>> =
-        initPagedList(factory, DEFAULT_INITIAL_LOADED_KEY)
+    fun initPagedListLiveData(factory: DataSource.Factory<Int, BaseCardModel>) {
+        listCards=initPagedList(factory, DEFAULT_INITIAL_LOADED_KEY)
+    }
 
     private fun initPagedList(
         factory: DataSource.Factory<Int, BaseCardModel>,
@@ -64,13 +63,21 @@ abstract class BaseFeedViewModel : BaseViewModel() {
 
                 override fun onItemAtEndLoaded(itemAtEnd: BaseCardModel) {
                     super.onItemAtEndLoaded(itemAtEnd)
-                    lastItemId?.let {
-                        if(it != itemAtEnd.getCardId()){
+                    // todo add after remove moc logic
+//                    lastItemId?.let {
+//                        if(it != itemAtEnd.getCardId()){
+//                            typeFeed.apply {
+//                                rangeData(it, itemAtEnd.getCardId())
+//                                lastItemId=itemAtEnd.getCardId()
+//                            }
+//                        }
+//                    }
+                    // todo remove after remove moc logic
+                   lastItemId?.let {
                             typeFeed.apply {
                                 rangeData(it, itemAtEnd.getCardId())
                                 lastItemId=itemAtEnd.getCardId()
                             }
-                        }
                     }
                 }
             })
@@ -94,9 +101,9 @@ abstract class BaseFeedViewModel : BaseViewModel() {
         loading.set(isLoading)
     }
 
-    abstract fun fetchData(typeFeed : String)
+    abstract fun fetchData(typeFeed: String)
 
-    abstract fun rangeData(typeFeed : String, itemId: String)
+    abstract fun rangeData(typeFeed: String, itemId: String)
 
-
+    abstract fun clearCachedItems(screenType: String)
 }

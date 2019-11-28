@@ -12,10 +12,14 @@ interface ThemeDAO {
     @Query("SELECT * FROM themes WHERE id = :id")
     fun queryById(id: Int): ThemeEntity
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert
+//        (onConflict=OnConflictStrategy.REPLACE)
     fun insertList(list: List<ThemeEntity>)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict=OnConflictStrategy.REPLACE)
+    fun insert(userEntity: List<ThemeEntity>)
+
+    @Insert(onConflict=OnConflictStrategy.REPLACE)
     fun update(userEntity: ThemeEntity)
 
     @Update
@@ -31,4 +35,22 @@ interface ThemeDAO {
     fun getDataSource(
         screenType: String
     ): DataSource.Factory<Int, ThemeEntity>
+
+    @Query("DELETE FROM themes WHERE cached = 1")
+    fun deleteAllCachedItems()
+
+
+    @Query("DELETE FROM themes WHERE screenType = :screenType")
+    fun deleteAllItemsByType(screenType: String)
+
+    @Transaction
+    fun insertAndClearCache(
+        feedItems: List<ThemeEntity>,
+        screenType: String?
+    ) {
+        screenType?.let {
+            deleteAllItemsByType(it)
+        }
+        insert(feedItems)
+    }
 }

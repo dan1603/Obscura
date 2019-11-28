@@ -17,10 +17,9 @@ import java.util.concurrent.TimeUnit
 
 class ServerCommunicator(private val mService: ApiService) {
 
-
-    fun fetchThemes(screenType: String, lastItemId: String?): Single<Response<ThemeEntity>> {
+    fun fetchThemes(screenType: String, lastItemId: String?): Single<Response<List<ThemeEntity>>> {
         return mService.fetchThemes(screenType, lastItemId)
-            .compose(singleTransformer())
+//            .compose(singleTransformer(Schedulers.io(), Schedulers.io()))
             .doOnError { t: Throwable -> Log.d("ServerCommunicator", t.message) }
     }
 

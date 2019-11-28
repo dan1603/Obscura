@@ -59,4 +59,10 @@ data class ThemeEntity(
      */
     val isArticle: Boolean
         get()=CARD_ARTICLE == type
+
+    fun converItemForDataSource(item : ThemeEntity, isCached: Boolean?, screenType : String?) : ThemeEntity {
+        isCached?.let { item.cached = CACHED_VALUE}
+        screenType?.let { item.screenType = it }
+        return item
+    }
 }

@@ -4,102 +4,114 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.content.Context
-import androidx.annotation.LayoutRes
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.annotation.LayoutRes
 import com.kalashnyk.denys.defaultproject.R
 
 
 annotation class ViewState
 class MultiStateView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context, attrs: AttributeSet?=null, defStyleAttr: Int=0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
-    private var mInflater: LayoutInflater? = null
+    private var mInflater: LayoutInflater?=null
 
-    private var mContentView: View? = null
+    private var mContentView: View?=null
 
-    private var mLoadingView: View? = null
+    private var mLoadingView: View?=null
 
-    private var mErrorView: View? = null
+    private var mErrorView: View?=null
 
-    private var mEmptyView: View? = null
+    private var mEmptyView: View?=null
 
-    private var mAnimateViewChanges = false
+    private var mAnimateViewChanges=false
 
     @ViewState
-    private var mViewState =
+    private var mViewState=
         VIEW_STATE_UNKNOWN
 
     var viewState: Int
         @ViewState
-        get() = mViewState
+        get()=mViewState
         set(@ViewState state) {
             if (state != mViewState) {
-                val previous = mViewState
-                mViewState = state
+                val previous=mViewState
+                mViewState=state
                 setView(previous)
             }
         }
 
     init {
-        mInflater = LayoutInflater.from(context)
-        val a = context.obtainStyledAttributes(
+        mInflater=LayoutInflater.from(context)
+        val a=context.obtainStyledAttributes(
             attrs,
             R.styleable.MultiStateView
         )
 
-        val loadingViewResId = a.getResourceId(
+        val loadingViewResId=a.getResourceId(
             R.styleable.MultiStateView_msv_loadingView, -1
         )
         if (loadingViewResId > -1) {
-            mLoadingView = mInflater!!.inflate(loadingViewResId, this, false)
-            addView(mLoadingView, mLoadingView!!.layoutParams)
+            mInflater?.let {
+                mLoadingView=it.inflate(loadingViewResId, this, false)
+                mLoadingView?.apply {
+                    addView(this, this.layoutParams)
+                }
+            }
         }
 
-        val emptyViewResId = a.getResourceId(
+        val emptyViewResId=a.getResourceId(
             R.styleable.MultiStateView_msv_emptyView, -1
         )
         if (emptyViewResId > -1) {
-            mEmptyView = mInflater!!.inflate(emptyViewResId, this, false)
-            addView(mEmptyView, mEmptyView!!.layoutParams)
+            mInflater?.let {
+                mEmptyView=it.inflate(emptyViewResId, this, false)
+                mEmptyView?.apply {
+                    addView(this, this.layoutParams)
+                }
+            }
         }
 
-        val errorViewResId = a.getResourceId(
+        val errorViewResId=a.getResourceId(
             R.styleable.MultiStateView_msv_errorView, -1
         )
         if (errorViewResId > -1) {
-            mErrorView = mInflater!!.inflate(errorViewResId, this, false)
-            addView(mErrorView, mErrorView!!.layoutParams)
+            mInflater?.let {
+                mErrorView=it.inflate(emptyViewResId, this, false)
+                mErrorView?.apply {
+                    addView(this, this.layoutParams)
+                }
+            }
         }
 
-        val viewState = a.getInt(
+        val viewState=a.getInt(
             R.styleable.MultiStateView_msv_viewState,
             VIEW_STATE_CONTENT
         )
-        mAnimateViewChanges = a.getBoolean(
+        mAnimateViewChanges=a.getBoolean(
             R.styleable.MultiStateView_msv_animateViewChanges, false
         )
 
         when (viewState) {
-            VIEW_STATE_CONTENT -> mViewState =
+            VIEW_STATE_CONTENT -> mViewState=
                 VIEW_STATE_CONTENT
 
-            VIEW_STATE_ERROR -> mViewState =
+            VIEW_STATE_ERROR -> mViewState=
                 VIEW_STATE_ERROR
 
-            VIEW_STATE_EMPTY -> mViewState =
+            VIEW_STATE_EMPTY -> mViewState=
                 VIEW_STATE_EMPTY
 
-            VIEW_STATE_LOADING -> mViewState =
+            VIEW_STATE_LOADING -> mViewState=
                 VIEW_STATE_LOADING
 
-            VIEW_STATE_UNKNOWN -> mViewState =
+            VIEW_STATE_UNKNOWN -> mViewState=
                 VIEW_STATE_UNKNOWN
-            else -> mViewState =
+            else -> mViewState=
                 VIEW_STATE_UNKNOWN
         }
 
@@ -122,31 +134,31 @@ class MultiStateView @JvmOverloads constructor(
      */
     override fun addView(child: View?) {
         if (isValidContentView(child))
-            mContentView = child
+            mContentView=child
         super.addView(child)
     }
 
     override fun addView(child: View, index: Int) {
         if (isValidContentView(child))
-            mContentView = child
+            mContentView=child
         super.addView(child, index)
     }
 
     override fun addView(child: View, index: Int, params: ViewGroup.LayoutParams) {
         if (isValidContentView(child))
-            mContentView = child
+            mContentView=child
         super.addView(child, index, params)
     }
 
     override fun addView(child: View?, params: ViewGroup.LayoutParams) {
         if (isValidContentView(child))
-            mContentView = child
+            mContentView=child
         super.addView(child, params)
     }
 
     override fun addView(child: View, width: Int, height: Int) {
         if (isValidContentView(child))
-            mContentView = child
+            mContentView=child
         super.addView(child, width, height)
     }
 
@@ -155,7 +167,7 @@ class MultiStateView @JvmOverloads constructor(
         params: ViewGroup.LayoutParams
     ): Boolean {
         if (isValidContentView(child))
-            mContentView = child
+            mContentView=child
         return super.addViewInLayout(child, index, params)
     }
 
@@ -164,7 +176,7 @@ class MultiStateView @JvmOverloads constructor(
         params: ViewGroup.LayoutParams, preventRequestLayout: Boolean
     ): Boolean {
         if (isValidContentView(child))
-            mContentView = child
+            mContentView=child
         return super
             .addViewInLayout(child, index, params, preventRequestLayout)
     }
@@ -184,9 +196,9 @@ class MultiStateView @JvmOverloads constructor(
     }
 
     private fun hideLoadingView() {
-        if (mLoadingView != null) {
-            mLoadingView!!.visibility = View.GONE
-            val shimmerLayout = mLoadingView!!.findViewById<View>(R.id.shimmerLayout)
+        mLoadingView?.let {
+            it.visibility=View.GONE
+            val shimmerLayout=it.findViewById<View>(R.id.shimmerLayout)
             if (shimmerLayout != null) {
                 if (shimmerLayout is ShimmerLayout) {
                     (shimmerLayout as ShimmerLayout).stopShimmerAnimation()
@@ -204,17 +216,13 @@ class MultiStateView @JvmOverloads constructor(
                     throw NullPointerException("Loading View")
                 }
 
-                if (mContentView != null)
-                    mContentView!!.visibility = View.GONE
-                if (mErrorView != null)
-                    mErrorView!!.visibility = View.GONE
-                if (mEmptyView != null)
-                    mEmptyView!!.visibility = View.GONE
-
+                mContentView?.let { it.visibility=View.GONE }
+                mErrorView?.let { it.visibility=View.GONE }
+                mEmptyView?.let { it.visibility=View.GONE }
                 if (mAnimateViewChanges) {
                     animateLayoutChange(getView(previousState))
                 } else {
-                    mLoadingView!!.visibility = View.VISIBLE
+                    mLoadingView?.let { it.visibility=View.VISIBLE }
                 }
             }
 
@@ -224,15 +232,13 @@ class MultiStateView @JvmOverloads constructor(
                 }
 
                 hideLoadingView()
-                if (mErrorView != null)
-                    mErrorView!!.visibility = View.GONE
-                if (mContentView != null)
-                    mContentView!!.visibility = View.GONE
+                mErrorView?.let { it.visibility=View.GONE }
+                mContentView?.let { it.visibility=View.GONE }
 
                 if (mAnimateViewChanges) {
                     animateLayoutChange(getView(previousState))
                 } else {
-                    mEmptyView!!.visibility = View.VISIBLE
+                    mEmptyView?.let { it.visibility=View.VISIBLE }
                 }
             }
 
@@ -242,15 +248,14 @@ class MultiStateView @JvmOverloads constructor(
                 }
 
                 hideLoadingView()
-                if (mContentView != null)
-                    mContentView!!.visibility = View.GONE
-                if (mEmptyView != null)
-                    mEmptyView!!.visibility = View.GONE
+
+                mContentView?.let { it.visibility=View.GONE }
+                mEmptyView?.let { it.visibility=View.GONE }
 
                 if (mAnimateViewChanges) {
                     animateLayoutChange(getView(previousState))
                 } else {
-                    mErrorView!!.visibility = View.VISIBLE
+                    mErrorView?.let { it.visibility=View.GONE }
                 }
             }
 
@@ -262,15 +267,12 @@ class MultiStateView @JvmOverloads constructor(
                 }
 
                 hideLoadingView()
-                if (mErrorView != null)
-                    mErrorView!!.visibility = View.GONE
-                if (mEmptyView != null)
-                    mEmptyView!!.visibility = View.GONE
-
+                mErrorView?.let { it.visibility=View.GONE }
+                mEmptyView?.let { it.visibility=View.GONE }
                 if (mAnimateViewChanges) {
                     animateLayoutChange(getView(previousState))
                 } else {
-                    mContentView!!.visibility = View.VISIBLE
+                    mContentView?.let { it.visibility=View.VISIBLE }
                 }
             }
             else -> {
@@ -278,14 +280,12 @@ class MultiStateView @JvmOverloads constructor(
                     throw NullPointerException("Content View")
                 }
                 hideLoadingView()
-                if (mErrorView != null)
-                    mErrorView!!.visibility = View.GONE
-                if (mEmptyView != null)
-                    mEmptyView!!.visibility = View.GONE
+                mErrorView?.let { it.visibility=View.GONE }
+                mEmptyView?.let { it.visibility=View.GONE }
                 if (mAnimateViewChanges) {
                     animateLayoutChange(getView(previousState))
                 } else {
-                    mContentView!!.visibility = View.VISIBLE
+                    mContentView?.let { it.visibility=View.VISIBLE }
                 }
             }
         }
@@ -308,73 +308,75 @@ class MultiStateView @JvmOverloads constructor(
     @JvmOverloads
     fun setViewForState(
         view: View, @ViewState state: Int,
-        switchToState: Boolean = false
+        switchToState: Boolean=false
     ) {
         when (state) {
             VIEW_STATE_LOADING -> {
                 if (mLoadingView != null)
                     removeView(mLoadingView)
-                mLoadingView = view
+                mLoadingView=view
                 addView(mLoadingView)
             }
 
             VIEW_STATE_EMPTY -> {
                 if (mEmptyView != null)
                     removeView(mEmptyView)
-                mEmptyView = view
+                mEmptyView=view
                 addView(mEmptyView)
             }
 
             VIEW_STATE_ERROR -> {
                 if (mErrorView != null)
                     removeView(mErrorView)
-                mErrorView = view
+                mErrorView=view
                 addView(mErrorView)
             }
 
             VIEW_STATE_CONTENT -> {
                 if (mContentView != null)
                     removeView(mContentView)
-                mContentView = view
+                mContentView=view
                 addView(mContentView)
             }
         }
 
         setView(VIEW_STATE_UNKNOWN)
         if (switchToState)
-            viewState = state
+            viewState=state
     }
 
     @JvmOverloads
     fun setViewForState(
         @LayoutRes layoutRes: Int, @ViewState state: Int,
-        switchToState: Boolean = false
+        switchToState: Boolean=false
     ) {
         if (mInflater == null)
-            mInflater = LayoutInflater.from(context)
-        val view = mInflater!!.inflate(layoutRes, this, false)
-        setViewForState(view, state, switchToState)
+            mInflater=LayoutInflater.from(context)
+        mInflater?.let {
+            val view=it.inflate(layoutRes, this, false)
+            setViewForState(view, state, switchToState)
+        }
     }
 
     fun setAnimateLayoutChanges(animate: Boolean) {
-        mAnimateViewChanges = animate
+        mAnimateViewChanges=animate
     }
 
     private fun animateLayoutChange(previousView: View?) {
         if (previousView == null) {
-            getView(mViewState)!!.visibility = View.VISIBLE
+            getView(mViewState)?.let { it.visibility=View.VISIBLE }
             return
         }
 
-        previousView.visibility = View.VISIBLE
-        val anim = ObjectAnimator.ofFloat(
+        previousView.visibility=View.VISIBLE
+        val anim=ObjectAnimator.ofFloat(
             previousView, "alpha",
             1.0f, 0.0f
         ).setDuration(250L)
         anim.addListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator) {
-                previousView.visibility = View.GONE
-                getView(mViewState)!!.visibility = View.VISIBLE
+                previousView.visibility=View.GONE
+                getView(mViewState)?.let { it.visibility=View.VISIBLE }
                 ObjectAnimator
                     .ofFloat(getView(mViewState), "alpha", 0.0f, 1.0f)
                     .setDuration(250L).start()
@@ -385,14 +387,14 @@ class MultiStateView @JvmOverloads constructor(
 
     companion object {
 
-        const val VIEW_STATE_UNKNOWN = -1
+        const val VIEW_STATE_UNKNOWN=-1
 
-        const val VIEW_STATE_CONTENT = 0
+        const val VIEW_STATE_CONTENT=0
 
-        const val VIEW_STATE_ERROR = 1
+        const val VIEW_STATE_ERROR=1
 
-        const val VIEW_STATE_EMPTY = 2
+        const val VIEW_STATE_EMPTY=2
 
-        const val VIEW_STATE_LOADING = 3
+        const val VIEW_STATE_LOADING=3
     }
 }

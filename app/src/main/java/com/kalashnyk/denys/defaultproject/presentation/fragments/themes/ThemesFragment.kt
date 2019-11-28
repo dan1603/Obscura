@@ -98,9 +98,12 @@ class ThemesFragment : BaseFeedFragment<ThemesDataBinding>() {
     /**
      *
      */
-    override fun initObserver() {
-        viewModel?.initLiveData("", this)
-        viewModel?.getPagedList()?.observe(this, Observer { onItemsLoaded(it) })
+    override fun initObserver(screenType : String) {
+        viewModel?.initLiveData(screenType, this)
+        viewModel?.getPagedList()?.observe(this, Observer {
+
+            onItemsLoaded(it)
+        })
     }
 
     /**
@@ -114,10 +117,10 @@ class ThemesFragment : BaseFeedFragment<ThemesDataBinding>() {
      * @param binding
      */
     override fun setupViewLogic(binding: ThemesDataBinding) {
-        viewModel?.fetchData(typeFeed)
+        viewModel?.fetchData(screenType)
         binding.swipeRefresh.setOnRefreshListener {
             viewModel?.setRefreshing(true)
-            viewModel?.fetchData(typeFeed)
+            viewModel?.fetchData(screenType)
         }
     }
 
@@ -148,6 +151,10 @@ class ThemesFragment : BaseFeedFragment<ThemesDataBinding>() {
         activity?.showSnack(errorMessage)
     }
 
+    override fun onDetach() {
+        viewModel?.clearCachedItems(screenType)
+        super.onDetach()
+    }
 
     companion object {
         /**

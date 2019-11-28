@@ -3,11 +3,14 @@ package com.kalashnyk.denys.defaultproject.usecases.repository
 import androidx.paging.DataSource
 import com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.BaseCardModel
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.FeedDataSource
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.ThemeEntity
 import com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.FeedRemoteDataSource
 import com.kalashnyk.denys.defaultproject.utils.ConverterFactory
+import com.kalashnyk.denys.defaultproject.utils.MocUtil
 import io.reactivex.Completable
-import org.apache.commons.lang3.StringUtils
-import java.util.NoSuchElementException
+import io.reactivex.Single
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  *
@@ -49,24 +52,33 @@ class FeedRepositoryImpl(
     override fun fetchFeed(screenType: String): Completable {
         return feedRemoteDataSource
             .fetchFeed(screenType)
-            .flatMapCompletable {  }
-//       return Completable.fromAction {
-//            var feeds= feedRemoteDataSource
-//                .fetchFeed(screenType).blockingGet()
-//            if (feeds != null && !feeds!!.isEmpty()) {
-//                val isCached=StringUtils.isNotBlank(lastFeedId)
-//                feeds=FeedDataUtil.initializeFeeds(feeds, isCached, filterType, null)
-//                saveFeeds(feeds, isCached, filterType, null)
-//            } else {
-//                throw NoSuchElementException()
-//            }
-//        }
+                // todo remove moc logic and add handling error when api logic implemented
+            .doOnError {
+                val list: List<ThemeEntity> = MocUtil.mocListThemes()
+                list.forEach {
+                    it.converItemForDataSource(item = it, isCached = false, screenType = screenType)
+                }
+                saveItems(list, false, screenType)
+            }
+            .flatMapCompletable {
+                Completable.fromAction { }
+            }
     }
 
     override fun fetchNext(screenType: String, lastItemId: String): Completable {
         return feedRemoteDataSource
             .fetchNext(screenType, lastItemId)
-            .flatMapCompletable {  }
+            // todo remove moc logic and add handling error when api logic implemented
+            .flatMap {
+                val list: List<ThemeEntity> = MocUtil.mocListThemes()
+                list.forEach {
+                    it.converItemForDataSource(item = it, isCached = true, screenType = screenType)
+                }
+                Single.just(list)
+            }
+            .flatMapCompletable {
+                Completable.fromAction { saveItems(it, true, screenType) }
+            }
     }
 
     override fun deleteCachedFeed(screenType: String): Completable=
@@ -78,5 +90,15 @@ class FeedRepositoryImpl(
         modelConverter: ConverterFactory
     ): DataSource.Factory<Int, BaseCardModel> =
         feedDataSource.getCardsModelsFactory(screenType, modelConverter)
+
+    private fun saveItems(
+        feedItems: List<ThemeEntity>, isCached: Boolean, typeScreen: String?
+    ) {
+        if (isCached) {
+            feedDataSource.insert(feedItems)
+        } else {
+            feedDataSource.insertAndClearCache(feedItems, typeScreen)
+        }
+    }
 
 }

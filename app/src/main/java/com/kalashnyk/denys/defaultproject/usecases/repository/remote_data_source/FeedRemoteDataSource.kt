@@ -12,12 +12,12 @@ interface FeedRemoteDataSource {
     /**
      *
      */
-    fun fetchFeed(screenType: String): Single<Response<ThemeEntity>>
+    fun fetchFeed(screenType: String): Single<Response<List<ThemeEntity>>>
 
     /**
      *
      */
-    fun fetchNext(screenType: String, lastItemId: String): Single<Response<ThemeEntity>>
+    fun fetchNext(screenType: String, lastItemId: String): Single<Response<List<ThemeEntity>>>
 }
 
 /**
@@ -25,10 +25,10 @@ interface FeedRemoteDataSource {
  */
 class FeedRemoteDataSourceImpl(private val serverCommunicator: ServerCommunicator) : FeedRemoteDataSource {
 
-    override fun fetchFeed(screenType: String): Single<Response<ThemeEntity>> =
+    override fun fetchFeed(screenType: String): Single<Response<List<ThemeEntity>>> =
         serverCommunicator.fetchThemes(screenType=screenType, lastItemId=null)
 
 
-    override fun fetchNext(screenType: String, lastItemId: String): Single<Response<ThemeEntity>> =
+    override fun fetchNext(screenType: String, lastItemId: String): Single<Response<List<ThemeEntity>>> =
         serverCommunicator.fetchThemes(screenType=screenType, lastItemId=lastItemId)
 }

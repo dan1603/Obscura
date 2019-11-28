@@ -18,8 +18,10 @@ import com.kalashnyk.denys.defaultproject.utils.multistate.MultiStateView
 abstract class BaseFeedFragment<V : ViewDataBinding>: BaseFragment<V>(), ItemsLoadListener<PagedList<BaseCardModel>> {
 
     protected var mFeedAdapter: PagingAdapter = PagingAdapter(DiffCallbackBaseCardModel())
+    // todo remove that and use with all cases own type screen
+//    protected lateinit var screenType : String
+    protected var screenType : String = "Common"
 
-    protected lateinit var typeFeed : String
     /**
      * @param component
      */
@@ -48,7 +50,7 @@ abstract class BaseFeedFragment<V : ViewDataBinding>: BaseFragment<V>(), ItemsLo
     /**
      *
      */
-    abstract fun initObserver()
+    abstract fun initObserver(screenType : String)
 
     /**
      *
@@ -62,7 +64,7 @@ abstract class BaseFeedFragment<V : ViewDataBinding>: BaseFragment<V>(), ItemsLo
         super.onActivityCreated(savedInstanceState)
         displayProgress()
         initListView()
-        initObserver()
+        initObserver(screenType)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

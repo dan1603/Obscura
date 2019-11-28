@@ -53,4 +53,8 @@ class FeedViewModel(private val feedUseCases: FeedUseCases) : BaseFeedViewModel(
             )
         )
     }
+
+    override fun clearCachedItems(screenType : String) {
+        feedUseCases.deleteCachedFeed(screenType)
+    }
 }

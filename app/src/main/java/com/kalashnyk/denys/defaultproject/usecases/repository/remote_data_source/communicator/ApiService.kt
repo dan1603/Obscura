@@ -8,12 +8,16 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-
+//todo create separate ApiService for Users Feed and another part of app
 interface ApiService {
 
     @GET("/api/android/rest/api-v2.php/records/users")
     fun fetchThemes(@Query("screen_type") screenType : String,
                     @Query("last_item_id") lastItemId : String?): Single<Response<List<ThemeEntity>>>
+
+    @GET("/api/android/rest/api-v2.php/records/users")
+    fun fetchUsers(@Query("screen_type") screenType : String,
+                    @Query("last_item_id") lastItemId : String?): Single<Response<List<UserEntity>>>
 
     @GET("/api/android/rest/api-v2.php/records/users")
     fun getUsers(): Single<Response<UserResponse>>

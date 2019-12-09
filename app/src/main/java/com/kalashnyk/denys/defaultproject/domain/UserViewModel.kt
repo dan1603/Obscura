@@ -4,15 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.paging.PagedList
 import com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.BaseCardModel
 import com.kalashnyk.denys.defaultproject.presentation.base.ItemsLoadListener
-import com.kalashnyk.denys.defaultproject.usecases.FeedUseCases
+import com.kalashnyk.denys.defaultproject.usecases.UserUseCases
 import com.kalashnyk.denys.defaultproject.utils.ConverterFactory
-import java.util.*
+import java.util.NoSuchElementException
 
-/**
- *
- */
-class FeedViewModel(private val feedUseCases: FeedUseCases) : BasePagingViewModel() {
-
+class UserViewModel(private val userUseCases: UserUseCases) : BasePagingViewModel() {
     init {
         initPagedConfig()
     }
@@ -23,7 +19,7 @@ class FeedViewModel(private val feedUseCases: FeedUseCases) : BasePagingViewMode
     fun initLiveData(type: String, listener: ItemsLoadListener<PagedList<BaseCardModel>>) {
         typeFeed = type
         itemLoadedListener = listener
-        initPagedListLiveData(feedUseCases.getCardsFactory(type, ConverterFactory()))
+        initPagedListLiveData(userUseCases.getCardsFactory(type, ConverterFactory()))
     }
 
 
@@ -33,7 +29,7 @@ class FeedViewModel(private val feedUseCases: FeedUseCases) : BasePagingViewMode
     fun getPagedList(): LiveData<PagedList<BaseCardModel>> = listCards
 
     override fun fetchData(typeFeed : String) {
-        compositeDisposable.add(feedUseCases.fetchFeed(typeFeed)
+        compositeDisposable.add(userUseCases.fetchData(typeFeed)
             .subscribe({ setRefreshing(false) }, { throwable ->
                 if (throwable is NoSuchElementException) {
                     itemLoadedListener.onItemsLoaded(null)
@@ -47,7 +43,7 @@ class FeedViewModel(private val feedUseCases: FeedUseCases) : BasePagingViewMode
 
     override fun rangeData(typeFeed: String, itemId: String) {
         setLoading(true)
-        compositeDisposable.add(feedUseCases.fetchNext(typeFeed, itemId)
+        compositeDisposable.add(userUseCases.fetchNext(typeFeed, itemId)
             .subscribe({ setLoading(false) },
                 { setLoading(false) }
             )
@@ -55,6 +51,6 @@ class FeedViewModel(private val feedUseCases: FeedUseCases) : BasePagingViewMode
     }
 
     override fun clearCachedItems(screenType : String) {
-        feedUseCases.deleteCachedFeed(screenType)
+        userUseCases.deleteCachedItems(screenType)
     }
 }

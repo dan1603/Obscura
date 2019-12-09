@@ -1,12 +1,12 @@
 package com.kalashnyk.denys.defaultproject.di.module
 
 import com.kalashnyk.denys.defaultproject.di.scope.RepositoryScope
-import com.kalashnyk.denys.defaultproject.usecases.repository.AppRepository
-import com.kalashnyk.denys.defaultproject.usecases.repository.FeedRepository
-import com.kalashnyk.denys.defaultproject.usecases.repository.FeedRepositoryImpl
+import com.kalashnyk.denys.defaultproject.usecases.repository.*
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.FeedDataSource
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.UserDataSource
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.AppDatabase
 import com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.FeedRemoteDataSource
+import com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.UserRemoteDataSource
 import com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.communicator.ServerCommunicator
 import dagger.Module
 import dagger.Provides
@@ -23,5 +23,11 @@ class RepositoryModule {
     @Provides
     internal fun providesFeedRepository(feedRemoteDataSource: FeedRemoteDataSource, feedDataSource: FeedDataSource): FeedRepository {
         return FeedRepositoryImpl(feedRemoteDataSource, feedDataSource)
+    }
+
+    @RepositoryScope
+    @Provides
+    internal fun providesUserRepository(userRemoteDataSource: UserRemoteDataSource, userDataSource: UserDataSource): UserRepository {
+        return UserRepositoryImpl(userRemoteDataSource, userDataSource)
     }
 }

@@ -5,6 +5,8 @@ import com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source
 import io.reactivex.Single
 import retrofit2.Response
 
+//todo create abstract parent for RemoteDataSource
+
 /**
  *
  */

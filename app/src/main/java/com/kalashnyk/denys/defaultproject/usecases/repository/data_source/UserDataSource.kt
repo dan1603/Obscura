@@ -1,9 +1,10 @@
 package com.kalashnyk.denys.defaultproject.usecases.repository.data_source
 
+
 import androidx.paging.DataSource
 import com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.BaseCardModel
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.AppDatabase
-import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.ThemeEntity
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.UserEntity
 import com.kalashnyk.denys.defaultproject.utils.ConverterFactory
 
 //todo create abstract parent for DataSource
@@ -11,7 +12,7 @@ import com.kalashnyk.denys.defaultproject.utils.ConverterFactory
 /**
  *
  */
-interface FeedDataSource {
+interface UserDataSource {
 
     /**
      *
@@ -22,23 +23,23 @@ interface FeedDataSource {
     /**
      *
      */
-    fun deleteCachedFeed(screenType: String)
+    fun deleteCachedItems(screenType: String)
 
     /**
      *
      */
-    fun insert(feedItems: List<ThemeEntity>)
+    fun insert(items: List<UserEntity>)
 
     /**
      *
      */
-    fun insertAndClearCache(feedItems: List<ThemeEntity>, typeScreen: String?)
+    fun insertAndClearCache(items: List<UserEntity>, typeScreen: String?)
 }
 
 /**
  *
  */
-class FeedDataSourceImpl(private val database: AppDatabase) : FeedDataSource {
+class UsersDataSourceImpl(private val database: AppDatabase) : UserDataSource {
 
     /**
      *
@@ -53,14 +54,14 @@ class FeedDataSourceImpl(private val database: AppDatabase) : FeedDataSource {
     /**
      *
      */
-    override fun deleteCachedFeed(screenType: String): Unit=
-        database.themeDao().deleteCachedItems(screenType)
+    override fun deleteCachedItems(screenType: String): Unit=
+        database.userDao().deleteCachedItems(screenType)
 
-    override fun insert(feedItems: List<ThemeEntity>) : Unit=
-        database.themeDao().insert(feedItems)
+    override fun insert(items: List<UserEntity>) : Unit=
+        database.userDao().insert(items)
 
 
-    override fun insertAndClearCache(feedItems: List<ThemeEntity>, typeScreen: String?): Unit=
-        database.themeDao().insertAndClearCache(feedItems, typeScreen)
+    override fun insertAndClearCache(items: List<UserEntity>, typeScreen: String?): Unit=
+        database.userDao().insertAndClearCache(items, typeScreen)
 
 }

@@ -13,7 +13,7 @@ import com.kalashnyk.denys.defaultproject.utils.DEFAULT_INITIAL_LOADED_KEY
 /**
  *
  */
-abstract class BaseFeedViewModel : BaseViewModel() {
+abstract class BasePagingViewModel : BaseViewModel() {
 
     /**
      *

@@ -1,11 +1,10 @@
 package com.kalashnyk.denys.defaultproject.di.module
 
 import com.kalashnyk.denys.defaultproject.di.scope.InteractorScope
-import com.kalashnyk.denys.defaultproject.usecases.FeedUseCases
-import com.kalashnyk.denys.defaultproject.usecases.FeedUseCasesImpl
-import com.kalashnyk.denys.defaultproject.usecases.Interactor
+import com.kalashnyk.denys.defaultproject.usecases.*
 import com.kalashnyk.denys.defaultproject.usecases.repository.AppRepository
 import com.kalashnyk.denys.defaultproject.usecases.repository.FeedRepository
+import com.kalashnyk.denys.defaultproject.usecases.repository.UserRepository
 import dagger.Module
 import dagger.Provides
 
@@ -22,5 +21,11 @@ class InteractorModule {
     @Provides
     internal fun providesFeedUseCases(repository: FeedRepository): FeedUseCases {
         return FeedUseCasesImpl(repository)
+    }
+
+    @InteractorScope
+    @Provides
+    internal fun providesUserUseCases(repository: UserRepository): UserUseCases {
+        return UserUseCasesImpl(repository)
     }
 }

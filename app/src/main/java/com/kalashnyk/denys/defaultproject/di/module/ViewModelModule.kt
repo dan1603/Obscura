@@ -6,8 +6,10 @@ import com.kalashnyk.denys.defaultproject.di.scope.ViewModelScope
 import com.kalashnyk.denys.defaultproject.domain.AllUsersViewModel
 import com.kalashnyk.denys.defaultproject.domain.FeedViewModel
 import com.kalashnyk.denys.defaultproject.domain.SingleUserViewModel
+import com.kalashnyk.denys.defaultproject.domain.UserViewModel
 import com.kalashnyk.denys.defaultproject.usecases.FeedUseCases
 import com.kalashnyk.denys.defaultproject.usecases.Interactor
+import com.kalashnyk.denys.defaultproject.usecases.UserUseCases
 import dagger.Module
 import dagger.Provides
 
@@ -32,5 +34,11 @@ class ViewModelModule(app: App) {
     @Provides
     internal fun providesFeedViewModel(feedUseCases: FeedUseCases): FeedViewModel {
         return FeedViewModel(feedUseCases)
+    }
+
+    @ViewModelScope
+    @Provides
+    internal fun providesUserViewModel(userUseCases: UserUseCases): UserViewModel {
+        return UserViewModel(userUseCases)
     }
 }

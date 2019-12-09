@@ -3,9 +3,11 @@ package com.kalashnyk.denys.defaultproject.usecases.repository.data_source.datab
 import androidx.paging.DataSource
 import androidx.room.*
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.ThemeEntity
+//todo create abstract parent for DAO
 
 @Dao
 interface ThemeDAO {
+
     @Query("SELECT * FROM themes")
     fun queryFeeds(): List<ThemeEntity>
 
@@ -14,19 +16,19 @@ interface ThemeDAO {
 
     @Insert
 //        (onConflict=OnConflictStrategy.REPLACE)
-    fun insertList(list: List<ThemeEntity>)
+    fun insertList(listEntities: List<ThemeEntity>)
 
     @Insert(onConflict=OnConflictStrategy.REPLACE)
-    fun insert(userEntity: List<ThemeEntity>)
+    fun insert(listEntities: List<ThemeEntity>)
 
     @Insert(onConflict=OnConflictStrategy.REPLACE)
-    fun update(userEntity: ThemeEntity)
+    fun update(entity: ThemeEntity)
 
     @Update
-    fun updateAll(list: List<ThemeEntity>)
+    fun updateAll(listEntities: List<ThemeEntity>)
 
     @Delete
-    fun delete(userEntity: ThemeEntity)
+    fun delete(entity: ThemeEntity)
 
     @Query("DELETE FROM themes WHERE screenType = :screenType AND cached = 1")
     fun deleteCachedItems(screenType: String)
@@ -39,18 +41,17 @@ interface ThemeDAO {
     @Query("DELETE FROM themes WHERE cached = 1")
     fun deleteAllCachedItems()
 
-
     @Query("DELETE FROM themes WHERE screenType = :screenType")
     fun deleteAllItemsByType(screenType: String)
 
     @Transaction
     fun insertAndClearCache(
-        feedItems: List<ThemeEntity>,
+        listEntities: List<ThemeEntity>,
         screenType: String?
     ) {
         screenType?.let {
             deleteAllItemsByType(it)
         }
-        insert(feedItems)
+        insert(listEntities)
     }
 }

@@ -11,7 +11,7 @@ import com.kalashnyk.denys.defaultproject.databinding.ThemesDataBinding
 import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
 import com.kalashnyk.denys.defaultproject.domain.FeedViewModel
 import com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.BaseCardModel
-import com.kalashnyk.denys.defaultproject.presentation.base.BaseFeedFragment
+import com.kalashnyk.denys.defaultproject.presentation.base.BasePagingFragment
 import com.kalashnyk.denys.defaultproject.utils.FIRST_LIST_POSITION
 import com.kalashnyk.denys.defaultproject.utils.FeedLayoutManager
 import com.kalashnyk.denys.defaultproject.utils.MIN_LIST_SIZE
@@ -22,7 +22,7 @@ import javax.inject.Inject
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
-class ThemesFragment : BaseFeedFragment<ThemesDataBinding>() {
+class ThemesFragment : BasePagingFragment<ThemesDataBinding>() {
 
     /**
      *
@@ -76,10 +76,10 @@ class ThemesFragment : BaseFeedFragment<ThemesDataBinding>() {
                 layoutManager
 
             getListView().adapter=
-                mFeedAdapter
+                pagingAdapter
 
 
-            mFeedAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
+            pagingAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
 
                 override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
                     super.onItemRangeInserted(positionStart, itemCount)
@@ -131,7 +131,7 @@ class ThemesFragment : BaseFeedFragment<ThemesDataBinding>() {
         if (items.isNullOrEmpty()) {
             getStateView().viewState=MultiStateView.VIEW_STATE_EMPTY
         } else {
-            mFeedAdapter.submitList(items)
+            pagingAdapter.submitList(items)
             getStateView().viewState=MultiStateView.VIEW_STATE_CONTENT
         }
     }

@@ -27,7 +27,7 @@
 
             <include
                     android:id="@+id/multiStateView"
-                    layout="@layout/base_themes_list_layout"
+                    layout="@layout/base_list_layout"
                     app:loading="@{loading}"
                     app:refreshing="@{refreshing}"/>
 

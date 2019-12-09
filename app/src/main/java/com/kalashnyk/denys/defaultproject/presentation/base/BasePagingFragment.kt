@@ -15,9 +15,9 @@ import com.kalashnyk.denys.defaultproject.utils.multistate.MultiStateView
 /**
  *
  */
-abstract class BaseFeedFragment<V : ViewDataBinding>: BaseFragment<V>(), ItemsLoadListener<PagedList<BaseCardModel>> {
+abstract class BasePagingFragment<V : ViewDataBinding>: BaseFragment<V>(), ItemsLoadListener<PagedList<BaseCardModel>> {
 
-    protected var mFeedAdapter: PagingAdapter = PagingAdapter(DiffCallbackBaseCardModel())
+    protected var pagingAdapter: PagingAdapter = PagingAdapter(DiffCallbackBaseCardModel())
     // todo remove that and use with all cases own type screen
 //    protected lateinit var screenType : String
     protected var screenType : String = "Common"

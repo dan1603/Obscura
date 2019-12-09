@@ -15,11 +15,17 @@ import io.reactivex.schedulers.Schedulers
 import retrofit2.Response
 import java.util.concurrent.TimeUnit
 
+//todo create separate Communicator for Users Feed and another part of app
+
 class ServerCommunicator(private val mService: ApiService) {
 
     fun fetchThemes(screenType: String, lastItemId: String?): Single<Response<List<ThemeEntity>>> {
         return mService.fetchThemes(screenType, lastItemId)
-//            .compose(singleTransformer(Schedulers.io(), Schedulers.io()))
+            .doOnError { t: Throwable -> Log.d("ServerCommunicator", t.message) }
+    }
+
+    fun fetchUsers(screenType: String, lastItemId: String?): Single<Response<List<UserEntity>>> {
+        return mService.fetchUsers(screenType, lastItemId)
             .doOnError { t: Throwable -> Log.d("ServerCommunicator", t.message) }
     }
 

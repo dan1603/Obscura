@@ -100,10 +100,7 @@ class ThemesFragment : BasePagingFragment<ThemesDataBinding>() {
      */
     override fun initObserver(screenType : String) {
         viewModel?.initLiveData(screenType, this)
-        viewModel?.getPagedList()?.observe(this, Observer {
-
-            onItemsLoaded(it)
-        })
+        viewModel?.getPagedList()?.observe(this, Observer(this@ThemesFragment::onItemsLoaded))
     }
 
     /**

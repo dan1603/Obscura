@@ -1,6 +1,5 @@
 package com.kalashnyk.denys.defaultproject.di.component
 
-import com.kalashnyk.denys.defaultproject.databinding.PeopleDataBinding
 import com.kalashnyk.denys.defaultproject.di.module.ViewModelModule
 import com.kalashnyk.denys.defaultproject.di.scope.ViewModelScope
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.AuthActivity

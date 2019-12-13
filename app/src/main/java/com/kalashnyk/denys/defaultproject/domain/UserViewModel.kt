@@ -8,7 +8,11 @@ import com.kalashnyk.denys.defaultproject.usecases.UserUseCases
 import com.kalashnyk.denys.defaultproject.utils.ConverterFactory
 import java.util.NoSuchElementException
 
+/**
+ *
+ */
 class UserViewModel(private val userUseCases: UserUseCases) : BasePagingViewModel() {
+
     init {
         initPagedConfig()
     }
@@ -17,7 +21,6 @@ class UserViewModel(private val userUseCases: UserUseCases) : BasePagingViewMode
      *
      */
     fun initLiveData(type: String, listener: ItemsLoadListener<PagedList<BaseCardModel>>) {
-        typeFeed = type
         itemLoadedListener = listener
         initPagedListLiveData(userUseCases.getCardsFactory(type, ConverterFactory()))
     }
@@ -28,8 +31,8 @@ class UserViewModel(private val userUseCases: UserUseCases) : BasePagingViewMode
      */
     fun getPagedList(): LiveData<PagedList<BaseCardModel>> = listCards
 
-    override fun fetchData(typeFeed : String) {
-        compositeDisposable.add(userUseCases.fetchData(typeFeed)
+    override fun fetchData(screenType : String) {
+        compositeDisposable.add(userUseCases.fetchData(screenType)
             .subscribe({ setRefreshing(false) }, { throwable ->
                 if (throwable is NoSuchElementException) {
                     itemLoadedListener.onItemsLoaded(null)
@@ -41,9 +44,9 @@ class UserViewModel(private val userUseCases: UserUseCases) : BasePagingViewMode
         )
     }
 
-    override fun rangeData(typeFeed: String, itemId: String) {
+    override fun rangeData(screenType: String, itemId: String) {
         setLoading(true)
-        compositeDisposable.add(userUseCases.fetchNext(typeFeed, itemId)
+        compositeDisposable.add(userUseCases.fetchNext(screenType, itemId)
             .subscribe({ setLoading(false) },
                 { setLoading(false) }
             )

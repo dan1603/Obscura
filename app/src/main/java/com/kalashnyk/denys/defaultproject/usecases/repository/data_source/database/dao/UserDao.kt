@@ -30,7 +30,8 @@ interface UserDao {
     @Query("DELETE FROM users WHERE screenType = :screenType AND cached = 1")
     fun deleteCachedItems(screenType : String)
 
-    @Insert(onConflict=OnConflictStrategy.REPLACE)
+    @Insert
+//        (onConflict=OnConflictStrategy.REPLACE)
     fun insert(listEntities: List<UserEntity>)
 
     @Query("DELETE FROM themes WHERE screenType = :screenType")

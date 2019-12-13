@@ -93,12 +93,12 @@ class UserRepositoryImpl(
         userDataSource.getCardsModelsFactory(screenType, modelConverter)
 
     private fun saveItems(
-        feedItems: List<UserEntity>, isCached: Boolean, typeScreen: String?
+        items: List<UserEntity>, isCached: Boolean, typeScreen: String?
     ) {
         if (isCached) {
-            userDataSource.insert(feedItems)
+            userDataSource.insert(items)
         } else {
-            userDataSource.insertAndClearCache(feedItems, typeScreen)
+            userDataSource.insertAndClearCache(items, typeScreen)
         }
     }
 

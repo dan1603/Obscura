@@ -21,7 +21,6 @@ class FeedViewModel(private val feedUseCases: FeedUseCases) : BasePagingViewMode
      *
      */
     fun initLiveData(type: String, listener: ItemsLoadListener<PagedList<BaseCardModel>>) {
-        typeFeed = type
         itemLoadedListener = listener
         initPagedListLiveData(feedUseCases.getCardsFactory(type, ConverterFactory()))
     }
@@ -32,8 +31,8 @@ class FeedViewModel(private val feedUseCases: FeedUseCases) : BasePagingViewMode
      */
     fun getPagedList(): LiveData<PagedList<BaseCardModel>> = listCards
 
-    override fun fetchData(typeFeed : String) {
-        compositeDisposable.add(feedUseCases.fetchFeed(typeFeed)
+    override fun fetchData(screenType : String) {
+        compositeDisposable.add(feedUseCases.fetchFeed(screenType)
             .subscribe({ setRefreshing(false) }, { throwable ->
                 if (throwable is NoSuchElementException) {
                     itemLoadedListener.onItemsLoaded(null)
@@ -45,9 +44,9 @@ class FeedViewModel(private val feedUseCases: FeedUseCases) : BasePagingViewMode
         )
     }
 
-    override fun rangeData(typeFeed: String, itemId: String) {
+    override fun rangeData(screenType: String, itemId: String) {
         setLoading(true)
-        compositeDisposable.add(feedUseCases.fetchNext(typeFeed, itemId)
+        compositeDisposable.add(feedUseCases.fetchNext(screenType, itemId)
             .subscribe({ setLoading(false) },
                 { setLoading(false) }
             )

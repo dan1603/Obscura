@@ -19,7 +19,6 @@ abstract class BasePagingViewModel : BaseViewModel() {
      *
      */
     protected lateinit var listCards: LiveData<PagedList<BaseCardModel>>
-    protected var typeFeed: String?=""
     protected lateinit var itemLoadedListener: ItemsLoadListener<PagedList<BaseCardModel>>
 
     private val refreshing=ObservableBoolean()
@@ -63,21 +62,12 @@ abstract class BasePagingViewModel : BaseViewModel() {
 
                 override fun onItemAtEndLoaded(itemAtEnd: BaseCardModel) {
                     super.onItemAtEndLoaded(itemAtEnd)
-                    // todo add after remove moc logic
-//                    lastItemId?.let {
-//                        if(it != itemAtEnd.getCardId()){
-//                            typeFeed.apply {
-//                                rangeData(it, itemAtEnd.getCardId())
-//                                lastItemId=itemAtEnd.getCardId()
-//                            }
-//                        }
-//                    }
-                    // todo remove after remove moc logic
-                   lastItemId?.let {
-                            typeFeed.apply {
-                                rangeData(it, itemAtEnd.getCardId())
-                                lastItemId=itemAtEnd.getCardId()
-                            }
+                    lastItemId?.let {
+                        // todo add after remove moc logic
+                        //if(it != itemAtEnd.getCardId()){
+                        rangeData(it, itemAtEnd.getCardId())
+                        lastItemId=itemAtEnd.getCardId()
+                        //}
                     }
                 }
             })
@@ -101,9 +91,9 @@ abstract class BasePagingViewModel : BaseViewModel() {
         loading.set(isLoading)
     }
 
-    abstract fun fetchData(typeFeed: String)
+    abstract fun fetchData(screenType: String)
 
-    abstract fun rangeData(typeFeed: String, itemId: String)
+    abstract fun rangeData(screenType: String, itemId: String)
 
     abstract fun clearCachedItems(screenType: String)
 }

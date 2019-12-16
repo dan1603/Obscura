@@ -34,7 +34,7 @@ interface UserDao {
 //        (onConflict=OnConflictStrategy.REPLACE)
     fun insert(listEntities: List<UserEntity>)
 
-    @Query("DELETE FROM themes WHERE screenType = :screenType")
+    @Query("DELETE FROM users WHERE screenType = :screenType")
     fun deleteAllItemsByType(screenType: String)
 
     @Transaction

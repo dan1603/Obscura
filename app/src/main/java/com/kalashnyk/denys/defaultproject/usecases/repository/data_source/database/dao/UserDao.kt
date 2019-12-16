@@ -2,6 +2,7 @@ package com.kalashnyk.denys.defaultproject.usecases.repository.data_source.datab
 
 import androidx.paging.DataSource
 import androidx.room.*
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.ThemeEntity
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.UserEntity
 //todo create abstract parent for DAO
 @Dao
@@ -24,8 +25,10 @@ interface UserDao {
     @Delete
     fun delete(entity: UserEntity)
 
-    @Query("SELECT * FROM users")
-    fun getDataSource(): DataSource.Factory<Int, UserEntity>
+    @Query("SELECT * FROM users WHERE screenType = :screenType")
+    fun getDataSource(
+        screenType: String
+    ): DataSource.Factory<Int, UserEntity>
 
     @Query("DELETE FROM users WHERE screenType = :screenType AND cached = 1")
     fun deleteCachedItems(screenType : String)

@@ -44,7 +44,7 @@ data class UserEntity(
     var cached : Int? = DEFAULT_CACHE_VALUE
     ) : BaseModel() {
 
-    fun converItemForDataSource(item : UserEntity, isCached: Boolean?, screenType : String?) : UserEntity {
+    fun convertItemForDataSource(item : UserEntity, isCached: Boolean?, screenType : String?) : UserEntity {
         isCached?.let { item.cached = CACHED_VALUE }
         screenType?.let { item.screenType = it }
         return item

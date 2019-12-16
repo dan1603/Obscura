@@ -47,7 +47,7 @@ class UsersDataSourceImpl(private val database: AppDatabase) : UserDataSource {
     override fun getCardsModelsFactory(
         screenType: String, converterFactory: ConverterFactory
     ): DataSource.Factory<Int, BaseCardModel> {
-        return database.themeDao().getDataSource(screenType)
+        return database.userDao().getDataSource(screenType)
             .mapByPage(converterFactory::convert)
     }
 

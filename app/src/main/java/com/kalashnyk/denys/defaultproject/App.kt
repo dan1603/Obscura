@@ -62,7 +62,7 @@ class App: MultiDexApplication() {
     }
 
     private fun initRoom() {
-        database = Room.databaseBuilder(this, AppDatabase::class.java, "database")
+        database = Room.databaseBuilder(this, AppDatabase::class.java, "defaultproject_database")
             .allowMainThreadQueries()
             .build()
     }

@@ -2,11 +2,12 @@ package com.kalashnyk.denys.defaultproject.usecases.repository.data_source.datab
 
 import androidx.paging.DataSource
 import androidx.room.*
-import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.ThemeEntity
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.BaseDao
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.UserEntity
-//todo create abstract parent for DAO
+
 @Dao
-interface UserDao {
+interface UserDao : BaseDao<UserEntity> {
+
     @Query("SELECT * FROM users")
     fun getAll(): List<UserEntity>
 
@@ -16,14 +17,8 @@ interface UserDao {
     @Insert(onConflict=OnConflictStrategy.REPLACE)
     fun insertList(listEntities: List<UserEntity>)
 
-    @Insert(onConflict=OnConflictStrategy.REPLACE)
-    fun update(entity: UserEntity)
-
     @Update
     fun updateAll(list: List<UserEntity>)
-
-    @Delete
-    fun delete(entity: UserEntity)
 
     @Query("SELECT * FROM users WHERE screenType = :screenType")
     fun getDataSource(
@@ -32,10 +27,6 @@ interface UserDao {
 
     @Query("DELETE FROM users WHERE screenType = :screenType AND cached = 1")
     fun deleteCachedItems(screenType : String)
-
-    @Insert
-//        (onConflict=OnConflictStrategy.REPLACE)
-    fun insert(listEntities: List<UserEntity>)
 
     @Query("DELETE FROM users WHERE screenType = :screenType")
     fun deleteAllItemsByType(screenType: String)

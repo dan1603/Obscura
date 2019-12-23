@@ -1,4 +1,4 @@
-package com.kalashnyk.denys.defaultproject.presentation.fragments.themes
+package com.kalashnyk.denys.defaultproject.presentation.fragments.list_themes
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
@@ -7,11 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.kalashnyk.denys.defaultproject.BR
 import com.kalashnyk.denys.defaultproject.R
-import com.kalashnyk.denys.defaultproject.databinding.ThemesDataBinding
+import com.kalashnyk.denys.defaultproject.databinding.ListThemesDataBinding
 import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
 import com.kalashnyk.denys.defaultproject.domain.FeedViewModel
 import com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.BaseCardModel
 import com.kalashnyk.denys.defaultproject.presentation.base.BasePagingFragment
+import com.kalashnyk.denys.defaultproject.presentation.widget.pageview.model.TabPages
+import com.kalashnyk.denys.defaultproject.utils.EXTRAS_PAGES
 import com.kalashnyk.denys.defaultproject.utils.FIRST_LIST_POSITION
 import com.kalashnyk.denys.defaultproject.utils.FeedLayoutManager
 import com.kalashnyk.denys.defaultproject.utils.MIN_LIST_SIZE
@@ -22,7 +24,7 @@ import javax.inject.Inject
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
-class ThemesFragment : BasePagingFragment<ThemesDataBinding>() {
+class ListThemesFragment : BasePagingFragment<ListThemesDataBinding>() {
 
     /**
      *
@@ -36,7 +38,8 @@ class ThemesFragment : BasePagingFragment<ThemesDataBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            //ToDo get extras from bundle
+            //todo check and refactor
+            screenType=it.getSerializable(EXTRAS_PAGES).toString()
         }
     }
 
@@ -47,7 +50,7 @@ class ThemesFragment : BasePagingFragment<ThemesDataBinding>() {
     /**
      * @return
      */
-    override fun getLayoutId(): Int=R.layout.fragment_themes
+    override fun getLayoutId(): Int=R.layout.fragment_list_themes
 
     /**
      * @return
@@ -100,7 +103,7 @@ class ThemesFragment : BasePagingFragment<ThemesDataBinding>() {
      */
     override fun initObserver(screenType : String) {
         viewModel?.initLiveData(screenType, this)
-        viewModel?.getPagedList()?.observe(this, Observer(this@ThemesFragment::onItemsLoaded))
+        viewModel?.getPagedList()?.observe(this, Observer(this@ListThemesFragment::onItemsLoaded))
     }
 
     /**
@@ -113,7 +116,7 @@ class ThemesFragment : BasePagingFragment<ThemesDataBinding>() {
     /**
      * @param binding
      */
-    override fun setupViewLogic(binding: ThemesDataBinding) {
+    override fun setupViewLogic(binding: ListThemesDataBinding) {
         viewModel?.fetchData(screenType)
         binding.swipeRefresh.setOnRefreshListener {
             viewModel?.setRefreshing(true)
@@ -158,8 +161,19 @@ class ThemesFragment : BasePagingFragment<ThemesDataBinding>() {
          *
          */
         @JvmStatic
-        fun newInstance(): ThemesFragment {
-            return ThemesFragment()
+        fun newInstance(): ListThemesFragment {
+            return ListThemesFragment()
         }
+
+        /**
+         *
+         */
+        @JvmStatic
+        fun newInstance(pages: TabPages) =
+            ListThemesFragment().apply {
+                arguments = Bundle().apply {
+                    this.putSerializable(EXTRAS_PAGES, pages)
+                }
+            }
     }
 }

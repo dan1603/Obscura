@@ -44,7 +44,8 @@
     <string name="confirm_password">Confirm password</string>
     <!--welcome screen-->
     <string name="welcome_to_obscuralight">WELCOME TO\nOBSCURALIGHT</string>
-    <string name="welcome_information">Our application is a consulting\nservice that allows you to quickly\nand easily obtain
+    <string name="welcome_information">Our application is a consulting\nservice that allows you to quickly\nand easily
+        obtain
         reliable and\nnecessary information on any topic.
     </string>
     <string name="welcome_text_already_have_an_account">Already have an account?</string>
@@ -78,7 +79,9 @@
 
     <string name="help_me_choose_a_photo_camera">Help me choose a photo camera for a beginner title</string>
     <string name="places">Places</string>
-    <string name="article_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</string>
+    <string name="article_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        incididunt ut labore et dolore magna aliqua...
+    </string>
 
     <!--todo for test -->
     <string name="may_13_2019">May, 13, 2019</string>
@@ -98,4 +101,12 @@
     <string name="empty_view_bottom">You may want to check again later</string>
     <string name="common_error_msg_head">If you want to try again later</string>
     <string name="common_error_msg_bottom">Something went wrong</string>
+    <string name="tab_following">FOLLOWING</string>
+    <string name="tab_people">ALL PEOPLE</string>
+    <string name="tab_themes">ALL THEMES</string>
+    <string name="tab_events">EVENTS</string>
+    <string name="tab_articles">ARTICLES</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

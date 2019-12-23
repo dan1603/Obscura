@@ -8,7 +8,7 @@ import kotlin.collections.set
  * source for handling validation errors
  * with ability return errors to view between callback
  */
-interface IValidationHandler {
+interface ValidationHandler {
 
     /**
      * @param email
@@ -24,7 +24,7 @@ interface IValidationHandler {
     ): AuthFlowErrorModel
 }
 
-internal class ValidationHandlerImpl : IValidationHandler {
+internal class ValidationHandlerImpl : ValidationHandler {
 
     private val validator: IValidator=ValidatorImpl()
 

@@ -6,6 +6,7 @@ import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.databinding.SignUpDataBinding
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.*
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseAuthFragment
+import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages
 
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
@@ -26,7 +27,7 @@ class SignUpFragment : BaseAuthFragment<SignUpDataBinding>(), IAuthFlow.IAuthCal
      *
      */
     override fun setupTypeScreen() {
-        authChildCases = AuthFlowModel(IAuthFlow.AuthType.SIGN_UP)
+        authChildCases = AuthFlowModel(Pages.SIGN_UP)
     }
 
     /**

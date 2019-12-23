@@ -3,6 +3,7 @@
 package com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow
 
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseChildModel
+import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages
 
 /**
  *
@@ -32,12 +33,12 @@ const val agreeTermsField: String="agreeTerms"
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
-class AuthFlowModel(type: IAuthFlow.AuthType) : BaseChildModel() {
+class AuthFlowModel(type: Pages) : BaseChildModel() {
 
     /**
      * @field typeChild
      */
-    var typeChild: IAuthFlow.AuthType=type
+    var typeChild: Pages=type
         set(value) {
             field=value
             setChangedAndNotify(typeChildField)

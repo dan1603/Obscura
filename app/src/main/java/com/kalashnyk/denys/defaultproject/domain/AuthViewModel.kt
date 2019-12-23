@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowErrorModel
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowModel
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow
-import com.kalashnyk.denys.defaultproject.utils.validation.IValidationHandler
+import com.kalashnyk.denys.defaultproject.utils.validation.ValidationHandler
 import com.kalashnyk.denys.defaultproject.utils.validation.ValidationHandlerImpl
 
 /**
@@ -12,7 +12,7 @@ import com.kalashnyk.denys.defaultproject.utils.validation.ValidationHandlerImpl
  */
 class AuthViewModel : ViewModel() {
 
-    private val validationHandler: IValidationHandler=ValidationHandlerImpl()
+    private val validationHandler: ValidationHandler=ValidationHandlerImpl()
 
     /**
      *

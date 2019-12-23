@@ -1,4 +1,4 @@
-package com.kalashnyk.denys.defaultproject.presentation.fragments.people
+package com.kalashnyk.denys.defaultproject.presentation.fragments.list_users
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.kalashnyk.denys.defaultproject.BR
 import com.kalashnyk.denys.defaultproject.R
-import com.kalashnyk.denys.defaultproject.databinding.PeopleDataBinding
-import com.kalashnyk.denys.defaultproject.databinding.ThemesDataBinding
+import com.kalashnyk.denys.defaultproject.databinding.ListUsersDataBinding
 import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
 import com.kalashnyk.denys.defaultproject.domain.UserViewModel
 import com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.BaseCardModel
-import com.kalashnyk.denys.defaultproject.presentation.base.BaseFragment
 import com.kalashnyk.denys.defaultproject.presentation.base.BasePagingFragment
+import com.kalashnyk.denys.defaultproject.presentation.widget.pageview.model.TabPages
+import com.kalashnyk.denys.defaultproject.utils.EXTRAS_PAGES
 import com.kalashnyk.denys.defaultproject.utils.FIRST_LIST_POSITION
 import com.kalashnyk.denys.defaultproject.utils.FeedLayoutManager
 import com.kalashnyk.denys.defaultproject.utils.MIN_LIST_SIZE
@@ -24,7 +24,7 @@ import javax.inject.Inject
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
-class PeopleFragment : BasePagingFragment<PeopleDataBinding>() {
+class ListUsersFragment : BasePagingFragment<ListUsersDataBinding>() {
 
 
     /**
@@ -39,7 +39,8 @@ class PeopleFragment : BasePagingFragment<PeopleDataBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            //ToDo get extras from bundle
+            //todo check and refactor
+            screenType=it.getSerializable(EXTRAS_PAGES).toString()
         }
     }
 
@@ -50,7 +51,7 @@ class PeopleFragment : BasePagingFragment<PeopleDataBinding>() {
     /**
      * @return
      */
-    override fun getLayoutId(): Int = R.layout.fragment_people
+    override fun getLayoutId(): Int=R.layout.fragment_list_users
 
     /**
      * @return
@@ -101,9 +102,9 @@ class PeopleFragment : BasePagingFragment<PeopleDataBinding>() {
     /**
      *
      */
-    override fun initObserver(screenType : String) {
+    override fun initObserver(screenType: String) {
         viewModel?.initLiveData(screenType, this)
-        viewModel?.getPagedList()?.observe(this, Observer(this@PeopleFragment::onItemsLoaded))
+        viewModel?.getPagedList()?.observe(this, Observer(this@ListUsersFragment::onItemsLoaded))
     }
 
     /**
@@ -116,7 +117,7 @@ class PeopleFragment : BasePagingFragment<PeopleDataBinding>() {
     /**
      * @param binding
      */
-    override fun setupViewLogic(binder: PeopleDataBinding) {
+    override fun setupViewLogic(binder: ListUsersDataBinding) {
         viewModel?.fetchData(screenType)
         binder.swipeRefresh.setOnRefreshListener {
             viewModel?.setRefreshing(true)
@@ -158,8 +159,19 @@ class PeopleFragment : BasePagingFragment<PeopleDataBinding>() {
 
     companion object {
         @JvmStatic
-        fun newInstance(): PeopleFragment {
-            return PeopleFragment()
+        fun newInstance(): ListUsersFragment {
+            return ListUsersFragment()
         }
+
+        /**
+         *
+         */
+        @JvmStatic
+        fun newInstance(pages: TabPages)=
+            ListUsersFragment().apply {
+                arguments=Bundle().apply {
+                    this.putSerializable(EXTRAS_PAGES, pages)
+                }
+            }
     }
 }

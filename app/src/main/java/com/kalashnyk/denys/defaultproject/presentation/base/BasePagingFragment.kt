@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.BaseCardModel
 import com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.DiffCallbackBaseCardModel
 import com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.PagingAdapter
+import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages
 import com.kalashnyk.denys.defaultproject.utils.multistate.MultiStateView
 
 /**
@@ -18,9 +19,9 @@ import com.kalashnyk.denys.defaultproject.utils.multistate.MultiStateView
 abstract class BasePagingFragment<V : ViewDataBinding>: BaseFragment<V>(), ItemsLoadListener<PagedList<BaseCardModel>> {
 
     protected var pagingAdapter: PagingAdapter = PagingAdapter(DiffCallbackBaseCardModel())
+
     // todo remove that and use with all cases own type screen
-//    protected lateinit var screenType : String
-    protected var screenType : String = "Common"
+    protected var screenType : String = Pages.UNKNOWN.name
 
     /**
      * @param component

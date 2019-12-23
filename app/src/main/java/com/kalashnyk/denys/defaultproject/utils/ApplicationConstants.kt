@@ -100,6 +100,10 @@ const val DEFAULT_SCREEN: String="default_screen"
 /**
  *
  */
+const val EXTRAS_PAGES: String="extras_pages"
+/**
+ *
+ */
 const val CONTENT_PAGE_SIZE: Int=20
 
 /**

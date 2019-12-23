@@ -10,9 +10,11 @@ import com.kalashnyk.denys.defaultproject.domain.AllUsersViewModel
 import com.kalashnyk.denys.defaultproject.presentation.adapter.UserAdapter
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseActivity
 import com.kalashnyk.denys.defaultproject.presentation.fragments.messages.MessagesFragment
-import com.kalashnyk.denys.defaultproject.presentation.fragments.people.PeopleFragment
+import com.kalashnyk.denys.defaultproject.presentation.fragments.list_users.ListUsersFragment
 import com.kalashnyk.denys.defaultproject.presentation.fragments.profile.ProfileFragment
-import com.kalashnyk.denys.defaultproject.presentation.fragments.themes.ThemesFragment
+import com.kalashnyk.denys.defaultproject.presentation.fragments.list_themes.ListThemesFragment
+import com.kalashnyk.denys.defaultproject.presentation.fragments.main_tabs.tabs_people.TabsPeopleFragment
+import com.kalashnyk.denys.defaultproject.presentation.fragments.main_tabs.tabs_themes.TabsThemesFragment
 import com.kalashnyk.denys.defaultproject.presentation.item.IUserItemClickListener
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.UserEntity
 import com.kalashnyk.denys.defaultproject.utils.extention.replaceFragment
@@ -36,9 +38,9 @@ class MainActivity : BaseActivity<MainDataBinding>() {
         if (wasSelected) return@OnTabSelectedListener false
 
         when (position) {
-            0 -> { replaceFragment(R.id.mainFragmentContainer, ThemesFragment.newInstance()) }
+            0 -> { replaceFragment(R.id.mainFragmentContainer, TabsThemesFragment.newInstance()) }
             1 -> { replaceFragment(R.id.mainFragmentContainer, ProfileFragment.newInstance()) }
-            2 -> { replaceFragment(R.id.mainFragmentContainer, PeopleFragment.newInstance()) }
+            2 -> { replaceFragment(R.id.mainFragmentContainer, TabsPeopleFragment.newInstance()) }
             3 -> { replaceFragment(R.id.mainFragmentContainer, MessagesFragment.newInstance()) }
         }
 
@@ -61,7 +63,7 @@ class MainActivity : BaseActivity<MainDataBinding>() {
      */
     override fun setupViewLogic(binding: MainDataBinding) {
         initBottomBar()
-        this.replaceFragment(R.id.mainFragmentContainer, ThemesFragment.newInstance(), false, false)
+        this.replaceFragment(R.id.mainFragmentContainer, ListThemesFragment.newInstance(), false, false)
     }
 
     private fun initBottomBar() {

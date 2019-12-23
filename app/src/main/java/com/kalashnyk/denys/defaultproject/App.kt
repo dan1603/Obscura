@@ -62,6 +62,7 @@ class App: MultiDexApplication() {
     }
 
     private fun initRoom() {
+        // todo don't use allowMainThreadQueries()
         database = Room.databaseBuilder(this, AppDatabase::class.java, "defaultproject_database")
             .allowMainThreadQueries()
             .build()

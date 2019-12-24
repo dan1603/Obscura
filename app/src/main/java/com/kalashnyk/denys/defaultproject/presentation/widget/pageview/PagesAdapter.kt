@@ -1,5 +1,6 @@
 package com.kalashnyk.denys.defaultproject.presentation.widget.pageview
 
+import android.util.Log
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -16,6 +17,7 @@ abstract class PagesAdapter<C : TabPages>(fm: FragmentManager)
 
     fun addItems(items: List<C>) {
         this.items.addAll(items)
+        Log.d("CheckPagesView", "PagesAdapter addItems ${items.size}")
         notifyDataSetChanged()
     }
 
@@ -33,6 +35,7 @@ abstract class PagesAdapter<C : TabPages>(fm: FragmentManager)
 
     override fun getItem(position: Int): Fragment = getTab(getPageItem(position)).second.also {
         fragmentList[position] = it
+        Log.d("CheckPagesView", "PagesAdapter getItem ${it::javaClass.name}")
     }
 
     override fun destroyItem(container: ViewGroup, position: Int, item: Any) {
@@ -44,6 +47,8 @@ abstract class PagesAdapter<C : TabPages>(fm: FragmentManager)
 
     override fun getPageTitle(position: Int): CharSequence = getTab(getPageItem(position)).first.also {
         fragmentTitleList[position] = it
+        Log.d("CheckPagesView", "PagesAdapter getPageTitle $it")
+
     }
 
     abstract fun getTab(card: C): Pair<String,Fragment>

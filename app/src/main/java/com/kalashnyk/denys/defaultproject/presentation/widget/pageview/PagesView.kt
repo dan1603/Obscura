@@ -2,6 +2,7 @@ package com.kalashnyk.denys.defaultproject.presentation.widget.pageview
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +23,7 @@ class PagesView(context: Context, attr: AttributeSet?) : FrameLayout(context, at
     LifecycleOwner by context as LifecycleOwner, View.OnAttachStateChangeListener {
 
     init {
+        Log.d("CheckPagesView", "PagesView init")
         inflateLayout(R.layout.view_pages)
     }
 
@@ -51,10 +53,10 @@ class PagesView(context: Context, attr: AttributeSet?) : FrameLayout(context, at
     }
 
     override fun onViewAttachedToWindow(v: View?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Log.d("CheckPagesView", "PagesView onViewAttachedToWindow")
     }
 
     override fun onViewDetachedFromWindow(v: View?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Log.d("CheckPagesView", "PagesView onViewDetachedFromWindow")
     }
 }

@@ -5,7 +5,7 @@
 
     <data class="TabsThemesDataBinding">
         <variable name="bindingModel"
-                  type="com.kalashnyk.denys.defaultproject.presentation.fragments.main_tabs.MainTabsBindingModel"/>
+                  type="com.kalashnyk.denys.defaultproject.presentation.fragments.main_tabs.tabs_themes.TabsThemesBindingModel"/>
     </data>
     <FrameLayout android:layout_width="match_parent"
                  android:layout_height="match_parent"

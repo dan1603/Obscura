@@ -29,18 +29,19 @@
                 android:layout_marginEnd="@dimen/indentation_20"
                 android:text="@string/help_me_choose_a_photo_camera"/>
 
-        <com.google.android.material.circularreveal.cardview.CircularRevealCardView
-                android:id="@+id/crcvEventCardType"
-                android:layout_height="@dimen/view_params_20"
-                android:layout_width="@dimen/view_params_76"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textAlignment="center"
-                app:cardCornerRadius="@dimen/view_params_10"
-                android:layout_marginEnd="@dimen/indentation_16">
+        <!--<com.google.android.material.circularreveal.cardview.CircularRevealCardView-->
+                <!--android:id="@+id/crcvEventCardType"-->
+                <!--android:layout_height="@dimen/view_params_20"-->
+                <!--android:layout_width="@dimen/view_params_76"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent"-->
+                <!--android:textAlignment="center"-->
+                <!--app:cardCornerRadius="@dimen/view_params_10"-->
+                <!--android:layout_marginEnd="@dimen/indentation_16">-->
             <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:id="@+id/crcvEventCardType"
+                    android:layout_width="@dimen/view_params_20"
+                    android:layout_height="@dimen/view_params_76"
                     android:textSize="12sp"
                     android:fontFamily="sans-serif-medium"
                     android:textStyle="normal"
@@ -48,8 +49,11 @@
                     android:background="@color/lightish_purple"
                     android:textAlignment="center"
                     android:text="@string/places"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginEnd="@dimen/indentation_16"
             />
-        </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+        <!--</com.google.android.material.circularreveal.cardview.CircularRevealCardView>-->
         <ImageView
                 android:id="@+id/ivEventCardPhoto"
                 android:layout_width="match_parent"

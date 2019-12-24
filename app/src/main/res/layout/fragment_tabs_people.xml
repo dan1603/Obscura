@@ -5,15 +5,15 @@
 
     <data class="TabsPeopleDataBinding">
         <variable name="bindingModel"
-                  type="com.kalashnyk.denys.defaultproject.presentation.fragments.main_tabs.MainTabsBindingModel"/>
+                  type="com.kalashnyk.denys.defaultproject.presentation.fragments.main_tabs.tabs_people.TabsPeopleBindingModel"/>
     </data>
     <FrameLayout android:layout_width="match_parent"
                  android:layout_height="match_parent"
-                 tools:context=".presentation.fragments.main_tabs.tabs_people.TabsPeopleFragment">
+                 tools:context=".presentation.fragments.main_tabs.tabs_people.TabsPeopleBindingModel">
         <com.kalashnyk.denys.defaultproject.presentation.widget.pageview.PagesView
                 android:id="@+id/pages_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                bind:tabs="@{bindingModel.tabs}"/>
+                bind:tabs="@{bindingModel.pages}"/>
     </FrameLayout>
 </layout>

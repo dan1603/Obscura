@@ -4,11 +4,13 @@ import android.os.Bundle
 import com.kalashnyk.denys.defaultproject.databinding.TabsThemesDataBinding
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseFragment
-import com.kalashnyk.denys.defaultproject.presentation.fragments.main_tabs.MainTabsBindingModel
 import com.kalashnyk.denys.defaultproject.presentation.widget.pageview.model.TabPages
 
 class TabsThemesFragment : BaseFragment<TabsThemesDataBinding>() {
-
+    val bindingModel =
+        TabsThemesBindingModel(
+            initThemesTabs()
+        )
     /**
      * @param savedInstanceState
      */
@@ -28,7 +30,7 @@ class TabsThemesFragment : BaseFragment<TabsThemesDataBinding>() {
      * @param binding
      */
     override fun setupViewLogic(binding: TabsThemesDataBinding) {
-        binding.bindingModel = MainTabsBindingModel(initThemesTabs())
+        binding.bindingModel = bindingModel
     }
 
     private fun initThemesTabs() : List<TabPages> {

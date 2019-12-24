@@ -1,20 +1,25 @@
-package com.kalashnyk.denys.defaultproject.presentation.fragments.main_tabs
+package com.kalashnyk.denys.defaultproject.presentation.fragments.main_tabs.tabs_themes
 
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.BindingAdapter
+import com.kalashnyk.denys.defaultproject.BR
 import com.kalashnyk.denys.defaultproject.presentation.widget.pageview.PagesView
 import com.kalashnyk.denys.defaultproject.presentation.widget.pageview.model.TabPages
 
 /**
  *
  */
-class MainTabsBindingModel(private var tabsPages: List<TabPages>) : BaseObservable() {
+class TabsThemesBindingModel(private var tabsPages: List<TabPages>) : BaseObservable() {
 
     /**
      * @field pages
      */
-    val tabs: List<TabPages>
+    var tabs: List<TabPages> = tabsPages
+        set(value) {
+            field=value
+            notifyPropertyChanged(BR.tabs)
+        }
         @Bindable get() {
             return tabsPages
         }

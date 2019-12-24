@@ -16,19 +16,23 @@
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground">
 
-        <com.google.android.material.circularreveal.cardview.CircularRevealCardView
-                android:id="@+id/crcvUserProfileImage"
-                android:layout_height="@dimen/view_params_45"
-                android:layout_width="@dimen/view_params_45"
-                android:layout_marginStart="@dimen/indentation_10"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:cardCornerRadius="@dimen/view_params_23">
+        <!--<com.google.android.material.circularreveal.cardview.CircularRevealCardView-->
+                <!--android:id="@+id/crcvUserProfileImage"-->
+                <!--android:layout_height="@dimen/view_params_45"-->
+                <!--android:layout_width="@dimen/view_params_45"-->
+                <!--android:layout_marginStart="@dimen/indentation_10"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent"-->
+                <!--app:cardCornerRadius="@dimen/view_params_23">-->
             <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@color/soft_blue"/>
-        </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+                    android:id="@+id/crcvUserProfileImage"
+                    android:layout_width="@dimen/view_params_45"
+                    android:layout_height="@dimen/view_params_45"
+                    android:src="@color/soft_blue"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="@dimen/indentation_10"/>
+        <!--</com.google.android.material.circularreveal.cardview.CircularRevealCardView>-->
         <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

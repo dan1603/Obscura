@@ -37,12 +37,12 @@ class MainActivity : BaseActivity<MainDataBinding>() {
     private var onTabSelectedListener = AHBottomNavigation.OnTabSelectedListener { position: Int, wasSelected: Boolean ->
         if (wasSelected) return@OnTabSelectedListener false
 
-        when (position) {
-            0 -> { replaceFragment(R.id.mainFragmentContainer, TabsThemesFragment.newInstance()) }
-            1 -> { replaceFragment(R.id.mainFragmentContainer, ProfileFragment.newInstance()) }
-            2 -> { replaceFragment(R.id.mainFragmentContainer, TabsPeopleFragment.newInstance()) }
-            3 -> { replaceFragment(R.id.mainFragmentContainer, MessagesFragment.newInstance()) }
-        }
+//        when (position) {
+//            0 -> { replaceFragment(R.id.mainFragmentContainer, TabsThemesFragment.newInstance()) }
+//            1 -> { replaceFragment(R.id.mainFragmentContainer, ProfileFragment.newInstance()) }
+//            2 -> { replaceFragment(R.id.mainFragmentContainer, TabsPeopleFragment.newInstance()) }
+//            3 -> { replaceFragment(R.id.mainFragmentContainer, MessagesFragment.newInstance()) }
+//        }
 
         return@OnTabSelectedListener true
     }
@@ -63,12 +63,12 @@ class MainActivity : BaseActivity<MainDataBinding>() {
      */
     override fun setupViewLogic(binding: MainDataBinding) {
         initBottomBar()
-        this.replaceFragment(R.id.mainFragmentContainer, ListThemesFragment.newInstance(), false, false)
+//        TabsPeopleFragment.newInstance(
+        this.replaceFragment(R.id.mainFragmentContainer, TabsThemesFragment.newInstance(), false, false)
     }
 
     private fun initBottomBar() {
         bottomNavigation.setOnTabSelectedListener(onTabSelectedListener)
-
         bottomNavigation.accentColor = ContextCompat.getColor(this, R.color.colorWhite)
         bottomNavigation.inactiveColor = ContextCompat.getColor(this, R.color.bottom_inactive)
         bottomNavigation.defaultBackgroundColor = ContextCompat.getColor(this, R.color.soft_blue)

@@ -106,7 +106,5 @@
     <string name="tab_themes">ALL THEMES</string>
     <string name="tab_events">EVENTS</string>
     <string name="tab_articles">ARTICLES</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="error_no_browser_found">No browser found - please install a valid web browser to open the offer.</string>
 </resources>

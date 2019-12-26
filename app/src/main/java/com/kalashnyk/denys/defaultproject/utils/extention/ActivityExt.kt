@@ -1,16 +1,25 @@
 package com.kalashnyk.denys.defaultproject.utils.extention
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ResolveInfo
 import android.graphics.Point
+import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.annotation.ColorRes
+import androidx.annotation.IntegerRes
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.browser.customtabs.CustomTabsService.ACTION_CUSTOM_TABS_CONNECTION
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
@@ -219,6 +228,12 @@ fun <A : Activity> A.showSnack(text: String) =
     Snackbar.make(this.findViewById(android.R.id.content), text, Snackbar.LENGTH_LONG).show()
 
 /**
+ * @param error
+ */
+fun <A : Activity> A.showSnack(@StringRes error: Int) =
+    Snackbar.make(this.findViewById(android.R.id.content), this.getString(error), Snackbar.LENGTH_LONG).show()
+
+/**
  * @param message
  * @param length
  */
@@ -257,6 +272,41 @@ private inline fun <T, A : Activity> A.delegate(
         override fun setValue(thisRef: Any, property: KProperty<*>, value: T?) =
             setter(key ?: property.name, value)
     }
+}
+
+fun Activity.openWebPage(url: String, @ColorRes color: Int?, @StringRes error: Int?) {
+    applicationContext?.packageManager?.let {
+        val uri = Uri.parse(url)
+        // checks if Google Chrome is installed on the device
+        if (canHandleCustomTabUrl(uri)) {
+            CustomTabsIntent.Builder()
+                .setToolbarColor(ContextCompat.getColor(this, color ?: R.color.colorPrimary))
+                .build()
+                .launchUrl(this, uri)
+        } else {
+            // fallback to system webView
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            if (intent.resolveActivity(it) != null) {
+                startActivity(intent)
+            } else {
+                this.showSnack(error ?: R.string.error_no_browser_found)
+            }
+        }
+    }
+}
+
+private fun Activity.canHandleCustomTabUrl(uri: Uri): Boolean {
+    val intent = Intent(Intent.ACTION_VIEW, uri)
+    val resolvedActivityList = packageManager.queryIntentActivities(intent, 0)
+    for (info: ResolveInfo in resolvedActivityList) {
+        val serviceIntent = Intent()
+        serviceIntent.action = ACTION_CUSTOM_TABS_CONNECTION
+        serviceIntent.setPackage(info.activityInfo.packageName)
+        if (packageManager.resolveService(serviceIntent, 0) != null) {
+            return true
+        }
+    }
+    return false
 }
 
 private inline fun <T, A : Activity> A.nonNullDelegate(

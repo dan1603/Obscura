@@ -25,8 +25,8 @@ class PagingAdapter(diffUtil: DiffUtil.ItemCallback<BaseCardModel>) :
         return -1
     }
 
-
     override fun bindItem(holder: DataBoundViewHolder<ViewDataBinding>, position: Int, payloads: List<Any>) {
         super.bindItem(holder, position, payloads)
+
     }
 }

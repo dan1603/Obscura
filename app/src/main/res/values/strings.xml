@@ -107,4 +107,5 @@
     <string name="tab_events">EVENTS</string>
     <string name="tab_articles">ARTICLES</string>
     <string name="error_no_browser_found">No browser found - please install a valid web browser to open the offer.</string>
+    <string name="splashlogo">splashLogo</string>
 </resources>

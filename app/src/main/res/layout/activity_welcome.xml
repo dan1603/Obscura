@@ -58,59 +58,58 @@
                 android:id="@+id/tvWelcomeHeader"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="42dp"
+                android:fontFamily="sans-serif-black"
                 android:text="@string/welcome_to_obscuralight"
-                android:layout_marginTop="@dimen/indentation_16"
+                android:textColor="@color/colorWhite"
                 android:textSize="@dimen/txt_size_34"
                 android:textStyle="normal"
-                android:textColor="@color/colorWhite"
-                android:fontFamily="sans-serif-black"
-                app:layout_constraintTop_toBottomOf="@+id/guideline_splash_top"
-                app:layout_constraintStart_toEndOf="@+id/guideline_splash_start"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/guideline_splash_top" />
 
         <TextView
                 android:id="@+id/tvWelcomeInformation"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/indentation_32"
-                android:textColor="@color/light_grey"
-                android:textStyle="normal"
-                android:textSize="@dimen/txt_size_16"
+                android:layout_marginTop="38dp"
                 android:fontFamily="sans-serif"
                 android:text="@string/welcome_information"
-                app:layout_constraintTop_toBottomOf="@+id/tvWelcomeHeader"
-                app:layout_constraintStart_toEndOf="@+id/guideline_splash_start"/>
+                android:textColor="@color/light_grey"
+                android:textSize="@dimen/txt_size_16"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="@+id/tvWelcomeHeader"
+                app:layout_constraintTop_toBottomOf="@+id/tvWelcomeHeader" />
 
         <TextView
                 android:id="@+id/tvWelcomeSignIn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/indentation_64"
-                android:layout_marginStart="@dimen/indentation_26"
+                android:layout_marginTop="69dp"
+                android:background="?android:attr/selectableItemBackground"
                 android:fontFamily="sans-serif-medium"
+                android:onClick="@{(view)-> navigator.openAuthScreen(typeScreen.SIGN_IN, Intent.FLAG_ACTIVITY_CLEAR_TASK)}"
                 android:padding="@dimen/indentation_5"
                 android:textSize="@dimen/txt_size_18"
-                android:background="?android:attr/selectableItemBackground"
-                android:onClick="@{(view)-> navigator.openAuthScreen(typeScreen.SIGN_IN, Intent.FLAG_ACTIVITY_CLEAR_TASK)}"
-                bind:textSpan="@{bindingModel.signInTextSpanModel}"
+                app:layout_constraintStart_toStartOf="@+id/tvWelcomeInformation"
                 app:layout_constraintTop_toBottomOf="@id/tvWelcomeInformation"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="@string/welcome_text_already_have_an_account"/>
+                bind:textSpan="@{bindingModel.signInTextSpanModel}"
+                tools:text="@string/welcome_text_already_have_an_account" />
 
         <TextView
                 android:id="@+id/tvWelcomeSignUp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:layout_marginTop="@dimen/indentation_64"
-                android:layout_marginStart="@dimen/indentation_26"
-                android:textSize="@dimen/txt_size_18"
-                android:padding="@dimen/indentation_6"
+                android:layout_marginTop="94dp"
                 android:background="?android:attr/selectableItemBackground"
+                android:fontFamily="sans-serif-medium"
                 android:onClick="@{(view)-> navigator.openAuthScreen(typeScreen.SIGN_UP, Intent.FLAG_ACTIVITY_CLEAR_TASK)}"
-                bind:textSpan="@{bindingModel.signUpTextSpanModel}"
+                android:padding="@dimen/indentation_6"
+                android:textSize="@dimen/txt_size_18"
+                app:layout_constraintStart_toStartOf="@+id/tvWelcomeSignIn"
                 app:layout_constraintTop_toBottomOf="@+id/tvWelcomeSignIn"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="@string/welcome_text_not_with_us_yet"/>
+                bind:textSpan="@{bindingModel.signUpTextSpanModel}"
+                tools:text="@string/welcome_text_not_with_us_yet" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

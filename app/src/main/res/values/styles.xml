@@ -75,4 +75,28 @@
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/colorWhite</item>
     </style>
+    <style name="TextStyleItemGreyish">
+        <item name="android:textSize">@dimen/txt_size_14</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/greyish_brown</item>
+    </style>
+    <style name="TextStyleBlueItemEvent">
+        <item name="android:textSize">@dimen/txt_size_14</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/soft_blue</item>
+    </style>
+    <style name="TextStyleItemEventDateTime">
+        <item name="android:textSize">@dimen/txt_size_14</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/greyish_brown</item>
+    </style>
+    <style name="TextStyleBlueItemEvent">
+        <item name="android:textSize">@dimen/txt_size_14</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/soft_blue</item>
+    </style>
 </resources>

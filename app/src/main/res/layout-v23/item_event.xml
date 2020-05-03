@@ -1,164 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <variable
                 name="data"
                 type="com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.BaseCardModel" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/indentation_20"
             android:clickable="true"
             android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground">
+            android:foreground="?android:attr/selectableItemBackground"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/indentation_20">
 
 
         <TextView
                 android:id="@+id/tvEventCardName"
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/crcvEventCardType"
                 style="@style/TextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/indentation_16"
                 android:layout_marginEnd="@dimen/indentation_20"
-                android:text="@string/help_me_choose_a_photo_camera"/>
+                android:text="@string/help_me_choose_a_photo_camera"
+                app:layout_constraintEnd_toStartOf="@id/crcvEventCardType"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         <!--<com.google.android.material.circularreveal.cardview.CircularRevealCardView-->
-                <!--android:id="@+id/crcvEventCardType"-->
-                <!--android:layout_height="@dimen/view_params_20"-->
-                <!--android:layout_width="@dimen/view_params_76"-->
-                <!--app:layout_constraintEnd_toEndOf="parent"-->
-                <!--app:layout_constraintTop_toTopOf="parent"-->
-                <!--android:textAlignment="center"-->
-                <!--app:cardCornerRadius="@dimen/view_params_10"-->
-                <!--android:layout_marginEnd="@dimen/indentation_16">-->
-            <TextView
-                    android:id="@+id/crcvEventCardType"
-                    android:layout_width="@dimen/view_params_20"
-                    android:layout_height="@dimen/view_params_76"
-                    android:textSize="12sp"
-                    android:fontFamily="sans-serif-medium"
-                    android:textStyle="normal"
-                    android:textColor="@color/colorWhite"
-                    android:background="@color/lightish_purple"
-                    android:textAlignment="center"
-                    android:text="@string/places"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginEnd="@dimen/indentation_16"
-            />
+        <!--android:id="@+id/crcvEventCardType"-->
+        <!--android:layout_height="@dimen/view_params_20"-->
+        <!--android:layout_width="@dimen/view_params_76"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--android:textAlignment="center"-->
+        <!--app:cardCornerRadius="@dimen/view_params_10"-->
+        <!--android:layout_marginEnd="@dimen/indentation_16">-->
+        <TextView
+                android:id="@+id/crcvEventCardType"
+                android:layout_width="@dimen/view_params_76"
+                android:layout_height="@dimen/indentation_20"
+                android:layout_marginEnd="@dimen/indentation_16"
+                android:background="@color/lightish_purple"
+                android:text="@string/places"
+                android:textAlignment="center"
+                style="@style/TextStyle3"
+                android:fontFamily="sans-serif-medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         <!--</com.google.android.material.circularreveal.cardview.CircularRevealCardView>-->
         <ImageView
                 android:id="@+id/ivEventCardPhoto"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/view_params_230"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvEventCardName"
                 android:layout_marginTop="@dimen/indentation_16"
-                android:src="@color/soft_blue"/>
-        <TextView
-                android:id="@+id/tvEventCardDate"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:textSize="14sp"
-                android:fontFamily="sans-serif"
-                android:textStyle="normal"
-                android:textColor="@color/greyish_brown"
-                android:text="@string/may_13_2019"
+                android:src="@color/soft_blue"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ivEventCardPhoto"
-                android:drawableStart="@drawable/ic_date_not_clickable"
-                android:drawablePadding="@dimen/indentation_16"
-                android:layout_marginStart="@dimen/indentation_20"
-                android:layout_marginEnd="@dimen/indentation_8"
-                android:layout_marginTop="@dimen/indentation_22"/>
-        <TextView
-                android:id="@+id/tvEventCardTime"
+                app:layout_constraintTop_toBottomOf="@id/tvEventCardName" />
+
+        <LinearLayout
+                android:id="@+id/linDateAndTime"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:textSize="14sp"
-                android:fontFamily="sans-serif"
-                android:textStyle="normal"
-                android:textColor="@color/greyish_brown"
-                android:text="@string/_3_30_pm_5_00_pm"
-                app:layout_constraintStart_toEndOf="@id/tvEventCardDate"
-                app:layout_constraintTop_toBottomOf="@id/ivEventCardPhoto"
-                android:drawableStart="@drawable/ic_choose_time_not_clickable"
-                android:drawablePadding="@dimen/indentation_16"
-                android:layout_marginStart="@dimen/indentation_8"
-                android:layout_marginEnd="@dimen/indentation_6"
-                android:layout_marginTop="@dimen/indentation_22"/>
+                android:layout_marginStart="@dimen/indentation_20"
+                android:layout_marginTop="@dimen/indentation_22"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivEventCardPhoto">
+
+            <ImageView
+                    android:id="@+id/ivDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/ic_date_not_clickable" />
+
+            <TextView
+                    android:id="@+id/tvEventCardDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/indentation_16"
+                    android:text="@string/may_13_2019"
+                    style="@style/TextStyleItemEventDateTime"
+                    />
+
+            <ImageView
+                    android:id="@+id/ivTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/indentation_16"
+                    android:background="@drawable/ic_choose_time_not_clickable" />
+
+            <TextView
+                    android:id="@+id/tvEventCardTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/indentation_16"
+                    android:text="@string/_3_30_pm_5_00_pm"
+                    style="@style/TextStyleItemEventDateTime"/>
+
+        </LinearLayout>
+
         <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/ivEventCardPhoto"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:src="@drawable/ic_forward"
                 android:layout_marginEnd="@dimen/indentation_10"
-                android:layout_marginTop="@dimen/indentation_20"
                 android:padding="@dimen/indentation_4"
-        />
-        <TextView
-                android:id="@+id/tvEventCardAddress"
+                android:src="@drawable/ic_forward"
+                app:layout_constraintBottom_toBottomOf="@+id/linDateAndTime"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/linDateAndTime" />
+
+
+        <LinearLayout
+                android:id="@+id/linEventCardAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/tvEventCardDate"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="@dimen/indentation_20"
+                android:layout_marginStart="@dimen/indentation_18"
                 android:layout_marginTop="@dimen/indentation_30"
-                android:textSize="14sp"
-                android:fontFamily="sans-serif-medium"
-                android:textStyle="normal"
-                android:textColor="@color/soft_blue"
-                android:text="@string/alexander_schmidt_ave_546"
-                android:drawableStart="@drawable/ic_go_to_map"
-                android:drawablePadding="@dimen/indentation_16"
-        />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linDateAndTime">
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_go_to_map" />
+
+            <TextView
+                    android:id="@+id/tvEventCardAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/indentation_16"
+                    android:text="@string/alexander_schmidt_ave_546"
+                    style="@style/TextStyleBlueItemEvent" />
+        </LinearLayout>
+
         <View
                 android:id="@+id/vDivider"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="@dimen/indentation_30"
                 android:background="@color/color_light_gray"
-                app:layout_constraintTop_toBottomOf="@id/tvEventCardAddress"
-                app:layout_constraintStart_toStartOf="parent"/>
-        <TextView
-                android:id="@+id/tvEventCardWantToGo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/vDivider"
                 app:layout_constraintStart_toStartOf="parent"
-                android:padding="@dimen/indentation_22"
-                android:textSize="14sp"
-                android:fontFamily="sans-serif-medium"
-                android:textStyle="normal"
-                android:textColor="@color/soft_blue"
-                android:text="@string/want_to_go"
-                android:drawableStart="@drawable/ic_want_to_go"
-                android:drawablePadding="@dimen/indentation_8"
-                android:clickable="true"
-                android:focusable="true"
-        />
-        <TextView
-                android:layout_width="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/linEventCardAddress" />
+        <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/vDivider"
-                app:layout_constraintStart_toEndOf="@id/tvEventCardWantToGo"
-                android:padding="@dimen/indentation_22"
-                android:textSize="14sp"
-                android:fontFamily="sans-serif-medium"
-                android:textStyle="normal"
-                android:textColor="@color/soft_blue"
-                android:text="@string/invite"
-                android:drawableStart="@drawable/ic_invite"
-                android:drawablePadding="@dimen/indentation_8"
-        />
+                >
+            <LinearLayout
+                    android:id="@+id/linEventCardWantToGo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="horizontal"
+                    android:paddingVertical="@dimen/indentation_22"
+                    android:gravity="center"
+                    android:layout_weight="67"
+
+                    >
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_want_to_go" />
+
+                <TextView
+                        android:id="@+id/tvEventCardWantToGo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/indentation_8"
+                        android:text="@string/want_to_go"
+                        style="@style/TextStyleBlueItemEvent"
+                        android:layout_gravity="center_vertical"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="100"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/indentation_22">
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_invite" />
+
+                <TextView
+                        style="@style/TextStyleBlueItemEvent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/indentation_8"
+                        android:text="@string/invite" />
+            </LinearLayout>
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

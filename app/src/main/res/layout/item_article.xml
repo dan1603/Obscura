@@ -12,7 +12,6 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/indentation_20"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground">
@@ -27,6 +26,7 @@
                 style="@style/TextStyle"
                 android:layout_marginStart="@dimen/indentation_16"
                 android:layout_marginEnd="@dimen/indentation_20"
+                android:layout_marginTop="@dimen/indentation_20"
                 android:text="@string/help_me_choose_a_photo_camera"/>
 
         <!--<com.google.android.material.circularreveal.cardview.CircularRevealCardView-->
@@ -40,8 +40,8 @@
                 <!--android:layout_marginEnd="@dimen/indentation_16">-->
             <TextView
                     android:id="@+id/crcvArticleCardType"
-                    android:layout_width="@dimen/view_params_20"
-                    android:layout_height="@dimen/view_params_76"
+                    android:layout_width="@dimen/view_params_76"
+                    android:layout_height="@dimen/view_params_20"
                     android:textSize="12sp"
                     android:fontFamily="sans-serif-medium"
                     android:textStyle="normal"
@@ -52,6 +52,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginEnd="@dimen/indentation_16"
+                    android:layout_marginTop="@dimen/indentation_22"
             />
         <!--</com.google.android.material.circularreveal.cardview.CircularRevealCardView>-->
         <ImageView
@@ -63,32 +64,30 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvArticleCardName"
                 android:src="@color/soft_blue"/>
+
         <TextView
                 android:id="@+id/tvArticleCardText"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
-                android:textSize="14sp"
-                android:fontFamily="sans-serif"
-                android:textStyle="normal"
-                android:textColor="@color/greyish_brown"
+                style="@style/TextStyleItemGreyish"
                 android:text="@string/article_text"
+                android:lineSpacingExtra="10sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ivArticleCardPhoto"
                 app:layout_constraintEnd_toStartOf="@id/ivArticleCardDetailButton"
                 android:layout_marginStart="@dimen/indentation_16"
                 android:layout_marginEnd="@dimen/indentation_8"
                 android:layout_marginTop="@dimen/indentation_16"/>
+
         <ImageView
                 android:id="@+id/ivArticleCardDetailButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/ivArticleCardPhoto"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:src="@drawable/ic_forward"
                 android:layout_marginEnd="@dimen/indentation_10"
-                android:layout_marginTop="@dimen/indentation_20"
                 android:padding="@dimen/indentation_4"
-        />
+                android:src="@drawable/ic_forward"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvArticleCardText" />
         <View
                 android:id="@+id/vDivider"
                 android:layout_width="match_parent"
@@ -97,34 +96,55 @@
                 android:background="@color/color_light_gray"
                 app:layout_constraintTop_toBottomOf="@id/tvArticleCardText"
                 app:layout_constraintStart_toStartOf="parent"/>
-        <TextView
-                android:id="@+id/tvArticleCardWantToGo"
-                android:layout_width="wrap_content"
+
+        <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/vDivider"
                 app:layout_constraintStart_toStartOf="parent"
-                android:padding="@dimen/indentation_22"
-                android:textSize="14sp"
-                android:fontFamily="sans-serif-medium"
-                android:textStyle="normal"
-                android:textColor="@color/soft_blue"
-                android:text="@string/follow"
-                android:drawableStart="@drawable/ic_follow_star"
-                android:drawablePadding="@dimen/indentation_8"
-                android:clickable="true"
-                android:focusable="true"/>
-        <TextView
+                app:layout_constraintTop_toBottomOf="@id/vDivider"
+                >
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="horizontal"
+                    android:paddingVertical="@dimen/indentation_22"
+                    android:gravity="center"
+                    android:layout_weight="100">
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_follow_star" />
+                <TextView
+                        android:id="@+id/tvArticleCardWantToGo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/TextStyleBlueItemEvent"
+                        android:text="@string/follow"
+                        android:layout_marginStart="@dimen/indentation_8"
+                        />
+            </LinearLayout>
+        <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/vDivider"
-                app:layout_constraintStart_toEndOf="@id/tvArticleCardWantToGo"
-                android:padding="@dimen/indentation_22"
-                android:textSize="14sp"
-                android:fontFamily="sans-serif-medium"
-                android:textStyle="normal"
-                android:textColor="@color/soft_blue"
-                android:text="@string/leave_a_comment"
-                android:drawableStart="@drawable/ic_comment"
-                android:drawablePadding="@dimen/indentation_8"/>
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/indentation_22"
+                android:gravity="center"
+                android:layout_weight="37">
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_comment" />
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextStyleBlueItemEvent"
+                    android:layout_marginStart="@dimen/indentation_8"
+                    android:text="@string/leave_a_comment" />
+        </LinearLayout>
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

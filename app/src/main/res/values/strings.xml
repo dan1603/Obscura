@@ -77,7 +77,8 @@
     <string name="invite">INVITE</string>
     <string name="following">FOLLOWING</string>
 
-    <string name="help_me_choose_a_photo_camera">Help me choose a photo camera for a beginner title</string>
+    <string name="help_me_choose_a_photo_camera">Help me choose a photo
+        camera for a beginner title</string>
     <string name="places">Places</string>
     <string name="article_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
         incididunt ut labore et dolore magna aliqua...

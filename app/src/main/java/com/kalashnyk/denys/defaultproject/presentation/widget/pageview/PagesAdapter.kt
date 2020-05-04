@@ -5,11 +5,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentStatePagerAdapter
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages
 import com.kalashnyk.denys.defaultproject.presentation.widget.pageview.model.TabPages
 
 abstract class PagesAdapter<C : TabPages>(fm: FragmentManager)
-    : FragmentPagerAdapter(fm) {
+    : FragmentStatePagerAdapter(fm) {
 
     private val items: MutableList<C> = mutableListOf()
     private var fragmentList: MutableMap<Int, Fragment> = mutableMapOf()

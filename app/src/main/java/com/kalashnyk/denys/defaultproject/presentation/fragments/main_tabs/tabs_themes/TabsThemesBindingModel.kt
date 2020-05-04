@@ -3,6 +3,7 @@ package com.kalashnyk.denys.defaultproject.presentation.fragments.main_tabs.tabs
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.BindingAdapter
+import androidx.fragment.app.FragmentManager
 import com.kalashnyk.denys.defaultproject.BR
 import com.kalashnyk.denys.defaultproject.presentation.widget.pageview.PagesView
 import com.kalashnyk.denys.defaultproject.presentation.widget.pageview.model.TabPages

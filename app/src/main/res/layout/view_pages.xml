@@ -9,7 +9,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-    <com.kalashnyk.denys.defaultproject.presentation.widget.pageview.ObscuraViewPager
+    <androidx.viewpager.widget.ViewPager
             android:id="@+id/obscura_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

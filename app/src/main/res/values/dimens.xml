@@ -48,7 +48,9 @@
     <dimen name="view_params_23">23dp</dimen>
     <dimen name="view_params_230">230dp</dimen>
     <dimen name="view_params_10">10dp</dimen>
+    <dimen name="view_params_18">18dp</dimen>
     <dimen name="view_params_20">20dp</dimen>
+    <dimen name="view_params_40">40dp</dimen>
     <dimen name="view_params_76">76dp</dimen>
 
 

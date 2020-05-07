@@ -1,25 +1,386 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data class="ProfileDataBinding">
 
 
     </data>
 
-    <FrameLayout
-                 android:layout_width="match_parent"
-                 android:layout_height="match_parent"
-                 tools:context=".presentation.fragments.profile.ProfileFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/ice_blue">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constPers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/indentation_8"
+                android:layout_marginTop="@dimen/indentation_16"
+                android:background="@drawable/recover_account_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constPersTop"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/txt_size_40"
+                    android:background="@drawable/background_personal_blue"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                        android:id="@+id/tvPersonal"
+                        style="@style/TextWhite16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/indentation_16"
+                        android:text="PERSONAL"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                        android:id="@+id/iv_pen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/indentation_16"
+                        android:background="@drawable/ic_white"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvPersonal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvPersonal" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/civ_avatar"
+                    android:layout_width="@dimen/view_params_60"
+                    android:layout_height="@dimen/view_params_60"
+                    android:src="@mipmap/ic_launcher"
+                    android:layout_margin="@dimen/indentation_16"
+                    app:layout_constraintStart_toStartOf="@+id/constPersTop"
+                    app:layout_constraintTop_toBottomOf="@+id/constPersTop" />
+
+            <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/indentation_16"
+                    android:text="Name Surname"
+                    android:textColor="@color/greyish_brown"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toEndOf="@id/civ_avatar"
+                    app:layout_constraintTop_toBottomOf="@+id/constPersTop" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/indentation_16"
+                    android:layout_marginStart="@dimen/indentation_16"
+                    android:layout_marginBottom="@dimen/indentation_20"
+                    app:layout_constraintStart_toEndOf="@+id/civ_avatar"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_name"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                <ImageView
+                        android:id="@+id/iv_geo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_profile_location"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_geo"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_geo" />
+
+                <TextView
+                        android:id="@+id/tv_geo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/indentation_16"
+
+                        android:text="Geolocation"
+                        style="@style/TextStyleBlueItemEvent"
+                        app:layout_constraintStart_toEndOf="@+id/iv_geo"
+                        app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constProf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/indentation_8"
+                android:background="@drawable/recover_account_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/constPers">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constProfTop"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/view_params_40"
+                    android:background="@drawable/background_personal_blue"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                <TextView
+                        android:id="@+id/tvProfessional"
+                        style="@style/TextWhite16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/indentation_16"
+                        android:text="PROFESSIONAL"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                        android:id="@+id/ivProf_pen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/indentation_16"
+                        android:background="@drawable/ic_white"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvProfessional"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvProfessional" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constProf1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/indentation_16"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constProfTop">
+
+                <ImageView
+                        android:id="@+id/ivProf_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_job"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                        android:id="@+id/tvProf_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/indentation_16"
+                        android:text="UX/UI designer"
+                        style="@style/TextDark"
+                        app:layout_constraintStart_toEndOf="@+id/ivProf_1"
+                        app:layout_constraintTop_toTopOf="@id/ivProf_1"
+                        app:layout_constraintBottom_toBottomOf="@id/ivProf_1"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constProf2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/indentation_16"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constProf1">
+
+                <ImageView
+                        android:id="@+id/ivProf_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_certificates"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                        android:id="@+id/tvProf_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/indentation_16"
+                        android:text="Professional certificates (2)"
+                        style="@style/TextBlue"
+                        app:layout_constraintStart_toEndOf="@+id/ivProf_2"
+                        app:layout_constraintTop_toTopOf="@+id/ivProf_2"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivProf_2"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constProf3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/indentation_16"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constProf2">
+
+                <ImageView
+                        android:id="@+id/ivProf_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_interests"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                        android:id="@+id/tvProf_3.1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/indentation_16"
+                        android:text="Interested in: "
+                        style="@style/TextDark"
+                        app:layout_constraintStart_toEndOf="@+id/ivProf_3"
+                        app:layout_constraintTop_toTopOf="@+id/ivProf_3"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivProf_3"/>
+
+                <TextView
+                        android:id="@+id/tvProf_3.2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ART, SPORT"
+                        style="@style/TextBlue"
+                        app:layout_constraintStart_toEndOf="@id/tvProf_3.1"
+                        app:layout_constraintTop_toTopOf="@+id/ivProf_3"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivProf_3" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constThemes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/indentation_8"
+                android:background="@drawable/recover_account_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/constProf">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constThemesTop"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/view_params_40"
+                    android:background="@drawable/background_personal_blue"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                <TextView
+                        android:id="@+id/tvThemes"
+                        style="@style/TextWhite16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/indentation_16"
+                        android:text="THEMES"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                        android:id="@+id/iv_block"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/indentation_16"
+                        android:background="@drawable/ic_calendar"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvThemes"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvThemes" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constThem1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/indentation_16"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constThemesTop">
+
+                <ImageView
+                        android:id="@+id/ivThem_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_created_themes"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                        android:id="@+id/tvThem_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/indentation_16"
+                        android:text="Created themes (12)"
+                        style="@style/TextBlue"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivThem_1"
+                        app:layout_constraintStart_toEndOf="@+id/ivThem_1"
+                        app:layout_constraintTop_toTopOf="@+id/ivThem_1" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constThem2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/indentation_16"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constThem1">
+
+                <ImageView
+                        android:id="@+id/ivThem_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_followed_themes"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                        android:id="@+id/tvThem_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/indentation_16"
+                        android:text="Followed themes (28)"
+                        style="@style/TextBlue"
+                        app:layout_constraintStart_toEndOf="@+id/ivThem_2"
+                        app:layout_constraintTop_toTopOf="@+id/ivThem_2"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivThem_2"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constSetting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/indentation_16"
+                android:layout_marginTop="@dimen/indentation_32"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/constThemes">
+
+            <TextView
+                    android:id="@+id/tvSetting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Application settings"
+                    style="@style/TextDarkMedium"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/iv_forward"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_forward"/>
+
+            <ImageView
+                    android:id="@+id/iv_forward"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_forward"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-                android:id="@+id/tvProfile"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textSize="@dimen/txt_size_40"
-                android:gravity="center"
-                android:text="Profile"/>
-
-    </FrameLayout>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/indentation_16"
+                android:text="LOG OUT"
+                style="@style/TextStyleBlueItemEvent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/constSetting" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

@@ -121,4 +121,6 @@ dependencies {
     //Utility
     implementation 'net.danlew:android.joda:2.9.9' // Time utility
     testImplementation "joda-time:joda-time:2.9.9" // Test utility
+    //CircleImageView
+    implementation 'de.hdodenhof:circleimageview:2.1.0'
 }

@@ -11,7 +11,7 @@ import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navig
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
-class RecoverAccountFragment : BaseAuthFragment<RecoverAccountDataBinding>(), IAuthFlow.IAuthCallback {
+class RecoverAccountFragment : BaseAuthFragment<RecoverAccountDataBinding>(), AuthFlow.AuthCallback {
 
     /**
      * @param savedInstanceState

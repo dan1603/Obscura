@@ -6,12 +6,12 @@ import androidx.databinding.ViewDataBinding
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowModel
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowModelBinding
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthTextWatcher
-import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow
+import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlow
 
-abstract class BaseAuthFragment<V : ViewDataBinding>: BaseFragment<V>(), IAuthFlow.IAuthCallback {
+abstract class BaseAuthFragment<V : ViewDataBinding>: BaseFragment<V>(), AuthFlow.AuthCallback {
 
     protected var bindingModel : AuthFlowModelBinding? = null
-    protected var listener: IAuthFlow.IAuthListener? = null
+    protected var listener: AuthFlow.AuthListener? = null
     protected lateinit var authChildCases : AuthFlowModel
     protected lateinit var textWatcher: AuthTextWatcher
 
@@ -26,7 +26,7 @@ abstract class BaseAuthFragment<V : ViewDataBinding>: BaseFragment<V>(), IAuthFl
      */
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is IAuthFlow.IAuthListener) {
+        if (context is AuthFlow.AuthListener) {
             listener = context
         } else {
             throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")

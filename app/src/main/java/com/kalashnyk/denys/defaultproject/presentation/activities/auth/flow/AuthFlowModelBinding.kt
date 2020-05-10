@@ -23,8 +23,8 @@ import java.util.*
  */
 class AuthFlowModelBinding(
     private var authFlowModel: AuthFlowModel,
-    private var listener: IAuthFlow.IAuthListener?,
-    private var callback: IAuthFlow.IAuthCallback
+    private var listener: AuthFlow.AuthListener?,
+    private var callback: AuthFlow.AuthCallback
 ) : Observer, BaseObservable() {
 
     private var context: Context
@@ -131,7 +131,7 @@ class AuthFlowModelBinding(
     /**
      *
      */
-    fun onSocialAuth(type: IAuthFlow.SocialAuthType, view: View) {
+    fun onSocialAuth(type: AuthFlow.SocialAuthType, view: View) {
         view.hideKeyboardWithClearFocus()
         listener?.socialAuth(type, callback)
     }

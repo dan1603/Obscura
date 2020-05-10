@@ -7,7 +7,7 @@ import com.kalashnyk.denys.defaultproject.databinding.AuthDataBinding
 import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
 import com.kalashnyk.denys.defaultproject.domain.AuthViewModel
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowModel
-import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow
+import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlow
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseActivity
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.PageNavigationItem
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages
@@ -19,7 +19,7 @@ import com.kalashnyk.denys.defaultproject.utils.extention.hideKeyboard
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
-class AuthActivity : BaseActivity<AuthDataBinding>(), IAuthFlow.IAuthListener {
+class AuthActivity : BaseActivity<AuthDataBinding>(), AuthFlow.AuthListener {
 
     private lateinit var viewModel: AuthViewModel
     /**
@@ -51,7 +51,7 @@ class AuthActivity : BaseActivity<AuthDataBinding>(), IAuthFlow.IAuthListener {
      * @param flowModel
      * @param callback
      */
-    override fun authRequest(flowModel: AuthFlowModel, callback: IAuthFlow.IAuthCallback) {
+    override fun authRequest(flowModel: AuthFlowModel, callback: AuthFlow.AuthCallback) {
         viewModel.authRequest(flowModel, callback)
     }
 
@@ -59,13 +59,13 @@ class AuthActivity : BaseActivity<AuthDataBinding>(), IAuthFlow.IAuthListener {
      * @param type
      * @param callback
      */
-    override fun socialAuth(type: IAuthFlow.SocialAuthType, callback: IAuthFlow.IAuthCallback?) {
+    override fun socialAuth(type: AuthFlow.SocialAuthType, callback: AuthFlow.AuthCallback?) {
         when (type) {
-            IAuthFlow.SocialAuthType.FACEBOOK -> {
+            AuthFlow.SocialAuthType.FACEBOOK -> {
                 //test
                 navigator.openMainScreen()
             }
-            IAuthFlow.SocialAuthType.GOOGLE -> {
+            AuthFlow.SocialAuthType.GOOGLE -> {
                 //test
                 navigator.openMainScreen()
             }

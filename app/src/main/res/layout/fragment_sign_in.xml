@@ -14,7 +14,7 @@
                   type="com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages"/>
 
         <variable name="typeSocial"
-                  type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.IAuthFlow.SocialAuthType"/>
+                  type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlow.SocialAuthType"/>
 
         <variable name="spanTextPosition"
                   type="com.kalashnyk.denys.defaultproject.utils.binding.TextSpanModel.SpanTextPosition"/>

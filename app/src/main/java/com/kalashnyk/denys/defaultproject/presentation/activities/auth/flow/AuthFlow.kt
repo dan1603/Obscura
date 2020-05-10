@@ -4,7 +4,7 @@ import android.text.TextWatcher
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseFlow
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages
 
-interface IAuthFlow : BaseFlow {
+interface AuthFlow : BaseFlow {
 
     // for social auth
     enum class SocialAuthType {
@@ -17,13 +17,13 @@ interface IAuthFlow : BaseFlow {
         SIGN_IN, SIGN_UP, RECOVER_ACCOUNT
     }
 
-    interface IAuthListener : BaseFlow.IBaseListener {
-        fun authRequest(flowModel: AuthFlowModel, callback: IAuthCallback)
-        fun socialAuth(type: SocialAuthType, callback: IAuthCallback?)
+    interface AuthListener : BaseFlow.IBaseListener {
+        fun authRequest(flowModel: AuthFlowModel, callback: AuthCallback)
+        fun socialAuth(type: SocialAuthType, callback: AuthCallback?)
         fun openScreen(page: Pages)
     }
 
-    interface IAuthCallback : BaseFlow.IBaseCallback, TextWatcher {
+    interface AuthCallback : BaseFlow.IBaseCallback, TextWatcher {
         fun showError(error: AuthFlowErrorModel)
         fun hideError()
     }

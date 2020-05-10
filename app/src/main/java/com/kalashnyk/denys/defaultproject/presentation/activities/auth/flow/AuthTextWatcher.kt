@@ -9,7 +9,7 @@ import com.kalashnyk.denys.defaultproject.R
  *
  */
 open class AuthTextWatcher(
-    private val callback: IAuthFlow.IAuthCallback,
+    private val callback: AuthFlow.AuthCallback,
     private val authChildCases: AuthFlowModel,
     private val editText : EditText
 ) : TextWatcher {

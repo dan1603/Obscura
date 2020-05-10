@@ -11,7 +11,7 @@ import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navig
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
-class SignUpFragment : BaseAuthFragment<SignUpDataBinding>(), IAuthFlow.IAuthCallback {
+class SignUpFragment : BaseAuthFragment<SignUpDataBinding>(), AuthFlow.AuthCallback {
 
     /**
      * @param savedInstanceState

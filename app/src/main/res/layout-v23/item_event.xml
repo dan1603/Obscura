@@ -18,41 +18,36 @@
             android:orientation="vertical"
             android:paddingTop="@dimen/indentation_20">
 
-
         <TextView
                 android:id="@+id/tvEventCardName"
-                style="@style/TextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/indentation_16"
                 android:layout_marginEnd="@dimen/indentation_20"
+                android:fontFamily="sans-serif-medium"
                 android:text="@string/help_me_choose_a_photo_camera"
+                android:textColor="@color/grey_brown"
+                android:textSize="@dimen/txt_size_18"
+                android:textStyle="normal"
                 app:layout_constraintEnd_toStartOf="@id/crcvEventCardType"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-        <!--<com.google.android.material.circularreveal.cardview.CircularRevealCardView-->
-        <!--android:id="@+id/crcvEventCardType"-->
-        <!--android:layout_height="@dimen/view_params_20"-->
-        <!--android:layout_width="@dimen/view_params_76"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--android:textAlignment="center"-->
-        <!--app:cardCornerRadius="@dimen/view_params_10"-->
-        <!--android:layout_marginEnd="@dimen/indentation_16">-->
         <TextView
                 android:id="@+id/crcvEventCardType"
                 android:layout_width="@dimen/view_params_76"
                 android:layout_height="@dimen/indentation_20"
                 android:layout_marginEnd="@dimen/indentation_16"
-                android:background="@color/lightish_purple"
-                android:text="@string/places"
-                android:textAlignment="center"
-                style="@style/TextStyle3"
+                android:background="@color/light_purple"
                 android:fontFamily="sans-serif-medium"
+                android:text="@string/places"
+                android:gravity="center_vertical|center_horizontal"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/txt_size_12"
+                android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-        <!--</com.google.android.material.circularreveal.cardview.CircularRevealCardView>-->
+
         <ImageView
                 android:id="@+id/ivEventCardPhoto"
                 android:layout_width="match_parent"
@@ -82,13 +77,12 @@
 
             <TextView
                     android:id="@+id/tvEventCardDate"
+                    style="@style/TextStyleItemEventDateTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/indentation_16"
-                    android:text="@string/may_13_2019"
-                    style="@style/TextStyleItemEventDateTime"
-                    />
+                    android:text="@string/may_13_2019" />
 
             <ImageView
                     android:id="@+id/ivTime"
@@ -99,12 +93,12 @@
 
             <TextView
                     android:id="@+id/tvEventCardTime"
+                    style="@style/TextStyleItemEventDateTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/indentation_16"
-                    android:text="@string/_3_30_pm_5_00_pm"
-                    style="@style/TextStyleItemEventDateTime"/>
+                    android:text="@string/_3_30_pm_5_00_pm" />
 
         </LinearLayout>
 
@@ -135,12 +129,15 @@
 
             <TextView
                     android:id="@+id/tvEventCardAddress"
+                    android:textSize="@dimen/txt_size_14"
+                    android:fontFamily="sans-serif-medium"
+                    android:textStyle="normal"
+                    android:textColor="@color/soft_blue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/indentation_16"
-                    android:text="@string/alexander_schmidt_ave_546"
-                    style="@style/TextStyleBlueItemEvent" />
+                    android:text="@string/alexander_schmidt_ave_546" />
         </LinearLayout>
 
         <View
@@ -151,22 +148,23 @@
                 android:background="@color/color_light_gray"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/linEventCardAddress" />
+
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/vDivider"
-                >
+                app:layout_constraintTop_toBottomOf="@id/vDivider">
+
             <LinearLayout
                     android:id="@+id/linEventCardWantToGo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="67"
                     android:clickable="true"
                     android:focusable="true"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:paddingVertical="@dimen/indentation_22"
-                    android:gravity="center"
-                    android:layout_weight="67"
 
                     >
 
@@ -177,12 +175,15 @@
 
                 <TextView
                         android:id="@+id/tvEventCardWantToGo"
+                        android:textSize="@dimen/txt_size_14"
+                        android:fontFamily="sans-serif-medium"
+                        android:textStyle="normal"
+                        android:textColor="@color/soft_blue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_marginStart="@dimen/indentation_8"
-                        android:text="@string/want_to_go"
-                        style="@style/TextStyleBlueItemEvent"
-                        android:layout_gravity="center_vertical"/>
+                        android:text="@string/want_to_go" />
             </LinearLayout>
 
             <LinearLayout
@@ -198,7 +199,10 @@
                         android:background="@drawable/ic_invite" />
 
                 <TextView
-                        style="@style/TextStyleBlueItemEvent"
+                        android:textSize="@dimen/txt_size_14"
+                        android:fontFamily="sans-serif-medium"
+                        android:textStyle="normal"
+                        android:textColor="@color/soft_blue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"

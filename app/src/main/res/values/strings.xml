@@ -67,6 +67,9 @@
     <string name="error_code_message">Invalid code</string>
     <string name="error_please_try_again">Please try again</string>
     <string name="exit_confirm">Are you sure you want to leave the app?</string>
+    <!--another errors-->
+    <string name="error_no_browser_found">No browser found - please install a valid web browser to open the offer.</string>
+    <!--common controls-->
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
@@ -102,10 +105,16 @@
     <string name="empty_view_bottom">You may want to check again later</string>
     <string name="common_error_msg_head">If you want to try again later</string>
     <string name="common_error_msg_bottom">Something went wrong</string>
+    <!--main tabs-->
     <string name="tab_following">FOLLOWING</string>
     <string name="tab_people">ALL PEOPLE</string>
     <string name="tab_themes">ALL THEMES</string>
     <string name="tab_events">EVENTS</string>
     <string name="tab_articles">ARTICLES</string>
-    <string name="error_no_browser_found">No browser found - please install a valid web browser to open the offer.</string>
+    <!--profile screen-->
+    <string name="profile_professional">PROFESSIONAL</string>
+    <string name="profile_personal">PERSONAL</string>
+    <string name="profile_themes">THEMES</string>
+    <string name="profile_app_settings">Application settings</string>
+    <string name="profile_log_out">LOG OUT</string>
 </resources>

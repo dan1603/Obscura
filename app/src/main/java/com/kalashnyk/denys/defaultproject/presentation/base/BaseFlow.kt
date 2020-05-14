@@ -1,7 +1,7 @@
 package com.kalashnyk.denys.defaultproject.presentation.base
 
 interface BaseFlow {
-     interface IBaseListener {
+     interface BaseListener {
          fun routBack()
      }
 

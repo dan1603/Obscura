@@ -4,12 +4,12 @@
     <color name="colorPrimaryDark">#5671b7</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorWhite">#FFFFFF</color>
-    <color name="greyish_brown">#424242</color>
+    <color name="grey_brown">#424242</color>
     <color name="soft_blue">#6b8de5</color>
     <color name="dark_blue">#304c95</color>
     <color name="cool_grey">#bebec1</color>
     <color name="ice_blue">#e4f5ff</color>
-    <color name="lightish_purple">#ba5ade</color>
+    <color name="light_purple">#ba5ade</color>
     <color name="turtle_green">#77b04d</color>
     <color name="dark_peach">#e28a4f</color>
     <color name="bright_sky_blue">#1fc9ff</color>

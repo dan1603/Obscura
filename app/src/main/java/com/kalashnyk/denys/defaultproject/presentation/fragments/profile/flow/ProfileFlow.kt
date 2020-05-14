@@ -4,7 +4,7 @@ import com.kalashnyk.denys.defaultproject.presentation.base.BaseFlow
 
 interface ProfileFlow : BaseFlow {
 
-    interface ProfileListener : BaseFlow.IBaseListener {
+    interface ProfileListener : BaseFlow.BaseListener {
 
     }
 }

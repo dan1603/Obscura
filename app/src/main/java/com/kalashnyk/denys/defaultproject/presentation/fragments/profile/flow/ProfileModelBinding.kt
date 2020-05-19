@@ -15,6 +15,12 @@ class ProfileModelBinding(
     private var profileModel: ProfileModel,
     private val listener : ProfileFlow.ProfileListener
     ) : Observer, BaseObservable() {
+//    profile_location
+//    profile_occupation
+//    profile_professional_certificates_count
+//    profile_professional_interests
+//    profile_created_themes_count
+//    profile_followed_themes_count
 
     private var context: Context
 

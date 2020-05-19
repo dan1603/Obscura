@@ -205,7 +205,7 @@
                 app:layout_constraintTop_toBottomOf="@id/profile_professional_container">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constThemesTop"
+                    android:id="@+id/profile_themes_header"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/view_params_40"
                     android:background="@drawable/common_blue_back"
@@ -254,10 +254,10 @@
                     android:textStyle="normal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constThemesTop"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_themes_header"
                     tools:text="Created themes (12)" />
 
-            <TextView
+           <TextView
                     android:id="@+id/profile_followed_themes_count"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

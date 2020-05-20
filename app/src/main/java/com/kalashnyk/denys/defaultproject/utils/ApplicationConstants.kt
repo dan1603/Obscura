@@ -202,3 +202,9 @@ const val DEFAULT_TIMEOUT: Int= 10
  *
  */
 const val DEFAULT_RETRY_ATTEMPTS: Long= 4L
+
+// LOCATION PARAMS
+const val LOCATION_REQUEST_INTERVAL = 1000L
+const val REQUEST_CODE_LOCATION: Int = 5455
+const val BUNDLE_LOCATION_LAT = "bundle_location_LAT"
+const val BUNDLE_LOCATION_LNG = "bundle_location_LNG"

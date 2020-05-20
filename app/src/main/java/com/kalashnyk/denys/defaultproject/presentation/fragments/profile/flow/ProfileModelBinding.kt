@@ -36,7 +36,7 @@ class ProfileModelBinding(
         set(value) {
             field= value
         }
-        @Bindable get() {
+        get() {
             return field
         }
 

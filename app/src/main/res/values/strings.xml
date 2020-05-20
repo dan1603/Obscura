@@ -117,4 +117,9 @@
     <string name="profile_themes">THEMES</string>
     <string name="profile_app_settings">Application settings</string>
     <string name="profile_log_out">LOG OUT</string>
+    <string name="action_geo_send">Отправить геопозицию</string>
+    <string name="title_geo">Геопозиция</string>
+    <string name="title_geo_current">Выбранное местоположение</string>
+    <string name="location_chosen_err">Местоположение не выбрано!</string>
+    <string name="location_chosen_text">Выбрана точка: </string>
 </resources>

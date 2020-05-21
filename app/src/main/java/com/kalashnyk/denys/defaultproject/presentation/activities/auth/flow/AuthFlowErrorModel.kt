@@ -4,6 +4,7 @@ import com.kalashnyk.denys.defaultproject.utils.validation.ValidationErrorMessag
 import kotlin.collections.HashMap
 
 /**
+ * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  * error of validation and api
  */
 class AuthFlowErrorModel(

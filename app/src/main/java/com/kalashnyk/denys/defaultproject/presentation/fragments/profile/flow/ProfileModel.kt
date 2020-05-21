@@ -3,6 +3,8 @@
 package com.kalashnyk.denys.defaultproject.presentation.fragments.profile.flow
 
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseChildModel
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.CategoryEntity
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.UserEntity
 
 /**
  *
@@ -12,12 +14,12 @@ const val isFollowField: String="isFollowField"
 /**
  *
  */
-const val firstNameField: String="profileFirstName"
+const val firstNameField: String="firstNameField"
 
 /**
  *
  */
-const val lastNameField: String="profileLastName"
+const val lastNameField: String="lastNameField"
 
 /**
  *
@@ -67,49 +69,60 @@ const val followedThemesField: String="followedThemesField"
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
-sealed class ProfileModel : BaseChildModel() {
+sealed class ProfileModel(private var user : UserEntity) : BaseChildModel() {
 
 
     /**
      * @field isFollowField
      */
-    var profileIsFollow: Boolean = false
+    var profileIsFollow: Boolean? = user.isFollow
         set(value) {
             field=value
             setChangedAndNotify(isFollowField)
         }
 
     /**
-     * @field firstNameField
+     * @fields firstNameField, lastNameField
      */
-    var profileFirstName: String = ""
+    var profileFullName: String = fullNameToString()
+
+    /**
+     * firstNameField
+     */
+    var profileFirstName: String? = user.name
         set(value) {
             field=value
             setChangedAndNotify(firstNameField)
         }
 
     /**
-     * @field lastNameField
+     * lastNameField
      */
-    var profileLastName: String = ""
+    var profileLastName: String? = user.surname
         set(value) {
             field=value
-            setChangedAndNotify(lastNameField)
+            setChangedAndNotify(firstNameField)
         }
 
     /**
      * @field avatarPreviewField
      */
-    var profileAvatarPreview: String = ""
+    var profileAvatarPreview: String = user.avatarPreview
         set(value) {
             field=value
             setChangedAndNotify(avatarPreviewField)
         }
 
     /**
-     * @field countryField
+     * @fields countryField, stateField, cityField
      */
-    var profileCountry: String = ""
+    var profileLocation: String = locationToString()
+
+    /**
+     * @field countryField
+     * need for changing from edit personal data screen
+     */
+    var profileCountry: String? = user.location?.country
         set(value) {
             field=value
             setChangedAndNotify(countryField)
@@ -117,8 +130,9 @@ sealed class ProfileModel : BaseChildModel() {
 
     /**
      * @field stateField
+     * need for changing from edit personal data screen
      */
-    var profileState: String = ""
+    var profileState: String? = user.location?.state
         set(value) {
             field=value
             setChangedAndNotify(stateField)
@@ -126,8 +140,9 @@ sealed class ProfileModel : BaseChildModel() {
 
     /**
      * @field cityField
+     * need for changing from edit personal data screen
      */
-    var profileCity: String = ""
+    var profileCity: String? = user.location?.city
         set(value) {
             field=value
             setChangedAndNotify(cityField)
@@ -155,7 +170,7 @@ sealed class ProfileModel : BaseChildModel() {
     /**
      * @field favoriteCategoryField
      */
-    var profileFavoriteCategories: List<String> = mutableListOf()
+    var profileFavoriteCategories: List<CategoryEntity> = mutableListOf()
         set(value) {
             field=value
             setChangedAndNotify(favoriteCategoryField)
@@ -178,4 +193,19 @@ sealed class ProfileModel : BaseChildModel() {
             field=value
             setChangedAndNotify(followedThemesField)
         }
+
+    private fun fullNameToString(): String {
+        val textBody=StringBuilder()
+        profileFirstName?.takeIf { !it.isNullOrEmpty() }?.let { textBody.append("$it, ") }
+        profileLastName.takeIf { !it.isNullOrEmpty() }?.let { textBody.append(it) }
+        return textBody.toString()
+    }
+
+    private fun locationToString(): String {
+        val textBody=StringBuilder()
+        profileCountry?.takeIf { !it.isNullOrEmpty() }?.let { textBody.append("$it, ") }
+        profileState?.takeIf { !it.isNullOrEmpty() }?.let { textBody.append("$it, ") }
+        profileCity?.takeIf { !it.isNullOrEmpty() }?.let { textBody.append(it) }
+        return textBody.toString()
+    }
 }

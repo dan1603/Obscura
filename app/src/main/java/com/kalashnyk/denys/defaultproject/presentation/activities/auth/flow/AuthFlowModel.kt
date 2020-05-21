@@ -6,7 +6,7 @@ import com.kalashnyk.denys.defaultproject.presentation.base.BaseChildModel
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages
 
 /**
- *
+ * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
 const val typeChildField: String="typeChild"
 /**

@@ -21,32 +21,32 @@ class TextSpanModel(
     /**
      *
      */
-    var text: String,
+    val text: String,
     /**
      *
      */
-    var spanPosition: SpanTextPosition?=SpanTextPosition.FRONT,
+    private val spanPosition: SpanTextPosition?=SpanTextPosition.FRONT,
     /**
      *
      */
-    var spanTextSizeRes: Int,
+    private val spanTextSizeRes: Int,
     /**
      *
      */
-    var textSizeRes: Int,
+    private val textSizeRes: Int,
     /**
      *
      */
-    var spanTextColorRes: Int,
+    private val spanTextColorRes: Int,
     /**
      *
      */
-    var textColorRes: Int,
+    private val textColorRes: Int,
     /**
      *
      */
-    var typeface: Int?=Typeface.NORMAL
-) {
+    private val typeface: Int?=Typeface.NORMAL
+) : BaseBindingModel() {
 
     /**
      *

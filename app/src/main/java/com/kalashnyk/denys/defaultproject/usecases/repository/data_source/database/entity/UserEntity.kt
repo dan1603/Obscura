@@ -11,42 +11,75 @@ import com.kalashnyk.denys.defaultproject.utils.DEFAULT_SCREEN
 /**
  *
  */
-@Entity(tableName = "users")
+@Entity(tableName="users")
 data class UserEntity(
+
     /**
      *
      */
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate=true)
     @SerializedName("id")
     val id: Int,
+
     /**
      *
      */
     @SerializedName("name")
-    val name: String,
+    val name: String? = null,
+
     /**
      *
      */
     @SerializedName("surname")
-    val surname: String,
+    val surname: String? = null,
+
     /**
      *
      */
     @SerializedName("fathername")
-    val fathername: String,
-    /**
-     *
-     */
-    var screenType :String? = DEFAULT_SCREEN,
-    /**
-     *
-     */
-    var cached : Int? = DEFAULT_CACHE_VALUE
-    ) : BaseModel() {
+    val fathername: String? = null,
 
-    fun convertItemForDataSource(item : UserEntity, isCached: Boolean?, screenType : String?) : UserEntity {
-        isCached?.let { item.cached = CACHED_VALUE }
-        screenType?.let { item.screenType = it }
+    /**
+     *
+     */
+    @SerializedName("avatar_preview")
+    val avatarPreview: String,
+
+    /**
+     *
+     */
+    @SerializedName("is_follow")
+    val isFollow: Boolean? = false,
+
+    /**
+     *
+     */
+    var screenType: String?=DEFAULT_SCREEN,
+
+    /**
+     *
+     */
+    var cached: Int?=DEFAULT_CACHE_VALUE,
+
+    /**
+     *
+     */
+    val favoriteCategories: List<CategoryEntity>,
+
+    /**
+     *
+     */
+    val location: LocationEntity? = null
+
+) : BaseModel() {
+
+    fun convertItemForDataSource(
+        item: UserEntity,
+        isCached: Boolean?,
+        screenType: String?
+    ): UserEntity {
+        isCached?.let { item.cached=CACHED_VALUE }
+        screenType?.let { item.screenType=it }
         return item
     }
 }

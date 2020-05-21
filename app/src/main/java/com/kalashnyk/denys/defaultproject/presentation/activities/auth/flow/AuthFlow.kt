@@ -5,7 +5,7 @@ import com.kalashnyk.denys.defaultproject.presentation.base.BaseFlow
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages
 
 /**
- *
+ * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
 interface AuthFlow : BaseFlow {
 

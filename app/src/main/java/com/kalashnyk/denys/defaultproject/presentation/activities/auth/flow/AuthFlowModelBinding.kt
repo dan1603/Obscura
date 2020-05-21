@@ -19,7 +19,7 @@ import com.kalashnyk.denys.defaultproject.utils.validation.ValidationErrorMessag
 import java.util.*
 
 /**
- *
+ * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
 class AuthFlowModelBinding(
     private var authFlowModel: AuthFlowModel,

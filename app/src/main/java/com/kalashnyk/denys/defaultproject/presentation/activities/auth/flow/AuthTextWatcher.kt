@@ -6,7 +6,7 @@ import android.widget.EditText
 import com.kalashnyk.denys.defaultproject.R
 
 /**
- *
+ * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
 open class AuthTextWatcher(
     private val callback: AuthFlow.AuthCallback,

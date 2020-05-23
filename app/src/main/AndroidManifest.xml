@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="com.kalashnyk.denys.defaultproject">
+        xmlns:tools="http://schemas.android.com/tools"
+        package="com.kalashnyk.denys.defaultproject">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
             android:name=".App"
@@ -16,11 +20,17 @@
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
 
-        <!--todo implement google Ad survey right now using fake ads ID-->
-
+        <!-- todo implement google Ad survey right now using fake ads ID -->
         <meta-data
-                android:name ="com.google.android.gms.ads.APPLICATION_ID"
-                android:value="ca-app-pub-3940256099942544~3347511713"/>
+                android:name="com.google.android.gms.ads.APPLICATION_ID"
+                android:value="ca-app-pub-3940256099942544~3347511713" />
+        <meta-data
+                android:name="com.google.android.gms.version"
+                android:value="@integer/google_play_services_version" />
+        <meta-data
+                android:name="com.google.android.geo.API_KEY"
+                android:value="AIzaSyCQopPUYeL1aJ96RHoepIYUiZMNc7lPDuc" />
+
 
         <activity
                 android:name=".presentation.activities.splash.SplashActivity"
@@ -30,28 +40,28 @@
                 android:screenOrientation="portrait"
                 android:theme="@style/NoTittleBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".presentation.activities.welcome.WelcomeActivity"
-                  android:screenOrientation="portrait"
-                  android:theme="@style/NoTittleBar"/>
-
+        <activity
+                android:name=".presentation.activities.location.LocationChooserActivity"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name=".presentation.activities.welcome.WelcomeActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/NoTittleBar" />
         <activity
                 android:name=".presentation.activities.auth.AuthActivity"
                 android:screenOrientation="portrait"
-                android:theme="@style/NoTittleBar"/>
-
+                android:theme="@style/NoTittleBar" />
         <activity
                 android:name=".presentation.activities.main.MainActivity"
-                android:screenOrientation="portrait"/>
-
+                android:screenOrientation="portrait" />
         <activity
                 android:name=".presentation.activities.detail.DetailActivity"
-                android:screenOrientation="portrait"/>
+                android:screenOrientation="portrait" />
 
         <provider
                 android:name="androidx.core.content.FileProvider"
@@ -60,9 +70,8 @@
                 android:grantUriPermissions="true">
             <meta-data
                     android:name="android.support.FILE_PROVIDER_PATHS"
-                    android:resource="@xml/file_provider_path"/>
+                    android:resource="@xml/file_provider_path" />
         </provider>
-
     </application>
 
 </manifest>

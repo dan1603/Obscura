@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".ui.activity.main.MainActivity">
+
+    <data class="LocationChooserDataBinding" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <EditText
+                android:id="@+id/searchView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/indentation_4"
+                android:layout_marginStart="@dimen/indentation_10"
+                android:layout_marginEnd="@dimen/indentation_10"
+                android:paddingEnd="@dimen/indentation_28"
+                android:textSize="@dimen/txt_size_14"
+                android:inputType="text|textNoSuggestions"
+                android:longClickable="false"
+                android:ellipsize="end"
+                android:lines="1"
+                android:singleLine="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlSymmetry" />
+
+        <ImageView
+                android:id="@+id/btnTextClear"
+                android:layout_width="@dimen/view_params_14"
+                android:layout_height="0dp"
+                android:layout_marginEnd="@dimen/indentation_16"
+                android:layout_gravity="end|center_vertical"
+                android:padding="@dimen/indentation_4"
+                android:src="@drawable/ic_cancel"
+                android:visibility="gone"
+                android:translationZ="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/searchView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvAutoComplete"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="@dimen/indentation_16"
+                android:translationZ="10dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/sendGeoDialog"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/searchView"
+                tools:visibility="visible" />
+
+        <fragment
+                android:id="@+id/fragmentGoogleMap"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/searchView"
+                app:layout_constraintVertical_bias="1.0" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/sendGeoDialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/indentation_16"
+                android:layout_marginBottom="@dimen/indentation_28"
+                android:paddingVertical="@dimen/indentation_8"
+                android:paddingHorizontal="@dimen/indentation_16"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:background="@drawable/background_geo_dialog"
+                android:translationZ="9dp"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/indentation_4"
+                    android:textSize="@dimen/txt_size_16"
+                    android:text="@string/action_geo_send"
+                    app:layout_constraintBottom_toTopOf="@+id/tvAddress"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                    android:id="@+id/tvAddress"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/txt_size_14"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:text="ул. Регенераторная, 4, корпус 6" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

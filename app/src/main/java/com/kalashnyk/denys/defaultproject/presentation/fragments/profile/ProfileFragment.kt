@@ -29,7 +29,7 @@ class ProfileFragment : BaseFragment<ProfileDataBinding>() {
      * @param binding
      */
     override fun setupViewLogic(binding: ProfileDataBinding) {
-      binding.tvProfile.setText("Profile")
+      //binding.tvProfile.setText("Profile")
     }
 
     companion object {

@@ -6,24 +6,40 @@
     <data class="MainDataBinding">
 
     </data>
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".presentation.activities.main.MainActivity">
 
         <com.kalashnyk.denys.defaultproject.presentation.widget.NoSwipeViewPager
                 android:id="@+id/mainFragmentContainer"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_above="@+id/bottomNavigation"
-                app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"/>
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabMap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:foregroundGravity="center"
+                android:src="@drawable/ic_profile_location"
+                android:tint="@color/colorWhite"
+                android:translationZ="9dp"
+                android:layout_marginEnd="@dimen/indentation_16"
+                android:layout_marginBottom="@dimen/indentation_16"
+                app:layout_constraintBottom_toBottomOf="@+id/mainFragmentContainer"
+                app:layout_constraintEnd_toEndOf="parent" />
 
         <com.aurelhubert.ahbottomnavigation.AHBottomNavigation
                 android:id="@+id/bottomNavigation"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="@dimen/view_params_60"
-                android:layout_alignParentBottom="true"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

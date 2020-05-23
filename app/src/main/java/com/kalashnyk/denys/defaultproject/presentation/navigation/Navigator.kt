@@ -8,6 +8,7 @@ import android.provider.Settings
 import androidx.appcompat.app.AlertDialog
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.AuthActivity
+import com.kalashnyk.denys.defaultproject.presentation.activities.location.LocationChooserActivity
 import com.kalashnyk.denys.defaultproject.presentation.activities.main.MainActivity
 import com.kalashnyk.denys.defaultproject.presentation.activities.splash.SplashActivity
 import com.kalashnyk.denys.defaultproject.presentation.activities.welcome.WelcomeActivity
@@ -17,10 +18,7 @@ import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navig
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.PageNavigationItem
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.TransitionBundle
-import com.kalashnyk.denys.defaultproject.utils.AUTH_TYPE_SCREEN
-import com.kalashnyk.denys.defaultproject.utils.DETAIL_ID
-import com.kalashnyk.denys.defaultproject.utils.GALLERY_REQUEST
-import com.kalashnyk.denys.defaultproject.utils.SETTINGS_REQUEST
+import com.kalashnyk.denys.defaultproject.utils.*
 
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
@@ -36,6 +34,7 @@ interface Navigation : FragmentNavigator {
     fun openDetailScreen(id: Int)
     fun openSettings(uriSetting : String)
     fun openGallery()
+    fun openLocationChooser()
     fun showExitConfirmDialog(onAccepted: () -> Unit)
 }
 
@@ -64,6 +63,12 @@ class NavigationImpl(override var navigatorSource: BaseActivity<*>) : Navigation
             MediaStore.Images.Media.EXTERNAL_CONTENT_URI
         )
         navigatorSource.startActivityForResult(galleryIntent, GALLERY_REQUEST)
+    }
+
+    override fun openLocationChooser() {
+        navigatorSource.startActivityForResult(Intent(navigatorSource, LocationChooserActivity::class.java).apply {
+            //ToDo apply chooser parameters if needed
+        }, REQUEST_CODE_LOCATION)
     }
 
     /**

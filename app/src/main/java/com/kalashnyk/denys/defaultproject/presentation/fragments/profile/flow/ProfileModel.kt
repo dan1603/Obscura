@@ -69,6 +69,8 @@ const val followedThemesField: String="followedThemesField"
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
+
+//todo refactoring use pattern builder
 sealed class ProfileModel(private var user : UserEntity) : BaseChildModel() {
 
 

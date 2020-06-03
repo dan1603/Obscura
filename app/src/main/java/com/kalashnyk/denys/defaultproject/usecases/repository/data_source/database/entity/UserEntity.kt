@@ -19,7 +19,7 @@ data class UserEntity(
      */
     @PrimaryKey(autoGenerate=true)
     @SerializedName("id")
-    val id: Int,
+    val id: Int? = null,
 
     /**
      *

@@ -2,18 +2,23 @@ package com.kalashnyk.denys.defaultproject.presentation.fragments.profile.flow
 
 import android.content.Context
 import android.graphics.Typeface
+import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import com.kalashnyk.denys.defaultproject.R
+import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages
 import com.kalashnyk.denys.defaultproject.utils.binding.BaseBindingModel
 import com.kalashnyk.denys.defaultproject.utils.binding.SimpleTextModel
 import com.kalashnyk.denys.defaultproject.utils.binding.TextCountModel
 import com.kalashnyk.denys.defaultproject.utils.binding.TextSpanModel
 import java.util.*
 
+
+
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
+
 class ProfileModelBinding(
     private var profileModel: ProfileModel,
     private val listener: ProfileFlow.ProfileListener
@@ -29,56 +34,84 @@ class ProfileModelBinding(
     /**
      * @field profileIsFollowBinding
      */
-    private var profileIsFollowBinding: Boolean?=profileModel.profileIsFollow
+    var profileIsFollowBinding: Boolean?=profileModel.profileIsFollow
         @Bindable get
 
     /**
      * @field profileFullNameBinding
      */
-    private var profileFullNameBinding: BaseBindingModel?=prepareContentForFullName()
+    var profileFullNameBinding: BaseBindingModel?=prepareContentForFullName()
         @Bindable get
 
     /**
      * @field profileLocationBinding
      */
-    private var profileLocationBinding: BaseBindingModel?=prepareContentForLocation()
+    var profileLocationBinding: BaseBindingModel?=prepareContentForLocation()
         @Bindable get
 
     /**
      * @field profileOccupationBinding
      */
-    private var profileOccupationBinding: BaseBindingModel?=prepareContentForOccupation()
+    var profileOccupationBinding: BaseBindingModel?=prepareContentForOccupation()
         @Bindable get
 
     /**
      * @field profileProfessionalCertificatesBinding
      */
-    private var profileProfessionalCertificatesBinding: BaseBindingModel?=
+    var profileProfessionalCertificatesBinding: BaseBindingModel?=
         prepareContentForProfessionalCertificates()
         @Bindable get
 
     /**
      * @field profileFavoriteCategoriesBinding
      */
-    private var profileFavoriteCategoriesBinding: BaseBindingModel?=prepareContentFavoriteCategory()
+    var profileFavoriteCategoriesBinding: BaseBindingModel?=prepareContentFavoriteCategory()
         @Bindable get
 
     /**
      * @field profileCreatedThemesBinding
      */
-    private var profileCreatedThemesBinding: BaseBindingModel?=prepareContentForCreatedThemes()
+    var profileCreatedThemesBinding: BaseBindingModel?=prepareContentForCreatedThemes()
         @Bindable get
 
     /**
      * @field profileFollowedThemesBinding
      */
-    private var profileFollowedThemesBinding: BaseBindingModel?=prepareContentForFollowedThemes()
+    var profileFollowedThemesBinding: BaseBindingModel?=prepareContentForFollowedThemes()
         @Bindable get
 
     override fun update(model: Observable?, fieldName: Any?) {
         if (model is ProfileModel && fieldName is String) {
             prepareContentForField(fieldName)
         }
+    }
+
+    public fun onEditPersonalData(){
+        listener.openScreen(Pages.EDIT_PERSONAL_DATA)
+    }
+
+    public fun onEditProfessionalData(){
+        listener.openScreen(Pages.EDIT_PROFESSIONAL_DATA)
+    }
+
+    public fun onOpenThemesCalendar(){
+        listener.openScreen(Pages.EDIT_PROFESSIONAL_DATA)
+    }
+
+    public fun onOpenCreatedThemes(){
+
+    }
+
+    public fun onOpenFollowedThemes(){
+
+    }
+
+    public fun onOpenApplicationsSettings(){
+
+    }
+
+    public fun onLogout(){
+
     }
 
     private fun prepareContentForField(fieldName: String) {

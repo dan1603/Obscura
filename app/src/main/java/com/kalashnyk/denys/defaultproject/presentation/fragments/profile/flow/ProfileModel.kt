@@ -70,8 +70,9 @@ const val followedThemesField: String="followedThemesField"
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
 
-//todo refactoring use pattern builder
-sealed class ProfileModel(private var user : UserEntity) : BaseChildModel() {
+// todo refactoring use pattern builder ?? get descusse about it
+// todo use delegate for properties  https://kotlinlang.ru/docs/reference/delegated-properties.html
+class ProfileModel(private var user : UserEntity) : BaseChildModel() {
 
 
     /**

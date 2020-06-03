@@ -1,14 +1,23 @@
 package com.kalashnyk.denys.defaultproject.presentation.fragments.profile
 
 import android.os.Bundle
+import android.widget.Toast
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.databinding.ProfileDataBinding
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseFragment
+import com.kalashnyk.denys.defaultproject.presentation.fragments.profile.flow.ProfileFlow
+import com.kalashnyk.denys.defaultproject.presentation.fragments.profile.flow.ProfileModel
+import com.kalashnyk.denys.defaultproject.presentation.fragments.profile.flow.ProfileModelBinding
+import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.PageNavigationItem
+import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages
+import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.TransitionAnimation
+import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.TransitionBundle
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.UserEntity
 
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
-class ProfileFragment : BaseFragment<ProfileDataBinding>() {
+class ProfileFragment : BaseFragment<ProfileDataBinding>(), ProfileFlow.ProfileListener {
 
     /**
      * @param savedInstanceState
@@ -29,7 +38,8 @@ class ProfileFragment : BaseFragment<ProfileDataBinding>() {
      * @param binding
      */
     override fun setupViewLogic(binding: ProfileDataBinding) {
-      //binding.tvProfile.setText("Profile")
+//        val profileModel = ProfileModel(user)
+//        val bindingModel = ProfileModelBinding( profileModel, this)
     }
 
     companion object {
@@ -37,5 +47,33 @@ class ProfileFragment : BaseFragment<ProfileDataBinding>() {
         fun newInstance(): ProfileFragment {
             return ProfileFragment()
         }
+    }
+
+    override fun onLogout() {
+        Toast.makeText(context, "action logout in progress", Toast.LENGTH_LONG).show()
+    }
+
+    override fun openScreen(page: Pages) {
+        when(page){
+            Pages.EDIT_PERSONAL_DATA -> {
+                Toast.makeText(context, "action open edit personal data in progress", Toast.LENGTH_LONG).show()
+            }
+            Pages.EDIT_PROFESSIONAL_DATA -> {
+                Toast.makeText(context, "action open edit professional data in progress", Toast.LENGTH_LONG).show()
+            }
+            Pages.THEMES_CALENDAR -> {
+                Toast.makeText(context, "action open themes calendar in progress", Toast.LENGTH_LONG).show()
+            }
+            Pages.CREATED_THEMES -> {
+                Toast.makeText(context, "action open created themes in progress", Toast.LENGTH_LONG).show()
+            }
+            Pages.FOLLOWED_THEMES -> {
+                Toast.makeText(context, "action open followed themes in progress", Toast.LENGTH_LONG).show()
+            }
+            Pages.APPLICATION_SETTINGS -> {
+                Toast.makeText(context, "action open application settings in progress", Toast.LENGTH_LONG).show()
+            }
+        }
+        getBaseActivity().goToPage(PageNavigationItem(page), TransitionBundle(TransitionAnimation.ENTER_FROM_RIGHT))
     }
 }

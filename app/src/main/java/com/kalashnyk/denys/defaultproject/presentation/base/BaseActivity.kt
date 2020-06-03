@@ -137,20 +137,19 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
         win.attributes=winParams
     }
 
-
-    protected fun goToPage(page: PageNavigationItem) {
+    fun goToPage(page: PageNavigationItem) {
         navigator.goToPage(page)
     }
 
-    protected fun goToPage(page: PageNavigationItem, transitionBundle: TransitionBundle) {
+    fun goToPage(page: PageNavigationItem, transitionBundle: TransitionBundle) {
         navigator.goToPage(page, transitionBundle)
     }
 
-    protected fun goToPageForResult(page: PageNavigationItem, transitionBundle: TransitionBundle) {
+    fun goToPageForResult(page: PageNavigationItem, transitionBundle: TransitionBundle) {
         navigator.goToPageForResult(page, transitionBundle)
     }
 
-    protected fun back(): Boolean {
+    fun back(): Boolean {
         if (!navigator.back()) {
             onBackPressed()
         }

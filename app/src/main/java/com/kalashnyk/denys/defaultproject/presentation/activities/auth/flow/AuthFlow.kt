@@ -29,9 +29,9 @@ interface AuthFlow : BaseFlow {
      *
      */
     interface AuthListener : BaseFlow.BaseListener {
+        fun routBack()
         fun authRequest(flowModel: AuthFlowModel, callback: AuthCallback)
         fun socialAuth(type: SocialAuthType, callback: AuthCallback?)
-        fun openScreen(page: Pages)
     }
 
     /**

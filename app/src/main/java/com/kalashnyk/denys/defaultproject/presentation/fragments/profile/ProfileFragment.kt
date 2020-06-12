@@ -38,8 +38,10 @@ class ProfileFragment : BaseFragment<ProfileDataBinding>(), ProfileFlow.ProfileL
      * @param binding
      */
     override fun setupViewLogic(binding: ProfileDataBinding) {
-//        val profileModel = ProfileModel(user)
-//        val bindingModel = ProfileModelBinding( profileModel, this)
+        context?.let {
+            binding.bindingModel = ProfileModelBinding(ProfileModel(UserEntity()), it)
+            binding.clickHandler = this
+        }
     }
 
     companion object {
@@ -74,6 +76,6 @@ class ProfileFragment : BaseFragment<ProfileDataBinding>(), ProfileFlow.ProfileL
                 Toast.makeText(context, "action open application settings in progress", Toast.LENGTH_LONG).show()
             }
         }
-        getBaseActivity().goToPage(PageNavigationItem(page), TransitionBundle(TransitionAnimation.ENTER_FROM_RIGHT))
+//        getBaseActivity().goToPage(PageNavigationItem(page), TransitionBundle(TransitionAnimation.ENTER_FROM_RIGHT))
     }
 }

@@ -91,7 +91,7 @@
                 android:textSize="@dimen/txt_size_18"
                 android:background="?android:attr/selectableItemBackground"
                 android:onClick="@{(view)-> navigator.openAuthScreen(typeScreen.SIGN_IN, Intent.FLAG_ACTIVITY_CLEAR_TASK)}"
-                bind:textSpan="@{bindingModel.signInTextSpanModel}"
+                bind:bindText="@{bindingModel.signInTextSpanModel}"
                 app:layout_constraintTop_toBottomOf="@id/tvWelcomeInformation"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="@string/welcome_text_already_have_an_account"/>
@@ -107,7 +107,7 @@
                 android:padding="@dimen/indentation_6"
                 android:background="?android:attr/selectableItemBackground"
                 android:onClick="@{(view)-> navigator.openAuthScreen(typeScreen.SIGN_UP, Intent.FLAG_ACTIVITY_CLEAR_TASK)}"
-                bind:textSpan="@{bindingModel.signUpTextSpanModel}"
+                bind:bindText="@{bindingModel.signUpTextSpanModel}"
                 app:layout_constraintTop_toBottomOf="@+id/tvWelcomeSignIn"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="@string/welcome_text_not_with_us_yet"/>

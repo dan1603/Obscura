@@ -17,7 +17,7 @@
                   type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlow.SocialAuthType"/>
 
         <variable name="spanTextPosition"
-                  type="com.kalashnyk.denys.defaultproject.utils.binding.TextSpanModel.SpanTextPosition"/>
+                  type="com.kalashnyk.denys.defaultproject.utils.binding.TextBindingModel.Span.SpanTextPosition"/>
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -235,7 +235,7 @@
                     android:layout_marginBottom="@dimen/indentation_16"
                     android:background="?android:attr/selectableItemBackground"
                     android:onClick="@{(view)-> bindingModel.onOpenScreen(typeNavigation.SIGN_UP, containerSignInInputs)}"
-                    bind:textSpan="@{bindingModel.signUpTextSpanModel}"
+                    bind:bindText="@{bindingModel.signUpTextSpanModel}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"

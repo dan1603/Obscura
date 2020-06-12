@@ -5,7 +5,7 @@ import android.graphics.Typeface
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import com.kalashnyk.denys.defaultproject.R
-import com.kalashnyk.denys.defaultproject.utils.binding.TextSpanModel
+import com.kalashnyk.denys.defaultproject.utils.binding.TextBindingModel
 import java.util.*
 
 /**
@@ -17,12 +17,12 @@ class WelcomeFlowModelBinding(private var context: Context)
     /**
      * @field signUpTextSpanModel
      */
-    val signUpTextSpanModel: TextSpanModel
+    val signUpTextSpanModel: TextBindingModel.Span
         @Bindable get() {
-            return TextSpanModel(
+            return TextBindingModel.Span(
                 context.resources.getString(R.string.sign_up),
                 context.resources.getString(R.string.welcome_text_not_with_us_yet),
-                TextSpanModel.SpanTextPosition.LAST,
+                TextBindingModel.Span.SpanTextPosition.LAST,
                 R.dimen.txt_size_18,
                 R.dimen.txt_size_16,
                 R.color.colorWhite,
@@ -34,12 +34,12 @@ class WelcomeFlowModelBinding(private var context: Context)
     /**
      * @field signInTextSpanModel
      */
-    val signInTextSpanModel: TextSpanModel
+    val signInTextSpanModel: TextBindingModel.Span
         @Bindable get() {
-            return TextSpanModel(
+            return TextBindingModel.Span(
                 context.resources.getString(R.string.sign_in),
                 context.resources.getString(R.string.welcome_text_already_have_an_account),
-                TextSpanModel.SpanTextPosition.LAST,
+                TextBindingModel.Span.SpanTextPosition.LAST,
                 R.dimen.txt_size_18,
                 R.dimen.txt_size_16,
                 R.color.colorWhite,

@@ -43,7 +43,7 @@ data class UserEntity(
      *
      */
     @SerializedName("avatar_preview")
-    val avatarPreview: String,
+    val avatarPreview: String? = null,
 
     /**
      *
@@ -64,7 +64,7 @@ data class UserEntity(
     /**
      *
      */
-    val favoriteCategories: List<CategoryEntity>,
+    val favoriteCategories: List<CategoryEntity>? = mutableListOf(),
 
     /**
      *

@@ -24,7 +24,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"/>
-        <!--android:src="@drawable/background"-->
 
     </com.kalashnyk.denys.defaultproject.utils.multistate.ShimmerFrameLayout>
 </layout>

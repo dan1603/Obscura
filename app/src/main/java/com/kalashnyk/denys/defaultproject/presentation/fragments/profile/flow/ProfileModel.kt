@@ -110,7 +110,7 @@ class ProfileModel(private var user : UserEntity) : BaseChildModel() {
     /**
      * @field avatarPreviewField
      */
-    var profileAvatarPreview: String = user.avatarPreview
+    var profileAvatarPreview: String = user.avatarPreview ?: ""
         set(value) {
             field=value
             setChangedAndNotify(avatarPreviewField)

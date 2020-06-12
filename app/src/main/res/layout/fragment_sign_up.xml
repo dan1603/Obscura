@@ -218,7 +218,7 @@
                                 android:fontFamily="sans-serif-medium"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginStart="@dimen/indentation_8"
-                                bind:textSpan="@{bindingModel.termsConditionsTextSpanModel}"/>
+                                bind:bindText="@{bindingModel.termsConditionsTextSpanModel}"/>
 
                     </LinearLayout>
 
@@ -297,7 +297,7 @@
                         android:padding="@dimen/indentation_5"
                         android:background="?android:attr/selectableItemBackground"
                         android:onClick="@{(view)-> bindingModel.onOpenScreen(typeNavigation.SIGN_IN, containerSignUpCases)}"
-                        bind:textSpan="@{bindingModel.signInTextSpanModel}"
+                        bind:bindText="@{bindingModel.signInTextSpanModel}"
                         android:layout_gravity="center_horizontal|bottom"/>
             </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

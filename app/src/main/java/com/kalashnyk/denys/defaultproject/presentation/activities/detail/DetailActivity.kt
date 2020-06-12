@@ -58,11 +58,19 @@ class DetailActivity : BaseActivity<DetailDataBinding>() {
     }
 
     private fun initTextViews(user: UserEntity) {
-        viewBinding.txtDetailId.text = user.id.toString()
-        viewBinding.txtDetailName.text = user.name
-        viewBinding.txtDetailSurname.text = user.surname
-        viewBinding.txtDetailFathername.text = user.fathername
-        initActionBar(user.name)
+        user.id?.toString().let {
+            viewBinding.txtDetailId.text = it
+        }
+        user.name?.let{
+            viewBinding.txtDetailName.text = it
+            initActionBar(it)
+        }
+        user.surname?.let{
+            viewBinding.txtDetailSurname.text = it
+        }
+        user.fathername?.let{
+            viewBinding.txtDetailFathername.text = it
+        }
     }
 
     private fun initActionBar(title: String) {

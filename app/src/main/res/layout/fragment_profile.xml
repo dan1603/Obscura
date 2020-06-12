@@ -93,7 +93,7 @@
                     android:textStyle="normal"
                     app:layout_constraintStart_toEndOf="@id/profile_avatar"
                     app:layout_constraintTop_toBottomOf="@+id/profile_personal_header"
-                    bind:textSpan="@{bindingModel.profileFullNameBinding}"
+                    bind:bindText="@{bindingModel.profileFullNameBinding}"
                     tools:text="Name Surname" />
 
             <TextView
@@ -110,7 +110,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/profile_avatar"
                     app:layout_constraintTop_toBottomOf="@+id/profile_name"
-                    bind:textSpan="@{bindingModel.profileLocationBinding}"
+                    bind:bindText="@{bindingModel.profileLocationBinding}"
                     tools:text="Geolocation" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -152,10 +152,10 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:background="?android:attr/selectableItemBackground"
+                        android:onClick="@{(view)-> clickHandler.openScreen(typeNavigation.EDIT_PROFESSIONAL_DATA)}"
                         android:paddingStart="@dimen/indentation_16"
                         android:paddingEnd="@dimen/indentation_16"
                         android:src="@drawable/ic_white"
-                        android:onClick="@{(view)-> clickHandler.openScreen(typeNavigation.EDIT_PROFESSIONAL_DATA)}"
                         app:layout_constraintBottom_toBottomOf="@+id/profile_professional_label"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/profile_professional_label" />
@@ -176,7 +176,7 @@
                     android:textStyle="normal"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/profile_professional_header"
-                    bind:textSpan="@{bindingModel.profileOccupationBinding}"
+                    bind:bindText="@{bindingModel.profileOccupationBinding}"
                     tools:text="UX/UI designer" />
 
             <TextView
@@ -193,7 +193,7 @@
                     android:textStyle="normal"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/profile_occupation"
-                    bind:textSpan="@{bindingModel.profileProfessionalCertificatesBinding}"
+                    bind:bindText="@{bindingModel.profileProfessionalCertificatesBinding}"
                     tools:text="Professional certificates (2)" />
 
             <TextView
@@ -211,7 +211,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/profile_professional_certificates_count"
-                    bind:textSpan="@{bindingModel.profileFavoriteCategoriesBinding}"
+                    bind:bindText="@{bindingModel.profileFavoriteCategoriesBinding}"
                     tools:text="Interested in: " />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -252,10 +252,10 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:background="?android:attr/selectableItemBackground"
+                        android:onClick="@{(view)-> clickHandler.openScreen(typeNavigation.THEMES_CALENDAR)}"
                         android:paddingStart="@dimen/indentation_16"
                         android:paddingEnd="@dimen/indentation_16"
                         android:src="@drawable/ic_calendar"
-                        android:onClick="@{(view)-> clickHandler.openScreen(typeNavigation.THEMES_CALENDAR)}"
                         app:layout_constraintBottom_toBottomOf="@+id/profile_themes_label"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/profile_themes_label" />
@@ -271,14 +271,14 @@
                     android:drawablePadding="@dimen/indentation_16"
                     android:fontFamily="sans-serif"
                     android:gravity="center_vertical|start"
+                    android:onClick="@{(view)-> clickHandler.openScreen(typeNavigation.CREATED_THEMES)}"
                     android:textColor="@color/grey_brown"
                     android:textSize="@dimen/txt_size_14"
                     android:textStyle="normal"
-                    android:onClick="@{(view)-> clickHandler.openScreen(typeNavigation.CREATED_THEMES)}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/profile_themes_header"
-                    bind:textSpan="@{bindingModel.profileCreatedThemesBinding}"
+                    bind:bindText="@{bindingModel.profileCreatedThemesBinding}"
                     tools:text="Created themes (12)" />
 
             <TextView
@@ -291,15 +291,15 @@
                     android:drawablePadding="@dimen/indentation_16"
                     android:fontFamily="sans-serif"
                     android:gravity="center_vertical|start"
+                    android:onClick="@{(view)-> clickHandler.openScreen(typeNavigation.FOLLOWED_THEMES)}"
                     android:textColor="@color/grey_brown"
                     android:textSize="@dimen/txt_size_14"
                     android:textStyle="normal"
-                    android:onClick="@{(view)-> clickHandler.openScreen(typeNavigation.FOLLOWED_THEMES)}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/profile_created_themes_count"
-                    bind:textSpan="@{bindingModel.profileFollowedThemesBinding}"
+                    bind:bindText="@{bindingModel.profileFollowedThemesBinding}"
                     tools:text="Followed themes (28)" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -312,11 +312,11 @@
                 android:drawableEnd="@drawable/ic_forward"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center_vertical|start"
+                android:onClick="@{(view)-> clickHandler.openScreen(typeNavigation.APPLICATION_SETTINGS)}"
                 android:text="@string/profile_app_settings"
                 android:textColor="@color/grey_brown"
                 android:textSize="@dimen/txt_size_14"
                 android:textStyle="normal"
-                android:onClick="@{(view)-> clickHandler.openScreen(typeNavigation.APPLICATION_SETTINGS)}"
                 app:layout_constraintBottom_toBottomOf="@+id/profile_themes_container"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -329,13 +329,14 @@
                 android:layout_margin="@dimen/indentation_16"
                 android:layout_marginStart="@dimen/indentation_16"
                 android:layout_marginEnd="@dimen/indentation_16"
+                android:background="?android:attr/selectableItemBackground"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center_vertical"
+                android:onClick="@{(view)-> clickHandler.onLogout()}"
                 android:text="@string/profile_log_out"
                 android:textColor="@color/soft_blue"
                 android:textSize="@dimen/txt_size_14"
                 android:textStyle="normal"
-                android:onClick="@{(view)-> clickHandler.onLogout()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/profile_app_setting" />

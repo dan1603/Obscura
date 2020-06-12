@@ -2,15 +2,11 @@ package com.kalashnyk.denys.defaultproject.presentation.fragments.profile.flow
 
 import android.content.Context
 import android.graphics.Typeface
-import android.widget.Toast
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages
-import com.kalashnyk.denys.defaultproject.utils.binding.BaseBindingModel
-import com.kalashnyk.denys.defaultproject.utils.binding.SimpleTextModel
-import com.kalashnyk.denys.defaultproject.utils.binding.TextCountModel
-import com.kalashnyk.denys.defaultproject.utils.binding.TextSpanModel
+import com.kalashnyk.denys.defaultproject.utils.binding.TextBindingModel
 import java.util.*
 
 
@@ -21,14 +17,11 @@ import java.util.*
 
 class ProfileModelBinding(
     private var profileModel: ProfileModel,
-    private val listener: ProfileFlow.ProfileListener
+    private val context: Context
 ) : Observer, BaseObservable() {
-
-    private var context: Context
 
     init {
         profileModel.addObserver(this)
-        context=listener as Context
     }
 
     /**
@@ -40,78 +33,50 @@ class ProfileModelBinding(
     /**
      * @field profileFullNameBinding
      */
-    var profileFullNameBinding: BaseBindingModel?=prepareContentForFullName()
+    var profileFullNameBinding: TextBindingModel?=prepareContentForFullName()
         @Bindable get
 
     /**
      * @field profileLocationBinding
      */
-    var profileLocationBinding: BaseBindingModel?=prepareContentForLocation()
+    var profileLocationBinding: TextBindingModel?=prepareContentForLocation()
         @Bindable get
 
     /**
      * @field profileOccupationBinding
      */
-    var profileOccupationBinding: BaseBindingModel?=prepareContentForOccupation()
+    var profileOccupationBinding: TextBindingModel?=prepareContentForOccupation()
         @Bindable get
 
     /**
      * @field profileProfessionalCertificatesBinding
      */
-    var profileProfessionalCertificatesBinding: BaseBindingModel?=
+    var profileProfessionalCertificatesBinding: TextBindingModel?=
         prepareContentForProfessionalCertificates()
         @Bindable get
 
     /**
      * @field profileFavoriteCategoriesBinding
      */
-    var profileFavoriteCategoriesBinding: BaseBindingModel?=prepareContentFavoriteCategory()
+    var profileFavoriteCategoriesBinding: TextBindingModel?=prepareContentFavoriteCategory()
         @Bindable get
 
     /**
      * @field profileCreatedThemesBinding
      */
-    var profileCreatedThemesBinding: BaseBindingModel?=prepareContentForCreatedThemes()
+    var profileCreatedThemesBinding: TextBindingModel?=prepareContentForCreatedThemes()
         @Bindable get
 
     /**
      * @field profileFollowedThemesBinding
      */
-    var profileFollowedThemesBinding: BaseBindingModel?=prepareContentForFollowedThemes()
+    var profileFollowedThemesBinding: TextBindingModel?=prepareContentForFollowedThemes()
         @Bindable get
 
     override fun update(model: Observable?, fieldName: Any?) {
         if (model is ProfileModel && fieldName is String) {
             prepareContentForField(fieldName)
         }
-    }
-
-    public fun onEditPersonalData(){
-        listener.openScreen(Pages.EDIT_PERSONAL_DATA)
-    }
-
-    public fun onEditProfessionalData(){
-        listener.openScreen(Pages.EDIT_PROFESSIONAL_DATA)
-    }
-
-    public fun onOpenThemesCalendar(){
-        listener.openScreen(Pages.EDIT_PROFESSIONAL_DATA)
-    }
-
-    public fun onOpenCreatedThemes(){
-
-    }
-
-    public fun onOpenFollowedThemes(){
-
-    }
-
-    public fun onOpenApplicationsSettings(){
-
-    }
-
-    public fun onLogout(){
-
     }
 
     private fun prepareContentForField(fieldName: String) {
@@ -127,47 +92,47 @@ class ProfileModelBinding(
         }
     }
 
-    private fun prepareContentForFullName(): BaseBindingModel=
+    private fun prepareContentForFullName(): TextBindingModel=
         if (profileModel.profileFullName.isNullOrEmpty())
-            SimpleTextModel(
+            TextBindingModel.Default(
                 context.resources.getString(R.string.profile_default_not_specified),
                 R.dimen.txt_size_16,
                 R.color.grey_brown
             ) else
-            SimpleTextModel(
+            TextBindingModel.Default(
                 profileModel.profileFullName,
                 R.dimen.txt_size_16,
                 R.color.grey_brown
             )
 
-    private fun prepareContentForLocation(): BaseBindingModel=
+    private fun prepareContentForLocation(): TextBindingModel=
         if (profileModel.profileLocation.isNullOrEmpty())
-            SimpleTextModel(
+            TextBindingModel.Default(
                 context.resources.getString(R.string.profile_default_not_specified),
                 R.dimen.txt_size_14,
                 R.color.grey_brown
             ) else
-            SimpleTextModel(
+            TextBindingModel.Default(
                 profileModel.profileLocation,
                 R.dimen.txt_size_14,
                 R.color.soft_blue
             )
 
-    private fun prepareContentForOccupation(): BaseBindingModel=
+    private fun prepareContentForOccupation(): TextBindingModel=
         if (profileModel.profileOccupation.isNullOrEmpty())
-            SimpleTextModel(
+            TextBindingModel.Default(
                 context.resources.getString(R.string.profile_occupation_not_specified),
                 R.dimen.txt_size_14,
                 R.color.grey_brown
             ) else
-            SimpleTextModel(
+            TextBindingModel.Default(
                 profileModel.profileOccupation,
                 R.dimen.txt_size_14,
                 R.color.grey_brown
             )
 
-    private fun prepareContentForProfessionalCertificates(): BaseBindingModel {
-        return TextCountModel(
+    private fun prepareContentForProfessionalCertificates(): TextBindingModel {
+        return TextBindingModel.CountFormat(
             profileModel.profileProfessionalCertificates,
             R.string.profile_certificates_format,
             R.string.profile_certificates_empty,
@@ -176,27 +141,27 @@ class ProfileModelBinding(
         )
     }
 
-    private fun prepareContentFavoriteCategory(): BaseBindingModel {
+    private fun prepareContentFavoriteCategory(): TextBindingModel {
         return if (profileModel.profileFavoriteCategories.isNotEmpty())
-            TextSpanModel(
+            TextBindingModel.Span(
                 profileModel.profileFavoriteCategories.joinToString(separator=", ") { categoryEntity -> categoryEntity.name },
                 context.resources.getString(R.string.profile_favorite_categories_format),
-                TextSpanModel.SpanTextPosition.LAST,
+                TextBindingModel.Span.SpanTextPosition.LAST,
                 R.dimen.txt_size_16,
                 R.dimen.txt_size_14,
                 R.color.soft_blue,
                 R.color.grey_brown,
                 Typeface.NORMAL
             )
-        else SimpleTextModel(
+        else TextBindingModel.Default(
             context.resources.getString(R.string.profile_default_not_specified),
             R.dimen.txt_size_14,
             R.color.grey_brown
         )
     }
 
-    private fun prepareContentForCreatedThemes(): BaseBindingModel {
-        return TextCountModel(
+    private fun prepareContentForCreatedThemes(): TextBindingModel {
+        return TextBindingModel.CountFormat(
             profileModel.profileCreatedThemes,
             R.string.profile_created_themes_format,
             R.string.profile_created_themes_empty,
@@ -205,8 +170,8 @@ class ProfileModelBinding(
         )
     }
 
-    private fun prepareContentForFollowedThemes(): BaseBindingModel {
-        return TextCountModel(
+    private fun prepareContentForFollowedThemes(): TextBindingModel {
+        return TextBindingModel.CountFormat(
             profileModel.profileFollowedThemes,
             R.string.profile_followed_themes_format,
             R.string.profile_followed_themes_empty,

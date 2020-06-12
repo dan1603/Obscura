@@ -128,5 +128,10 @@
     <string name="profile_created_themes_format">Created themes (%1$s)</string>
     <string name="profile_followed_themes_empty">No followed themes yet</string>
     <string name="profile_followed_themes_format">Followed themes (%1$s)</string>
-
+    <!--send location -->
+    <string name="action_geo_send">Send location</string>
+    <string name="title_geo">Location</string>
+    <string name="title_geo_current">current location</string>
+    <string name="location_chosen_text">chosen location</string>
+    <string name="location_chosen_err">chosen location error</string>
 </resources>

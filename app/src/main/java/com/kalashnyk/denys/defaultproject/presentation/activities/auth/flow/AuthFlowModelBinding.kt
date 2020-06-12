@@ -13,7 +13,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.kalashnyk.denys.defaultproject.BR
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages
-import com.kalashnyk.denys.defaultproject.utils.binding.TextSpanModel
+import com.kalashnyk.denys.defaultproject.utils.binding.TextBindingModel
 import com.kalashnyk.denys.defaultproject.utils.extention.*
 import com.kalashnyk.denys.defaultproject.utils.validation.ValidationErrorMessage
 import java.util.*
@@ -37,12 +37,12 @@ class AuthFlowModelBinding(
     /**
      * @field signUpTextSpanModel
      */
-    val signUpTextSpanModel: TextSpanModel
+    val signUpTextSpanModel: TextBindingModel.Span
         @Bindable get() {
-            return TextSpanModel(
+            return TextBindingModel.Span(
                 context.resources.getString(R.string.sign_up),
                 context.resources.getString(R.string.dont_have_an_account),
-                TextSpanModel.SpanTextPosition.LAST,
+                TextBindingModel.Span.SpanTextPosition.LAST,
                 R.dimen.txt_size_16,
                 R.dimen.txt_size_14,
                 R.color.colorWhite,
@@ -54,12 +54,12 @@ class AuthFlowModelBinding(
     /**
      * @field signInTextSpanModel
      */
-    val signInTextSpanModel: TextSpanModel
+    val signInTextSpanModel: TextBindingModel.Span
         @Bindable get() {
-            return TextSpanModel(
+            return TextBindingModel.Span(
                 context.resources.getString(R.string.sign_in),
                 context.resources.getString(R.string.text_have_an_account),
-                TextSpanModel.SpanTextPosition.LAST,
+                TextBindingModel.Span.SpanTextPosition.LAST,
                 R.dimen.txt_size_16,
                 R.dimen.txt_size_14,
                 R.color.colorWhite,
@@ -71,12 +71,12 @@ class AuthFlowModelBinding(
     /**
      * @field termsConditionsTextSpanModel
      */
-    val termsConditionsTextSpanModel: TextSpanModel
+    val termsConditionsTextSpanModel: TextBindingModel.Span
         @Bindable get() {
-            return TextSpanModel(
+            return TextBindingModel.Span(
                 context.resources.getString(R.string.text_terms_and_privacy),
                 context.resources.getString(R.string.text_i_agree_with),
-                TextSpanModel.SpanTextPosition.LAST,
+                TextBindingModel.Span.SpanTextPosition.LAST,
                 R.dimen.txt_size_12,
                 R.dimen.txt_size_12,
                 R.color.colorWhite,

@@ -25,13 +25,13 @@ data class UserEntity(
      *
      */
     @SerializedName("name")
-    val name: String? = null,
+    var name: String? = null,
 
     /**
      *
      */
     @SerializedName("surname")
-    val surname: String? = null,
+    var surname: String? = null,
 
     /**
      *
@@ -54,6 +54,12 @@ data class UserEntity(
     /**
      *
      */
+    @SerializedName("occupation")
+    var occupation: String? = null,
+
+    /**
+     *
+     */
     var screenType: String?=DEFAULT_SCREEN,
 
     /**
@@ -64,12 +70,12 @@ data class UserEntity(
     /**
      *
      */
-    val favoriteCategories: List<CategoryEntity>? = mutableListOf(),
+    var favoriteCategories: List<CategoryEntity> = mutableListOf(),
 
     /**
      *
      */
-    val location: LocationEntity? = null
+    var location: LocationEntity? = null
 
 ) : BaseModel() {
 

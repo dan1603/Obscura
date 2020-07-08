@@ -12,6 +12,8 @@ import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navig
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.TransitionAnimation
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.TransitionBundle
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.CategoryEntity
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.LocationEntity
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.UserEntity
 
 /**
@@ -39,9 +41,19 @@ class ProfileFragment : BaseFragment<ProfileDataBinding>(), ProfileFlow.ProfileL
      */
     override fun setupViewLogic(binding: ProfileDataBinding) {
         context?.let {
-            binding.bindingModel = ProfileModelBinding(ProfileModel(UserEntity()), it)
+            binding.bindingModel = ProfileModelBinding(ProfileModel(getUser()), it)
             binding.clickHandler = this
         }
+    }
+
+    private fun getUser() : UserEntity{
+        val user = UserEntity()
+        user.surname = "Kalashnyk"
+        user.name = "Denys"
+        user.favoriteCategories = mutableListOf(CategoryEntity(1, "ART"), CategoryEntity(2, "Android"))
+        user.location = LocationEntity(1, "Ukraine", "Dnepropetrovska", "Dnipro")
+        user.occupation = "Android Developer"
+        return UserEntity()
     }
 
     companion object {

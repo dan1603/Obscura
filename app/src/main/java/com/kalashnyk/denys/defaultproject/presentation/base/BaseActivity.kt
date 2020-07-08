@@ -18,6 +18,9 @@ import com.kalashnyk.denys.defaultproject.presentation.navigation.Navigation
 import com.kalashnyk.denys.defaultproject.presentation.navigation.NavigationImpl
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.PageNavigationItem
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.TransitionBundle
+import com.kalashnyk.denys.defaultproject.utils.NetworkConnectionListener
+import com.kalashnyk.denys.defaultproject.utils.NetworkConnectionProvider
+import com.kalashnyk.denys.defaultproject.utils.NetworkConnectionProviderImpl
 import com.kalashnyk.denys.defaultproject.utils.extention.hideKeyboard
 import com.kalashnyk.denys.defaultproject.utils.extention.initializeToolbar
 import com.kalashnyk.denys.defaultproject.utils.permission.IPermissionManager
@@ -27,7 +30,7 @@ import com.kalashnyk.denys.defaultproject.utils.permission.PermissionManagerImpl
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
-abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
+abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity(), NetworkConnectionProvider {
 
     /**
      *
@@ -51,8 +54,25 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
 
     private var toolbar: Toolbar?=null
 
+    private val networkConnectionProvider = NetworkConnectionProviderImpl(this)
+
+    /**
+     *
+     */
+    override fun listenConnectionChanges(listener: NetworkConnectionListener) {
+        networkConnectionProvider.listenConnectionChanges(listener)
+    }
+
+    /**
+     * 
+     */
+    override fun ignoreConnectionChanges(listener: NetworkConnectionListener) {
+        networkConnectionProvider.ignoreConnectionChanges(listener)
+    }
+
     companion object {
         private const val DEBUG_ENABLED=false
+        var currentActivity: Class<*>? = null
     }
 
     /**
@@ -70,6 +90,11 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
      */
     abstract fun setupViewLogic(binder: V)
 
+    override fun onStart() {
+        super.onStart()
+        currentActivity = this::class.java
+    }
+
     /**
      *
      */
@@ -80,6 +105,14 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
         permissionManager=PermissionManagerImpl()
         createDaggerDependencies()
         setupViewLogic(viewBinding)
+    }
+
+    override fun onDestroy() {
+        networkConnectionProvider.destroy()
+        if (currentActivity == javaClass) {
+            currentActivity = null
+        }
+        super.onDestroy()
     }
 
     /**

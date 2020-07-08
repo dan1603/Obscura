@@ -33,7 +33,7 @@ abstract class BasePagingViewModel : BaseViewModel() {
     fun initPagedConfig() {
         pagedListConfiguration=PagedList.Config.Builder()
             .setEnablePlaceholders(false)
-            //.setProgress(true)
+//            .setProgress(true)
             .setPageSize(CONTENT_PAGE_SIZE)
             .setPrefetchDistance(CONTENT_PAGE_SIZE / 2)
             .build()

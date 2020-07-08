@@ -154,7 +154,7 @@ class ProfileModel(private var user : UserEntity) : BaseChildModel() {
     /**
      * @field occupationField
      */
-    var profileOccupation: String = ""
+    var profileOccupation: String = user.occupation ?: ""
         set(value) {
             field=value
             setChangedAndNotify(occupationField)
@@ -163,7 +163,7 @@ class ProfileModel(private var user : UserEntity) : BaseChildModel() {
     /**
      * @field professionalCertificatesField
      */
-    var profileProfessionalCertificates: Int = 0
+    var profileProfessionalCertificates: Int = 4
         set(value) {
             field=value
             setChangedAndNotify(professionalCertificatesField)
@@ -173,7 +173,7 @@ class ProfileModel(private var user : UserEntity) : BaseChildModel() {
     /**
      * @field favoriteCategoryField
      */
-    var profileFavoriteCategories: List<CategoryEntity> = mutableListOf()
+    var profileFavoriteCategories: List<CategoryEntity> = user.favoriteCategories
         set(value) {
             field=value
             setChangedAndNotify(favoriteCategoryField)
@@ -182,7 +182,7 @@ class ProfileModel(private var user : UserEntity) : BaseChildModel() {
     /**
      * @field createdThemesField
      */
-    var profileCreatedThemes: Int = 0
+    var profileCreatedThemes: Int = 6
         set(value) {
             field=value
             setChangedAndNotify(createdThemesField)
@@ -191,7 +191,7 @@ class ProfileModel(private var user : UserEntity) : BaseChildModel() {
     /**
      * @field followedThemesField
      */
-    var profileFollowedThemes: Int = 0
+    var profileFollowedThemes: Int = 11
         set(value) {
             field=value
             setChangedAndNotify(followedThemesField)

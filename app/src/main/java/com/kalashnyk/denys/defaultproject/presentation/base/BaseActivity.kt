@@ -64,7 +64,7 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity(), NetworkC
     }
 
     /**
-     * 
+     *
      */
     override fun ignoreConnectionChanges(listener: NetworkConnectionListener) {
         networkConnectionProvider.ignoreConnectionChanges(listener)

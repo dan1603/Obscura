@@ -1,5 +1,7 @@
 package com.kalashnyk.denys.defaultproject.utils
 
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.MessageItemEntity
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.MessagesEntity
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.ThemeEntity
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.UserEntity
 
@@ -116,6 +118,87 @@ object MocUtil {
         val entity24=UserEntity(24, ("$CARD_USER name 24"), ("$CARD_USER surname 24"), ("$CARD_USER fathername 24"))
         list.add(entity24)
         val entity25=UserEntity(25, ("$CARD_USER name 25"), ("$CARD_USER surname 25"), ("$CARD_USER fathername 25"))
+        list.add(entity25)
+
+        return list
+    }
+
+    private fun getMessageList(userId: Int): ArrayList<MessageItemEntity> {
+        val list=ArrayList<MessageItemEntity>()
+        val entity1=MessageItemEntity(1, userId, 0, ("some text"))
+        list.add(entity1)
+        val entity2=MessageItemEntity(2, userId, 0, ("some text"))
+        list.add(entity2)
+        val entity3=MessageItemEntity(3, userId, 0, ("some text"))
+        list.add(entity3)
+        val entity4=MessageItemEntity(4, userId, 0, ("some text"))
+        list.add(entity4)
+        val entity5=MessageItemEntity(5, userId, 0, ("some text"))
+        list.add(entity5)
+        val entity6=MessageItemEntity(6, userId, 0, ("some text"))
+        list.add(entity6)
+        val entity7=MessageItemEntity(7, userId, 0, ("some text"))
+        list.add(entity7)
+        val entity8=MessageItemEntity(8, userId, 0, ("some text"))
+        list.add(entity8)
+        val entity9=MessageItemEntity(9, userId, 0, ("some text"))
+        list.add(entity9)
+        val entity10=MessageItemEntity(10, userId, 0, ("some text"))
+        list.add(entity10)
+        return list
+    }
+
+    fun mocListMessages(): List<MessagesEntity> {
+        val list=ArrayList<MessagesEntity>()
+        val entity1=MessagesEntity(1, 1, getMessageList(1))
+        list.add(entity1)
+        val entity2=MessagesEntity(2, 2, getMessageList(2))
+        list.add(entity2)
+        val entity3=MessagesEntity(3, 3, getMessageList(3))
+        list.add(entity3)
+        val entity4=MessagesEntity(4, 4, getMessageList(4))
+        list.add(entity4)
+        val entity5=MessagesEntity(5, 5, getMessageList(5))
+        list.add(entity5)
+        val entity6=MessagesEntity(6, 6, getMessageList(6))
+        list.add(entity6)
+        val entity7=MessagesEntity(7, 7, getMessageList(7))
+        list.add(entity7)
+        val entity8=MessagesEntity(8, 8, getMessageList(8))
+        list.add(entity8)
+        val entity9=MessagesEntity(9, 9, getMessageList(9))
+        list.add(entity9)
+        val entity10=MessagesEntity(10, 10, getMessageList(10))
+        list.add(entity10)
+        val entity11=MessagesEntity(11, 11, getMessageList(11))
+        list.add(entity11)
+        val entity12=MessagesEntity(12, 12, getMessageList(12))
+        list.add(entity12)
+        val entity13=MessagesEntity(13, 13, getMessageList(13))
+        list.add(entity13)
+        val entity14=MessagesEntity(14, 14, getMessageList(14))
+        list.add(entity14)
+        val entity15=MessagesEntity(15, 15, getMessageList(15))
+        list.add(entity15)
+        val entity16=MessagesEntity(16, 16, getMessageList(16))
+        list.add(entity16)
+        val entity17=MessagesEntity(17, 17, getMessageList(17))
+        list.add(entity17)
+        val entity18=MessagesEntity(18, 18, getMessageList(18))
+        list.add(entity18)
+        val entity19=MessagesEntity(19, 19, getMessageList(19))
+        list.add(entity19)
+        val entity20=MessagesEntity(20, 20, getMessageList(20))
+        list.add(entity20)
+        val entity21=MessagesEntity(21, 21, getMessageList(21))
+        list.add(entity21)
+        val entity22=MessagesEntity(22, 22, getMessageList(22))
+        list.add(entity22)
+        val entity23=MessagesEntity(23, 23, getMessageList(23))
+        list.add(entity23)
+        val entity24=MessagesEntity(24, 24, getMessageList(24))
+        list.add(entity24)
+        val entity25=MessagesEntity(25, 25, getMessageList(25))
         list.add(entity25)
 
         return list

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+                name="data"
+                type="com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.BaseCardModel"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/indentation_8"
+            android:paddingBottom="@dimen/indentation_10"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground">
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:cardCornerRadius="@dimen/view_params_23"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/llFollowingButton"
+                android:paddingStart="@dimen/indentation_16"
+                android:paddingEnd="0dp"
+                android:orientation="vertical">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:textStyle="normal"
+                    android:textColor="@color/greyish_brown"
+                    android:text="@string/james_richardson"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="normal"
+                    android:layout_marginTop="@dimen/indentation_8"
+                    android:layout_marginBottom="@dimen/indentation_8"
+                    android:textColor="@color/greyish_brown"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="-7sp"
+                    android:text="@string/some_message"/>
+        </LinearLayout>
+        <TextView
+                android:id="@+id/llFollowingButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif-medium"
+                android:textStyle="normal"
+                android:textColor="@color/soft_blue"
+                android:lineSpacingExtra="8sp"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/indentation_8"
+                android:text="@string/online"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

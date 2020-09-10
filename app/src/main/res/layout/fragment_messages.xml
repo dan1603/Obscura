@@ -1,23 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools">
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data class="MessagesDataBinding">
 
+        <import type="android.view.View"/>
+
+        <variable name="loading"
+                type="androidx.databinding.ObservableBoolean"/>
+
+        <variable name="refreshing"
+                type="androidx.databinding.ObservableBoolean"/>
+
     </data>
 
-    <FrameLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/feed_coordinator"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".presentation.fragments.messages.MessagesFragment">
+            android:layout_height="match_parent">
 
-        <TextView
-                android:id="@+id/tvMessages"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipeRefresh"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="@dimen/txt_size_40"
-                android:gravity="center"
-                android:text="Messages"/>
+                app:refreshing="@{refreshing}">
 
-    </FrameLayout>
+            <include
+                    android:id="@+id/multiStateView"
+                    layout="@layout/base_list_layout"
+                    app:loading="@{loading}"
+                    app:refreshing="@{refreshing}"/>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

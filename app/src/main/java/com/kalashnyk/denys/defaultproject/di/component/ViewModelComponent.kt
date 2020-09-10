@@ -10,6 +10,7 @@ import com.kalashnyk.denys.defaultproject.presentation.activities.splash.SplashA
 import com.kalashnyk.denys.defaultproject.presentation.activities.welcome.WelcomeActivity
 import com.kalashnyk.denys.defaultproject.presentation.fragments.list_themes.ListThemesFragment
 import com.kalashnyk.denys.defaultproject.presentation.fragments.list_users.ListUsersFragment
+import com.kalashnyk.denys.defaultproject.presentation.fragments.messages.MessagesFragment
 import dagger.Component
 
 @ViewModelScope
@@ -23,4 +24,5 @@ interface ViewModelComponent {
     fun inject(activity: LocationChooserActivity)
     fun inject(fragment: ListThemesFragment)
     fun inject(fragment: ListUsersFragment)
+    fun inject(fragment: MessagesFragment)
 }

@@ -79,6 +79,7 @@
     <string name="want_to_go">WANT TO GO</string>
     <string name="invite">INVITE</string>
     <string name="following">FOLLOWING</string>
+    <string name="online">ONLINE</string>
 
     <string name="help_me_choose_a_photo_camera">Help me choose a photo
         camera for a beginner title</string>
@@ -98,6 +99,8 @@
     <string name="james_richardson">James Richardson</string>
     <!--todo for test -->
     <string name="jurisprudence_law">Jurisprudence / Law</string>
+    <!--todo for test -->
+    <string name="some_message">Some message</string>
     <!--todo for test -->
     <string name="san_fransisco_ca_usa">San Fransisco, CA, USA</string>
 

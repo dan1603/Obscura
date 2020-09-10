@@ -3,8 +3,10 @@ package com.kalashnyk.denys.defaultproject.utils
 import com.kalashnyk.denys.defaultproject.data.BaseModel
 import com.kalashnyk.denys.defaultproject.data.card_models.ArticleCardModel
 import com.kalashnyk.denys.defaultproject.data.card_models.EventCardModel
+import com.kalashnyk.denys.defaultproject.data.card_models.MessagesCardModel
 import com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.BaseCardModel
 import com.kalashnyk.denys.defaultproject.data.card_models.UserCardModel
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.MessagesEntity
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.ThemeEntity
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.UserEntity
 import java.util.ArrayList
@@ -24,8 +26,10 @@ class ConverterFactory {
     }
 
     private fun convert(item: BaseModel): BaseCardModel? {
-        if(item is UserEntity){
+        if(item is UserEntity) {
             return UserCardModel(item)
+        }else if(item is MessagesEntity){
+            return MessagesCardModel(item)
         }else if(item is ThemeEntity && item.isEvent){
             return EventCardModel(item)
         }else if(item is ThemeEntity && item.isArticle){

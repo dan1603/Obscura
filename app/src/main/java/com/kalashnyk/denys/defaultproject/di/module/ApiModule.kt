@@ -11,10 +11,7 @@ import com.kalashnyk.denys.defaultproject.api.pojo_error.ApiError
 import com.kalashnyk.denys.defaultproject.api.pojo_error.ApiStatus
 import com.kalashnyk.denys.defaultproject.api.pojo_error.RequestError
 import com.kalashnyk.denys.defaultproject.di.scope.ApiScope
-import com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.FeedRemoteDataSource
-import com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.FeedRemoteDataSourceImpl
-import com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.UserRemoteDataSource
-import com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.UserRemoteDataSourceImpl
+import com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.*
 import com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.communicator.ApiService
 import com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.communicator.ServerCommunicator
 import com.kalashnyk.denys.defaultproject.utils.ApplicationUtils
@@ -153,6 +150,12 @@ class ApiModule {
     @ApiScope
     fun providesUsersRemoteDataSource(serverCommunicator: ServerCommunicator): UserRemoteDataSource {
         return UserRemoteDataSourceImpl(serverCommunicator)
+    }
+
+    @Provides
+    @ApiScope
+    fun providesMessagesRemoteDataSource(serverCommunicator: ServerCommunicator): MessagesRemoteDataSource {
+        return MessagesRemoteDataSourceImpl(serverCommunicator)
     }
 
 }

@@ -3,9 +3,11 @@ package com.kalashnyk.denys.defaultproject.di.module
 import com.kalashnyk.denys.defaultproject.di.scope.RepositoryScope
 import com.kalashnyk.denys.defaultproject.usecases.repository.*
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.FeedDataSource
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.MessagesDataSource
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.UserDataSource
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.AppDatabase
 import com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.FeedRemoteDataSource
+import com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.MessagesRemoteDataSource
 import com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.UserRemoteDataSource
 import com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.communicator.ServerCommunicator
 import dagger.Module
@@ -29,5 +31,11 @@ class RepositoryModule {
     @Provides
     internal fun providesUserRepository(userRemoteDataSource: UserRemoteDataSource, userDataSource: UserDataSource): UserRepository {
         return UserRepositoryImpl(userRemoteDataSource, userDataSource)
+    }
+
+    @RepositoryScope
+    @Provides
+    internal fun providesMessagesRepository(messagesRemoteDataSource: MessagesRemoteDataSource, messagesDataSource: MessagesDataSource): MessagesRepository {
+        return MessagesRepositoryImpl(messagesRemoteDataSource, messagesDataSource)
     }
 }

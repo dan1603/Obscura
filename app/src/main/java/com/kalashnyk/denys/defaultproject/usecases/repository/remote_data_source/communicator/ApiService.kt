@@ -1,5 +1,6 @@
 package com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.communicator
 
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.MessagesEntity
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.ThemeEntity
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.UserEntity
 import com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.pojo.UserResponse
@@ -18,6 +19,10 @@ interface ApiService {
     @GET("/api/android/rest/api-v2.php/records/users")
     fun fetchUsers(@Query("screen_type") screenType : String,
                     @Query("last_item_id") lastItemId : String?): Single<Response<List<UserEntity>>>
+
+    @GET("/api/android/rest/api-v2.php/records/users")
+    fun fetchMessages(@Query("screen_type") screenType : String,
+                    @Query("last_item_id") lastItemId : String?): Single<Response<List<MessagesEntity>>>
 
     @GET("/api/android/rest/api-v2.php/records/users")
     fun getUsers(): Single<Response<UserResponse>>

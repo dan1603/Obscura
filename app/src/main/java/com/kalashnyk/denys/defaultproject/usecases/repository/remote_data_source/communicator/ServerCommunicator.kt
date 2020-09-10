@@ -1,6 +1,7 @@
 package com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.communicator
 
 import android.util.Log
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.MessagesEntity
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.ThemeEntity
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.UserEntity
 import com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source.pojo.UserResponse
@@ -26,6 +27,11 @@ class ServerCommunicator(private val mService: ApiService) {
 
     fun fetchUsers(screenType: String, lastItemId: String?): Single<Response<List<UserEntity>>> {
         return mService.fetchUsers(screenType, lastItemId)
+            .doOnError { t: Throwable -> Log.d("ServerCommunicator", t.message) }
+    }
+
+    fun fetchMessages(screenType: String, lastItemId: String?): Single<Response<List<MessagesEntity>>> {
+        return mService.fetchMessages(screenType, lastItemId)
             .doOnError { t: Throwable -> Log.d("ServerCommunicator", t.message) }
     }
 

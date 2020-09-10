@@ -65,6 +65,7 @@ class App: MultiDexApplication() {
         // todo don't use allowMainThreadQueries()
         database = Room.databaseBuilder(this, AppDatabase::class.java, "defaultproject_database")
             .allowMainThreadQueries()
+            .fallbackToDestructiveMigration() //TODO: dont know if this is a good practise
             .build()
     }
 

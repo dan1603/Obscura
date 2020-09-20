@@ -4,8 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.paging.PagedList
 import com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.BaseCardModel
 import com.kalashnyk.denys.defaultproject.presentation.base.ItemsLoadListener
+import com.kalashnyk.denys.defaultproject.presentation.item.ItemClickListener
 import com.kalashnyk.denys.defaultproject.usecases.MessagesUseCases
 import com.kalashnyk.denys.defaultproject.usecases.UserUseCases
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.MessagesEntity
 import com.kalashnyk.denys.defaultproject.utils.ConverterFactory
 import java.util.NoSuchElementException
 
@@ -21,9 +23,9 @@ class MessagesViewModel(private val messagesUseCases: MessagesUseCases) : BasePa
     /**
      *
      */
-    fun initLiveData(type: String, listener: ItemsLoadListener<PagedList<BaseCardModel>>) {
+    fun initLiveData(type: String, listener: ItemsLoadListener<PagedList<BaseCardModel>>, clickListener: ItemClickListener<MessagesEntity>) {
         itemLoadedListener = listener
-        initPagedListLiveData(messagesUseCases.getCardsFactory(type, ConverterFactory()))
+        initPagedListLiveData(messagesUseCases.getCardsFactory(type, ConverterFactory(clickListener)))
     }
 
 

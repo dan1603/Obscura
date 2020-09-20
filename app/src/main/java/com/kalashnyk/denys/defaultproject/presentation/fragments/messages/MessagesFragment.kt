@@ -12,6 +12,8 @@ import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
 import com.kalashnyk.denys.defaultproject.domain.MessagesViewModel
 import com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.BaseCardModel
 import com.kalashnyk.denys.defaultproject.presentation.base.BasePagingFragment
+import com.kalashnyk.denys.defaultproject.presentation.item.ItemClickListener
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.MessagesEntity
 import com.kalashnyk.denys.defaultproject.utils.FIRST_LIST_POSITION
 import com.kalashnyk.denys.defaultproject.utils.FeedLayoutManager
 import com.kalashnyk.denys.defaultproject.utils.MIN_LIST_SIZE
@@ -22,7 +24,8 @@ import javax.inject.Inject
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
-class MessagesFragment : BasePagingFragment<MessagesDataBinding>() {
+class MessagesFragment : BasePagingFragment<MessagesDataBinding>(),
+    ItemClickListener<MessagesEntity> {
 
     /**
      *
@@ -85,7 +88,6 @@ class MessagesFragment : BasePagingFragment<MessagesDataBinding>() {
             getListView().adapter=
                 pagingAdapter
 
-
             pagingAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
 
                 override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
@@ -106,7 +108,7 @@ class MessagesFragment : BasePagingFragment<MessagesDataBinding>() {
      *
      */
     override fun initObserver(screenType : String) {
-        viewModel?.initLiveData(screenType, this)
+        viewModel?.initLiveData(screenType, this, this)
         viewModel?.getPagedList()?.observe(this, Observer(this@MessagesFragment::onItemsLoaded))
     }
 
@@ -166,5 +168,9 @@ class MessagesFragment : BasePagingFragment<MessagesDataBinding>() {
         fun newInstance(): MessagesFragment {
             return MessagesFragment()
         }
+    }
+
+    override fun onClick(item: MessagesEntity) {
+        getBaseActivity().goToConversation(item.talkerId)
     }
 }

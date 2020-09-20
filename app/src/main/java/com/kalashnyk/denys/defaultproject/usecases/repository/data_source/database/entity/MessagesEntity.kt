@@ -22,8 +22,8 @@ data class MessagesEntity(
     /**
      *
      */
-    @SerializedName("userId")
-    val userId: Int,
+    @SerializedName("talkerId")
+    val talkerId: Int,
     /**
      *
      */

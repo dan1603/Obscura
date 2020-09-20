@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.AuthActivity
 import com.kalashnyk.denys.defaultproject.presentation.activities.location.LocationChooserActivity
+import com.kalashnyk.denys.defaultproject.presentation.activities.detail.ConversationActivity
 import com.kalashnyk.denys.defaultproject.presentation.activities.main.MainActivity
 import com.kalashnyk.denys.defaultproject.presentation.activities.splash.SplashActivity
 import com.kalashnyk.denys.defaultproject.presentation.activities.welcome.WelcomeActivity
@@ -32,6 +33,7 @@ interface Navigation : FragmentNavigator {
     fun openAuthScreen(typeScreen: Pages, flag : Int)
     fun openMainScreen()
     fun openDetailScreen(id: Int)
+    fun openConversationScreen(talkerId: Int)
     fun openSettings(uriSetting : String)
     fun openGallery()
     fun openLocationChooser()
@@ -129,6 +131,16 @@ class NavigationImpl(override var navigatorSource: BaseActivity<*>) : Navigation
     override fun openDetailScreen(id: Int) {
         val intent = Intent(navigatorSource, AuthActivity::class.java).apply {
             this.putExtra(DETAIL_ID, id)
+        }
+        navigatorSource.startActivity(intent)
+    }
+
+    /**
+     *
+     */
+    override fun openConversationScreen(talkerId: Int) {
+        val intent = Intent(navigatorSource, ConversationActivity::class.java).apply {
+            this.putExtra(DETAIL_ID, talkerId)
         }
         navigatorSource.startActivity(intent)
     }

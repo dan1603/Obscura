@@ -14,6 +14,8 @@ import com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.BaseCa
 import com.kalashnyk.denys.defaultproject.presentation.base.BasePagingFragment
 import com.kalashnyk.denys.defaultproject.presentation.widget.pageview.model.TabPages
 import com.kalashnyk.denys.defaultproject.utils.EXTRAS_PAGES
+import com.kalashnyk.denys.defaultproject.presentation.item.ItemClickListener
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.UserEntity
 import com.kalashnyk.denys.defaultproject.utils.FIRST_LIST_POSITION
 import com.kalashnyk.denys.defaultproject.utils.FeedLayoutManager
 import com.kalashnyk.denys.defaultproject.utils.MIN_LIST_SIZE
@@ -24,7 +26,7 @@ import javax.inject.Inject
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
-class ListUsersFragment : BasePagingFragment<ListUsersDataBinding>() {
+class ListUsersFragment : BasePagingFragment<ListUsersDataBinding>(), ItemClickListener<UserEntity> {
 
 
     /**
@@ -103,7 +105,7 @@ class ListUsersFragment : BasePagingFragment<ListUsersDataBinding>() {
      *
      */
     override fun initObserver(screenType: String) {
-        viewModel?.initLiveData(screenType, this)
+        viewModel?.initLiveData(screenType, this, this)
         viewModel?.getPagedList()?.observe(this, Observer(this@ListUsersFragment::onItemsLoaded))
     }
 
@@ -173,5 +175,9 @@ class ListUsersFragment : BasePagingFragment<ListUsersDataBinding>() {
                     this.putSerializable(EXTRAS_PAGES, pages)
                 }
             }
+    }
+
+    override fun onClick(item: UserEntity) {
+        //TODO
     }
 }

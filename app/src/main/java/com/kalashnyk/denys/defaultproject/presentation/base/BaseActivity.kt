@@ -170,6 +170,10 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity(), NetworkC
         win.attributes=winParams
     }
 
+    fun goToConversation(talkerId: Int){
+        navigator.openConversationScreen(talkerId)
+    }
+
     fun goToPage(page: PageNavigationItem) {
         navigator.goToPage(page)
     }

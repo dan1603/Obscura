@@ -8,12 +8,14 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.kalashnyk.denys.defaultproject.BR
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.databinding.ListThemesDataBinding
+import com.kalashnyk.denys.defaultproject.data.BaseModel
 import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
 import com.kalashnyk.denys.defaultproject.domain.FeedViewModel
 import com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.BaseCardModel
 import com.kalashnyk.denys.defaultproject.presentation.base.BasePagingFragment
 import com.kalashnyk.denys.defaultproject.presentation.widget.pageview.model.TabPages
 import com.kalashnyk.denys.defaultproject.utils.EXTRAS_PAGES
+import com.kalashnyk.denys.defaultproject.presentation.item.ItemClickListener
 import com.kalashnyk.denys.defaultproject.utils.FIRST_LIST_POSITION
 import com.kalashnyk.denys.defaultproject.utils.FeedLayoutManager
 import com.kalashnyk.denys.defaultproject.utils.MIN_LIST_SIZE
@@ -24,7 +26,7 @@ import javax.inject.Inject
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
-class ListThemesFragment : BasePagingFragment<ListThemesDataBinding>() {
+class ListThemesFragment : BasePagingFragment<ListThemesDataBinding>(), ItemClickListener<BaseModel> {
 
     /**
      *
@@ -102,7 +104,7 @@ class ListThemesFragment : BasePagingFragment<ListThemesDataBinding>() {
      *
      */
     override fun initObserver(screenType : String) {
-        viewModel?.initLiveData(screenType, this)
+        viewModel?.initLiveData(screenType, this, this)
         viewModel?.getPagedList()?.observe(this, Observer(this@ListThemesFragment::onItemsLoaded))
     }
 
@@ -175,5 +177,9 @@ class ListThemesFragment : BasePagingFragment<ListThemesDataBinding>() {
                     this.putSerializable(EXTRAS_PAGES, pages)
                 }
             }
+    }
+
+    override fun onClick(item: BaseModel) {
+        //TODO
     }
 }

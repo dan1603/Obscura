@@ -7,7 +7,10 @@ import com.kalashnyk.denys.defaultproject.data.BaseModel
  *
  */
 abstract class BaseCardModel : BaseObservable() {
-
+    /**
+     *
+     */
+    abstract fun onClick()
     /**
      *
      */

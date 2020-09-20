@@ -2,8 +2,10 @@ package com.kalashnyk.denys.defaultproject.domain
 
 import androidx.lifecycle.LiveData
 import androidx.paging.PagedList
+import com.kalashnyk.denys.defaultproject.data.BaseModel
 import com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.BaseCardModel
 import com.kalashnyk.denys.defaultproject.presentation.base.ItemsLoadListener
+import com.kalashnyk.denys.defaultproject.presentation.item.ItemClickListener
 import com.kalashnyk.denys.defaultproject.usecases.FeedUseCases
 import com.kalashnyk.denys.defaultproject.utils.ConverterFactory
 import java.util.*
@@ -20,9 +22,9 @@ class FeedViewModel(private val feedUseCases: FeedUseCases) : BasePagingViewMode
     /**
      *
      */
-    fun initLiveData(type: String, listener: ItemsLoadListener<PagedList<BaseCardModel>>) {
+    fun initLiveData(type: String, listener: ItemsLoadListener<PagedList<BaseCardModel>>, clickListener: ItemClickListener<BaseModel>) {
         itemLoadedListener = listener
-        initPagedListLiveData(feedUseCases.getCardsFactory(type, ConverterFactory()))
+        initPagedListLiveData(feedUseCases.getCardsFactory(type, ConverterFactory(clickListener)))
     }
 
 

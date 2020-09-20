@@ -6,6 +6,9 @@ import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.databa
 import com.kalashnyk.denys.defaultproject.utils.CARD_EVENT
 
 class EventCardModel(private var feed : ThemeEntity) : BaseCardModel() {
+    override fun onClick() {
+        //TODO
+    }
 
     override fun getCardId(): String {
         return feed.id.toString()

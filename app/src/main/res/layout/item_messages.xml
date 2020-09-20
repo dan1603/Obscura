@@ -13,7 +13,7 @@
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/indentation_8"
             android:paddingBottom="@dimen/indentation_10"
-            android:clickable="true"
+            android:onClick="@{() -> data.onClick()}"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground">
         <LinearLayout

@@ -37,6 +37,13 @@ class ProfileModelBinding(
         @Bindable get
 
     /**
+     * TODO: refactor to more suitable solution
+     * @field profileAvatarBinding
+     */
+    var profileAvatarBinding: String?= profileModel.profileAvatarPreview
+        @Bindable get
+
+    /**
      * @field profileLocationBinding
      */
     var profileLocationBinding: TextBindingModel?=prepareContentForLocation()

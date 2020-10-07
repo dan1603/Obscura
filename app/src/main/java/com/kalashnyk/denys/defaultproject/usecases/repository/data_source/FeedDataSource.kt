@@ -32,6 +32,11 @@ interface FeedDataSource {
     /**
      *
      */
+    fun receive() : List<ThemeEntity>
+
+    /**
+     *
+     */
     fun insertAndClearCache(feedItems: List<ThemeEntity>, typeScreen: String?)
 }
 
@@ -58,6 +63,9 @@ class FeedDataSourceImpl(private val database: AppDatabase) : FeedDataSource {
 
     override fun insert(feedItems: List<ThemeEntity>) : Unit=
         database.themeDao().insert(feedItems)
+
+    override fun receive(): List<ThemeEntity> =
+        database.themeDao().queryFeeds()
 
 
     override fun insertAndClearCache(feedItems: List<ThemeEntity>, typeScreen: String?): Unit=

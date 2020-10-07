@@ -5,7 +5,7 @@ import com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.BaseCa
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.ThemeEntity
 import com.kalashnyk.denys.defaultproject.utils.CARD_EVENT
 
-class EventCardModel(private var feed : ThemeEntity) : BaseCardModel() {
+class EventCardModel(var feed : ThemeEntity) : BaseCardModel() {
     override fun onClick() {
         //TODO
     }

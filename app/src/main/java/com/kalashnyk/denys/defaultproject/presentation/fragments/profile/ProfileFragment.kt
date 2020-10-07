@@ -47,13 +47,14 @@ class ProfileFragment : BaseFragment<ProfileDataBinding>(), ProfileFlow.ProfileL
     }
 
     private fun getUser() : UserEntity{
-        val user = UserEntity()
+        val user = UserEntity(509)
         user.surname = "Kalashnyk"
         user.name = "Denys"
+        user.avatarPreview = "https://home.caresolace.com/wp-content/uploads/2019/04/adult-beach-casual-736716.jpg"
         user.favoriteCategories = mutableListOf(CategoryEntity(1, "ART"), CategoryEntity(2, "Android"))
         user.location = LocationEntity(1, "Ukraine", "Dnepropetrovska", "Dnipro")
         user.occupation = "Android Developer"
-        return UserEntity()
+        return user
     }
 
     companion object {
@@ -78,11 +79,8 @@ class ProfileFragment : BaseFragment<ProfileDataBinding>(), ProfileFlow.ProfileL
             Pages.THEMES_CALENDAR -> {
                 Toast.makeText(context, "action open themes calendar in progress", Toast.LENGTH_LONG).show()
             }
-            Pages.CREATED_THEMES -> {
-                Toast.makeText(context, "action open created themes in progress", Toast.LENGTH_LONG).show()
-            }
-            Pages.FOLLOWED_THEMES -> {
-                Toast.makeText(context, "action open followed themes in progress", Toast.LENGTH_LONG).show()
+            Pages.CREATED_THEMES, Pages.FOLLOWED_THEMES -> {
+                getBaseActivity().goToDetailListActivity(page)
             }
             Pages.APPLICATION_SETTINGS -> {
                 Toast.makeText(context, "action open application settings in progress", Toast.LENGTH_LONG).show()

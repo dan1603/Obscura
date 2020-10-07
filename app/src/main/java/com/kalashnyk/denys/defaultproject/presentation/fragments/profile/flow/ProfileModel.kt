@@ -85,11 +85,6 @@ class ProfileModel(private var user : UserEntity) : BaseChildModel() {
         }
 
     /**
-     * @fields firstNameField, lastNameField
-     */
-    var profileFullName: String = fullNameToString()
-
-    /**
      * firstNameField
      */
     var profileFirstName: String? = user.name
@@ -108,6 +103,11 @@ class ProfileModel(private var user : UserEntity) : BaseChildModel() {
         }
 
     /**
+     * @fields firstNameField, lastNameField
+     */
+    var profileFullName: String = fullNameToString()
+
+    /**
      * @field avatarPreviewField
      */
     var profileAvatarPreview: String = user.avatarPreview ?: ""
@@ -115,11 +115,6 @@ class ProfileModel(private var user : UserEntity) : BaseChildModel() {
             field=value
             setChangedAndNotify(avatarPreviewField)
         }
-
-    /**
-     * @fields countryField, stateField, cityField
-     */
-    var profileLocation: String = locationToString()
 
     /**
      * @field countryField
@@ -150,6 +145,11 @@ class ProfileModel(private var user : UserEntity) : BaseChildModel() {
             field=value
             setChangedAndNotify(cityField)
         }
+
+    /**
+     * @fields countryField, stateField, cityField
+     */
+    var profileLocation: String = locationToString()
 
     /**
      * @field occupationField

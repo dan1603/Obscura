@@ -1,4 +1,4 @@
-package com.kalashnyk.denys.defaultproject.presentation.fragments.messages
+package com.kalashnyk.denys.defaultproject.presentation.fragments.list_messages
 
 import android.os.Bundle
 import androidx.paging.PagedList
@@ -12,8 +12,11 @@ import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
 import com.kalashnyk.denys.defaultproject.domain.MessagesViewModel
 import com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.BaseCardModel
 import com.kalashnyk.denys.defaultproject.presentation.base.BasePagingFragment
+import com.kalashnyk.denys.defaultproject.presentation.fragments.list_themes.ListThemesFragment
 import com.kalashnyk.denys.defaultproject.presentation.item.ItemClickListener
+import com.kalashnyk.denys.defaultproject.presentation.widget.pageview.model.TabPages
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.MessagesEntity
+import com.kalashnyk.denys.defaultproject.utils.EXTRAS_PAGES
 import com.kalashnyk.denys.defaultproject.utils.FIRST_LIST_POSITION
 import com.kalashnyk.denys.defaultproject.utils.FeedLayoutManager
 import com.kalashnyk.denys.defaultproject.utils.MIN_LIST_SIZE
@@ -24,7 +27,7 @@ import javax.inject.Inject
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
-class MessagesFragment : BasePagingFragment<MessagesDataBinding>(),
+class ListMessagesFragment : BasePagingFragment<MessagesDataBinding>(),
     ItemClickListener<MessagesEntity> {
 
     /**
@@ -38,8 +41,11 @@ class MessagesFragment : BasePagingFragment<MessagesDataBinding>(),
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            //ToDo get extras from bundle
+        arguments?.let {bundle ->
+            //todo check and refactor
+            bundle.getSerializable(EXTRAS_PAGES)?.toString()?.let {
+                screenType=it
+            }
         }
     }
 
@@ -109,7 +115,7 @@ class MessagesFragment : BasePagingFragment<MessagesDataBinding>(),
      */
     override fun initObserver(screenType : String) {
         viewModel?.initLiveData(screenType, this, this)
-        viewModel?.getPagedList()?.observe(this, Observer(this@MessagesFragment::onItemsLoaded))
+        viewModel?.getPagedList()?.observe(this, Observer(this@ListMessagesFragment::onItemsLoaded))
     }
 
     /**
@@ -165,9 +171,20 @@ class MessagesFragment : BasePagingFragment<MessagesDataBinding>(),
 
     companion object {
         @JvmStatic
-        fun newInstance(): MessagesFragment {
-            return MessagesFragment()
+        fun newInstance(): ListMessagesFragment {
+            return ListMessagesFragment()
         }
+
+        /**
+         *
+         */
+        @JvmStatic
+        fun newInstance(pages: TabPages) =
+            ListMessagesFragment().apply {
+                arguments = Bundle().apply {
+                    this.putSerializable(EXTRAS_PAGES, pages)
+                }
+            }
     }
 
     override fun onClick(item: MessagesEntity) {

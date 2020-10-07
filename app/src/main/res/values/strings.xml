@@ -24,6 +24,9 @@
     <string name="network_offline">offline</string>
     <string name="root_detection_description">root detection description</string>
     <string name="settings">settings</string>
+    <string name="created_themes_title">Created themes</string>
+    <string name="followed_themes_title">Followed themes</string>
+    <string name="conversation_title">Conversation</string>
     <!--auth screen-->
     <string name="password_recovery">PASSWORD\nRECOVERY</string>
     <string name="get_a_password">GET A PASSWORD</string>
@@ -114,6 +117,8 @@
     <string name="tab_themes">ALL THEMES</string>
     <string name="tab_events">EVENTS</string>
     <string name="tab_articles">ARTICLES</string>
+    <string name="tab_feed">FEED</string>
+    <string name="tab_messages">MESSAGES</string>
     <!--profile screen-->
     <string name="profile_professional">PROFESSIONAL</string>
     <string name="profile_personal">PERSONAL</string>

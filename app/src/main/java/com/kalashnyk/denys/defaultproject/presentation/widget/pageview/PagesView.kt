@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import com.kalashnyk.denys.defaultproject.R
+import com.kalashnyk.denys.defaultproject.presentation.fragments.list_messages.ListMessagesFragment
 import com.kalashnyk.denys.defaultproject.presentation.fragments.list_users.ListUsersFragment
 import com.kalashnyk.denys.defaultproject.presentation.fragments.list_themes.ListThemesFragment
 import com.kalashnyk.denys.defaultproject.presentation.widget.pageview.model.TabPages
@@ -47,6 +48,8 @@ class PagesView(context: Context, attr: AttributeSet?) : FrameLayout(context, at
                     TAB_THEMES -> Pair(context.getString(tabPages.resource), ListThemesFragment.newInstance(tabPages))
                     TAB_EVENTS -> Pair(context.getString(tabPages.resource), ListThemesFragment.newInstance(tabPages))
                     TAB_ARTICLES -> Pair(context.getString(tabPages.resource), ListThemesFragment.newInstance(tabPages))
+                    TAB_FEED -> Pair(context.getString(tabPages.resource), ListThemesFragment.newInstance(tabPages))
+                    TAB_MESSAGES -> Pair(context.getString(tabPages.resource), ListMessagesFragment.newInstance(tabPages))
                 }
             }
         }

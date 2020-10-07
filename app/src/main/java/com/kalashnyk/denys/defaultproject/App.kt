@@ -2,11 +2,18 @@ package com.kalashnyk.denys.defaultproject
 
 import androidx.room.Room
 import android.content.Context
+import android.os.AsyncTask
 import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
 import com.kalashnyk.denys.defaultproject.di.component.*
 import com.kalashnyk.denys.defaultproject.di.module.*
+import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages
+import com.kalashnyk.denys.defaultproject.presentation.widget.pageview.model.TabPages
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.AppDatabase
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.MessagesEntity
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.ThemeEntity
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.UserEntity
+import com.kalashnyk.denys.defaultproject.utils.MocUtil
 import com.squareup.leakcanary.LeakCanary
 import com.squareup.leakcanary.RefWatcher
 
@@ -103,6 +110,29 @@ class App: MultiDexApplication() {
     //todo need refactor
     fun getViewModelComponent(): ViewModelComponent {
         return this.viewModelComponent!!
+    }
+
+    /**
+     *
+     */
+    fun saveMockToDatabase(){
+        AsyncTask.execute {
+            val listThemes: List<ThemeEntity> = MocUtil.mocListThemes()
+            listThemes.forEach {
+                it.convertItemForDataSource(item = it, isCached = false, screenType = null)
+            }
+            database?.themeDao()?.insert(listThemes)
+            val listUsers: List<UserEntity> = MocUtil.mocListUsers()
+            listUsers.forEach {
+                it.convertItemForDataSource(item = it, isCached = false, screenType = null)
+            }
+            database?.userDao()?.insert(listUsers)
+            val listMessages: List<MessagesEntity> = MocUtil.mocListMessages()
+            listMessages.forEach {
+                it.convertItemForDataSource(item = it, isCached = false, screenType = null)
+            }
+            database?.messagesDao()?.insert(listMessages)
+        }
     }
 
     private fun initLeakCanary() {

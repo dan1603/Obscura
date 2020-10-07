@@ -2,10 +2,13 @@ package com.kalashnyk.denys.defaultproject.usecases.repository.data_source.datab
 
 import androidx.paging.DataSource
 import androidx.room.*
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.BaseDao
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.MessagesEntity
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.ThemeEntity
+
 //todo create abstract parent for DAO
 @Dao
-interface MessagesDao {
+interface MessagesDao: BaseDao<MessagesEntity> {
     @Query("SELECT * FROM messages")
     fun getAll(): List<MessagesEntity>
 
@@ -15,14 +18,8 @@ interface MessagesDao {
     @Insert(onConflict=OnConflictStrategy.REPLACE)
     fun insertList(listEntities: List<MessagesEntity>)
 
-    @Insert(onConflict=OnConflictStrategy.REPLACE)
-    fun update(entity: MessagesEntity)
-
     @Update
     fun updateAll(list: List<MessagesEntity>)
-
-    @Delete
-    fun delete(entity: MessagesEntity)
 
     @Query("SELECT * FROM messages WHERE screenType = :screenType")
     fun getDataSource(
@@ -31,10 +28,6 @@ interface MessagesDao {
 
     @Query("DELETE FROM messages WHERE screenType = :screenType AND cached = 1")
     fun deleteCachedItems(screenType : String)
-
-    @Insert
-//        (onConflict=OnConflictStrategy.REPLACE)
-    fun insert(listEntities: List<MessagesEntity>)
 
     @Query("DELETE FROM messages WHERE screenType = :screenType")
     fun deleteAllItemsByType(screenType: String)

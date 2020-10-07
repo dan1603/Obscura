@@ -1,11 +1,14 @@
 package com.kalashnyk.denys.defaultproject.data.card_models
 
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import com.kalashnyk.denys.defaultproject.data.BaseModel
 import com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.BaseCardModel
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.ThemeEntity
 import com.kalashnyk.denys.defaultproject.utils.CARD_ARTICLE
+import com.squareup.picasso.Picasso
 
-class ArticleCardModel(private var feed : ThemeEntity) : BaseCardModel() {
+class ArticleCardModel(var feed : ThemeEntity) : BaseCardModel() {
     override fun onClick() {
         //TODO
     }
@@ -20,5 +23,12 @@ class ArticleCardModel(private var feed : ThemeEntity) : BaseCardModel() {
 
     override fun getBaseModel(): BaseModel {
         return feed
+    }
+
+    companion object{
+        @BindingAdapter("imageUrl")
+        fun setImageUrl(view: ImageView, poserPath: String) {
+            Picasso.get().load("https://i.imgur.com/tGbaZCY.jpg").into(view)
+        }
     }
 }

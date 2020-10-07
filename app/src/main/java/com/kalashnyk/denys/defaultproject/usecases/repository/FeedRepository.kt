@@ -56,7 +56,7 @@ class FeedRepositoryImpl(
             .doOnError {
                 val list: List<ThemeEntity> = MocUtil.mocListThemes()
                 list.forEach {
-                    it.converItemForDataSource(item = it, isCached = false, screenType = screenType)
+                    it.convertItemForDataSource(item = it, isCached = false, screenType = null)
                 }
                 saveItems(list, false, screenType)
             }
@@ -72,7 +72,7 @@ class FeedRepositoryImpl(
             .flatMap {
                 val list: List<ThemeEntity> = MocUtil.mocListThemes()
                 list.forEach {
-                    it.converItemForDataSource(item = it, isCached = true, screenType = screenType)
+                    it.convertItemForDataSource(item = it, isCached = true, screenType = null)
                 }
                 Single.just(list)
             }

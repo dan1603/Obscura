@@ -5,7 +5,7 @@
     <data>
         <variable
                 name="data"
-                type="com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.BaseCardModel"/>
+                type="com.kalashnyk.denys.defaultproject.data.card_models.MessagesCardModel"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
             android:orientation="vertical"
@@ -32,8 +32,8 @@
                     android:textSize="16sp"
                     android:fontFamily="sans-serif-medium"
                     android:textStyle="normal"
-                    android:textColor="@color/greyish_brown"
-                    android:text="@string/james_richardson"/>
+                    android:textColor="@color/grey_brown"
+                    android:text="@{data.messages.talkerName}"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -42,10 +42,12 @@
                     android:textStyle="normal"
                     android:layout_marginTop="@dimen/indentation_8"
                     android:layout_marginBottom="@dimen/indentation_8"
-                    android:textColor="@color/greyish_brown"
+                    android:textColor="@color/grey_brown"
                     android:letterSpacing="0.01"
                     android:lineSpacingExtra="-7sp"
-                    android:text="@string/some_message"/>
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="@{data.messages.getPreviewMessage()}"/>
         </LinearLayout>
         <TextView
                 android:id="@+id/llFollowingButton"

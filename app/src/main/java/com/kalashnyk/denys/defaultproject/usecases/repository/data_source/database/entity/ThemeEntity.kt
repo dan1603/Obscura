@@ -30,6 +30,11 @@ data class ThemeEntity(
     /**
      *
      */
+    @SerializedName("imageUrl")
+    val imageUrl: String,
+    /**
+     *
+     */
     @SerializedName("short_description")
     val shortDescription: String,
     //todo make category with object
@@ -60,7 +65,7 @@ data class ThemeEntity(
     val isArticle: Boolean
         get()=CARD_ARTICLE == type
 
-    fun converItemForDataSource(item : ThemeEntity, isCached: Boolean?, screenType : String?) : ThemeEntity {
+    fun convertItemForDataSource(item : ThemeEntity, isCached: Boolean?, screenType : String?) : ThemeEntity {
         isCached?.let { item.cached = CACHED_VALUE}
         screenType?.let { item.screenType = it }
         return item

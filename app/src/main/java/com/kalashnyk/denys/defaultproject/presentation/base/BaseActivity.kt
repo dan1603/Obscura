@@ -17,6 +17,7 @@ import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
 import com.kalashnyk.denys.defaultproject.presentation.navigation.Navigation
 import com.kalashnyk.denys.defaultproject.presentation.navigation.NavigationImpl
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.PageNavigationItem
+import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.TransitionBundle
 import com.kalashnyk.denys.defaultproject.utils.NetworkConnectionListener
 import com.kalashnyk.denys.defaultproject.utils.NetworkConnectionProvider
@@ -172,6 +173,14 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity(), NetworkC
 
     fun goToConversation(talkerId: Int){
         navigator.openConversationScreen(talkerId)
+    }
+
+    fun goToDetailListActivity(page: Pages){
+        navigator.openListScreen(page)
+    }
+
+    fun goToDetailProfileActivity(userId: Int) {
+        navigator.openProfileScreen(userId)
     }
 
     fun goToPage(page: PageNavigationItem) {

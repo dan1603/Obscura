@@ -27,6 +27,11 @@ data class MessagesEntity(
     /**
      *
      */
+    @SerializedName("talkerName")
+    val talkerName: String,
+    /**
+     *
+     */
     @SerializedName("messageList")
     val messageList: ArrayList<MessageItemEntity>,
     /**
@@ -38,6 +43,20 @@ data class MessagesEntity(
      */
     var cached : Int? = DEFAULT_CACHE_VALUE
     ) : BaseModel() {
+
+    /**
+     *
+     */
+    fun getPreviewMessage(): String{
+        if(messageList.isEmpty()) {
+            return ""
+        }
+        val last = messageList[0].text
+        if(last.length > 35){
+            return last.substring(0, 35) + " ..."
+        }
+        return last
+    }
 
     fun convertItemForDataSource(item : MessagesEntity, isCached: Boolean?, screenType : String?) : MessagesEntity {
         isCached?.let { item.cached = CACHED_VALUE }

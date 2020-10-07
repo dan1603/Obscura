@@ -28,7 +28,7 @@ class ConverterFactory(private val clickListener: ItemClickListener<*>) {
 
     private fun convert(item: BaseModel): BaseCardModel? {
         if(item is UserEntity) {
-            return UserCardModel(item)
+            return UserCardModel(item, clickListener as ItemClickListener<UserEntity>)
         }else if(item is MessagesEntity){
             return MessagesCardModel(item, clickListener as ItemClickListener<MessagesEntity>)
         }else if(item is ThemeEntity && item.isEvent){

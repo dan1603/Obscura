@@ -9,7 +9,7 @@ import com.kalashnyk.denys.defaultproject.utils.CARD_MESSAGES
 /**
  *
  */
-class MessagesCardModel(private var messages : MessagesEntity, private var listener: ItemClickListener<MessagesEntity>) : BaseCardModel() {
+class MessagesCardModel(var messages : MessagesEntity, private var listener: ItemClickListener<MessagesEntity>) : BaseCardModel() {
     override fun onClick() {
         listener.onClick(messages)
     }

@@ -19,7 +19,7 @@ data class UserEntity(
      */
     @PrimaryKey(autoGenerate=true)
     @SerializedName("id")
-    val id: Int? = null,
+    val id: Int,
 
     /**
      *
@@ -43,7 +43,7 @@ data class UserEntity(
      *
      */
     @SerializedName("avatar_preview")
-    val avatarPreview: String? = null,
+    var avatarPreview: String? = null,
 
     /**
      *

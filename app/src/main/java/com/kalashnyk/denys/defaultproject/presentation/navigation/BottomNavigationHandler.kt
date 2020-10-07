@@ -10,8 +10,11 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.presentation.fragments.main_tabs.tabs_people.TabsPeopleFragment
 import com.kalashnyk.denys.defaultproject.presentation.fragments.main_tabs.tabs_themes.TabsThemesFragment
-import com.kalashnyk.denys.defaultproject.presentation.fragments.messages.MessagesFragment
+import com.kalashnyk.denys.defaultproject.presentation.fragments.list_messages.ListMessagesFragment
+import com.kalashnyk.denys.defaultproject.presentation.fragments.list_themes.ListThemesFragment
+import com.kalashnyk.denys.defaultproject.presentation.fragments.list_users.ListUsersFragment
 import com.kalashnyk.denys.defaultproject.presentation.fragments.profile.ProfileFragment
+import com.kalashnyk.denys.defaultproject.presentation.widget.pageview.model.TabPages
 
 class BottomNavigationHandler(
     private val bottomNav: AHBottomNavigation,
@@ -63,7 +66,7 @@ class BottomNavigationHandler(
 
     private fun getPages()=arrayListOf<Pair<Fragment, AHBottomNavigationItem>>(
         Pair(
-            TabsThemesFragment.newInstance(),
+            ListThemesFragment.newInstance(TabPages.TAB_FEED),
             AHBottomNavigationItem(
                 bottomNav?.context?.getString(R.string.bottom_item_themes),
                 R.drawable.ic_themes_active
@@ -77,14 +80,14 @@ class BottomNavigationHandler(
             )
         ),
         Pair(
-            TabsPeopleFragment.newInstance(),
+            ListUsersFragment.newInstance(TabPages.TAB_PEOPLE),
             AHBottomNavigationItem(
                 bottomNav?.context?.getString(R.string.bottom_item_people),
                 R.drawable.ic_people_active
             )
         ),
         Pair(
-            MessagesFragment.newInstance(),
+            ListMessagesFragment.newInstance(TabPages.TAB_MESSAGES),
             AHBottomNavigationItem(
                 bottomNav?.context?.getString(R.string.bottom_item_messages),
                 R.drawable.ic_chats_active

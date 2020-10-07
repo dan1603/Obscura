@@ -13,6 +13,7 @@ import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
 import com.kalashnyk.denys.defaultproject.domain.FeedViewModel
 import com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.BaseCardModel
 import com.kalashnyk.denys.defaultproject.presentation.base.BasePagingFragment
+import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages
 import com.kalashnyk.denys.defaultproject.presentation.widget.pageview.model.TabPages
 import com.kalashnyk.denys.defaultproject.utils.EXTRAS_PAGES
 import com.kalashnyk.denys.defaultproject.presentation.item.ItemClickListener
@@ -39,9 +40,11 @@ class ListThemesFragment : BasePagingFragment<ListThemesDataBinding>(), ItemClic
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
+        arguments?.let {bundle ->
             //todo check and refactor
-            screenType=it.getSerializable(EXTRAS_PAGES).toString()
+            bundle.getSerializable(EXTRAS_PAGES)?.toString()?.let {
+                screenType=it
+            }
         }
     }
 
@@ -172,6 +175,17 @@ class ListThemesFragment : BasePagingFragment<ListThemesDataBinding>(), ItemClic
          */
         @JvmStatic
         fun newInstance(pages: TabPages) =
+            ListThemesFragment().apply {
+                arguments = Bundle().apply {
+                    this.putSerializable(EXTRAS_PAGES, pages)
+                }
+            }
+
+        /**
+         *
+         */
+        @JvmStatic
+        fun newInstance(pages: Pages) =
             ListThemesFragment().apply {
                 arguments = Bundle().apply {
                     this.putSerializable(EXTRAS_PAGES, pages)

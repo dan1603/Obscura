@@ -4,7 +4,6 @@ import android.os.Bundle
 import com.kalashnyk.denys.defaultproject.databinding.TabsPeopleDataBinding
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseFragment
-import com.kalashnyk.denys.defaultproject.presentation.fragments.main_tabs.tabs_themes.TabsThemesBindingModel
 import com.kalashnyk.denys.defaultproject.presentation.widget.pageview.model.TabPages
 
 /**

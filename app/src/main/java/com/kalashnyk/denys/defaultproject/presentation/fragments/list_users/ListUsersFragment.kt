@@ -178,6 +178,6 @@ class ListUsersFragment : BasePagingFragment<ListUsersDataBinding>(), ItemClickL
     }
 
     override fun onClick(item: UserEntity) {
-        //TODO
+        getBaseActivity().goToDetailProfileActivity(item.id)
     }
 }

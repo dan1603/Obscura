@@ -60,7 +60,7 @@ class MessagesRepositoryImpl(
             .doOnError {
                 val list: List<MessagesEntity> = MocUtil.mocListMessages()
                 list.forEach {
-                    it.convertItemForDataSource(item = it, isCached = false, screenType = screenType)
+                    it.convertItemForDataSource(item = it, isCached = false, screenType = null)
                 }
                 saveItems(list, false, screenType)
             }
@@ -76,7 +76,7 @@ class MessagesRepositoryImpl(
             .flatMap {
                 val list: List<MessagesEntity> = MocUtil.mocListMessages()
                 list.forEach {
-                    it.convertItemForDataSource(item = it, isCached = true, screenType = screenType)
+                    it.convertItemForDataSource(item = it, isCached = true, screenType = null)
                 }
                 Single.just(list)
             }

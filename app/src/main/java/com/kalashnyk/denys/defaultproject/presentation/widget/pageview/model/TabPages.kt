@@ -33,7 +33,15 @@ enum class TabPages(
     /**
      * for tab articles
      */
-    TAB_ARTICLES(R.string.tab_articles);
+    TAB_ARTICLES(R.string.tab_articles),
+    /**
+     *
+     */
+    TAB_FEED(R.string.tab_feed),
+    /**
+     *
+     */
+    TAB_MESSAGES(R.string.tab_messages);
 
     /**
      * for show message body

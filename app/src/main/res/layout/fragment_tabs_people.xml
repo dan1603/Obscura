@@ -9,7 +9,7 @@
     </data>
     <FrameLayout android:layout_width="match_parent"
                  android:layout_height="match_parent"
-                 tools:context=".presentation.fragments.main_tabs.tabs_people.TabsPeopleBindingModel">
+                 tools:context=".presentation.fragments.main_tabs.tabs_people.TabsPeopleFragment">
         <com.kalashnyk.denys.defaultproject.presentation.widget.pageview.PagesView
                 android:id="@+id/pages_view"
                 android:layout_width="match_parent"

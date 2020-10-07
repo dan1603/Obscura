@@ -1,6 +1,7 @@
 package com.kalashnyk.denys.defaultproject.presentation.activities.splash
 
 import android.os.Handler
+import com.kalashnyk.denys.defaultproject.App
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.databinding.SplashBinding
 import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
@@ -28,6 +29,7 @@ class SplashActivity : BaseActivity<SplashBinding>() {
      * @param binding
      */
     override fun setupViewLogic(binding: SplashBinding) {
+        (application as App).saveMockToDatabase()
         Handler().postDelayed({
             navigator.openWelcomeScreen(this)
             finish()

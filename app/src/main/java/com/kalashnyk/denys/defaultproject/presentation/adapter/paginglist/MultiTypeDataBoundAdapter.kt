@@ -1,10 +1,16 @@
 package com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist
 
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.DiffUtil
+import com.squareup.picasso.Picasso
 
-abstract class MultiTypeDataBoundAdapter<T, V : ViewDataBinding> (diffUtil: DiffUtil.ItemCallback<T>) : BaseDataBoundPagingAdapter<T, V>(diffUtil) {
+
+abstract class MultiTypeDataBoundAdapter<T, V : ViewDataBinding>(diffUtil: DiffUtil.ItemCallback<T>) : BaseDataBoundPagingAdapter<T, V>(
+    diffUtil
+) {
 
     fun isEmpty(): Boolean {
         return itemCount == 0

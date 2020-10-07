@@ -6,7 +6,7 @@
 
         <variable
                 name="data"
-                type="com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.BaseCardModel" />
+                type="com.kalashnyk.denys.defaultproject.data.card_models.EventCardModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +25,7 @@
                 android:layout_marginStart="@dimen/indentation_16"
                 android:layout_marginEnd="@dimen/indentation_20"
                 android:fontFamily="sans-serif-medium"
-                android:text="@string/help_me_choose_a_photo_camera"
+                android:text="@{data.feed.title}"
                 android:textColor="@color/grey_brown"
                 android:textSize="@dimen/txt_size_18"
                 android:textStyle="normal"
@@ -54,6 +54,7 @@
                 android:layout_height="@dimen/view_params_230"
                 android:layout_marginTop="@dimen/indentation_16"
                 android:src="@color/soft_blue"
+                app:imageUrl="@{data.feed.imageUrl}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvEventCardName" />

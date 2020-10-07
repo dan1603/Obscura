@@ -67,6 +67,14 @@
                 android:name=".presentation.activities.detail.ConversationActivity"
                 android:screenOrientation="portrait"/>
 
+        <activity
+                android:name=".presentation.activities.detail.DetailListActivity"
+                android:screenOrientation="portrait"/>
+
+        <activity
+                android:name=".presentation.activities.detail.DetailProfileActivity"
+                android:screenOrientation="portrait"/>
+
         <provider
                 android:name="androidx.core.content.FileProvider"
                 android:authorities="${applicationId}.file.provider"

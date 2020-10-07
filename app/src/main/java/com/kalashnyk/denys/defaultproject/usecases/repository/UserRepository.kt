@@ -57,7 +57,7 @@ class UserRepositoryImpl(
             .doOnError {
                 val list: List<UserEntity> = MocUtil.mocListUsers()
                 list.forEach {
-                    it.convertItemForDataSource(item = it, isCached = false, screenType = screenType)
+                    it.convertItemForDataSource(item = it, isCached = false, screenType = null)
                 }
                 saveItems(list, false, screenType)
             }
@@ -73,7 +73,7 @@ class UserRepositoryImpl(
             .flatMap {
                 val list: List<UserEntity> = MocUtil.mocListUsers()
                 list.forEach {
-                    it.convertItemForDataSource(item = it, isCached = true, screenType = screenType)
+                    it.convertItemForDataSource(item = it, isCached = true, screenType = null)
                 }
                 Single.just(list)
             }

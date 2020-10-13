@@ -9,6 +9,7 @@ import com.kalashnyk.denys.defaultproject.usecases.repository.remote_data_source
 import com.kalashnyk.denys.defaultproject.utils.ConverterFactory
 import com.kalashnyk.denys.defaultproject.utils.MocUtil
 import io.reactivex.Completable
+import io.reactivex.Observable
 import io.reactivex.Single
 
 //todo create abstract parent for Repository
@@ -27,6 +28,11 @@ interface UserRepository {
      *
      */
     fun fetchNext(screenType: String, lastItemId: String): Completable
+
+    /**
+     *
+     */
+    fun userById(userId: Int): Observable<UserEntity>
 
     /**
      *
@@ -51,35 +57,57 @@ class UserRepositoryImpl(
 ) : UserRepository {
 
     override fun fetchUsers(screenType: String): Completable {
-        return userRemoteDataSource
-            .fetchUsers(screenType, null)
-            // todo remove moc logic and add handling error when api logic implemented
-            .doOnError {
-                val list: List<UserEntity> = MocUtil.mocListUsers()
-                list.forEach {
-                    it.convertItemForDataSource(item = it, isCached = false, screenType = null)
-                }
-                saveItems(list, false, screenType)
+//        return userRemoteDataSource
+//            .fetchUsers(screenType, null)
+//            // todo remove moc logic and add handling error when api logic implemented
+//            .doOnError {
+//                val list: List<UserEntity> = MocUtil.mocListUsers()
+//                list.forEach {
+//                    it.convertItemForDataSource(item = it, isCached = false, screenType = null)
+//                }
+//                saveItems(list, false, screenType)
+//            }
+//            .flatMapCompletable {
+//                Completable.fromAction { }
+//            }
+        return Completable.fromAction {
+            Thread.sleep(2000)
+            val list: List<UserEntity> = MocUtil.mocListUsers()
+            list.forEach {
+                it.convertItemForDataSource(item = it, isCached = false, screenType = null)
             }
-            .flatMapCompletable {
-                Completable.fromAction { }
-            }
+            saveItems(list, false, screenType)
+        }
     }
 
     override fun fetchNext(screenType: String, lastItemId: String): Completable {
-        return userRemoteDataSource
-            .fetchUsers(screenType, lastItemId)
-            // todo remove moc logic and add handling error when api logic implemented
-            .flatMap {
-                val list: List<UserEntity> = MocUtil.mocListUsers()
-                list.forEach {
-                    it.convertItemForDataSource(item = it, isCached = true, screenType = null)
-                }
-                Single.just(list)
+//        return userRemoteDataSource
+//            .fetchUsers(screenType, lastItemId)
+//            // todo remove moc logic and add handling error when api logic implemented
+//            .flatMap {
+//                val list: List<UserEntity> = MocUtil.mocListUsers()
+//                list.forEach {
+//                    it.convertItemForDataSource(item = it, isCached = true, screenType = null)
+//                }
+//                Single.just(list)
+//            }
+//            .flatMapCompletable {
+//                Completable.fromAction { saveItems(it, true, screenType) }
+//            }
+        return Completable.fromAction {
+            Thread.sleep(2000)
+            val list: List<UserEntity> = MocUtil.mocListUsers()
+            list.forEach {
+                it.convertItemForDataSource(item = it, isCached = true, screenType = null)
             }
-            .flatMapCompletable {
-                Completable.fromAction { saveItems(it, true, screenType) }
-            }
+            saveItems(list, true, screenType)
+        }
+    }
+
+    override fun userById(userId: Int): Observable<UserEntity> {
+        return Observable.just(
+            userDataSource.getById(userId)
+        )
     }
 
     override fun deleteCachedItems(screenType: String): Completable=

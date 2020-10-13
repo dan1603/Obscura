@@ -75,6 +75,10 @@
                 android:name=".presentation.activities.detail.DetailProfileActivity"
                 android:screenOrientation="portrait"/>
 
+        <activity
+                android:name=".presentation.activities.detail.DetailFeedActivity"
+                android:screenOrientation="portrait"/>
+
         <provider
                 android:name="androidx.core.content.FileProvider"
                 android:authorities="${applicationId}.file.provider"

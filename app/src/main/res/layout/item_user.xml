@@ -24,6 +24,14 @@
                 <!--app:layout_constraintStart_toStartOf="parent"-->
                 <!--app:layout_constraintTop_toTopOf="parent"-->
                 <!--app:cardCornerRadius="@dimen/view_params_23">-->
+
+        <ProgressBar
+                android:layout_width="@dimen/view_params_45"
+                android:layout_height="@dimen/view_params_45"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="@dimen/indentation_10"/>
+
             <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/crcvUserProfileImage"
                     android:layout_width="@dimen/view_params_45"

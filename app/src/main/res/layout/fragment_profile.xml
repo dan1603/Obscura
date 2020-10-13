@@ -13,6 +13,10 @@
                 type="com.kalashnyk.denys.defaultproject.presentation.fragments.profile.flow.ProfileModelBinding" />
 
         <variable
+                name="isOwner"
+                type="java.lang.Boolean" />
+
+        <variable
                 name="typeNavigation"
                 type="com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages" />
 
@@ -68,10 +72,19 @@
                         android:paddingStart="@dimen/indentation_16"
                         android:paddingEnd="@dimen/indentation_16"
                         android:src="@drawable/ic_white"
+                        app:viewVisibility="@{isOwner}"
                         app:layout_constraintBottom_toBottomOf="@+id/profile_personal_label"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/profile_personal_label" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ProgressBar
+                    android:layout_width="@dimen/view_params_60"
+                    android:layout_height="@dimen/view_params_60"
+                    android:layout_margin="@dimen/indentation_16"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/profile_personal_header"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_personal_header"/>
 
             <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile_avatar"
@@ -157,6 +170,7 @@
                         android:paddingStart="@dimen/indentation_16"
                         android:paddingEnd="@dimen/indentation_16"
                         android:src="@drawable/ic_white"
+                        app:viewVisibility="@{isOwner}"
                         app:layout_constraintBottom_toBottomOf="@+id/profile_professional_label"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/profile_professional_label" />
@@ -318,6 +332,7 @@
                 android:textColor="@color/grey_brown"
                 android:textSize="@dimen/txt_size_14"
                 android:textStyle="normal"
+                app:viewVisibility="@{isOwner}"
                 app:layout_constraintBottom_toBottomOf="@+id/profile_themes_container"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -338,6 +353,7 @@
                 android:textColor="@color/soft_blue"
                 android:textSize="@dimen/txt_size_14"
                 android:textStyle="normal"
+                app:viewVisibility="@{isOwner}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/profile_app_setting" />

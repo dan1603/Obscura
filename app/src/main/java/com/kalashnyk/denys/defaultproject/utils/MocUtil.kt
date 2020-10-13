@@ -131,7 +131,7 @@ object MocUtil {
             this.screenType = TabPages.TAB_PEOPLE.name
         }
         list.add(entity5)
-        val avatar6 = "https://lh3.googleusercontent.com/proxy/ei24EknSZY0NsCiAUZkMbRRjMOtQ83GYRtKbMF_egs_6S74xx5viZ1CaZxqXNqXovt-U00v2Mv4c63_ukHQUiNZbRW5m-49LSEDVd-TDO04EO88odFwHrM8XT64gga1OdwO6CQM"
+        val avatar6 = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRfEC9CHLUYNXZdxal6PVsYtQpbgkRoezEuig&usqp=CAU"
         val entity6=UserEntity(6, ("Mohammed"), ("Russo"), ("$CARD_USER fathername 6"), avatar6).apply {
             this.occupation = occupation
             this.location = location
@@ -145,7 +145,7 @@ object MocUtil {
             this.screenType = TabPages.TAB_PEOPLE.name
         }
         list.add(entity7)
-        val avatar8 = "https://lh3.googleusercontent.com/proxy/DmnoiW1l1zyJt0yepFnt2ad5T-r4qbQLzo5b0yh4x7_AD8xyAnTQ_V_c1jzjhG-NVtosIuzH-gUwqZr-WIqOrMI-CE1tCJHB5WMM8m057IkBFymz6sPXT9eyQDBo"
+        val avatar8 = "https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/NafSadh_Profile.jpg/768px-NafSadh_Profile.jpg"
         val entity8=UserEntity(8, ("Siddharth"), ("Kelly"), ("$CARD_USER fathername 8"), avatar8).apply {
             this.occupation = occupation
             this.location = location

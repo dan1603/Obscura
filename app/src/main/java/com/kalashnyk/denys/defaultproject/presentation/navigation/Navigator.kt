@@ -10,6 +10,7 @@ import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.AuthActivity
 import com.kalashnyk.denys.defaultproject.presentation.activities.location.LocationChooserActivity
 import com.kalashnyk.denys.defaultproject.presentation.activities.detail.ConversationActivity
+import com.kalashnyk.denys.defaultproject.presentation.activities.detail.DetailFeedActivity
 import com.kalashnyk.denys.defaultproject.presentation.activities.detail.DetailListActivity
 import com.kalashnyk.denys.defaultproject.presentation.activities.detail.DetailProfileActivity
 import com.kalashnyk.denys.defaultproject.presentation.activities.main.MainActivity
@@ -36,6 +37,7 @@ interface Navigation : FragmentNavigator {
     fun openMainScreen()
     fun openListScreen(page: Pages)
     fun openProfileScreen(userId: Int)
+    fun openFeedElementScreen(themeId: Int)
     fun openDetailScreen(id: Int)
     fun openConversationScreen(talkerId: Int)
     fun openSettings(uriSetting : String)
@@ -143,6 +145,16 @@ class NavigationImpl(override var navigatorSource: BaseActivity<*>) : Navigation
     override fun openProfileScreen(userId: Int) {
         val intent = Intent(navigatorSource, DetailProfileActivity::class.java).apply {
             this.putExtra(DETAIL_ID, userId)
+        }
+        navigatorSource.startActivity(intent)
+    }
+
+    /**
+     *
+     */
+    override fun openFeedElementScreen(themeId: Int) {
+        val intent = Intent(navigatorSource, DetailFeedActivity::class.java).apply {
+            this.putExtra(DETAIL_ID, themeId)
         }
         navigatorSource.startActivity(intent)
     }

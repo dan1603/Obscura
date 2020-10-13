@@ -8,7 +8,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.kalashnyk.denys.defaultproject.BR
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.databinding.ListThemesDataBinding
-import com.kalashnyk.denys.defaultproject.data.BaseModel
 import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
 import com.kalashnyk.denys.defaultproject.domain.FeedViewModel
 import com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist.BaseCardModel
@@ -17,6 +16,7 @@ import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navig
 import com.kalashnyk.denys.defaultproject.presentation.widget.pageview.model.TabPages
 import com.kalashnyk.denys.defaultproject.utils.EXTRAS_PAGES
 import com.kalashnyk.denys.defaultproject.presentation.item.ItemClickListener
+import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.ThemeEntity
 import com.kalashnyk.denys.defaultproject.utils.FIRST_LIST_POSITION
 import com.kalashnyk.denys.defaultproject.utils.FeedLayoutManager
 import com.kalashnyk.denys.defaultproject.utils.MIN_LIST_SIZE
@@ -27,7 +27,7 @@ import javax.inject.Inject
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com
  */
-class ListThemesFragment : BasePagingFragment<ListThemesDataBinding>(), ItemClickListener<BaseModel> {
+class ListThemesFragment : BasePagingFragment<ListThemesDataBinding>(), ItemClickListener<ThemeEntity> {
 
     /**
      *
@@ -193,7 +193,7 @@ class ListThemesFragment : BasePagingFragment<ListThemesDataBinding>(), ItemClic
             }
     }
 
-    override fun onClick(item: BaseModel) {
-        //TODO
+    override fun onClick(item: ThemeEntity) {
+        getBaseActivity().goToDetailFeedElementActivity(item.id)
     }
 }

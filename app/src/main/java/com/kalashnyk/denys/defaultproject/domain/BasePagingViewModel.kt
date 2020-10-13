@@ -66,10 +66,10 @@ abstract class BasePagingViewModel : BaseViewModel() {
 
                     lastItemId?.let {
                         // todo add after remove moc logic
-                        //if(it != itemAtEnd.getCardId()){
-                        rangeData(it, itemAtEnd.getCardId())
-                        lastItemId=itemAtEnd.getCardId()
-                        //}
+                        if(it != itemAtEnd.getCardId()){
+                            rangeData(it, itemAtEnd.getCardId())
+                            lastItemId=itemAtEnd.getCardId()
+                        }
                     }
                 }
             })

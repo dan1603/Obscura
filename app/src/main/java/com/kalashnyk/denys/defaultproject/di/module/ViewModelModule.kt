@@ -36,8 +36,26 @@ class ViewModelModule(app: App) {
 
     @ViewModelScope
     @Provides
+    internal fun providesFeedElementViewModel(feedUseCases: FeedUseCases): FeedElementViewModel {
+        return FeedElementViewModel(feedUseCases)
+    }
+
+    @ViewModelScope
+    @Provides
     internal fun providesUserViewModel(userUseCases: UserUseCases): UserViewModel {
         return UserViewModel(userUseCases)
+    }
+
+    @ViewModelScope
+    @Provides
+    internal fun providesSingleProfileViewModel(userUseCases: UserUseCases): SingleProfileViewModel {
+        return SingleProfileViewModel(userUseCases)
+    }
+
+    @ViewModelScope
+    @Provides
+    internal fun providesConversationViewModel(messagesUseCases: MessagesUseCases): ConversationViewModel {
+        return ConversationViewModel(messagesUseCases)
     }
 
     @ViewModelScope

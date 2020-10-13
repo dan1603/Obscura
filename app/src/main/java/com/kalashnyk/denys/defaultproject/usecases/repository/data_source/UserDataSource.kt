@@ -33,6 +33,11 @@ interface UserDataSource {
     /**
      *
      */
+    fun getById(itemId: Int): UserEntity
+
+    /**
+     *
+     */
     fun insertAndClearCache(items: List<UserEntity>, typeScreen: String?)
 }
 
@@ -59,6 +64,10 @@ class UsersDataSourceImpl(private val database: AppDatabase) : UserDataSource {
 
     override fun insert(items: List<UserEntity>) : Unit=
         database.userDao().insert(items)
+
+    override fun getById(itemId: Int): UserEntity {
+        return database.userDao().getById(itemId)
+    }
 
 
     override fun insertAndClearCache(items: List<UserEntity>, typeScreen: String?): Unit=

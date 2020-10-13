@@ -16,7 +16,7 @@ class TextBinding {
         @BindingAdapter("bindText")
         fun bindText(
             view: View,
-            textBindingModel: TextBindingModel
+            textBindingModel: TextBindingModel?
         ) {
             when(textBindingModel) {
                 is TextBindingModel.Span -> {

@@ -2,16 +2,21 @@ package com.kalashnyk.denys.defaultproject.presentation.activities.detail
 
 import android.view.MenuItem
 import com.kalashnyk.denys.defaultproject.R
-import com.kalashnyk.denys.defaultproject.databinding.DetailDataBinding
+import com.kalashnyk.denys.defaultproject.databinding.ConversationDataBinding
 import com.kalashnyk.denys.defaultproject.di.component.ViewModelComponent
+import com.kalashnyk.denys.defaultproject.domain.ConversationViewModel
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseActivity
 import com.kalashnyk.denys.defaultproject.utils.DETAIL_ID
 import kotlinx.android.synthetic.main.activity_detail.*
+import javax.inject.Inject
 
 /**
  *
  */
-class ConversationActivity: BaseActivity<DetailDataBinding>() {
+class ConversationActivity: BaseActivity<ConversationDataBinding>() {
+
+    var viewModel: ConversationViewModel? = null
+        @Inject set
 
     private var userId: Int = 0
 
@@ -19,9 +24,9 @@ class ConversationActivity: BaseActivity<DetailDataBinding>() {
         component.inject(this)
     }
 
-    override fun getLayoutId(): Int = R.layout.activity_detail
+    override fun getLayoutId(): Int = R.layout.activity_conversation
 
-    override fun setupViewLogic(binder: DetailDataBinding) {
+    override fun setupViewLogic(binder: ConversationDataBinding) {
         userId = intent.getIntExtra(DETAIL_ID, 0)
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
@@ -41,6 +46,6 @@ class ConversationActivity: BaseActivity<DetailDataBinding>() {
 
     override fun onResume() {
         super.onResume()
-        txtDetailSurname.text = userId.toString()
+//        txtDetailSurname.text = userId.toString()
     }
 }

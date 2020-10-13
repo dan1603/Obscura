@@ -2,11 +2,14 @@ package com.kalashnyk.denys.defaultproject.presentation.fragments.profile.flow
 
 import android.content.Context
 import android.graphics.Typeface
+import android.widget.ImageView
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import androidx.databinding.BindingAdapter
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages
 import com.kalashnyk.denys.defaultproject.utils.binding.TextBindingModel
+import com.kalashnyk.denys.defaultproject.utils.glide.GlideApp
 import java.util.*
 
 
@@ -186,4 +189,6 @@ class ProfileModelBinding(
             R.color.grey_brown
         )
     }
+
+
 }

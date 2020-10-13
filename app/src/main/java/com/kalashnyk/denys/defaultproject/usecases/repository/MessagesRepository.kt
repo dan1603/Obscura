@@ -54,35 +54,51 @@ class MessagesRepositoryImpl(
 ) : MessagesRepository {
 
     override fun fetchMessages(screenType: String): Completable {
-        return messagesRemoteDataSource
-            .fetchMessages(screenType, null)
-            // todo remove moc logic and add handling error when api logic implemented
-            .doOnError {
-                val list: List<MessagesEntity> = MocUtil.mocListMessages()
-                list.forEach {
-                    it.convertItemForDataSource(item = it, isCached = false, screenType = null)
-                }
-                saveItems(list, false, screenType)
+//        return messagesRemoteDataSource
+//            .fetchMessages(screenType, null)
+//            // todo remove moc logic and add handling error when api logic implemented
+//            .doOnError {
+//                val list: List<MessagesEntity> = MocUtil.mocListMessages()
+//                list.forEach {
+//                    it.convertItemForDataSource(item = it, isCached = false, screenType = null)
+//                }
+//                saveItems(list, false, screenType)
+//            }
+//            .flatMapCompletable {
+//                Completable.fromAction { }
+//            }
+        return Completable.fromAction {
+            Thread.sleep(2000)
+            val list: List<MessagesEntity> = MocUtil.mocListMessages()
+            list.forEach {
+                it.convertItemForDataSource(item = it, isCached = false, screenType = null)
             }
-            .flatMapCompletable {
-                Completable.fromAction { }
-            }
+            saveItems(list, false, screenType)
+        }
     }
 
     override fun fetchNext(screenType: String, lastItemId: String): Completable {
-        return messagesRemoteDataSource
-            .fetchMessages(screenType, lastItemId)
-            // todo remove moc logic and add handling error when api logic implemented
-            .flatMap {
-                val list: List<MessagesEntity> = MocUtil.mocListMessages()
-                list.forEach {
-                    it.convertItemForDataSource(item = it, isCached = true, screenType = null)
-                }
-                Single.just(list)
+//        return messagesRemoteDataSource
+//            .fetchMessages(screenType, lastItemId)
+//            // todo remove moc logic and add handling error when api logic implemented
+//            .flatMap {
+//                val list: List<MessagesEntity> = MocUtil.mocListMessages()
+//                list.forEach {
+//                    it.convertItemForDataSource(item = it, isCached = true, screenType = null)
+//                }
+//                Single.just(list)
+//            }
+//            .flatMapCompletable {
+//                Completable.fromAction { saveItems(it, true, screenType) }
+//            }
+        return Completable.fromAction {
+            Thread.sleep(2000)
+            val list: List<MessagesEntity> = MocUtil.mocListMessages()
+            list.forEach {
+                it.convertItemForDataSource(item = it, isCached = true, screenType = null)
             }
-            .flatMapCompletable {
-                Completable.fromAction { saveItems(it, true, screenType) }
-            }
+            saveItems(list, true, screenType)
+        }
     }
 
     override fun deleteCachedItems(screenType: String): Completable=

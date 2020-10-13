@@ -80,7 +80,7 @@
                 app:viewVisibility="@{loading}">
             <include
                     android:id="@+id/multiStateView"
-                    layout="@layout/loading"/>
+                    layout="@layout/loading_flat"/>
         </LinearLayout>
 
     </LinearLayout>

@@ -32,9 +32,9 @@ class ConverterFactory(private val clickListener: ItemClickListener<*>) {
         }else if(item is MessagesEntity){
             return MessagesCardModel(item, clickListener as ItemClickListener<MessagesEntity>)
         }else if(item is ThemeEntity && item.isEvent){
-            return EventCardModel(item)
+            return EventCardModel(item, clickListener as ItemClickListener<ThemeEntity>)
         }else if(item is ThemeEntity && item.isArticle){
-            return ArticleCardModel(item)
+            return ArticleCardModel(item, clickListener as ItemClickListener<ThemeEntity>)
         }
         return null
     }

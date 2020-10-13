@@ -9,7 +9,7 @@ import com.kalashnyk.denys.defaultproject.utils.CARD_ARTICLE
 import com.kalashnyk.denys.defaultproject.utils.CARD_EVENT
 import com.kalashnyk.denys.defaultproject.utils.CARD_MESSAGES
 import com.kalashnyk.denys.defaultproject.utils.CARD_USER
-import com.squareup.picasso.Picasso
+import com.kalashnyk.denys.defaultproject.utils.glide.GlideApp
 
 /**
  * todo finished paging adapter
@@ -33,13 +33,5 @@ class PagingAdapter(diffUtil: DiffUtil.ItemCallback<BaseCardModel>) :
     override fun bindItem(holder: DataBoundViewHolder<ViewDataBinding>, position: Int, payloads: List<Any>) {
         super.bindItem(holder, position, payloads)
 
-    }
-
-    companion object{
-        @JvmStatic
-        @BindingAdapter("imageUrl")
-        fun setImageUrl(view: ImageView, imageUrl: String) {
-            Picasso.get().load(imageUrl).fit().centerCrop().into(view)
-        }
     }
 }

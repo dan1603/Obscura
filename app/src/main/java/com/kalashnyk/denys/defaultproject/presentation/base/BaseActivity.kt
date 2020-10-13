@@ -183,6 +183,10 @@ abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity(), NetworkC
         navigator.openProfileScreen(userId)
     }
 
+    fun goToDetailFeedElementActivity(themeId: Int) {
+        navigator.openFeedElementScreen(themeId)
+    }
+
     fun goToPage(page: PageNavigationItem) {
         navigator.goToPage(page)
     }

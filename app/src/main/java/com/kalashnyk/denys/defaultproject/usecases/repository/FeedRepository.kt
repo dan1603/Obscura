@@ -50,35 +50,51 @@ class FeedRepositoryImpl(
 ) : FeedRepository {
 
     override fun fetchFeed(screenType: String): Completable {
-        return feedRemoteDataSource
-            .fetchFeed(screenType)
-                // todo remove moc logic and add handling error when api logic implemented
-            .doOnError {
-                val list: List<ThemeEntity> = MocUtil.mocListThemes()
-                list.forEach {
-                    it.convertItemForDataSource(item = it, isCached = false, screenType = null)
-                }
-                saveItems(list, false, screenType)
+//        return feedRemoteDataSource
+//            .fetchFeed(screenType)
+//                // todo remove moc logic and add handling error when api logic implemented
+//            .doOnError {
+//                val list: List<ThemeEntity> = MocUtil.mocListThemes()
+//                list.forEach {
+//                    it.convertItemForDataSource(item = it, isCached = false, screenType = null)
+//                }
+//                saveItems(list, false, screenType)
+//            }
+//            .flatMapCompletable {
+//                Completable.fromAction { }
+//            }
+        return Completable.fromAction {
+            Thread.sleep(2000)
+            val list: List<ThemeEntity> = MocUtil.mocListThemes()
+            list.forEach {
+                it.convertItemForDataSource(item = it, isCached = false, screenType = null)
             }
-            .flatMapCompletable {
-                Completable.fromAction { }
-            }
+            saveItems(list, false, screenType)
+        }
     }
 
     override fun fetchNext(screenType: String, lastItemId: String): Completable {
-        return feedRemoteDataSource
-            .fetchNext(screenType, lastItemId)
-            // todo remove moc logic and add handling error when api logic implemented
-            .flatMap {
-                val list: List<ThemeEntity> = MocUtil.mocListThemes()
-                list.forEach {
-                    it.convertItemForDataSource(item = it, isCached = true, screenType = null)
-                }
-                Single.just(list)
+//        return feedRemoteDataSource
+//            .fetchNext(screenType, lastItemId)
+//            // todo remove moc logic and add handling error when api logic implemented
+//            .flatMap {
+//                val list: List<ThemeEntity> = MocUtil.mocListThemes()
+//                list.forEach {
+//                    it.convertItemForDataSource(item = it, isCached = true, screenType = null)
+//                }
+//                Single.just(list)
+//            }
+//            .flatMapCompletable {
+//                Completable.fromAction { saveItems(it, true, screenType) }
+//            }
+        return Completable.fromAction {
+            Thread.sleep(2000)
+            val list: List<ThemeEntity> = MocUtil.mocListThemes()
+            list.forEach {
+                it.convertItemForDataSource(item = it, isCached = true, screenType = null)
             }
-            .flatMapCompletable {
-                Completable.fromAction { saveItems(it, true, screenType) }
-            }
+            saveItems(list, true, screenType)
+        }
     }
 
     override fun deleteCachedFeed(screenType: String): Completable=

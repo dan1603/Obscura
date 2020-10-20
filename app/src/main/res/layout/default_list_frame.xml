@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:shimmer="http://schemas.android.com/tools">
+
+    <com.kalashnyk.denys.defaultproject.utils.multistate.ShimmerFrameLayout
+            android:clickable="false"
+            android:focusable="false"
+            android:id="@+id/shimmerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/indentation_8"
+            android:paddingLeft="@dimen/indentation_16"
+            android:paddingRight="@dimen/indentation_16"
+            app:shimmer_color="@color/black_38"
+            app:shimmer_auto_start="false"
+            app:shimmer_animation_duration="2000"
+            app:auto_start="true"
+            app:duration="2000">
+
+        <ImageView
+                android:id="@+id/shimmerimage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"/>
+
+    </com.kalashnyk.denys.defaultproject.utils.multistate.ShimmerFrameLayout>
+</layout>

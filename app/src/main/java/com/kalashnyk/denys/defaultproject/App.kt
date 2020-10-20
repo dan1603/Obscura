@@ -1,0 +1,151 @@
+package com.kalashnyk.denys.defaultproject
+
+import androidx.room.Room
+import android.content.Context
+import android.os.AsyncTask
+import androidx.multidex.MultiDex
+import androidx.multidex.MultiDexApplication
+import com.kalashnyk.denys.defaultproject.di.module.InteractorModule
+import com.kalashnyk.denys.defaultproject.di.component.*
+import com.kalashnyk.denys.defaultproject.di.module.*
+import com.kalashnyk.denys.moduleproject.data_source.database.AppDatabase
+import com.kalashnyk.denys.moduleproject.data_source.database.entity.*
+import com.kalashnyk.denys.moduleproject.data_source.di.DaggerDatabaseComponent
+import com.kalashnyk.denys.moduleproject.data_source.di.DatabaseModule
+import com.kalashnyk.denys.moduleproject.remote_data_source.di.ApiModule
+import com.kalashnyk.denys.moduleproject.remote_data_source.di.DaggerApiComponent
+import com.kalashnyk.denys.moduleproject.repository.di.DaggerRepositoryComponent
+import com.kalashnyk.denys.moduleproject.repository.di.RepositoryModule
+import com.kalashnyk.denys.moduleproject.utils.MocUtil
+import com.kalashnyk.denys.moduleproject.utils.di.AppModule
+import com.kalashnyk.denys.moduleproject.utils.di.DaggerAppComponent
+import com.squareup.leakcanary.LeakCanary
+import com.squareup.leakcanary.RefWatcher
+
+/**
+ *
+ */
+class App: MultiDexApplication() {
+
+    private var viewModelComponent: ViewModelComponent? = null
+    private var database: AppDatabase? = null
+    private var refWatcher: RefWatcher? = null
+
+    init {
+        applicationInstance = this
+    }
+
+    companion object {
+        private lateinit var applicationInstance: App
+        private val LEAK_CANARY_ENABLED = true
+
+        @JvmStatic
+        fun getAppContext(): Context {
+            return applicationInstance.applicationContext
+        }
+
+        fun get(): App {
+            return applicationInstance.applicationContext as App
+        }
+
+        fun getRefWatcher(): RefWatcher {
+            return get().refWatcher!!
+        }
+//todo refactor using ApplicationUtils
+        fun isLeakCanaryEnabled(): Boolean {
+            return (BuildConfig.DEBUG && LEAK_CANARY_ENABLED
+                    && BuildConfig.APPLICATION_ID.equals(
+                "com.kalashnyk.denys.defaultproject"
+            ))
+        }
+
+        fun getContext(): Context = this.getContext()
+    }
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        initLeakCanary()
+        initRoom()
+        initDagger()
+    }
+
+    private fun initRoom() {
+        // todo don't use allowMainThreadQueries()
+        database = Room.databaseBuilder(this, AppDatabase::class.java, "defaultproject_database")
+            .allowMainThreadQueries()
+            .fallbackToDestructiveMigration() //TODO: dont know if this is a good practise
+            .build()
+    }
+
+    private fun initDagger() {
+        val appComponent = DaggerAppComponent.builder()
+            .appModule(AppModule(this))
+            .build()
+
+        val apiComponent = DaggerApiComponent.builder()
+            .appComponent(appComponent)
+            .apiModule(ApiModule())
+            .build()
+
+        val databaseComponent = DaggerDatabaseComponent.builder()
+            .databaseModule(DatabaseModule(this!!.database!!))
+            .build()
+
+        val repositoryComponent = DaggerRepositoryComponent.builder()
+            .apiComponent(apiComponent)
+            .databaseComponent(databaseComponent)
+            .repositoryModule(RepositoryModule())
+            .build()
+
+        val interactorComponent = DaggerInteractorComponent.builder()
+            .repositoryComponent(repositoryComponent)
+            .interactorModule(InteractorModule())
+            .build()
+
+        viewModelComponent = DaggerViewModelComponent.builder()
+            .interactorComponent(interactorComponent)
+            .viewModelModule(ViewModelModule(this))
+            .build()
+    }
+
+    //todo need refactor
+    fun getViewModelComponent(): ViewModelComponent {
+        return this.viewModelComponent!!
+    }
+
+    /**
+     *
+     */
+    fun saveMockToDatabase(){
+        AsyncTask.execute {
+            val listThemes: List<ThemeEntity> = MocUtil.mocListThemes()
+            listThemes.forEach {
+                it.convertItemForDataSource(item = it, isCached = false, screenType = null)
+            }
+            database?.themeDao()?.insert(listThemes)
+            val listUsers: List<UserEntity> = MocUtil.mocListUsers()
+            listUsers.forEach {
+                it.convertItemForDataSource(item = it, isCached = false, screenType = null)
+            }
+            database?.userDao()?.insert(listUsers)
+            val listMessages: List<MessagesEntity> = MocUtil.mocListMessages()
+            listMessages.forEach {
+                it.convertItemForDataSource(item = it, isCached = false, screenType = null)
+            }
+            database?.messagesDao()?.insert(listMessages)
+        }
+    }
+
+    private fun initLeakCanary() {
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return
+        }
+        if (isLeakCanaryEnabled()) {
+            refWatcher = LeakCanary.install(this)
+        }
+    }
+}

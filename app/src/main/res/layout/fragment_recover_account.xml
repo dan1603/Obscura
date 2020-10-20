@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:bind="http://schemas.android.com/tools">
+    <data class="RecoverAccountDataBinding">
+
+        <import type="android.view.View"/>
+
+        <variable name="bindingModel"
+                  type="com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowModelBinding"/>
+
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:background="@color/soft_blue"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+        <androidx.constraintlayout.widget.Guideline
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/guidelineStart"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/indentation_16"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/guidelineEnd"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/indentation_16"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/guidelineTop"
+                app:layout_constraintGuide_begin="@dimen/indentation_16"
+                android:orientation="horizontal"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/guidelineBottom"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_end="@dimen/indentation_16"/>
+
+        <ImageView
+                android:id="@+id/btnRoutBack"
+                android:layout_width="@dimen/view_params_24"
+                android:layout_height="@dimen/view_params_24"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:onClick="@{(view)-> bindingModel.onRoutBack()}"
+                android:src="@drawable/ic_back"
+                app:layout_constraintStart_toStartOf="@id/guidelineStart"
+                app:layout_constraintTop_toTopOf="@id/guidelineTop"/>
+
+        <TextView
+                android:id="@+id/tvRecoverAccountLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/indentation_35"
+                android:gravity="center_horizontal"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="@dimen/txt_size_1"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/txt_size_36"
+                android:textStyle="bold"
+                android:text="@string/password_recovery"
+                app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+                app:layout_constraintStart_toStartOf="@id/guidelineStart"
+                app:layout_constraintTop_toTopOf="@id/btnRoutBack"/>
+
+        <LinearLayout
+                android:id="@+id/containerRecoverAccountInputs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/indentation_35"
+                android:background="@drawable/common_back_auth_inputs"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+                app:layout_constraintStart_toStartOf="@id/guidelineStart"
+                app:layout_constraintTop_toBottomOf="@id/tvRecoverAccountLabel"
+                bind:authError="@{bindingModel.authFlowError}">
+
+            <TextView
+                    android:id="@+id/tv_enter_the_pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/indentation_16"
+                    android:layout_marginTop="@dimen/indentation_16"
+                    android:layout_marginEnd="@dimen/indentation_16"
+                    android:fontFamily="sans-serif"
+                    android:paddingStart="@dimen/indentation_4"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="@dimen/txt_size_1"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="@dimen/txt_size_16"
+                    android:textStyle="normal"
+                    android:text="@string/enter_the_pass"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilAuthEmail"
+                    style="@style/TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/indentation_16"
+                    android:layout_marginEnd="@dimen/indentation_16"
+                    android:layout_marginBottom="@dimen/indentation_8"
+                    android:layout_marginTop="@dimen/indentation_8">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etAuthEmail"
+                        android:theme="@style/EditTextCommonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_email"
+                        android:letterSpacing="0.01"
+                        android:singleLine="true"/>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <Button
+                android:id="@+id/btnRecoverAccount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/indentation_16"
+                android:layout_marginTop="@dimen/indentation_10"
+                android:layout_marginEnd="@dimen/indentation_16"
+                android:background="@drawable/common_back_button"
+                android:gravity="center"
+                android:letterSpacing="0.01"
+                android:textColor="@color/text_color_blue"
+                android:textSize="@dimen/txt_size_14"
+                android:textStyle="normal"
+                android:text="@string/get_a_password"
+                app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+                app:layout_constraintStart_toStartOf="@id/guidelineStart"
+                app:layout_constraintTop_toBottomOf="@id/containerRecoverAccountInputs"
+                android:onClick="@{(view)-> bindingModel.onAuthRequest(containerRecoverAccountInputs)}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

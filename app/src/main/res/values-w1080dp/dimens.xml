@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--width - 1080 (value from 320 * 3.375)-->
+    <dimen name="indentation_4">14dp</dimen>
+    <dimen name="indentation_5">17dp</dimen>
+    <dimen name="indentation_6">20dp</dimen>
+    <dimen name="indentation_8">27dp</dimen>
+    <dimen name="indentation_10">34dp</dimen>
+    <dimen name="indentation_12">41dp</dimen>
+    <dimen name="indentation_16">54dp</dimen>
+    <dimen name="indentation_18">61dp</dimen>
+    <dimen name="indentation_20">67.5dp</dimen>
+    <dimen name="indentation_22">74dp</dimen>
+    <dimen name="indentation_26">88dp</dimen>
+    <dimen name="indentation_30">101dp</dimen>
+    <dimen name="indentation_32">108dp</dimen>
+    <dimen name="indentation_35">118dp</dimen>
+    <dimen name="indentation_40">135dp</dimen>
+    <dimen name="indentation_50">169dp</dimen>
+    <dimen name="indentation_60">202dp</dimen>
+    <dimen name="indentation_64">216dp</dimen>
+    <dimen name="indentation_130">439dp</dimen>
+    <dimen name="indentation_210">709dp</dimen>
+
+    <dimen name="txt_size_1">3.5sp</dimen>
+    <dimen name="txt_size_12">40sp</dimen>
+    <dimen name="txt_size_14">47sp</dimen>
+    <dimen name="txt_size_16">54sp</dimen>
+    <dimen name="txt_size_18">61sp</dimen>
+    <dimen name="txt_size_20">68sp</dimen>
+    <dimen name="txt_size_22">74sp</dimen>
+    <dimen name="txt_size_34">115sp</dimen>
+    <dimen name="txt_size_36">122sp</dimen>
+    <dimen name="txt_size_40">135sp</dimen>
+    <dimen name="txt_size_45">152sp</dimen>
+    <dimen name="txt_size_100">338sp</dimen>
+
+    <dimen name="view_params_16">54dp</dimen>
+    <dimen name="view_params_24">81dp</dimen>
+    <dimen name="view_params_36">121dp</dimen>
+    <dimen name="view_params_60">202dp</dimen>
+    <dimen name="view_params_65">219dp</dimen>
+    <dimen name="view_params_165">557dp</dimen>
+    <dimen name="view_params_280">945dp</dimen>
+</resources>

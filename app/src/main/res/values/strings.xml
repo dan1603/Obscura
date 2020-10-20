@@ -1,0 +1,145 @@
+<resources>
+    <string name="app_name">Obscura Light</string>
+    <string name="EXTRAS_ID">ID</string>
+    <string name="txt_default_name">Name</string>
+    <string name="txt_default_surname">Surname</string>
+    <string name="txt_default_fathername">Father\'s name</string>
+    <string name="btn_text_get_user">GET USER</string>
+    <string name="et_hint_enter_user_id">Enter user ID</string>
+    <string name="txt_def_error">Error</string>
+    <string name="et_hint_enter_your_name">Enter your name</string>
+    <string name="et_hint_enter_your_surname">Enter your surname</string>
+    <string name="et_hint_enter_your_fathername">Enter your father\'s name</string>
+    <string name="btn_text_add_user">Add User</string>
+    <string name="text_add_response_message">Add response message</string>
+    <string name="btn_text_save">Save</string>
+    <string name="btn_text_delete_user">Delete User</string>
+    <string name="text_file_select">Select File to upload</string>
+    <string name="btn_text_select_file">Select file</string>
+    <string name="bottom_item_themes">Themes</string>
+    <string name="bottom_item_profile">Profile</string>
+    <string name="bottom_item_people">People</string>
+    <string name="bottom_item_messages">Messages</string>
+    <string name="ok">Ok</string>
+    <string name="network_offline">offline</string>
+    <string name="root_detection_description">root detection description</string>
+    <string name="settings">settings</string>
+    <string name="created_themes_title">Created themes</string>
+    <string name="followed_themes_title">Followed themes</string>
+    <string name="conversation_title">Conversation</string>
+    <!--auth screen-->
+    <string name="password_recovery">PASSWORD\nRECOVERY</string>
+    <string name="get_a_password">GET A PASSWORD</string>
+    <string name="enter_the_pass">Enter the password you used\nto create your account</string>
+    <string name="hint_email">Enter your email</string>
+    <string name="hint_password">Enter your password</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="dont_have_an_account">Don`t have an account?</string>
+    <string name="you_can_sign_in_with">You can sign in with</string>
+    <string name="text_i_agree_with">I agree with</string>
+    <string name="text_terms_and_privacy">Terms and Privacy</string>
+    <string name="text_you_can_sign_up_with">You can sign up with</string>
+    <string name="text_have_an_account">Have an account?</string>
+    <string name="enter_your_name_and_surname">Enter your name and surname</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <!--welcome screen-->
+    <string name="welcome_to_obscuralight">WELCOME TO\nOBSCURALIGHT</string>
+    <string name="welcome_information">Our application is a consulting\nservice that allows you to quickly\nand easily
+        obtain
+        reliable and\nnecessary information on any topic.
+    </string>
+    <string name="welcome_text_already_have_an_account">Already have an account?</string>
+    <string name="welcome_text_not_with_us_yet">Not with us yet?</string>
+    <!--validation error messages-->
+    <string name="error_internet_connection">No network connection</string>
+    <string name="error_network_message">Please connect to network</string>
+    <string name="error_password_blank_message">Password can not be blank</string>
+    <string name="error_password_message">Invalid password</string>
+    <string name="error_password_not_same_message">Passwords don\'t match</string>
+    <string name="error_wrong_old_password">The current password you entered is incorrect</string>
+    <string name="error_email_blank_message">Email can not be blank</string>
+    <string name="error_flow_sign_in_data">Invalid email and password</string>
+    <string name="error_flow_sign_up_data">Invalid data</string>
+    <string name="error_terms_conditions">You don\'t agree terms conditions</string>
+    <string name="error_email_message">Invalid email address</string>
+    <string name="error_phone_message">Invalid phone number</string>
+    <string name="error_phone_blank_message">Phone can not be blank</string>
+    <string name="error_code_message">Invalid code</string>
+    <string name="error_please_try_again">Please try again</string>
+    <string name="exit_confirm">Are you sure you want to leave the app?</string>
+    <!--another errors-->
+    <string name="error_no_browser_found">No browser found - please install a valid web browser to open the offer.</string>
+    <!--common controls-->
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+
+    <string name="follow">FOLLOW</string>
+    <string name="leave_a_comment">LEAVE A COMMENT</string>
+    <string name="want_to_go">WANT TO GO</string>
+    <string name="invite">INVITE</string>
+    <string name="following">FOLLOWING</string>
+    <string name="online">ONLINE</string>
+
+    <string name="help_me_choose_a_photo_camera">Help me choose a photo
+        camera for a beginner title</string>
+    <string name="places">Places</string>
+    <string name="article_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        incididunt ut labore et dolore magna aliqua...
+    </string>
+
+    <!--todo for test -->
+    <string name="may_13_2019">May, 13, 2019</string>
+    <!--todo for test -->
+    <string name="_3_30_pm_5_00_pm">3:30 PM - 5:00 PM</string>
+    <!--todo for test -->
+    <string name="alexander_schmidt_ave_546">Alexander Schmidt Ave 546</string>
+
+    <!--todo for test -->
+    <string name="james_richardson">James Richardson</string>
+    <!--todo for test -->
+    <string name="jurisprudence_law">Jurisprudence / Law</string>
+    <!--todo for test -->
+    <string name="some_message">Some message</string>
+    <!--todo for test -->
+    <string name="san_fransisco_ca_usa">San Fransisco, CA, USA</string>
+
+    <string name="empty_view_head">There is nothing here right now</string>
+    <string name="empty_view_bottom">You may want to check again later</string>
+    <string name="common_error_msg_head">If you want to try again later</string>
+    <string name="common_error_msg_bottom">Something went wrong</string>
+    <!--main tabs-->
+    <string name="tab_following">FOLLOWING</string>
+    <string name="tab_people">ALL PEOPLE</string>
+    <string name="tab_themes">ALL THEMES</string>
+    <string name="tab_events">EVENTS</string>
+    <string name="tab_articles">ARTICLES</string>
+    <string name="tab_feed">FEED</string>
+    <string name="tab_messages">MESSAGES</string>
+    <!--profile screen-->
+    <string name="profile_professional">PROFESSIONAL</string>
+    <string name="profile_personal">PERSONAL</string>
+    <string name="profile_themes">THEMES</string>
+    <string name="profile_app_settings">Application settings</string>
+    <string name="profile_log_out">LOG OUT</string>
+    <!--empty profile-->
+    <string name="profile_default_not_specified">Not specified</string>
+    <string name="profile_occupation_not_specified">Speciality not specified</string>
+    <string name="profile_certificates_empty">No professional certificates added</string>
+    <string name="profile_certificates_format">Professional certificates (%1$s)</string>
+    <string name="profile_created_themes_empty">Create a theme</string>
+    <string name="profile_favorite_categories_format">Interested in: </string>
+    <string name="profile_favorite_categories_empty">Not specified</string>
+    <string name="profile_created_themes_format">Created themes (%1$s)</string>
+    <string name="profile_followed_themes_empty">No followed themes yet</string>
+    <string name="profile_followed_themes_format">Followed themes (%1$s)</string>
+    <!--send location -->
+    <string name="action_geo_send">Send location</string>
+    <string name="title_geo">Location</string>
+    <string name="title_geo_current">current location</string>
+    <string name="location_chosen_text">chosen location</string>
+    <string name="location_chosen_err">chosen location error</string>
+</resources>

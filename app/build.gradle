@@ -1,0 +1,115 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+//apply plugin: 'com.google.gms.google-services'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
+    defaultConfig {
+        applicationId "com.kalashnyk.denys.defaultproject"
+        minSdkVersion 22
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
+        renderscriptTargetApi 28
+        renderscriptSupportModeEnabled true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dataBinding {
+        enabled = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin_version}"
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlin_version}"
+    api 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation 'junit:junit:4.12'
+
+    //Support libs
+    api 'androidx.annotation:annotation:1.1.0'
+    api 'androidx.appcompat:appcompat:1.1.0'
+    api 'androidx.recyclerview:recyclerview:1.1.0'
+    api 'androidx.cardview:cardview:1.0.0'
+    api 'com.google.android.material:material:1.2.0-alpha06'
+    api 'androidx.browser:browser:1.2.0'
+    api 'androidx.constraintlayout:constraintlayout:1.1.3'
+    api 'androidx.multidex:multidex:2.0.1'
+    implementation "androidx.fragment:fragment:1.2.5"
+
+    // Rx
+    api 'io.reactivex.rxjava2:rxkotlin:2.0.0'
+    api "io.reactivex.rxjava2:rxandroid:2.1.1"
+    api "io.reactivex.rxjava2:rxjava:2.2.7"
+    api 'com.jakewharton.timber:timber:4.7.1'
+    api 'com.jakewharton.rxrelay2:rxrelay:2.0.0'
+    // ViewModel and LiveData
+    api 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+    api 'androidx.lifecycle:lifecycle-common-java8:2.1.0'
+    // Dagger
+    api "com.google.dagger:dagger:${dagger}"
+    kapt "com.google.dagger:dagger-compiler:${dagger}"
+    // Logging
+    api "com.squareup.okhttp3:logging-interceptor:${log}"
+    // Paging
+    api 'androidx.paging:paging-runtime:2.1.1'
+    // AH Bottom Navigation
+    api 'com.aurelhubert:ahbottomnavigation:2.3.4'
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    // Java utils
+    api 'org.apache.commons:commons-lang3:3.5'
+    // Glide
+    api "com.github.bumptech.glide:glide:${glideVersion}"
+    kapt "com.github.bumptech.glide:compiler:${glideVersion}"
+    api("com.github.bumptech.glide:recyclerview-integration:${glideVersion}") {
+        transitive = false
+    }
+    // Google Play Services
+    api "com.google.android.gms:play-services-ads:18.3.0"
+    api "com.google.android.gms:play-services-gcm:17.0.0"
+    api "com.google.android.gms:play-services-location:17.0.0"
+    api "com.google.android.gms:play-services-basement:17.1.1"
+    api "com.google.android.gms:play-services-analytics:17.0.0"
+    api 'com.google.android.gms:play-services-auth:17.0.0'
+    api "com.google.firebase:firebase-core:17.2.1"
+    api "com.google.firebase:firebase-messaging:20.1.0"
+    api "com.google.firebase:firebase-perf:19.0.3"
+    api "com.google.firebase:firebase-invites:17.0.0"
+    api "com.google.android.gms:play-services-maps:17.0.0"
+    api "com.google.android.gms:play-services-location:17.0.0"
+
+    // Facebook
+    api 'com.facebook.stetho:stetho:1.5.0'
+    api 'com.facebook.stetho:stetho-okhttp3:1.5.0'
+    api 'com.facebook.android:facebook-android-sdk:4.27.0'
+
+    //Utility
+    api 'net.danlew:android.joda:2.9.9' // Time utility
+    api 'com.karumi:dexter:4.2.0'
+    testImplementation "joda-time:joda-time:2.9.9" // Test utility
+    //CircleImageView
+    api 'de.hdodenhof:circleimageview:2.1.0'
+    api "org.jetbrains.kotlin:kotlin-reflect:1.3.20"
+
+    //Picasso
+    api 'com.squareup.picasso:picasso:2.71828'
+
+    // Usecases
+    api project (':usecases')
+}

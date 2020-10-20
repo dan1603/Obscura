@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:bind="http://schemas.android.com/tools"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="ProfileDataBinding">
+
+        <import type="android.view.View" />
+
+        <variable
+                name="bindingModel"
+                type="com.kalashnyk.denys.defaultproject.presentation.fragments.profile.flow.ProfileModelBinding" />
+
+        <variable
+                name="typeNavigation"
+                type="com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages" />
+
+        <variable
+                name="clickHandler"
+                type="com.kalashnyk.denys.defaultproject.presentation.fragments.profile.flow.ProfileFlow.ProfileListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/ice_blue">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profile_personal_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/indentation_8"
+                android:layout_marginTop="@dimen/indentation_16"
+                android:background="@drawable/recover_account_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/profile_personal_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/txt_size_40"
+                    android:background="@drawable/common_blue_back"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                        android:id="@+id/profile_personal_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/indentation_16"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/profile_personal"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/txt_size_16"
+                        android:textStyle="normal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                        android:id="@+id/profile_edit_personal"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:onClick="@{(view)-> clickHandler.openScreen(typeNavigation.EDIT_PERSONAL_DATA)}"
+                        android:paddingStart="@dimen/indentation_16"
+                        android:paddingEnd="@dimen/indentation_16"
+                        android:src="@drawable/ic_white"
+                        app:layout_constraintBottom_toBottomOf="@+id/profile_personal_label"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/profile_personal_label" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ProgressBar
+                    android:layout_width="@dimen/view_params_60"
+                    android:layout_height="@dimen/view_params_60"
+                    android:layout_margin="@dimen/indentation_16"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/profile_personal_header"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_personal_header"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_avatar"
+                    android:layout_width="@dimen/view_params_60"
+                    android:layout_height="@dimen/view_params_60"
+                    android:layout_margin="@dimen/indentation_16"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/profile_personal_header"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_personal_header"
+                    tools:src="@mipmap/ic_launcher"
+                    app:imageUrl="@{bindingModel.profileAvatarBinding}"/>
+
+            <TextView
+                    android:id="@+id/profile_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/indentation_16"
+                    android:textColor="@color/grey_brown"
+                    android:textSize="@dimen/txt_size_16"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toEndOf="@id/profile_avatar"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_personal_header"
+                    bind:bindText="@{bindingModel.profileFullNameBinding}"
+                    tools:text="Name Surname" />
+
+            <TextView
+                    android:id="@+id/profile_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/indentation_16"
+                    android:drawableStart="@drawable/ic_profile_location"
+                    android:drawablePadding="@dimen/indentation_8"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/soft_blue"
+                    android:textSize="@dimen/txt_size_14"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/profile_avatar"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_name"
+                    bind:bindText="@{bindingModel.profileLocationBinding}"
+                    tools:text="Geolocation" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profile_professional_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/indentation_8"
+                android:background="@drawable/recover_account_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_personal_container">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/profile_professional_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/view_params_40"
+                    android:background="@drawable/common_blue_back"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                <TextView
+                        android:id="@+id/profile_professional_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/indentation_16"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/profile_professional"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/txt_size_16"
+                        android:textStyle="normal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                        android:id="@+id/profile_edit_professional"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:onClick="@{(view)-> clickHandler.openScreen(typeNavigation.EDIT_PROFESSIONAL_DATA)}"
+                        android:paddingStart="@dimen/indentation_16"
+                        android:paddingEnd="@dimen/indentation_16"
+                        android:src="@drawable/ic_white"
+                        app:layout_constraintBottom_toBottomOf="@+id/profile_professional_label"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/profile_professional_label" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                    android:id="@+id/profile_occupation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/indentation_16"
+                    android:drawableStart="@drawable/ic_profile_occupation"
+                    android:drawablePadding="@dimen/indentation_16"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_vertical|start"
+                    android:textColor="@color/grey_brown"
+                    android:textSize="@dimen/txt_size_14"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_professional_header"
+                    bind:bindText="@{bindingModel.profileOccupationBinding}"
+                    tools:text="UX/UI designer" />
+
+            <TextView
+                    android:id="@+id/profile_professional_certificates_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/indentation_16"
+                    android:drawableStart="@drawable/ic_profile_certificate"
+                    android:drawablePadding="@dimen/indentation_16"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_vertical|start"
+                    android:textColor="@color/grey_brown"
+                    android:textSize="@dimen/txt_size_14"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_occupation"
+                    bind:bindText="@{bindingModel.profileProfessionalCertificatesBinding}"
+                    tools:text="Professional certificates (2)" />
+
+            <TextView
+                    android:id="@+id/profile_professional_interests"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/indentation_16"
+                    android:drawableStart="@drawable/ic_profile_interest"
+                    android:drawablePadding="@dimen/indentation_16"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_vertical|start"
+                    android:textColor="@color/grey_brown"
+                    android:textSize="@dimen/txt_size_14"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_professional_certificates_count"
+                    bind:bindText="@{bindingModel.profileFavoriteCategoriesBinding}"
+                    tools:text="Interested in: " />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profile_themes_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/indentation_8"
+                android:background="@drawable/recover_account_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_professional_container">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/profile_themes_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/view_params_40"
+                    android:background="@drawable/common_blue_back"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                        android:id="@+id/profile_themes_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/indentation_16"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/profile_themes"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/txt_size_16"
+                        android:textStyle="normal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                        android:id="@+id/profile_rout_calendar"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:onClick="@{(view)-> clickHandler.openScreen(typeNavigation.THEMES_CALENDAR)}"
+                        android:paddingStart="@dimen/indentation_16"
+                        android:paddingEnd="@dimen/indentation_16"
+                        android:src="@drawable/ic_calendar"
+                        app:layout_constraintBottom_toBottomOf="@+id/profile_themes_label"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/profile_themes_label" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                    android:id="@+id/profile_created_themes_count"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/indentation_16"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:drawableStart="@drawable/ic_created_themes"
+                    android:drawablePadding="@dimen/indentation_16"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_vertical|start"
+                    android:onClick="@{(view)-> clickHandler.openScreen(typeNavigation.CREATED_THEMES)}"
+                    android:textColor="@color/grey_brown"
+                    android:textSize="@dimen/txt_size_14"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_themes_header"
+                    bind:bindText="@{bindingModel.profileCreatedThemesBinding}"
+                    tools:text="Created themes (12)" />
+
+            <TextView
+                    android:id="@+id/profile_followed_themes_count"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/indentation_16"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:drawableStart="@drawable/ic_followed_themes"
+                    android:drawablePadding="@dimen/indentation_16"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_vertical|start"
+                    android:onClick="@{(view)-> clickHandler.openScreen(typeNavigation.FOLLOWED_THEMES)}"
+                    android:textColor="@color/grey_brown"
+                    android:textSize="@dimen/txt_size_14"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_created_themes_count"
+                    bind:bindText="@{bindingModel.profileFollowedThemesBinding}"
+                    tools:text="Followed themes (28)" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+                android:id="@+id/profile_app_setting"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/indentation_16"
+                android:background="?android:attr/selectableItemBackground"
+                android:drawableEnd="@drawable/ic_forward"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center_vertical|start"
+                android:onClick="@{(view)-> clickHandler.openScreen(typeNavigation.APPLICATION_SETTINGS)}"
+                android:text="@string/profile_app_settings"
+                android:textColor="@color/grey_brown"
+                android:textSize="@dimen/txt_size_14"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_themes_container"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/profile_logout" />
+
+        <TextView
+                android:id="@+id/profile_logout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/indentation_16"
+                android:layout_marginStart="@dimen/indentation_16"
+                android:layout_marginEnd="@dimen/indentation_16"
+                android:background="?android:attr/selectableItemBackground"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center_vertical"
+                android:onClick="@{(view)-> clickHandler.onLogout()}"
+                android:text="@string/profile_log_out"
+                android:textColor="@color/soft_blue"
+                android:textSize="@dimen/txt_size_14"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_app_setting" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

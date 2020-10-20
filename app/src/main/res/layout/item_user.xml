@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+                name="data"
+                type="com.kalashnyk.denys.moduleproject.data_source.data.card_models.UserCardModel"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/indentation_16"
+            android:onClick="@{() -> data.onClick()}"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground">
+
+        <!--<com.google.android.material.circularreveal.cardview.CircularRevealCardView-->
+                <!--android:id="@+id/crcvUserProfileImage"-->
+                <!--android:layout_height="@dimen/view_params_45"-->
+                <!--android:layout_width="@dimen/view_params_45"-->
+                <!--android:layout_marginStart="@dimen/indentation_10"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent"-->
+                <!--app:cardCornerRadius="@dimen/view_params_23">-->
+
+        <ProgressBar
+                android:layout_width="@dimen/view_params_45"
+                android:layout_height="@dimen/view_params_45"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="@dimen/indentation_10"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/crcvUserProfileImage"
+                    android:layout_width="@dimen/view_params_45"
+                    android:layout_height="@dimen/view_params_45"
+                    android:src="@color/soft_blue"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="@dimen/indentation_10"
+                    app:imageUrl="@{data.user.avatarPreview}"/>
+        <!--</com.google.android.material.circularreveal.cardview.CircularRevealCardView>-->
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/crcvUserProfileImage"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/llFollowingButton"
+                android:paddingStart="@dimen/indentation_16"
+                android:paddingEnd="0dp"
+                android:orientation="vertical">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_marginTop="@dimen/indentation_8"
+                    android:fontFamily="sans-serif-medium"
+                    android:textStyle="normal"
+                    android:textColor="@color/grey_brown"
+                    android:text="@{data.getFullName()}"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="normal"
+                    android:layout_marginTop="@dimen/indentation_8"
+                    android:textColor="@color/grey_brown"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="-7sp"
+                    android:text="@{data.user.occupation}"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/indentation_8"
+                    android:textSize="12sp"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="normal"
+                    android:textColor="@color/grey_brown"
+                    android:text="@{data.getLocationToString()}"
+                    android:drawableStart="@drawable/ic_profile_location"
+                    android:drawablePadding="@dimen/indentation_8"/>
+        </LinearLayout>
+        <TextView
+                android:id="@+id/llFollowingButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif-medium"
+                android:textStyle="normal"
+                android:textColor="@color/soft_blue"
+                android:lineSpacingExtra="8sp"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/indentation_8"
+                android:drawableStart="@drawable/ic_following"
+                android:drawablePadding="@dimen/indentation_8"
+                android:text="@string/following"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

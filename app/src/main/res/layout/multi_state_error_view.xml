@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <!--<data class="CommonErrorViewBinding">-->
+    <!--</data>-->
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:layout_gravity="center_horizontal"
+                  android:gravity="center"
+                  android:clickable="true">
+
+        <!--<ImageView-->
+                <!--android:id="@+id/error_image"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:src="@drawable/page_error" />-->
+<!--todo refactor - using single case with handling different text color and size-->
+        <TextView
+                android:id="@+id/error_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/indentation_16"
+                android:textColor="@color/colorWhite"
+                android:text="@string/common_error_msg_head"
+                android:textSize="@dimen/txt_size_12" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/txt_size_12"
+                android:fontFamily="sans-serif"
+                android:textStyle="normal"
+                android:textColor="@color/colorWhite"
+                android:gravity="center_horizontal"
+                android:text="@string/common_error_msg_bottom"
+        />
+
+    </LinearLayout>
+
+</layout>

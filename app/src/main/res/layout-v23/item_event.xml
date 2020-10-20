@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="data"
+                type="com.kalashnyk.denys.moduleproject.data_source.data.card_models.EventCardModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> data.onClick()}"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/indentation_20">
+
+        <TextView
+                android:id="@+id/tvEventCardName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/indentation_16"
+                android:layout_marginEnd="@dimen/indentation_20"
+                android:fontFamily="sans-serif-medium"
+                android:text="@{data.feed.title}"
+                android:textColor="@color/grey_brown"
+                android:textSize="@dimen/txt_size_18"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toStartOf="@id/crcvEventCardType"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+                android:id="@+id/crcvEventCardType"
+                android:layout_width="@dimen/view_params_76"
+                android:layout_height="@dimen/indentation_20"
+                android:layout_marginEnd="@dimen/indentation_16"
+                android:background="@color/light_purple"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/places"
+                android:gravity="center_vertical|center_horizontal"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/txt_size_12"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/view_params_230"
+                android:layout_marginTop="@dimen/indentation_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvEventCardName" />
+
+        <ImageView
+                android:id="@+id/ivEventCardPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/view_params_230"
+                android:layout_marginTop="@dimen/indentation_16"
+                android:src="@color/soft_blue"
+                app:imageUrl="@{data.feed.imageUrl}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvEventCardName" />
+
+        <LinearLayout
+                android:id="@+id/linDateAndTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/indentation_20"
+                android:layout_marginTop="@dimen/indentation_22"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivEventCardPhoto">
+
+            <ImageView
+                    android:id="@+id/ivDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/ic_date_not_clickable" />
+
+            <TextView
+                    android:id="@+id/tvEventCardDate"
+                    style="@style/TextStyleItemEventDateTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/indentation_16"
+                    android:text="@string/may_13_2019" />
+
+            <ImageView
+                    android:id="@+id/ivTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/indentation_16"
+                    android:background="@drawable/ic_choose_time_not_clickable" />
+
+            <TextView
+                    android:id="@+id/tvEventCardTime"
+                    style="@style/TextStyleItemEventDateTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/indentation_16"
+                    android:text="@string/_3_30_pm_5_00_pm" />
+
+        </LinearLayout>
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/indentation_10"
+                android:padding="@dimen/indentation_4"
+                android:src="@drawable/ic_forward"
+                app:layout_constraintBottom_toBottomOf="@+id/linDateAndTime"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/linDateAndTime" />
+
+
+        <LinearLayout
+                android:id="@+id/linEventCardAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/indentation_18"
+                android:layout_marginTop="@dimen/indentation_30"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linDateAndTime">
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_go_to_map" />
+
+            <TextView
+                    android:id="@+id/tvEventCardAddress"
+                    android:textSize="@dimen/txt_size_14"
+                    android:fontFamily="sans-serif-medium"
+                    android:textStyle="normal"
+                    android:textColor="@color/soft_blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/indentation_16"
+                    android:text="@string/alexander_schmidt_ave_546" />
+        </LinearLayout>
+
+        <View
+                android:id="@+id/vDivider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/indentation_30"
+                android:background="@color/color_light_gray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linEventCardAddress" />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/vDivider">
+
+            <LinearLayout
+                    android:id="@+id/linEventCardWantToGo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="67"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingVertical="@dimen/indentation_22"
+
+                    >
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_want_to_go" />
+
+                <TextView
+                        android:id="@+id/tvEventCardWantToGo"
+                        android:textSize="@dimen/txt_size_14"
+                        android:fontFamily="sans-serif-medium"
+                        android:textStyle="normal"
+                        android:textColor="@color/soft_blue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/indentation_8"
+                        android:text="@string/want_to_go" />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="100"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/indentation_22">
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_invite" />
+
+                <TextView
+                        android:textSize="@dimen/txt_size_14"
+                        android:fontFamily="sans-serif-medium"
+                        android:textStyle="normal"
+                        android:textColor="@color/soft_blue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/indentation_8"
+                        android:text="@string/invite" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

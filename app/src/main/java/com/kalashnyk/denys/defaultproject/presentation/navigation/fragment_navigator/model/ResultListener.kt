@@ -1,0 +1,3 @@
+package com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model
+
+interface ResultListener

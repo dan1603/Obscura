@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data class="SplashBinding">
+
+    </data>
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark"
+            android:fitsSystemWindows="true"
+            tools:context=".presentation.activities.splash.SplashActivity">
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/txt_size_45"
+                android:fontFamily="sans-serif"
+                android:textStyle="bold"
+                android:textColor="@color/colorWhite"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="2sp"
+                android:textAllCaps="true"
+                android:gravity="center"
+                android:text="@string/app_name"/>
+
+    </FrameLayout>
+</layout>

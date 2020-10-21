@@ -1,16 +1,17 @@
 package com.kalashnyk.denys.defaultproject.utils.extention
 
-import android.graphics.drawable.Drawable
-import android.widget.ImageView
-import com.bumptech.glide.Priority
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.kalashnyk.denys.defaultproject.utils.glide.GlideRequest
 //import com.kalashnyk.denys.defaultproject.utils.glide.GlideApp
 //import com.kalashnyk.denys.defaultproject.utils.glide.GlideRequest
-import com.kalashnyk.denys.defaultproject.utils.glide.RoundedCornersTransformation
+
+import android.graphics.drawable.Drawable
+import android.widget.ImageView
+import android.widget.ProgressBar
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
+import com.kalashnyk.denys.defaultproject.utils.glide.GlideRequest
 import java.io.File
+import com.kalashnyk.denys.defaultproject.utils.glide.GlideImageLoader
+
 
 fun ImageView.loadImageByUrl(path: String?, placeholder : Int, error : Int) {
 //    GlideApp.with(context)
@@ -21,6 +22,14 @@ fun ImageView.loadImageByUrl(path: String?, placeholder : Int, error : Int) {
 //            .error(error)
 //            .priority(Priority.IMMEDIATE)
 //            .into(this)
+}
+
+fun ImageView.loadWithGlide(url: String?, pb: ProgressBar){
+    GlideImageLoader(this, pb)
+        .load(
+            url,
+            RequestOptions()
+                .placeholder(this.drawable))
 }
 
 fun ImageView.loadImage(path: String?) {
@@ -109,7 +118,9 @@ fun ImageView.loadDrawableRes(drawableRes: Int?) {
 
 fun <TranscodeType> GlideRequest<TranscodeType>.disableDiskCache(isDiskCacheStrategyDisable: Boolean): GlideRequest<TranscodeType> {
     return if (isDiskCacheStrategyDisable) {
-        diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.NONE).skipMemoryCache(true)
+        diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(
+            true
+        )
     } else {
         this
     }

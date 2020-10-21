@@ -78,14 +78,6 @@
                         app:layout_constraintTop_toTopOf="@+id/profile_personal_label" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ProgressBar
-                    android:layout_width="@dimen/view_params_60"
-                    android:layout_height="@dimen/view_params_60"
-                    android:layout_margin="@dimen/indentation_16"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/profile_personal_header"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_personal_header"/>
-
             <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile_avatar"
                     android:layout_width="@dimen/view_params_60"
@@ -95,7 +87,23 @@
                     app:layout_constraintStart_toStartOf="@+id/profile_personal_header"
                     app:layout_constraintTop_toBottomOf="@+id/profile_personal_header"
                     tools:src="@mipmap/ic_launcher"
-                    app:imageUrl="@{bindingModel.profileAvatarBinding}"/>
+                    app:imageUrl="@{bindingModel.profileAvatarBinding}"
+                    app:attachedProgressBar="@{progressBar}"/>
+
+            <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="@dimen/view_params_60"
+                    android:layout_height="@dimen/view_params_60"
+                    android:layout_margin="@dimen/indentation_16"
+                    android:visibility="gone"
+                    android:indeterminate="false"
+                    android:progressDrawable="@drawable/circular_progress_bar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:max="100"
+                    android:src="@color/soft_blue"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/profile_personal_header"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_personal_header"/>
 
             <TextView
                     android:id="@+id/profile_name"

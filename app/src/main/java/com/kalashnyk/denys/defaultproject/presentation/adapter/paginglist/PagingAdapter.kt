@@ -1,15 +1,9 @@
 package com.kalashnyk.denys.defaultproject.presentation.adapter.paginglist
 
-import android.widget.ImageView
-import androidx.databinding.BindingAdapter
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import com.kalashnyk.denys.defaultproject.R
-import com.kalashnyk.denys.defaultproject.utils.CARD_ARTICLE
-import com.kalashnyk.denys.defaultproject.utils.CARD_EVENT
-import com.kalashnyk.denys.defaultproject.utils.CARD_MESSAGES
-import com.kalashnyk.denys.defaultproject.utils.CARD_USER
-import com.kalashnyk.denys.defaultproject.utils.glide.GlideApp
+import com.kalashnyk.denys.defaultproject.utils.*
 
 /**
  * todo finished paging adapter

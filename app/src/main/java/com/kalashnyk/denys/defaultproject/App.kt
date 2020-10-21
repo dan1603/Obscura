@@ -14,6 +14,7 @@ import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.databa
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.ThemeEntity
 import com.kalashnyk.denys.defaultproject.usecases.repository.data_source.database.entity.UserEntity
 import com.kalashnyk.denys.defaultproject.utils.MocUtil
+import com.kalashnyk.denys.defaultproject.utils.glide.GlideApp
 import com.squareup.leakcanary.LeakCanary
 import com.squareup.leakcanary.RefWatcher
 
@@ -117,6 +118,9 @@ class App: MultiDexApplication() {
      */
     fun saveMockToDatabase(){
         AsyncTask.execute {
+
+            GlideApp.get(applicationContext).clearDiskCache()
+
             val listThemes: List<ThemeEntity> = MocUtil.mocListThemes()
             listThemes.forEach {
                 it.convertItemForDataSource(item = it, isCached = false, screenType = null)

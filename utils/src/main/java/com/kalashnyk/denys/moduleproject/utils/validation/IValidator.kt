@@ -1,4 +1,4 @@
-package com.kalashnyk.denys.defaultproject.utils.validation
+package com.kalashnyk.denys.moduleproject.utils.validation
 
 import android.util.Patterns
 import com.kalashnyk.denys.moduleproject.utils.PHONE_LENGTH_WITHOUT_COUNTRY_CODE

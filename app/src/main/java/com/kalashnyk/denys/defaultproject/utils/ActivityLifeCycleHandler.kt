@@ -9,8 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import com.kalashnyk.denys.defaultproject.App
-import com.kalashnyk.denys.defaultproject.utils.security.RootDetectionUtil
-import com.kalashnyk.denys.defaultproject.utils.security.SkipSecureCheckActivity
+import com.kalashnyk.denys.defaultproject.utils.UIUtil.getInsecureDeviceDialog
+import com.kalashnyk.denys.moduleproject.utils.security.RootDetectionUtil
+import com.kalashnyk.denys.moduleproject.utils.security.SkipSecureCheckActivity
 
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 class ActivityLifeCycleHandler : ActivityLifecycleCallbacks {
@@ -53,7 +54,7 @@ class ActivityLifeCycleHandler : ActivityLifecycleCallbacks {
     override fun onActivityResumed(activity: Activity) {
         ++resumed
         if (activity !is SkipSecureCheckActivity) {
-            RootDetectionUtil.isSecureDevice(activity)
+            RootDetectionUtil.isSecureDevice(activity, getInsecureDeviceDialog())
         }
     }
 

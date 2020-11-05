@@ -1,8 +1,8 @@
-package com.kalashnyk.denys.defaultproject.utils.permission
+package com.kalashnyk.denys.moduleproject.utils.permission
 
 import android.Manifest
 import android.app.Activity
-import com.kalashnyk.denys.defaultproject.utils.logger.Logger
+import com.kalashnyk.denys.moduleproject.utils.logger.Logger
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken

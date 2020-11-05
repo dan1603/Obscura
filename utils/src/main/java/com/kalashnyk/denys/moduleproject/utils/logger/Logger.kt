@@ -1,4 +1,4 @@
-package com.kalashnyk.denys.defaultproject.utils.logger
+package com.kalashnyk.denys.moduleproject.utils.logger
 
 import android.util.Log
 import kotlin.reflect.KClass

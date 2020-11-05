@@ -1,7 +1,6 @@
-package com.kalashnyk.denys.defaultproject.utils
+package com.kalashnyk.denys.moduleproject.utils
 
 import android.util.Log
-import com.kalashnyk.denys.defaultproject.BuildConfig
 
 import java.util.HashSet
 import java.util.regex.Matcher
@@ -12,7 +11,7 @@ object AppLog {
     private val INCLUDE_METHOD = BuildConfig.DEBUG
     private const val LINE_PREFIX = "APP:"
     private const val MAX_TAG_LENGTH = 50
-    private const val PACKAGE_PREFIX = BuildConfig.APPLICATION_ID + "."
+    private const val PACKAGE_PREFIX = BuildConfig.LIBRARY_PACKAGE_NAME + "."
     private val COMPILE = Pattern.compile(PACKAGE_PREFIX, Pattern.LITERAL)
 
     private val callingMethod: String?

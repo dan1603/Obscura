@@ -1,6 +1,5 @@
-package com.kalashnyk.denys.defaultproject.utils.validation
+package com.kalashnyk.denys.moduleproject.utils.validation
 
-import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowErrorModel
 import kotlin.collections.HashMap
 import kotlin.collections.set
 
@@ -24,7 +23,7 @@ interface ValidationHandler {
     ): AuthFlowErrorModel
 }
 
-internal class ValidationHandlerImpl : ValidationHandler {
+class ValidationHandlerImpl : ValidationHandler {
 
     private val validator: IValidator=ValidatorImpl()
 

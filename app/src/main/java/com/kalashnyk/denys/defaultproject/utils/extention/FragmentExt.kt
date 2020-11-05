@@ -5,7 +5,7 @@ import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseActivity
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseFragment
-import com.kalashnyk.denys.defaultproject.utils.AppLog
+import com.kalashnyk.denys.moduleproject.utils.AppLog
 import java.io.Serializable
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty

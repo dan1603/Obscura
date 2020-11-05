@@ -1,10 +1,9 @@
-package com.kalashnyk.denys.defaultproject.utils
+package com.kalashnyk.denys.moduleproject.utils
 
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.ContextWrapper
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -27,10 +26,6 @@ import android.text.method.LinkMovementMethod
 import android.view.View
 import android.widget.TextView
 
-import com.kalashnyk.denys.defaultproject.App
-import com.kalashnyk.denys.defaultproject.BuildConfig
-import com.kalashnyk.denys.defaultproject.R
-import com.kalashnyk.denys.moduleproject.utils.COLOR_ALPHA_255
 import org.apache.commons.lang3.StringUtils
 
 import java.io.File
@@ -52,12 +47,6 @@ object Util {
     private val INTENT_EXTRA_BADGE_COUNT = "badge_count"
     private val INTENT_EXTRA_PACKAGENAME = "badge_count_package_name"
     private val INTENT_EXTRA_ACTIVITY_NAME = "badge_count_class_name"
-
-    val isApplicationInForeground: Boolean
-        get() = ActivityLifeCycleHandler.isAppInForeground
-
-    val runningActivityCount: Int
-        get() = ActivityLifeCycleHandler.numberOfRunningActivities
 
     /**
      * Check if OS version is Marshmallow or higher
@@ -83,16 +72,15 @@ object Util {
     val isOreoOrHigher: Boolean
         get() = android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
 
-    fun getUriFromFile(file: File?): Uri? {
-        val context = App.getAppContext()
+    fun getUriFromFile(context: Context, file: File?): Uri? {
         return if (file == null)
             null
         else
             FileProvider.getUriForFile(
                 context,
-                context.getResources().getString(
+                context.resources.getString(
                     R.string.file_provider_authority,
-                    BuildConfig.APPLICATION_ID
+                    BuildConfig.LIBRARY_PACKAGE_NAME
                 ),
                 file
             )
@@ -113,9 +101,8 @@ object Util {
         return !StringUtils.isEmpty(link) && link.contains(IMAGE_TYPE_GIF)
     }
 
-    fun turnOffPlayingOutside() {
-        val mAudioManager = App
-            .getAppContext().getSystemService(Context.AUDIO_SERVICE) as AudioManager
+    fun turnOffPlayingOutside(context: Context) {
+        val mAudioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
         if (mAudioManager.isMusicActive) {
 
             val result = mAudioManager.requestAudioFocus(
@@ -129,8 +116,8 @@ object Util {
         }
     }
 
-    fun releasePlayingOutside() {
-        (App.getAppContext()
+    fun releasePlayingOutside(context: Context) {
+        (context
             .getSystemService(Context.AUDIO_SERVICE) as AudioManager).abandonAudioFocus { }
     }
 
@@ -160,7 +147,7 @@ object Util {
             return null
         } else {
             var out: FileOutputStream? = null
-            val mBitmap = Util.drawableToBitmap(drawable)
+            val mBitmap = drawableToBitmap(drawable)
 
             if (mBitmap != null) {
                 try {
@@ -274,53 +261,19 @@ object Util {
 //        }
 //    }
 
+
     fun isConnectedToNetwork(
         context: Context,
-        showOfflineDialog: Boolean, finishActivity: Boolean
+        alertDialog: AlertDialog? = null
     ): Boolean {
-        val appContext = App.getAppContext()
-        val cm = appContext
+        val cm = context
             .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
         val activeNetwork = cm.activeNetworkInfo
         val isConnected = activeNetwork != null && activeNetwork!!.isConnected
 
         if (!isConnected) {
-
-            if (showOfflineDialog) {
-                try {
-                    val alert = AlertDialog.Builder(
-                        context,
-                        R.style.AlertDialogTheme
-                    ).setMessage(
-                        context.getString(R.string.network_offline)
-                    )
-                        .setCancelable(false)
-                        .setPositiveButton(R.string.ok,
-                            DialogInterface.OnClickListener { dialog, which ->
-                                dialog.dismiss()
-
-                                try {
-                                    if ((finishActivity
-                                                && context is Activity
-                                                && !(context as Activity)
-                                            .isFinishing)
-                                    ) {
-                                        (context as Activity)
-                                            .finish()
-                                    }
-                                } catch (e: Exception) {
-                                    e.printStackTrace()
-                                }
-                            })
-                        .create()
-
-                    alert.show()
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-
-            }
+            alertDialog?.show()
             return false
         }
 
@@ -384,9 +337,9 @@ object Util {
         return null
     }
 
-    fun deleteFile(photoUri: Uri): Int {
+    fun deleteFile(context: Context, photoUri: Uri): Int {
         try {
-            return App.getAppContext().getContentResolver()
+            return context.contentResolver
                 .delete(
                     MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                     MediaStore.MediaColumns.DATA + "='"
@@ -399,15 +352,17 @@ object Util {
 
     }
 
-    fun deleteIfTemp(contentUri: Uri?) {
-        if ((contentUri != null && Util.isFileInTempDir(
-                App.getAppContext(), contentUri.toString()
+    fun deleteIfTemp(context: Context, contentUri: Uri?) {
+        if ((contentUri != null && isFileInTempDir(
+                context, contentUri.toString()
             ))
         ) {
-            if (deleteFile(contentUri) <= 0) {
-                FileUtil.deleteFile(
-                    FileUtil.resolveFilePath(contentUri.path)
-                )
+            if (deleteFile(context, contentUri) <= 0) {
+                contentUri.path?.let {
+                    FileUtil.deleteFile(
+                        FileUtil.resolveFilePath(it)
+                    )
+                }
             }
         }
     }
@@ -464,7 +419,7 @@ object Util {
                     (COLOR_ALPHA_255 * 0.6) as Int
                 )
             )
-            if (Util.isNougatOrHigher) {
+            if (isNougatOrHigher) {
                 textView.text = Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY)
             } else {
                 textView.text = Html.fromHtml(html)
@@ -580,7 +535,7 @@ object Util {
 //        context.startActivity(intent)
 //    }
 
-    fun getDrawableWithText(text: String, textSize: Float, padding: Int, colorAccent : Int): Drawable {
+    fun getDrawableWithText(context: Context, text: String, textSize: Float, padding: Int, colorAccent : Int): Drawable {
         val textPaint = Paint()
         textPaint.color = Color.WHITE
         textPaint.style = Paint.Style.FILL
@@ -602,7 +557,7 @@ object Util {
         canvas.drawText(text, w / 2, (h - 2 * padding), textPaint)
 
         return BitmapDrawable(
-            App.getAppContext().getResources(), bitmap
+            context.resources, bitmap
         )
     }
 }

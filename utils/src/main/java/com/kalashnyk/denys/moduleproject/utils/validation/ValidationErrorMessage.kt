@@ -1,8 +1,8 @@
-package com.kalashnyk.denys.defaultproject.utils.validation
+package com.kalashnyk.denys.moduleproject.utils.validation
 
 import android.content.Context
 import androidx.annotation.StringRes
-import com.kalashnyk.denys.defaultproject.R
+import com.kalashnyk.denys.moduleproject.utils.R
 
 /**
  * error of validation and network state

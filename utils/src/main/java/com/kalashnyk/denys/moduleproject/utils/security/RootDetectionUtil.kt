@@ -1,4 +1,4 @@
-package com.kalashnyk.denys.defaultproject.utils.security
+package com.kalashnyk.denys.moduleproject.utils.security
 
 import android.app.Activity
 import android.content.Context
@@ -7,8 +7,8 @@ import android.os.Build
 import android.provider.Settings
 import androidx.appcompat.app.AlertDialog
 import android.widget.Toast
-import com.kalashnyk.denys.defaultproject.BuildConfig
-import com.kalashnyk.denys.defaultproject.R
+import com.kalashnyk.denys.moduleproject.utils.BuildConfig
+import com.kalashnyk.denys.moduleproject.utils.R
 
 import java.io.BufferedReader
 import java.io.File
@@ -100,32 +100,6 @@ object RootDetectionUtil {
         }
     }
 
-    fun insecureDeviceDialog(context: Context) {
-        val confirm = AlertDialog.Builder(
-            context,
-            R.style.AlertDialogTheme
-        )
-            .setCancelable(false)
-            .setOnCancelListener { dialog ->
-                if (context is Activity) {
-                    context.finishAffinity()
-                }
-            }
-            .setMessage(context.getString(R.string.root_detection_description))
-            .setPositiveButton(
-                R.string.settings
-            ) { dialog, which ->
-                context.startActivity(
-                    Intent(
-                        android.provider.Settings
-                            .ACTION_APPLICATION_DEVELOPMENT_SETTINGS
-                    )
-                )
-            }
-            .create()
-        confirm.show()
-    }
-
     fun confirmDeviceSecurity(context: Context): Boolean {
         var isDeviceInSecure = false
         if (!BuildConfig.DEBUG && (checkDeveloperModeOn(context) ||
@@ -136,7 +110,7 @@ object RootDetectionUtil {
         return isDeviceInSecure
     }
 
-    fun isSecureDevice(context: Context): Boolean {
+    fun isSecureDevice(context: Context, alertDialog: AlertDialog): Boolean {
         if (confirmDeviceSecurity(context)) {
 //            if (SessionManager.isUserLoggedIn(context)) {
 //                Util.clearLocalDataLogout(context, false)
@@ -148,7 +122,7 @@ object RootDetectionUtil {
                 Toast.makeText(context, context.getString(R.string.root_detection_description), Toast.LENGTH_SHORT)
                     .show()
             } else {
-                insecureDeviceDialog(context)
+                alertDialog.show()
             }
             return false
         }

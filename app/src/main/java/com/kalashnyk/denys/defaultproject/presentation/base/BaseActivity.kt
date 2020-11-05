@@ -19,13 +19,13 @@ import com.kalashnyk.denys.defaultproject.presentation.navigation.NavigationImpl
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.PageNavigationItem
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.TransitionBundle
-import com.kalashnyk.denys.defaultproject.utils.NetworkConnectionListener
-import com.kalashnyk.denys.defaultproject.utils.NetworkConnectionProvider
-import com.kalashnyk.denys.defaultproject.utils.NetworkConnectionProviderImpl
+import com.kalashnyk.denys.moduleproject.utils.NetworkConnectionListener
+import com.kalashnyk.denys.moduleproject.utils.NetworkConnectionProvider
+import com.kalashnyk.denys.moduleproject.utils.NetworkConnectionProviderImpl
 import com.kalashnyk.denys.defaultproject.utils.extention.hideKeyboard
 import com.kalashnyk.denys.defaultproject.utils.extention.initializeToolbar
-import com.kalashnyk.denys.defaultproject.utils.permission.IPermissionManager
-import com.kalashnyk.denys.defaultproject.utils.permission.PermissionManagerImpl
+import com.kalashnyk.denys.moduleproject.utils.permission.IPermissionManager
+import com.kalashnyk.denys.moduleproject.utils.permission.PermissionManagerImpl
 
 
 /**

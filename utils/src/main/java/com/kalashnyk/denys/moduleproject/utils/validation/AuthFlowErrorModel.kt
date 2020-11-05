@@ -1,6 +1,5 @@
-package com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow
+package com.kalashnyk.denys.moduleproject.utils.validation
 
-import com.kalashnyk.denys.defaultproject.utils.validation.ValidationErrorMessage
 import kotlin.collections.HashMap
 
 /**

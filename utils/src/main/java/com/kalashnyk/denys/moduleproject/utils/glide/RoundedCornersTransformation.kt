@@ -1,4 +1,4 @@
-package com.kalashnyk.denys.defaultproject.utils.glide
+package com.kalashnyk.denys.moduleproject.utils.glide
 
 import android.graphics.Bitmap
 import com.bumptech.glide.load.Key
@@ -11,10 +11,10 @@ import java.security.MessageDigest
 class RoundedCornersTransformation constructor(
         private val radius: Int,
         private val margin: Int = 0,
-        private val cornerType: CornerType = CornerType.ALL
+        private val cornerType: CornerType=CornerType.ALL
 ) : BitmapTransformation() {
 
-    private val ID = "com.kalashnyk.denys.defaultproject.utils.glide.RoundedCornersTransformation"
+    private val ID = "com.kalashnyk.denys.moduleproject.utils.glide.RoundedCornersTransformation"
 
     enum class CornerType {
         ALL,
@@ -25,7 +25,15 @@ class RoundedCornersTransformation constructor(
     }
 
     override fun transform(pool: BitmapPool, toTransform: Bitmap, outWidth: Int, outHeight: Int): Bitmap {
-        return TransformationUtils.roundedCorners(pool, toTransform, outWidth, outHeight, radius, margin, cornerType)
+        return TransformationUtils.roundedCorners(
+            pool,
+            toTransform,
+            outWidth,
+            outHeight,
+            radius,
+            margin,
+            cornerType
+        )
     }
 
     override fun updateDiskCacheKey(messageDigest: MessageDigest) {

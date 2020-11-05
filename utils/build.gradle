@@ -44,4 +44,25 @@ dependencies {
 
     // Repository
     api project (':data_source')
+
+    // Java utils
+    api 'org.apache.commons:commons-lang3:3.5'
+
+    //Utility
+    api 'net.danlew:android.joda:2.9.9' // Time utility
+    api 'com.karumi:dexter:4.2.0'
+    testImplementation "joda-time:joda-time:2.9.9" // Test utility
+
+    // Rx
+    api 'io.reactivex.rxjava2:rxkotlin:2.0.0'
+    api "io.reactivex.rxjava2:rxandroid:2.1.1"
+    api "io.reactivex.rxjava2:rxjava:2.2.7"
+    api 'com.jakewharton.timber:timber:4.7.1'
+
+    // Glide
+    api "com.github.bumptech.glide:glide:${glideVersion}"
+    kapt "com.github.bumptech.glide:compiler:${glideVersion}"
+    api("com.github.bumptech.glide:recyclerview-integration:${glideVersion}") {
+        transitive = false
+    }
 }

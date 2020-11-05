@@ -1,8 +1,7 @@
-package com.kalashnyk.denys.defaultproject.utils.permission
+package com.kalashnyk.denys.moduleproject.utils.permission
 
 import android.app.Activity
 import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import java.util.ArrayList

@@ -7,6 +7,7 @@ import com.kalashnyk.denys.defaultproject.databinding.SignInDataBinding
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.*
 import com.kalashnyk.denys.defaultproject.presentation.base.BaseAuthFragment
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages
+import com.kalashnyk.denys.moduleproject.utils.validation.AuthFlowErrorModel
 
 /**
  * @author Kalashnyk Denys e-mail: kalashnyk.denys@gmail.com

@@ -37,8 +37,8 @@ import com.kalashnyk.denys.defaultproject.utils.extention.gone
 import com.kalashnyk.denys.defaultproject.utils.extention.hideKeyboard
 import com.kalashnyk.denys.defaultproject.utils.extention.toLatLng
 import com.kalashnyk.denys.defaultproject.utils.extention.visible
-import com.kalashnyk.denys.defaultproject.utils.logger.Logger
-import com.kalashnyk.denys.defaultproject.utils.permission.PermissionHelper.checkLocationPermission
+import com.kalashnyk.denys.moduleproject.utils.logger.Logger
+import com.kalashnyk.denys.moduleproject.utils.permission.PermissionHelper.checkLocationPermission
 import io.reactivex.functions.Consumer
 
 class LocationChooserActivity : BaseActivity<LocationChooserDataBinding>(),

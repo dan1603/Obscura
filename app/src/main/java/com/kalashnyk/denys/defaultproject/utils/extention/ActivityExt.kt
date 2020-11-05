@@ -1,6 +1,5 @@
 package com.kalashnyk.denys.defaultproject.utils.extention
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -14,7 +13,6 @@ import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.ColorRes
-import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
@@ -25,7 +23,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.snackbar.Snackbar
 import com.kalashnyk.denys.defaultproject.R
-import com.kalashnyk.denys.defaultproject.utils.AppLog
+import com.kalashnyk.denys.moduleproject.utils.AppLog
 import java.io.Serializable
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty

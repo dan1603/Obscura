@@ -1,4 +1,4 @@
-package com.kalashnyk.denys.defaultproject.utils.glide
+package com.kalashnyk.denys.moduleproject.utils.glide
 
 import android.content.Context
 import com.bumptech.glide.GlideBuilder

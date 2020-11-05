@@ -1,4 +1,4 @@
-package com.kalashnyk.denys.defaultproject.utils
+package com.kalashnyk.denys.moduleproject.utils
 
 
 import android.app.Activity

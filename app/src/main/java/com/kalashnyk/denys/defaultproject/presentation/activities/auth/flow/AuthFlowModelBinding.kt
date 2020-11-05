@@ -15,7 +15,8 @@ import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.presentation.navigation.fragment_navigator.model.Pages
 import com.kalashnyk.denys.defaultproject.utils.binding.TextBindingModel
 import com.kalashnyk.denys.defaultproject.utils.extention.*
-import com.kalashnyk.denys.defaultproject.utils.validation.ValidationErrorMessage
+import com.kalashnyk.denys.moduleproject.utils.validation.AuthFlowErrorModel
+import com.kalashnyk.denys.moduleproject.utils.validation.ValidationErrorMessage
 import java.util.*
 
 /**

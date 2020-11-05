@@ -4,11 +4,13 @@ import android.annotation.TargetApi
 import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Outline
 import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.os.Build
+import android.provider.Settings
 import androidx.annotation.ColorInt
 import androidx.appcompat.app.AlertDialog
 import android.util.DisplayMetrics
@@ -19,8 +21,10 @@ import android.view.Window
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import com.kalashnyk.denys.defaultproject.App
 import com.kalashnyk.denys.defaultproject.R
 import com.kalashnyk.denys.defaultproject.presentation.navigation.Navigation
+import com.kalashnyk.denys.moduleproject.utils.Util
 
 object UIUtil {
 
@@ -235,8 +239,64 @@ object UIUtil {
     }
 
     fun handleBackButton(navigator : Navigation) {
-        if (Util.runningActivityCount < 2) {
+        if (ActivityLifeCycleHandler.numberOfRunningActivities < 2) {
             navigator.openMainScreen()
         }
+    }
+
+    fun getOfflineDialog(finishActivity: Boolean): AlertDialog {
+        val context = App.getAppContext()
+        return AlertDialog.Builder(
+            context,
+            R.style.AlertDialogTheme
+        ).setMessage(
+            context.getString(R.string.network_offline)
+        )
+            .setCancelable(false)
+            .setPositiveButton(
+                R.string.ok
+            ) { dialog, which ->
+                dialog.dismiss()
+
+                try {
+                    if ((finishActivity
+                                && context is Activity
+                                && !context
+                            .isFinishing)
+                    ) {
+                        context
+                            .finish()
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+            .create()
+    }
+
+    fun getInsecureDeviceDialog() : AlertDialog{
+        val context = App.getAppContext()
+        return AlertDialog.Builder(
+            context,
+            R.style.AlertDialogTheme
+        )
+            .setCancelable(false)
+            .setOnCancelListener { dialog ->
+                if (context is Activity) {
+                    context.finishAffinity()
+                }
+            }
+            .setMessage(context.getString(com.kalashnyk.denys.moduleproject.utils.R.string.root_detection_description))
+            .setPositiveButton(
+                R.string.settings
+            ) { dialog, which ->
+                context.startActivity(
+                    Intent(
+                        Settings
+                            .ACTION_APPLICATION_DEVELOPMENT_SETTINGS
+                    )
+                )
+            }
+            .create()
     }
 }

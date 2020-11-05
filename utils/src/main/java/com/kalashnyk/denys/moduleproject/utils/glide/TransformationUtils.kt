@@ -1,4 +1,4 @@
-package com.kalashnyk.denys.defaultproject.utils.glide
+package com.kalashnyk.denys.moduleproject.utils.glide
 
 import android.graphics.*
 import android.os.Build
@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 import java.util.concurrent.locks.Condition
 import java.util.concurrent.locks.Lock
 import java.util.concurrent.locks.ReentrantLock
-import com.kalashnyk.denys.defaultproject.utils.glide.RoundedCornersTransformation.CornerType.*
+import com.kalashnyk.denys.moduleproject.utils.glide.RoundedCornersTransformation.CornerType.*
 
 
 object TransformationUtils {
@@ -48,7 +48,8 @@ object TransformationUtils {
     /* round transformation*/
 
     fun roundedCorners(pool: BitmapPool, inBitmap: Bitmap,
-                       width: Int, height: Int, roundingRadius: Int, margin: Int, cornerType: RoundedCornersTransformation.CornerType): Bitmap {
+                       width: Int, height: Int, roundingRadius: Int, margin: Int, cornerType: RoundedCornersTransformation.CornerType
+    ): Bitmap {
         Preconditions.checkArgument(width > 0, "width must be greater than 0.")
         Preconditions.checkArgument(height > 0, "height must be greater than 0.")
         Preconditions.checkArgument(roundingRadius > 0, "roundingRadius must be greater than 0.")

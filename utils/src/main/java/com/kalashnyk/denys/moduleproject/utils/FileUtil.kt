@@ -1,4 +1,4 @@
-package com.kalashnyk.denys.defaultproject.utils
+package com.kalashnyk.denys.moduleproject.utils
 
 
 import android.content.ContentUris
@@ -11,7 +11,6 @@ import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.webkit.MimeTypeMap
-import com.kalashnyk.denys.defaultproject.App
 
 import org.apache.commons.lang3.StringUtils
 
@@ -348,9 +347,10 @@ object FileUtil {
         return StringUtils.isEmpty(filePath) || File(filePath).delete()
     }
 
-    fun deleteIfTempFile(filePath: String) {
+
+    fun deleteIfTempFile(context: Context, filePath: String) {
         if (StringUtils.isNotEmpty(filePath) && Util.isFileInTempDir(
-                App.getAppContext(), filePath
+                context, filePath
             )
         ) {
             deleteFile(filePath)

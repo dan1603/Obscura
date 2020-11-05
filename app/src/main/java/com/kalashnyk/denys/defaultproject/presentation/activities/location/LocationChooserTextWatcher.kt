@@ -9,7 +9,7 @@ import android.view.View
 import android.widget.EditText
 import com.kalashnyk.denys.defaultproject.utils.extention.gone
 import com.kalashnyk.denys.defaultproject.utils.extention.visible
-import com.kalashnyk.denys.defaultproject.utils.logger.Logger
+import com.kalashnyk.denys.moduleproject.utils.logger.Logger
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

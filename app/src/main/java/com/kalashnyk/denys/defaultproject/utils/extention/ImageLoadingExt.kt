@@ -2,14 +2,9 @@ package com.kalashnyk.denys.defaultproject.utils.extention
 
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
-import com.bumptech.glide.Priority
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.kalashnyk.denys.defaultproject.utils.glide.GlideRequest
-//import com.kalashnyk.denys.defaultproject.utils.glide.GlideApp
-//import com.kalashnyk.denys.defaultproject.utils.glide.GlideRequest
-import com.kalashnyk.denys.defaultproject.utils.glide.RoundedCornersTransformation
+import com.kalashnyk.denys.moduleproject.utils.glide.GlideRequest
+//import com.kalashnyk.denys.moduleproject.utils.glide.GlideApp
+//import com.kalashnyk.denys.moduleproject.utils.glide.GlideRequest
 import java.io.File
 
 fun ImageView.loadImageByUrl(path: String?, placeholder : Int, error : Int) {

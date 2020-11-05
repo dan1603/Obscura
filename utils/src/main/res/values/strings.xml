@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_internet_connection">No network connection</string>
+    <string name="error_network_message">Please connect to network</string>
+    <string name="error_password_blank_message">Password can not be blank</string>
+    <string name="error_password_message">Invalid password</string>
+    <string name="error_password_not_same_message">Passwords don\'t match</string>
+    <string name="error_wrong_old_password">The current password you entered is incorrect</string>
+    <string name="error_email_blank_message">Email can not be blank</string>
+    <string name="error_flow_sign_in_data">Invalid email and password</string>
+    <string name="error_flow_sign_up_data">Invalid data</string>
+    <string name="error_terms_conditions">You don\'t agree terms conditions</string>
+    <string name="error_email_message">Invalid email address</string>
+    <string name="error_phone_message">Invalid phone number</string>
+    <string name="error_phone_blank_message">Phone can not be blank</string>
+    <string name="error_code_message">Invalid code</string>
+    <string name="error_please_try_again">Please try again</string>
+    <string name="exit_confirm">Are you sure you want to leave the app?</string>
+    <string name="root_detection_description">root detection description</string>
+</resources>

@@ -13,7 +13,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.kalashnyk.denys.defaultproject.domain.BaseViewModel
-import com.kalashnyk.denys.defaultproject.utils.AppLog
 import com.kalashnyk.denys.defaultproject.utils.extention.hideKeyboard
 import com.kalashnyk.denys.defaultproject.utils.extention.showSnack
 import com.kalashnyk.denys.defaultproject.utils.extention.showToast

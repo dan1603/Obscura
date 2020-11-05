@@ -1,11 +1,11 @@
 package com.kalashnyk.denys.defaultproject.domain
 
 import androidx.lifecycle.ViewModel
-import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowErrorModel
+import com.kalashnyk.denys.moduleproject.utils.validation.AuthFlowErrorModel
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlowModel
 import com.kalashnyk.denys.defaultproject.presentation.activities.auth.flow.AuthFlow
-import com.kalashnyk.denys.defaultproject.utils.validation.ValidationHandler
-import com.kalashnyk.denys.defaultproject.utils.validation.ValidationHandlerImpl
+import com.kalashnyk.denys.moduleproject.utils.validation.ValidationHandler
+import com.kalashnyk.denys.moduleproject.utils.validation.ValidationHandlerImpl
 
 /**
  *
